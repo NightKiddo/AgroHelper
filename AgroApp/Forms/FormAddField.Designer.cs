@@ -58,6 +58,7 @@
             this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Zakończ";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // buttonNext
             // 
@@ -68,6 +69,7 @@
             this.buttonNext.TabIndex = 2;
             this.buttonNext.Text = "Dalej";
             this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonAdd
             // 

@@ -36,7 +36,7 @@ namespace AgroApp.Forms
                 else
                 {
                     MessageBox.Show("Błąd");
-                };
+                }
             }
             else{
                 
@@ -44,6 +44,7 @@ namespace AgroApp.Forms
                 {            
                     FormAddField formAddField = new FormAddField(userId);
                     formAddField.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
