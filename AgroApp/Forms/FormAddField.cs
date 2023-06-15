@@ -23,7 +23,7 @@ namespace AgroApp.Forms
 
         private void FormAddField_Load(object sender, EventArgs e)
         {
-            webView21.Source = new Uri("C:\\xampp\\htdocs\\agro\\main\\index.html");
+            webView21.Source = new Uri("C:\\projekty\\AgroApp\\main\\index.html");
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

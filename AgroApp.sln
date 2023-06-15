@@ -5,6 +5,177 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroApp", "AgroApp\AgroApp.csproj", "{580E8A7A-4E3A-4E9D-9B38-19948F78A9D3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapSelector", "MapSelector", "{4252DD27-094F-4ED8-8C1C-FFE66F53962D}"
+	ProjectSection(SolutionItems) = preProject
+		package-lock.json = package-lock.json
+		package.json = package.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{D322FA98-E562-41FF-8793-0CD79032DE0B}"
+	ProjectSection(SolutionItems) = preProject
+		main\index.html = main\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "leaflet", "leaflet", "{DE47FAB1-4097-441B-A0D5-C5610A394039}"
+	ProjectSection(SolutionItems) = preProject
+		leaflet\leaflet-src.esm.js = leaflet\leaflet-src.esm.js
+		leaflet\leaflet-src.esm.js.map = leaflet\leaflet-src.esm.js.map
+		leaflet\leaflet-src.js = leaflet\leaflet-src.js
+		leaflet\leaflet-src.js.map = leaflet\leaflet-src.js.map
+		leaflet\leaflet.css = leaflet\leaflet.css
+		leaflet\leaflet.js = leaflet\leaflet.js
+		leaflet\leaflet.js.map = leaflet\leaflet.js.map
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{FA35C0B7-C134-417A-A037-0909A141DD37}"
+	ProjectSection(SolutionItems) = preProject
+		leaflet\images\layers-2x.png = leaflet\images\layers-2x.png
+		leaflet\images\layers.png = leaflet\images\layers.png
+		leaflet\images\marker-icon-2x.png = leaflet\images\marker-icon-2x.png
+		leaflet\images\marker-icon.png = leaflet\images\marker-icon.png
+		leaflet\images\marker-shadow.png = leaflet\images\marker-shadow.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "node-modules", "node-modules", "{437D147D-FD2C-4FC6-AE55-0F2F9BC548C7}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\.package-lock.json = node_modules\.package-lock.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "leaflet-draw", "leaflet-draw", "{1A9FB050-926A-4558-98E2-48BFC49651EC}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\CHANGELOG.md = node_modules\leaflet-draw\CHANGELOG.md
+		node_modules\leaflet-draw\package.json = node_modules\leaflet-draw\package.json
+		node_modules\leaflet-draw\README.md = node_modules\leaflet-draw\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{40308E7D-8B74-4968-BE36-6FF8C93AAF59}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\dist\leaflet.draw-src.css = node_modules\leaflet-draw\dist\leaflet.draw-src.css
+		node_modules\leaflet-draw\dist\leaflet.draw-src.js = node_modules\leaflet-draw\dist\leaflet.draw-src.js
+		node_modules\leaflet-draw\dist\leaflet.draw-src.map = node_modules\leaflet-draw\dist\leaflet.draw-src.map
+		node_modules\leaflet-draw\dist\leaflet.draw.css = node_modules\leaflet-draw\dist\leaflet.draw.css
+		node_modules\leaflet-draw\dist\leaflet.draw.js = node_modules\leaflet-draw\dist\leaflet.draw.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.12.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.12.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.14.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.14.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.2.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.2.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.3.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.3.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.4.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.4.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.5.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.5.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.7.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.7.html
+		node_modules\leaflet-draw\docs\leaflet-draw-0.4.9.html = node_modules\leaflet-draw\docs\leaflet-draw-0.4.9.html
+		node_modules\leaflet-draw\docs\leaflet-draw-1.0.0.html = node_modules\leaflet-draw\docs\leaflet-draw-1.0.0.html
+		node_modules\leaflet-draw\docs\leaflet-draw-1.0.1.html = node_modules\leaflet-draw\docs\leaflet-draw-1.0.1.html
+		node_modules\leaflet-draw\docs\leaflet-draw-latest.html = node_modules\leaflet-draw\docs\leaflet-draw-latest.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{0902071F-BFDE-4BD0-94E0-F9D8DEAE58F9}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\css\main.css = node_modules\leaflet-draw\docs\css\main.css
+		node_modules\leaflet-draw\docs\css\normalize.css = node_modules\leaflet-draw\docs\css\normalize.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{2AFCE8A9-C3E6-44BC-8F6F-F23D3C358317}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples\basic.html = node_modules\leaflet-draw\docs\examples\basic.html
+		node_modules\leaflet-draw\docs\examples\edithandlers.html = node_modules\leaflet-draw\docs\examples\edithandlers.html
+		node_modules\leaflet-draw\docs\examples\full.html = node_modules\leaflet-draw\docs\examples\full.html
+		node_modules\leaflet-draw\docs\examples\popup.html = node_modules\leaflet-draw\docs\examples\popup.html
+		node_modules\leaflet-draw\docs\examples\snapping.html = node_modules\leaflet-draw\docs\examples\snapping.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples-0.7x", "examples-0.7x", "{9FA1D0FA-B23E-4D14-A427-F88F1BCB046A}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples-0.7.x\basic.html = node_modules\leaflet-draw\docs\examples-0.7.x\basic.html
+		node_modules\leaflet-draw\docs\examples-0.7.x\edithandlers.html = node_modules\leaflet-draw\docs\examples-0.7.x\edithandlers.html
+		node_modules\leaflet-draw\docs\examples-0.7.x\full.html = node_modules\leaflet-draw\docs\examples-0.7.x\full.html
+		node_modules\leaflet-draw\docs\examples-0.7.x\snapping.html = node_modules\leaflet-draw\docs\examples-0.7.x\snapping.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "highlight", "highlight", "{1BD18EBF-7B24-4191-805A-11C80090D611}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\highlight\highlight.pack.js = node_modules\leaflet-draw\docs\highlight\highlight.pack.js
+		node_modules\leaflet-draw\docs\highlight\LICENSE = node_modules\leaflet-draw\docs\highlight\LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{4C6400A7-0765-4B6D-AF66-DF26575120DB}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\images\favicon.ico = node_modules\leaflet-draw\docs\images\favicon.ico
+		node_modules\leaflet-draw\docs\images\forum-round.png = node_modules\leaflet-draw\docs\images\forum-round.png
+		node_modules\leaflet-draw\docs\images\github-round.png = node_modules\leaflet-draw\docs\images\github-round.png
+		node_modules\leaflet-draw\docs\images\sprite.png = node_modules\leaflet-draw\docs\images\sprite.png
+		node_modules\leaflet-draw\docs\images\sprite.svg = node_modules\leaflet-draw\docs\images\sprite.svg
+		node_modules\leaflet-draw\docs\images\twitter-round.png = node_modules\leaflet-draw\docs\images\twitter-round.png
+		node_modules\leaflet-draw\docs\images\twitter.png = node_modules\leaflet-draw\docs\images\twitter.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{30EFFFE0-1A65-4A82-9C32-9E12B8545895}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\js\docs.js = node_modules\leaflet-draw\docs\js\docs.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{4909BDD5-BA06-4535-AEDD-C9E8CF41DF1E}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples\libs\leaflet-src.js = node_modules\leaflet-draw\docs\examples\libs\leaflet-src.js
+		node_modules\leaflet-draw\docs\examples\libs\leaflet-src.map = node_modules\leaflet-draw\docs\examples\libs\leaflet-src.map
+		node_modules\leaflet-draw\docs\examples\libs\leaflet.css = node_modules\leaflet-draw\docs\examples\libs\leaflet.css
+		node_modules\leaflet-draw\docs\examples\libs\Leaflet.draw.drag-src.js = node_modules\leaflet-draw\docs\examples\libs\Leaflet.draw.drag-src.js
+		node_modules\leaflet-draw\docs\examples\libs\leaflet.geometryutil.js = node_modules\leaflet-draw\docs\examples\libs\leaflet.geometryutil.js
+		node_modules\leaflet-draw\docs\examples\libs\leaflet.snap.js = node_modules\leaflet-draw\docs\examples\libs\leaflet.snap.js
+		node_modules\leaflet-draw\docs\examples\libs\spectrum.css = node_modules\leaflet-draw\docs\examples\libs\spectrum.css
+		node_modules\leaflet-draw\docs\examples\libs\spectrum.js = node_modules\leaflet-draw\docs\examples\libs\spectrum.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{7859B707-A54E-4EA2-9356-6B15FBA7E80A}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples\libs\images\layers-2x.png = node_modules\leaflet-draw\docs\examples\libs\images\layers-2x.png
+		node_modules\leaflet-draw\docs\examples\libs\images\layers.png = node_modules\leaflet-draw\docs\examples\libs\images\layers.png
+		node_modules\leaflet-draw\docs\examples\libs\images\marker-icon-2x.png = node_modules\leaflet-draw\docs\examples\libs\images\marker-icon-2x.png
+		node_modules\leaflet-draw\docs\examples\libs\images\marker-icon.png = node_modules\leaflet-draw\docs\examples\libs\images\marker-icon.png
+		node_modules\leaflet-draw\docs\examples\libs\images\marker-shadow.png = node_modules\leaflet-draw\docs\examples\libs\images\marker-shadow.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{6A931526-527B-4C5C-80E5-AE0A4C0B83C0}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet-src.js = node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet-src.js
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.css = node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.css
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\Leaflet.draw.drag-src.js = node_modules\leaflet-draw\docs\examples-0.7.x\libs\Leaflet.draw.drag-src.js
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.geometryutil.js = node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.geometryutil.js
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.snap.js = node_modules\leaflet-draw\docs\examples-0.7.x\libs\leaflet.snap.js
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\spectrum.css = node_modules\leaflet-draw\docs\examples-0.7.x\libs\spectrum.css
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\spectrum.js = node_modules\leaflet-draw\docs\examples-0.7.x\libs\spectrum.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{70A071D8-E897-495D-A4B4-558C3D0F46D1}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\layers-2x.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\layers-2x.png
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\layers.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\layers.png
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon-2x.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon-2x.png
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon.png
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon@2x.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-icon@2x.png
+		node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-shadow.png = node_modules\leaflet-draw\docs\examples-0.7.x\libs\images\marker-shadow.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "style", "style", "{8F5706D2-0502-4EF4-838A-9BBBFF37102E}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\docs\highlight\styles\github-gist.css = node_modules\leaflet-draw\docs\highlight\styles\github-gist.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{DC18FDE1-51D8-43BF-B36B-04C53AF523E9}"
+	ProjectSection(SolutionItems) = preProject
+		node_modules\leaflet-draw\dist\images\layers-2x.png = node_modules\leaflet-draw\dist\images\layers-2x.png
+		node_modules\leaflet-draw\dist\images\layers.png = node_modules\leaflet-draw\dist\images\layers.png
+		node_modules\leaflet-draw\dist\images\marker-icon-2x.png = node_modules\leaflet-draw\dist\images\marker-icon-2x.png
+		node_modules\leaflet-draw\dist\images\marker-icon.png = node_modules\leaflet-draw\dist\images\marker-icon.png
+		node_modules\leaflet-draw\dist\images\marker-shadow.png = node_modules\leaflet-draw\dist\images\marker-shadow.png
+		node_modules\leaflet-draw\dist\images\spritesheet-2x.png = node_modules\leaflet-draw\dist\images\spritesheet-2x.png
+		node_modules\leaflet-draw\dist\images\spritesheet.png = node_modules\leaflet-draw\dist\images\spritesheet.png
+		node_modules\leaflet-draw\dist\images\spritesheet.svg = node_modules\leaflet-draw\dist\images\spritesheet.svg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +189,27 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D322FA98-E562-41FF-8793-0CD79032DE0B} = {4252DD27-094F-4ED8-8C1C-FFE66F53962D}
+		{DE47FAB1-4097-441B-A0D5-C5610A394039} = {4252DD27-094F-4ED8-8C1C-FFE66F53962D}
+		{FA35C0B7-C134-417A-A037-0909A141DD37} = {DE47FAB1-4097-441B-A0D5-C5610A394039}
+		{437D147D-FD2C-4FC6-AE55-0F2F9BC548C7} = {4252DD27-094F-4ED8-8C1C-FFE66F53962D}
+		{1A9FB050-926A-4558-98E2-48BFC49651EC} = {437D147D-FD2C-4FC6-AE55-0F2F9BC548C7}
+		{40308E7D-8B74-4968-BE36-6FF8C93AAF59} = {1A9FB050-926A-4558-98E2-48BFC49651EC}
+		{1DF9CF55-2F20-4CD1-B090-2E34B80A2F62} = {1A9FB050-926A-4558-98E2-48BFC49651EC}
+		{0902071F-BFDE-4BD0-94E0-F9D8DEAE58F9} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{2AFCE8A9-C3E6-44BC-8F6F-F23D3C358317} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{9FA1D0FA-B23E-4D14-A427-F88F1BCB046A} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{1BD18EBF-7B24-4191-805A-11C80090D611} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{4C6400A7-0765-4B6D-AF66-DF26575120DB} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{30EFFFE0-1A65-4A82-9C32-9E12B8545895} = {1DF9CF55-2F20-4CD1-B090-2E34B80A2F62}
+		{4909BDD5-BA06-4535-AEDD-C9E8CF41DF1E} = {2AFCE8A9-C3E6-44BC-8F6F-F23D3C358317}
+		{7859B707-A54E-4EA2-9356-6B15FBA7E80A} = {4909BDD5-BA06-4535-AEDD-C9E8CF41DF1E}
+		{6A931526-527B-4C5C-80E5-AE0A4C0B83C0} = {9FA1D0FA-B23E-4D14-A427-F88F1BCB046A}
+		{70A071D8-E897-495D-A4B4-558C3D0F46D1} = {6A931526-527B-4C5C-80E5-AE0A4C0B83C0}
+		{8F5706D2-0502-4EF4-838A-9BBBFF37102E} = {1BD18EBF-7B24-4191-805A-11C80090D611}
+		{DC18FDE1-51D8-43BF-B36B-04C53AF523E9} = {40308E7D-8B74-4968-BE36-6FF8C93AAF59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E01C13C3-1242-4B86-8CFD-A2B5607B9A5F}

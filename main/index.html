@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="crossorigin="">
+    </script>
+</head>
+<body>
+    <!-- mapa -->
+    <div id="map" style="height: 90vh;">
+        
+    </div>
+
+    <div id="add">
+        <form action="addField.php" method="post">
+            <input type="text" name="coordinates">
+            <input type="submit" value="Dodaj">
+        </form>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+</body>
+</html>
+<script>
+    var bounds = [[55,12],[48,25]];
+
+    var map = L.map('map',{
+        center:[52.5, 19.4],
+        zoom: 9,
+        minZoom: 7.5,
+        maxBounds: bounds
+    });
+        
+    var topografia = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/ext/OSM/BaseMap/service',{
+            layers: 'osm'
+    }).addTo(map);
+
+        var ortofotomapa = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/service/PZGIK/ORTO/WMS/StandardResolution', 
+        {
+            layers: 'Raster',
+            minZoom: 7
+        });
+
+        var dzialki = L.tileLayer.wms('https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow',{
+            layers: 'dzialki',
+            format: 'image/png',
+            transparent: true
+        });
+
+        var nazwy = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/service/PZGiK/PRNG/WMS/GeographicalNames',{
+            layers: 'M1_UrzedoweNazwyMiejscowosci',
+            format: 'image/png',
+            transparent: true
+        });
+
+        map.on("zoom", function(e){
+        var zoom = map.getZoom();
+
+        if(zoom > 14){
+            map.removeLayer(topografia);
+            map.addLayer(ortofotomapa);
+            map.addLayer(dzialki);
+            map.addLayer(nazwy);
+        }
+
+        if(zoom < 14){
+            map.removeLayer(ortofotomapa);
+            map.removeLayer(dzialki);
+            map.removeLayer(nazwy);
+            map.addLayer(topografia);
+        }
+    });
+
+    var drawControl = new L.Control.Draw({draw:{line: false, circle: false, marker: false, polyline: false}});
+    map.addControl(drawControl);
+
+    var drawnFeatures = new L.FeatureGroup;
+    map.addLayer(drawnFeatures);
+    
+
+    function exctractLatLngs(latLngs){
+        var cords;
+        
+        cords = latLngs.toString();
+
+        var ex1 = /LatLng/g;
+
+        cords = cords.replaceAll('LatLng', '');
+        cords = cords.replaceAll('(','[');
+        cords = cords.replaceAll(')',']');
+        cords = '['+cords+']';
+
+        return cords;
+    }
+
+    map.on("draw:created", function(e){
+        var type = e.layerType;
+        var layer = e.layer;
+        //console.log(e);
+        drawnFeatures.addLayer(layer);
+
+        var latLngs = exctractLatLngs(layer.getLatLngs());
+
+        document.getElementById("coordinates").innerHTML = latLngs;
+        });        
+</script>
