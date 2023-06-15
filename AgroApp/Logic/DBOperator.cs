@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
 using System.Linq;
@@ -48,7 +49,24 @@ namespace AgroApp.Logic
             conn.Close();
             return a;
         }
+        public object select(string query) 
+        {
+            connect();
+            conn.Open();
 
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            string output = "";
+
+            while (dataReader.Read()) 
+            {
+                output = output + dataReader.GetValue(0);
+            }
+
+            return output;
+
+        }
         public int login(string login, string password) 
         {
             a = 0;

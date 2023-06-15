@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonNext = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
@@ -49,16 +49,25 @@
             this.panel1.Size = new System.Drawing.Size(800, 429);
             this.panel1.TabIndex = 0;
             // 
-            // webView21
+            // buttonExit
             // 
-            this.webView21.AllowExternalDrop = true;
-            this.webView21.CreationProperties = null;
-            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Location = new System.Drawing.Point(3, 3);
-            this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(794, 375);
-            this.webView21.TabIndex = 0;
-            this.webView21.ZoomFactor = 1D;
+            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonExit.Location = new System.Drawing.Point(582, 385);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(181, 33);
+            this.buttonExit.TabIndex = 3;
+            this.buttonExit.Text = "Zakończ";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            // 
+            // buttonNext
+            // 
+            this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonNext.Location = new System.Drawing.Point(297, 384);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(181, 33);
+            this.buttonNext.TabIndex = 2;
+            this.buttonNext.Text = "Dalej";
+            this.buttonNext.UseVisualStyleBackColor = true;
             // 
             // buttonAdd
             // 
@@ -71,25 +80,17 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // buttonNext
+            // webView21
             // 
-            this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonNext.Location = new System.Drawing.Point(297, 384);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(181, 33);
-            this.buttonNext.TabIndex = 2;
-            this.buttonNext.Text = "Dalej";
-            this.buttonNext.UseVisualStyleBackColor = true;
-            // 
-            // buttonExit
-            // 
-            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonExit.Location = new System.Drawing.Point(582, 385);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(181, 33);
-            this.buttonExit.TabIndex = 3;
-            this.buttonExit.Text = "Zakończ";
-            this.buttonExit.UseVisualStyleBackColor = true;
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(3, 3);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(794, 375);
+            this.webView21.TabIndex = 0;
+            this.webView21.ZoomFactor = 1D;
+            this.webView21.WebMessageReceived += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs>(this.webView21_WebMessageReceived);
             // 
             // FormAddField
             // 

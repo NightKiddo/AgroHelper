@@ -15,15 +15,8 @@
 </head>
 <body>
     <!-- mapa -->
-    <div id="map" style="height: 90vh;">
+    <div id="map" style="height: 100vh;">
         
-    </div>
-
-    <div id="add">
-        <form action="addField.php" method="post">
-            <input type="text" name="coordinates">
-            <input type="submit" value="Dodaj">
-        </form>
     </div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
@@ -108,7 +101,6 @@
         drawnFeatures.addLayer(layer);
 
         var latLngs = exctractLatLngs(layer.getLatLngs());
-
-        document.getElementById("coordinates").innerHTML = latLngs;
+        chrome.webview.postMessage(latLngs);
         });        
 </script>
