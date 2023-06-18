@@ -23,29 +23,38 @@ namespace AgroApp.Forms
 
         private void addGarage(int option) 
         {
-            InsertQuery query = new InsertQuery("Garages_farm", "farm,garages", "'" + textBox1.Text + "'," + farmId);
-            if (option == 0)
+            if(textBox1.Text == String.Empty)
             {
-                if (dboperator.insert(query) != 0)
+                this.Close();
+            }
+            else
+            {
+                InsertQuery query = new InsertQuery("Garages", "name, farm", "'" + textBox1.Text + "'," + farmId);
+                if (option == 0)
                 {
-                    MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    if (dboperator.insert(query) != 0)
+                    {
+                        MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Błąd");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Błąd");
-                }
-            }
-            else 
-            {
-                if (dboperator.insert(query) != 0)
-                {
-                    MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //tu kolejny form
-                }
-                else 
-                {
-                    MessageBox.Show("Błąd");
+                    if (dboperator.insert(query) != 0)
+                    {
+                        MessageBox.Show("Dodano pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FormAddStorage formAddStorage = new FormAddStorage(farmId);
+                        formAddStorage.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Błąd");
+                    }
                 }
             }
         }

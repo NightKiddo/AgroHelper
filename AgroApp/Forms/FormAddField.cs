@@ -18,10 +18,12 @@ namespace AgroApp.Forms
         string coordinates;
         int farmId;
         DBOperator dboperator = new DBOperator();
-        public FormAddField(int userId)
+        public FormAddField(int userId, int farmId)
         {
             InitializeComponent();
             this.userId = userId;
+            this.farmId = farmId;
+            
         }
 
         private void FormAddField_Load(object sender, EventArgs e)
@@ -32,12 +34,10 @@ namespace AgroApp.Forms
         {
             if (option == 0)
             {
-                int.TryParse((string)dboperator.select("SELECT MAX(id) FROM Farms WHERE [user] = " + userId), out farmId);
-                InsertQuery queryField = new InsertQuery("Fields", "coordinates,farm", "'" + coordinates + "'" + farmId);
+                InsertQuery queryField = new InsertQuery("Fields", "coordinates,farm", "'" + coordinates + "'," + farmId);
                 if (dboperator.insert(queryField) != 0)
                 {
                     MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
                 }
                 else
                 {
@@ -45,7 +45,6 @@ namespace AgroApp.Forms
                 }
             }else if(option == 1)
             {
-                string farmId = (string)dboperator.select("SELECT MAX(id) FROM Farms WHERE [user] = " + userId);
                 InsertQuery queryField = new InsertQuery("Fields", "coordinates,farm", "'" + coordinates + "'," + farmId);
                 if (dboperator.insert(queryField) != 0)
                 {
@@ -84,6 +83,7 @@ namespace AgroApp.Forms
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
+            addField(0);
             FormAddGarage formAddGarage = new FormAddGarage(farmId);
             formAddGarage.ShowDialog();
             this.Close();

@@ -25,13 +25,17 @@ namespace AgroApp.Forms
         {
             string values = "'" + textBox1.Text.ToString() + "'," + userId;
             InsertQuery queryFarm = new InsertQuery("Farms", "name,[user]", values);
+            InsertQuery queryJournal = new InsertQuery("Journals", "farm", "(SELECT MAX(id) FROM Farms WHERE [user] = " + userId+")");
             if (option == 0)
             {
 
                 if (dboperator.insert(queryFarm) != 0)
                 {
-                    MessageBox.Show("Dodano pomyślnie");
-                    this.Close();
+                    if (dboperator.insert(queryJournal) != 0) 
+                    {
+                        MessageBox.Show("Dodano pomyślnie");
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -41,10 +45,15 @@ namespace AgroApp.Forms
             else{
                 
                 if (dboperator.insert(queryFarm) != 0)
-                {            
-                    FormAddField formAddField = new FormAddField(userId);
-                    formAddField.ShowDialog();
-                    this.Close();
+                {
+                    if (dboperator.insert(queryJournal) != 0)
+                    {
+                        int farmId = 0;
+                        int.TryParse((string)dboperator.select("SELECT MAX(id) FROM Farms WHERE [user] = " + userId), out farmId);
+                        FormAddField formAddField = new FormAddField(userId, farmId);
+                        formAddField.ShowDialog();
+                        this.Close();
+                    }
                 }
                 else
                 {

@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{D322FA98-E562-41FF-8793-0CD79032DE0B}"
 	ProjectSection(SolutionItems) = preProject
 		main\index.html = main\index.html
+		main\showField.html = main\showField.html
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "leaflet", "leaflet", "{DE47FAB1-4097-441B-A0D5-C5610A394039}"

@@ -24,5 +24,11 @@ namespace AgroApp.Forms
             FormAddFarm formAddFarm = new FormAddFarm(userId);
             formAddFarm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormShowField formShowField = new FormShowField();
+            formShowField.ShowDialog();
+        }
     }
 }

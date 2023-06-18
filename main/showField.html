@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="crossorigin="">
+    </script>
+</head>
+<body>
+    <div id="map" style="height: 100vh;">        
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+</body>
+</html>
+
+<script>
+
+    var bounds = [[55,12],[48,25]];
+
+    var map = L.map('map',{
+        center:[52.5, 19.4],
+        zoom: 15,
+        minZoom: 7,
+        maxBounds: bounds
+    });
+
+    
+    function receiveCords(cords)
+    {
+        var polygon = L.polygon(cords).addTo(map);
+        centerToField(cords);
+    }
+
+    function centerToField(cords)
+    {        
+        const x = "["+cords.slice(0,1)+"]";
+        alert(x)
+        map.panTo([52.62449,18.614724]);
+    }
+
+    //centerToField("[[52.62449, 18.614724],[52.62449, 18.614724],[52.625007, 18.614901],[52.625007, 18.614901],[52.625935, 18.606548],[52.625935, 18.606548],[52.625362, 18.606752],[52.625362, 18.606752]]");
+
+    var ortofotomapa = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/service/PZGIK/ORTO/WMS/StandardResolution', 
+    {
+        layers: 'Raster',
+        minZoom: 7
+    }).addTo(map);
+        
+    var dzialki = L.tileLayer.wms('https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow',{
+        layers: 'dzialki',
+        format: 'image/png',
+        transparent: true
+    }).addTo(map);
+        
+    var nazwy = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/service/PZGiK/PRNG/WMS/GeographicalNames',{
+        layers: 'M1_UrzedoweNazwyMiejscowosci',
+        format: 'image/png',
+        transparent: true
+    }).addTo(map);
+
+    var drawnFeatures = new L.FeatureGroup;
+    map.addLayer(drawnFeatures);
+
+    map.on("draw:created", function(e){
+        var type = e.layerType;
+        var layer = e.layer;
+        drawnFeatures.addLayer(layer);
+
+        var latLngs = exctractLatLngs(layer.getLatLngs());
+        chrome.webview.postMessage(latLngs);
+        });        
+</script>
