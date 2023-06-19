@@ -21,6 +21,7 @@ namespace AgroApp.Forms
         {
             InitializeComponent();
             this.farmId = farmId;
+            loadFields();
         }
         private void loadFields()
         {
@@ -35,7 +36,7 @@ namespace AgroApp.Forms
             {
                 string[] row = new string[] { reader.GetString(0), reader.GetString(1) };
 
-                dataGridView1.Rows.Add(row);
+                dataGridViewFields.Rows.Add(row);
             }
 
             reader.Close();
@@ -44,10 +45,15 @@ namespace AgroApp.Forms
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            DataGridViewRow row = dataGridViewFields.SelectedRows[0];
             int fieldId;
             int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
             FormShowField formShowField = new FormShowField(fieldId);
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            FormAddField formAddField = new FormAddField(farmId);
         }
     }
 }

@@ -53,7 +53,29 @@ namespace AgroApp.Forms
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
-            FormShowField formShowField = new FormShowField(farmId);
+
+            FormShowFarm formShowFarm = new FormShowFarm(farmId);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int farmId;
+            int.TryParse(row.Cells[0].Value.ToString(), out farmId);
+
+
+            DeleteQuery query = new DeleteQuery("Farms", "id", farmId);
+            if (dboperator.delete(query) != 0)
+            {
+                MessageBox.Show("Usunięto");
+            }
+            else 
+            {
+                MessageBox.Show("Błąd");
+            }
+
+            dataGridView1.Rows.Clear();
+            loadFarms(userId);
         }
     }
 }

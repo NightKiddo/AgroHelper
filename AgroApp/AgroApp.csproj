@@ -112,6 +112,7 @@
       <DependentUpon>FormShowField.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\DBOperator.cs" />
+    <Compile Include="Logic\DeleteQuery.cs" />
     <Compile Include="Logic\InsertQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

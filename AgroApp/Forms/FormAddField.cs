@@ -18,12 +18,10 @@ namespace AgroApp.Forms
         string coordinates;
         int farmId;
         DBOperator dboperator = new DBOperator();
-        public FormAddField(int userId, int farmId)
+        public FormAddField(int farmId)
         {
             InitializeComponent();
-            this.userId = userId;
             this.farmId = farmId;
-            
         }
 
         private void FormAddField_Load(object sender, EventArgs e)

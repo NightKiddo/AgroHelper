@@ -34,6 +34,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -41,6 +42,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonDelete);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.buttonAddFarm);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -65,7 +67,7 @@
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Location = new System.Drawing.Point(206, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(582, 268);
+            this.panel2.Size = new System.Drawing.Size(582, 426);
             this.panel2.TabIndex = 1;
             // 
             // dataGridView1
@@ -83,7 +85,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(582, 268);
+            this.dataGridView1.Size = new System.Drawing.Size(582, 426);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -99,6 +101,16 @@
             this.name.HeaderText = "Column1";
             this.name.Name = "name";
             this.name.ReadOnly = true;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(39, 78);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(123, 42);
+            this.buttonDelete.TabIndex = 2;
+            this.buttonDelete.Text = "Usuń gospodarstwo";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormMainMenu
             // 
@@ -123,5 +135,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
