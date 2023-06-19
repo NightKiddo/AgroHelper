@@ -32,7 +32,8 @@ namespace AgroApp.Forms
         {
             if (option == 0)
             {
-                InsertQuery queryField = new InsertQuery("Fields", "coordinates,farm", "'" + coordinates + "'," + farmId);
+                string values = "'"+coordinates+"','"+textBox1.Text+"','"+richTextBox1.Text+"',"+farmId;
+                InsertQuery queryField = new InsertQuery("Fields", "coordinates,name,description,farm",values);
                 if (dboperator.insert(queryField) != 0)
                 {
                     MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -43,7 +44,8 @@ namespace AgroApp.Forms
                 }
             }else if(option == 1)
             {
-                InsertQuery queryField = new InsertQuery("Fields", "coordinates,farm", "'" + coordinates + "'," + farmId);
+                string values = "'" + coordinates + "','" + textBox1.Text + "','" + richTextBox1.Text + "'," + farmId;
+                InsertQuery queryField = new InsertQuery("Fields", "coordinates,name,description,farm", values);
                 if (dboperator.insert(queryField) != 0)
                 {
                     MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);

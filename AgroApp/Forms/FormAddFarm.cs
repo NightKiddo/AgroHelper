@@ -50,7 +50,7 @@ namespace AgroApp.Forms
                     {
                         int farmId = 0;
                         int.TryParse((string)dboperator.select("SELECT MAX(id) FROM Farms WHERE [user] = " + userId), out farmId);
-                        FormAddField formAddField = new FormAddField(userId, farmId);
+                        FormAddField formAddField = new FormAddField(farmId);
                         formAddField.ShowDialog();
                         this.Close();
                     }

@@ -34,17 +34,24 @@
     function receiveCords(cords)
     {
         var polygon = L.polygon(cords).addTo(map);
+        //alert(cords);
         centerToField(cords);
     }
 
     function centerToField(cords)
-    {        
-        const x = "["+cords.slice(0,1)+"]";
-        alert(x)
-        map.panTo([52.62449,18.614724]);
+    {       
+        //alert(cords); 
+        //alert(dupa);
+        var x = cords.toString().split(",");
+        
+        
+        var point = new L.latLng([x[0], x[1]]);
+        //alert([x[0], x[1]]);
+        //alert(point);
+        map.panTo(point);
     }
-
-    //centerToField("[[52.62449, 18.614724],[52.62449, 18.614724],[52.625007, 18.614901],[52.625007, 18.614901],[52.625935, 18.606548],[52.625935, 18.606548],[52.625362, 18.606752],[52.625362, 18.606752]]");
+    
+    //receiveCords([[52.654799, 19.06526],[52.655854, 19.066311],[52.655854, 19.066311],[52.655327, 19.068114],[52.655327, 19.068114],[52.654038, 19.066794],[52.654038, 19.066794]]);
 
     var ortofotomapa = L.tileLayer.wms('https://mapy.geoportal.gov.pl/wss/service/PZGIK/ORTO/WMS/StandardResolution', 
     {

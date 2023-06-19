@@ -16,36 +16,30 @@ namespace AgroApp.Forms
     {
         int userId;
         DBOperator dboperator = new DBOperator();
+        List<object[]> farms;
         public FormMainMenu(int userId)
         {
             InitializeComponent();
             this.userId = userId;
-            loadFarms(userId);
+            loadFarms();
         }
 
-        private void loadFarms(int userId) 
+        private void loadFarms() 
         {
-            string query = "SELECT id, name FROM Farms WHERE user = " + userId;
-            dboperator.connect();
-            dboperator.getConn().Open();
+            farms = dboperator.getFarms(userId);
+            dataGridView1.Columns[1].Width = dataGridView1.Width;
+            for (int i = 0; i < farms.Count; i++) {
 
-            SqlCommand command = dboperator.getCommand();
-            SqlDataReader reader = dboperator.getReader();
-
-            while (reader.Read()) 
-            {
-                string[] row = new string[] { reader.GetString(0), reader.GetString(1) };
-                dataGridView1.Rows.Add(row);
+                dataGridView1.Rows.Add(farms[i]);
             }
-
-            reader.Close();
-            dboperator.getConn().Close();
         }
 
         private void buttonAddFarm_Click(object sender, EventArgs e)
         {
             FormAddFarm formAddFarm = new FormAddFarm(userId);
             formAddFarm.ShowDialog();
+            dataGridView1.Rows.Clear();
+            loadFarms();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -55,6 +49,7 @@ namespace AgroApp.Forms
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
             FormShowFarm formShowFarm = new FormShowFarm(farmId);
+            formShowFarm.ShowDialog();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -75,7 +70,7 @@ namespace AgroApp.Forms
             }
 
             dataGridView1.Rows.Clear();
-            loadFarms(userId);
+            loadFarms();
         }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonAddFarm = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAddFarm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -51,15 +51,15 @@
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
             // 
-            // buttonAddFarm
+            // buttonDelete
             // 
-            this.buttonAddFarm.Location = new System.Drawing.Point(39, 30);
-            this.buttonAddFarm.Name = "buttonAddFarm";
-            this.buttonAddFarm.Size = new System.Drawing.Size(123, 42);
-            this.buttonAddFarm.TabIndex = 0;
-            this.buttonAddFarm.Text = "Dodaj gospodarstwo";
-            this.buttonAddFarm.UseVisualStyleBackColor = true;
-            this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
+            this.buttonDelete.Location = new System.Drawing.Point(39, 78);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(123, 42);
+            this.buttonDelete.TabIndex = 2;
+            this.buttonDelete.Text = "Usuń gospodarstwo";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // panel2
             // 
@@ -74,7 +74,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -102,15 +101,15 @@
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
-            // buttonDelete
+            // buttonAddFarm
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(39, 78);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(123, 42);
-            this.buttonDelete.TabIndex = 2;
-            this.buttonDelete.Text = "Usuń gospodarstwo";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonAddFarm.Location = new System.Drawing.Point(39, 30);
+            this.buttonAddFarm.Name = "buttonAddFarm";
+            this.buttonAddFarm.Size = new System.Drawing.Size(123, 42);
+            this.buttonAddFarm.TabIndex = 0;
+            this.buttonAddFarm.Text = "Dodaj gospodarstwo";
+            this.buttonAddFarm.UseVisualStyleBackColor = true;
+            this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
             // 
             // FormMainMenu
             // 

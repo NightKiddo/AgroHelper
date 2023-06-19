@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgroApp.Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ namespace AgroApp.Forms
     public partial class FormShowField : Form
     {
         int fieldId;
+        DBOperator dboperator = new DBOperator();
         public FormShowField(int fieldId)
         {
             InitializeComponent();
@@ -31,8 +33,8 @@ namespace AgroApp.Forms
         }
         public async void sendCords() 
         {
-            string exampleCords = "[[52.62449, 18.614724],[52.62449, 18.614724],[52.625007, 18.614901],[52.625007, 18.614901],[52.625935, 18.606548],[52.625935, 18.606548],[52.625362, 18.606752],[52.625362, 18.606752]]";
-            await webView21.CoreWebView2.ExecuteScriptAsync($"receiveCords({exampleCords});");
+            string coordinates = dboperator.select("SELECT coordinates FROM Fields WHERE id = " + fieldId).ToString();
+            await webView21.CoreWebView2.ExecuteScriptAsync($"receiveCords({coordinates});");
             
         }
 

@@ -17,6 +17,7 @@ namespace AgroApp.Forms
     {
         int farmId;
         DBOperator dboperator = new DBOperator();
+        List<object[]> fields;
         public FormShowFarm(int farmId)
         {
             InitializeComponent();
@@ -25,22 +26,13 @@ namespace AgroApp.Forms
         }
         private void loadFields()
         {
-            string query = "SELECT id, name FROM Fields WHERE farm = " + farmId;
-            dboperator.connect();
-            dboperator.getConn().Open();
-
-            SqlCommand command = dboperator.getCommand();
-            SqlDataReader reader = dboperator.getReader();
-
-            while (reader.Read())
+            fields = dboperator.getFields(farmId);
+            dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
+            for (int i = 0; i < fields.Count; i++)
             {
-                string[] row = new string[] { reader.GetString(0), reader.GetString(1) };
 
-                dataGridViewFields.Rows.Add(row);
+                dataGridViewFields.Rows.Add(fields[i]);
             }
-
-            reader.Close();
-            dboperator.getConn().Close();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

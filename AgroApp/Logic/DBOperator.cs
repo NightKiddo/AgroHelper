@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace AgroApp.Logic
 {
@@ -75,6 +76,50 @@ namespace AgroApp.Logic
             conn.Close();
             return output;
 
+        }
+
+        public List<object[]> getFarms(int userId) 
+        {
+            string query = "SELECT id, name FROM Farms WHERE [user] = " + userId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+
+            while (dataReader.Read()) 
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
+        public List<object[]> getFields(int farmId)
+        {
+            string query = "SELECT id, name FROM Fields WHERE farm = " + farmId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
         }
 
         public int delete(DeleteQuery query) 
