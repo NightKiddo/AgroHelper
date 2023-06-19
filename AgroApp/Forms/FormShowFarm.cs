@@ -49,11 +49,15 @@ namespace AgroApp.Forms
             int fieldId;
             int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
             FormShowField formShowField = new FormShowField(fieldId);
+            formShowField.ShowDialog();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             FormAddField formAddField = new FormAddField(farmId);
+            formAddField.ShowDialog();
+            dataGridViewFields.Rows.Clear();
+            loadFields();
         }
     }
 }
