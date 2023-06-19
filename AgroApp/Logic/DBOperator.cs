@@ -32,7 +32,15 @@ namespace AgroApp.Logic
                 MessageBox.Show("Nie można połączyć z bazą!");
             }
         }
+        public SqlConnection getConn() 
+        {
+            return conn;
+        }
 
+        public SqlCommand getCommand() 
+        { 
+            return command;
+        }
         public int insert(InsertQuery query) 
         {
             a = 0;
@@ -64,8 +72,14 @@ namespace AgroApp.Logic
                 output = output + dataReader.GetValue(0);
             }
 
+            conn.Close();
             return output;
 
+        }
+
+        public SqlDataReader getReader() 
+        {
+            return dataReader;
         }
         public int login(string login, string password) 
         {

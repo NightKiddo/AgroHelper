@@ -13,11 +13,11 @@ namespace AgroApp.Forms
 {
     public partial class FormShowField : Form
     {
-        int farmId;
         int fieldId;
-        public FormShowField()
+        public FormShowField(int fieldId)
         {
             InitializeComponent();
+            this.fieldId = fieldId;
             InitBrowser();
         }
         private async Task initiated() 

@@ -1,6 +1,6 @@
 ﻿namespace AgroApp.Forms
 {
-    partial class FormMainMenu
+    partial class FormShowFarm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonAddFarm = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,31 +41,20 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.buttonAddFarm);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
             // 
-            // buttonAddFarm
-            // 
-            this.buttonAddFarm.Location = new System.Drawing.Point(39, 30);
-            this.buttonAddFarm.Name = "buttonAddFarm";
-            this.buttonAddFarm.Size = new System.Drawing.Size(123, 42);
-            this.buttonAddFarm.TabIndex = 0;
-            this.buttonAddFarm.Text = "Dodaj gospodarstwo";
-            this.buttonAddFarm.UseVisualStyleBackColor = true;
-            this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
-            // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Location = new System.Drawing.Point(206, 12);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(582, 268);
-            this.panel2.TabIndex = 1;
+            this.panel2.Size = new System.Drawing.Size(242, 450);
+            this.panel2.TabIndex = 0;
             // 
             // dataGridView1
             // 
@@ -83,7 +71,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(582, 268);
+            this.dataGridView1.Size = new System.Drawing.Size(242, 450);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -100,14 +88,14 @@
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
-            // FormMainMenu
+            // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "FormMainMenu";
-            this.Text = "FormMainMenu";
+            this.Name = "FormShowFarm";
+            this.Text = "FormShowFarm";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -118,7 +106,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonAddFarm;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;

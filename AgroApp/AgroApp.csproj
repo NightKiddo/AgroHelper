@@ -99,6 +99,12 @@
     <Compile Include="Forms\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormShowFarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShowFarm.Designer.cs">
+      <DependentUpon>FormShowFarm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormShowField.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShowFarm.resx">
+      <DependentUpon>FormShowFarm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShowField.resx">
       <DependentUpon>FormShowField.cs</DependentUpon>
