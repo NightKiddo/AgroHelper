@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,15 @@ namespace AgroApp.Logic
 {
     internal class DBOperator
     {
-        private string connectionString = @"Data Source=DESKTOP-JEIV910;Initial Catalog=agro;User ID=agro;Password=demo123";
+        private string machineName = Environment.MachineName;
+        private string connectionString;
         private SqlConnection conn;
         private SqlCommand command;
         private SqlDataReader dataReader;
         int a = 0;
 
         public void connect() {
+            connectionString = @"Data Source = " + machineName + ";Initial Catalog=agro;User ID=agro;Password=demo123";
             conn = new SqlConnection(connectionString);
 
             try
@@ -80,7 +83,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getFarms(int userId) 
         {
-            string query = "SELECT id, name FROM Farms WHERE [user] = " + userId;
+            string query = "SELECT id, [name] FROM Farms WHERE [user] = " + userId;
             connect();
             conn.Open();
 
@@ -91,7 +94,7 @@ namespace AgroApp.Logic
 
             while (dataReader.Read()) 
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1)};
                 rows.Add(row);
             }
             dataReader.Close();
@@ -102,7 +105,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getFields(int farmId)
         {
-            string query = "SELECT id, name FROM Fields WHERE farm = " + farmId;
+            string query = "SELECT id, [name], [description], plant FROM Fields WHERE farm = " + farmId;
             connect();
             conn.Open();
 
@@ -113,7 +116,26 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                int id = dataReader.GetInt32(0);
+                string name = dataReader.GetString(1);
+                string description = "";
+                int plantId = 0;
+                string plantName = "";
+                if (dataReader.GetString(2) != null) 
+                {
+                    description = dataReader.GetString(2);
+                }
+
+                if (dataReader.GetValue(3) != DBNull.Value)
+                {
+                    plantId = dataReader.GetInt32(3);
+                    dataReader.Close();
+                    string queryPlant = "SELECT p.[name] FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.plant = "+plantId+ " GROUP BY p.[name]";
+                    command = new SqlCommand(queryPlant, conn);
+                    dataReader = command.ExecuteReader();
+                    plantName = dataReader.GetString(0);
+                }
+                object[] row = new object[] { id, name, description, plantName};
                 rows.Add(row);
             }
             dataReader.Close();

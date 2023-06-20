@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace AgroApp.Forms
 
         private void FormAddField_Load(object sender, EventArgs e)
         {
-            webView21.Source = new Uri("C:\\projekty\\AgroApp\\main\\index.html");
+            string x = Environment.CurrentDirectory;
+            string y = Directory.GetParent(x).Parent.Parent.FullName;
+            webView21.Source = new Uri(y+"\\main\\index.html");
         }
         private void addField(int option) 
         {

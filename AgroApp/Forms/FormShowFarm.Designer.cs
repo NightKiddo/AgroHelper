@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridViewFields = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewStorages = new System.Windows.Forms.DataGridView();
             this.idStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.dataGridViewFields = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).BeginInit();
+            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,6 +59,43 @@
             this.panel1.Size = new System.Drawing.Size(800, 607);
             this.panel1.TabIndex = 0;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dataGridViewStorages);
+            this.panel3.Location = new System.Drawing.Point(409, 499);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(391, 108);
+            this.panel3.TabIndex = 1;
+            // 
+            // dataGridViewStorages
+            // 
+            this.dataGridViewStorages.AllowUserToAddRows = false;
+            this.dataGridViewStorages.AllowUserToDeleteRows = false;
+            this.dataGridViewStorages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewStorages.ColumnHeadersVisible = false;
+            this.dataGridViewStorages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idStorage,
+            this.nameStorage});
+            this.dataGridViewStorages.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewStorages.Name = "dataGridViewStorages";
+            this.dataGridViewStorages.ReadOnly = true;
+            this.dataGridViewStorages.RowHeadersVisible = false;
+            this.dataGridViewStorages.Size = new System.Drawing.Size(391, 108);
+            this.dataGridViewStorages.TabIndex = 0;
+            // 
+            // idStorage
+            // 
+            this.idStorage.HeaderText = "Column1";
+            this.idStorage.Name = "idStorage";
+            this.idStorage.ReadOnly = true;
+            this.idStorage.Visible = false;
+            // 
+            // nameStorage
+            // 
+            this.nameStorage.HeaderText = "Column1";
+            this.nameStorage.Name = "nameStorage";
+            this.nameStorage.ReadOnly = true;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.panel4);
@@ -66,8 +103,50 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(242, 607);
+            this.panel2.Size = new System.Drawing.Size(407, 607);
             this.panel2.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.buttonEdit);
+            this.panel4.Controls.Add(this.buttonDelete);
+            this.panel4.Controls.Add(this.buttonAdd);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 493);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(407, 114);
+            this.panel4.TabIndex = 1;
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonEdit.Location = new System.Drawing.Point(0, 76);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(407, 38);
+            this.buttonEdit.TabIndex = 2;
+            this.buttonEdit.Text = "EDYTUJ";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonDelete.Location = new System.Drawing.Point(0, 38);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(407, 38);
+            this.buttonDelete.TabIndex = 1;
+            this.buttonDelete.Text = "USUŃ";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonAdd.Location = new System.Drawing.Point(0, 0);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(407, 38);
+            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.Text = "DODAJ";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // dataGridViewFields
             // 
@@ -84,7 +163,7 @@
             this.dataGridViewFields.ReadOnly = true;
             this.dataGridViewFields.RowHeadersVisible = false;
             this.dataGridViewFields.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFields.Size = new System.Drawing.Size(242, 493);
+            this.dataGridViewFields.Size = new System.Drawing.Size(407, 493);
             this.dataGridViewFields.TabIndex = 0;
             this.dataGridViewFields.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -101,87 +180,6 @@
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dataGridViewStorages);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(242, 499);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(558, 108);
-            this.panel3.TabIndex = 1;
-            // 
-            // dataGridViewStorages
-            // 
-            this.dataGridViewStorages.AllowUserToAddRows = false;
-            this.dataGridViewStorages.AllowUserToDeleteRows = false;
-            this.dataGridViewStorages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewStorages.ColumnHeadersVisible = false;
-            this.dataGridViewStorages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idStorage,
-            this.nameStorage});
-            this.dataGridViewStorages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewStorages.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewStorages.Name = "dataGridViewStorages";
-            this.dataGridViewStorages.ReadOnly = true;
-            this.dataGridViewStorages.RowHeadersVisible = false;
-            this.dataGridViewStorages.Size = new System.Drawing.Size(558, 108);
-            this.dataGridViewStorages.TabIndex = 0;
-            // 
-            // idStorage
-            // 
-            this.idStorage.HeaderText = "Column1";
-            this.idStorage.Name = "idStorage";
-            this.idStorage.ReadOnly = true;
-            this.idStorage.Visible = false;
-            // 
-            // nameStorage
-            // 
-            this.nameStorage.HeaderText = "Column1";
-            this.nameStorage.Name = "nameStorage";
-            this.nameStorage.ReadOnly = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.buttonEdit);
-            this.panel4.Controls.Add(this.buttonDelete);
-            this.panel4.Controls.Add(this.buttonAdd);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 493);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(242, 114);
-            this.panel4.TabIndex = 1;
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonAdd.Location = new System.Drawing.Point(0, 0);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(242, 38);
-            this.buttonAdd.TabIndex = 0;
-            this.buttonAdd.Text = "DODAJ";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonDelete.Location = new System.Drawing.Point(0, 38);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(242, 38);
-            this.buttonDelete.TabIndex = 1;
-            this.buttonDelete.Text = "USUŃ";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonEdit.Location = new System.Drawing.Point(0, 76);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(242, 38);
-            this.buttonEdit.TabIndex = 2;
-            this.buttonEdit.Text = "EDYTUJ";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,11 +189,11 @@
             this.Name = "FormShowFarm";
             this.Text = "FormShowFarm";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             this.ResumeLayout(false);
 
         }

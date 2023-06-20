@@ -72,5 +72,13 @@ namespace AgroApp.Forms
             dataGridView1.Rows.Clear();
             loadFarms();
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int farmId;
+            int.TryParse(row.Cells[0].Value.ToString(), out farmId);
+
+        }
     }
 }
