@@ -27,7 +27,9 @@ namespace AgroApp.Forms
         private void loadFields()
         {
             fields = dboperator.getFields(farmId);
-            dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
+            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
+            dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
+            dataGridViewFields.Columns[3].Width = (int)(dataGridViewFields.Width * 0.2);
             for (int i = 0; i < fields.Count; i++)
             {
 

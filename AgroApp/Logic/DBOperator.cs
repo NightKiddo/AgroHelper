@@ -129,15 +129,23 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
                     plantId = dataReader.GetInt32(3);
-                    dataReader.Close();
                     string queryPlant = "SELECT p.[name] FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.plant = "+plantId+ " GROUP BY p.[name]";
-                    command = new SqlCommand(queryPlant, conn);
-                    dataReader = command.ExecuteReader();
-                    plantName = dataReader.GetString(0);
+                    SqlConnection conn2 = new SqlConnection(connectionString);
+                    SqlCommand command2 = new SqlCommand(queryPlant, conn2);
+                    conn2.Open();
+                    SqlDataReader dataReader2 = command2.ExecuteReader();
+                    while (dataReader2.Read())
+                    {
+                        plantName = dataReader2.GetString(0);
+                    }
+                    dataReader2.Close();
+                    conn2.Close();
                 }
                 object[] row = new object[] { id, name, description, plantName};
                 rows.Add(row);
             }
+
+
             dataReader.Close();
             conn.Close();
 

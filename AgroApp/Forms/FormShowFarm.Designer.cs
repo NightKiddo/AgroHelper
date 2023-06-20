@@ -41,6 +41,8 @@
             this.dataGridViewFields = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Plant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).BeginInit();
@@ -156,7 +158,9 @@
             this.dataGridViewFields.ColumnHeadersVisible = false;
             this.dataGridViewFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.name});
+            this.name,
+            this.ColumnDescription,
+            this.Plant});
             this.dataGridViewFields.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewFields.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewFields.Name = "dataGridViewFields";
@@ -179,6 +183,18 @@
             this.name.HeaderText = "Column1";
             this.name.Name = "name";
             this.name.ReadOnly = true;
+            // 
+            // ColumnDescription
+            // 
+            this.ColumnDescription.HeaderText = "Description";
+            this.ColumnDescription.Name = "ColumnDescription";
+            this.ColumnDescription.ReadOnly = true;
+            // 
+            // Plant
+            // 
+            this.Plant.HeaderText = "Plant";
+            this.Plant.Name = "Plant";
+            this.Plant.ReadOnly = true;
             // 
             // FormShowFarm
             // 
@@ -203,8 +219,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridViewFields;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridViewStorages;
         private System.Windows.Forms.DataGridViewTextBoxColumn idStorage;
@@ -213,5 +227,9 @@
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Plant;
     }
 }

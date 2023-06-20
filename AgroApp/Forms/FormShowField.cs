@@ -52,6 +52,7 @@ namespace AgroApp.Forms
             string description = dboperator.select("SELECT description FROM Fields WHERE id = "+fieldId).ToString();
             richTextBox1.Text = description;
         }
+
         private void webView21_NavigationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
         {
             sendCords();
