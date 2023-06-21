@@ -121,7 +121,7 @@ namespace AgroApp.Logic
                 string description = "";
                 int plantId = 0;
                 string plantName = "";
-                if (dataReader.GetString(2) != null) 
+                if (dataReader.GetValue(2) != DBNull.Value) 
                 {
                     description = dataReader.GetString(2);
                 }
@@ -169,6 +169,106 @@ namespace AgroApp.Logic
             }
             dataReader.Close();
             conn.Close();
+
+            return rows;
+        }
+
+        public List<object[]> getGarages(int farmId) 
+        {
+            string query = "SELECT id, [name] FROM Garages WHERE Farm = "+farmId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read()) 
+            {
+                object[] row = new object[] {dataReader.GetInt32(0), dataReader.GetString(1)};
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
+        public List<object[]> getStorages(int farmId) 
+        {
+            string query = "SELECT id, [name] FROM Storages WHERE Farm = " + farmId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read()) 
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+            return rows;
+        }
+
+        public List<object[]> getMachines(int garageId) 
+        {
+            string query = "SELECT m.id, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id WHERE m.garage = " + garageId;
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row;
+                if (dataReader.GetValue(4) != DBNull.Value)
+                {
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetSqlDateTime(4).ToString(), dataReader.GetFloat(5) };
+                    rows.Add(row);
+                }
+                else 
+                {
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty , dataReader.GetFloat(5) };
+                    rows.Add(row);
+                }
+                
+                
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+            return rows;
+        }
+
+        public List<object[]> getResources(int storageId)
+        {
+            string query = "SELECT r.id, r.name, rt.type, r.amount FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id WHERE storage = " + storageId;
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetInt32(4)};
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
 
             return rows;
         }

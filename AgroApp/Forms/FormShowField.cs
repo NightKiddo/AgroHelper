@@ -47,12 +47,6 @@ namespace AgroApp.Forms
             textBox1.Text = name;
         }
 
-        public void getPlant() 
-        {
-            string plant = dboperator.select("SELECT p.name FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.id = " + fieldId).ToString();
-            textBox1.AppendText(", " + plant);
-        }
-
         public void getDescription() 
         {
             string description = dboperator.select("SELECT description FROM Fields WHERE id = "+fieldId).ToString();
@@ -64,7 +58,6 @@ namespace AgroApp.Forms
             sendCords();
             getName();
             getDescription();
-            getPlant();
         }
     }
 }

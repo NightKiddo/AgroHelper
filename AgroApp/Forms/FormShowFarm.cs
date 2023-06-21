@@ -18,12 +18,14 @@ namespace AgroApp.Forms
     {
         int farmId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> fields;
+        List<object[]> fields, garages, storages;
         public FormShowFarm(int farmId)
         {
             InitializeComponent();
             this.farmId = farmId;
             loadFields();
+            loadGarages();
+            loadStorages();
         }
         private void loadFields()
         {
@@ -38,6 +40,38 @@ namespace AgroApp.Forms
 
                 dataGridViewFields.Rows.Add(fields[i]);
             }
+
+            dataGridViewFields.ClearSelection();
+        }
+
+        private void loadGarages() 
+        {
+            dataGridViewGarages.Rows.Clear();
+
+            garages = dboperator.getGarages(farmId);
+            dataGridViewGarages.Columns[1].Width = dataGridViewGarages.Width;
+
+            for(int i=0; i< garages.Count; i++)
+            {
+                dataGridViewGarages.Rows.Add(garages[i]);
+            }
+
+            
+        }
+
+        private void loadStorages() 
+        {
+            dataGridViewStorages.Rows.Clear();
+
+            storages = dboperator.getStorages(farmId);
+            dataGridViewStorages.Columns[1].Width = dataGridViewStorages.Width;
+
+            for(int i=0;i < storages.Count; i++)
+            {
+                dataGridViewStorages.Rows.Add(storages[i]);
+            }
+
+            dataGridViewStorages.ClearSelection();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -47,6 +81,24 @@ namespace AgroApp.Forms
             int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
             FormShowField formShowField = new FormShowField(fieldId);
             formShowField.ShowDialog();
+        }
+
+        private void dataGridViewStorages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridViewStorages.SelectedRows[0];
+            int storageId;
+            int.TryParse(row.Cells[0].ToString(), out storageId);
+            FormShowStorage formShowStorage = new FormShowStorage(storageId);
+            formShowStorage.ShowDialog();
+        }
+
+        private void dataGridViewGarages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridViewGarages.SelectedRows[0];
+            int garageId;
+            int.TryParse(row.Cells[0].Value.ToString(), out garageId);
+            FormShowGarage formShowGarage = new FormShowGarage(garageId);
+            formShowGarage.ShowDialog();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
