@@ -1,5 +1,6 @@
 ﻿using AgroApp.Logic;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,8 @@ namespace AgroApp.Forms
         }
         private void loadFields()
         {
+            dataGridViewFields.Rows.Clear();
+
             fields = dboperator.getFields(farmId);
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
             dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
@@ -51,6 +54,22 @@ namespace AgroApp.Forms
             FormAddField formAddField = new FormAddField(farmId);
             formAddField.ShowDialog();
             dataGridViewFields.Rows.Clear();
+            loadFields();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DeleteQuery query = new DeleteQuery("Fields", "id", (int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+
+            if (dboperator.delete(query) != 0)
+            {
+                MessageBox.Show("Usunięto");
+            }
+            else
+            {
+                MessageBox.Show("Błąd");
+            }
+
             loadFields();
         }
     }

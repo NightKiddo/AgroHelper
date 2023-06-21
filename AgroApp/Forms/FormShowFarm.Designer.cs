@@ -138,6 +138,7 @@
             this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "USUŃ";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonAdd
             // 

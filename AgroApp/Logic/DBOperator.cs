@@ -152,6 +152,27 @@ namespace AgroApp.Logic
             return rows;
         }
 
+        public List<object[]> getPlants() 
+        {
+            string query = "SELECT id, [name] FROM Plants";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
         public int delete(DeleteQuery query) 
         {
             a = 0;
