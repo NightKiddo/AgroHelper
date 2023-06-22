@@ -173,6 +173,27 @@ namespace AgroApp.Logic
             return rows;
         }
 
+        public List<object[]> getMachineTypes() 
+        {
+            string query = "SELECT id, type FROM Machine_types";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
         public List<object[]> getGarages(int farmId) 
         {
             string query = "SELECT id, [name] FROM Garages WHERE Farm = "+farmId;
@@ -232,7 +253,7 @@ namespace AgroApp.Logic
                 object[] row;
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetSqlDateTime(4).ToString(), dataReader.GetValue(5) };
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetValue(4), dataReader.GetValue(5) };
                     rows.Add(row);
                 }
                 else 

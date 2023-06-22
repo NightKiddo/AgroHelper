@@ -149,6 +149,9 @@
     <EmbeddedResource Include="Forms\FormAddGarage.resx">
       <DependentUpon>FormAddGarage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddMachine.resx">
+      <DependentUpon>FormAddMachine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddStorage.resx">
       <DependentUpon>FormAddStorage.cs</DependentUpon>
     </EmbeddedResource>

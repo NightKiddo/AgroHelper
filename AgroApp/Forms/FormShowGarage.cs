@@ -43,7 +43,9 @@ namespace AgroApp.Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            FormAddMachine formAddMachine = new FormAddMachine(garageId);
+            formAddMachine.ShowDialog();
+            loadMachines();
         }
     }
 }
