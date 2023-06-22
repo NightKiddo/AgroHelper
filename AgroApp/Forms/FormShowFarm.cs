@@ -86,8 +86,8 @@ namespace AgroApp.Forms
         private void dataGridViewStorages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dataGridViewStorages.SelectedRows[0];
-            int storageId;
-            int.TryParse(row.Cells[0].ToString(), out storageId);
+            int storageId = Convert.ToInt32(row.Cells[0].Value);
+            
             FormShowStorage formShowStorage = new FormShowStorage(storageId);
             formShowStorage.ShowDialog();
         }

@@ -40,5 +40,10 @@ namespace AgroApp.Forms
 
             dataGridView1.ClearSelection();
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

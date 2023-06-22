@@ -26,7 +26,7 @@ namespace AgroApp.Forms
         private void loadResources() 
         {
             dataGridView1.Rows.Clear();
-            resources = dboperator.getMachines(storageId);
+            resources = dboperator.getResources(storageId);
 
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {

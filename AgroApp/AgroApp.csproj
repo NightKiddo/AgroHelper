@@ -75,6 +75,18 @@
     <Compile Include="Forms\FormAddGarage.Designer.cs">
       <DependentUpon>FormAddGarage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormAddMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddMachine.Designer.cs">
+      <DependentUpon>FormAddMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormAddResource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddResource.Designer.cs">
+      <DependentUpon>FormAddResource.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAddStorage.cs">
       <SubType>Form</SubType>
     </Compile>

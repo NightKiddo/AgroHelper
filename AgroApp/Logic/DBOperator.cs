@@ -232,16 +232,14 @@ namespace AgroApp.Logic
                 object[] row;
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetSqlDateTime(4).ToString(), dataReader.GetFloat(5) };
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetSqlDateTime(4).ToString(), dataReader.GetValue(5) };
                     rows.Add(row);
                 }
                 else 
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty , dataReader.GetFloat(5) };
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty , dataReader.GetValue(5) };
                     rows.Add(row);
                 }
-                
-                
             }
             dataReader.Close();
             conn.Close();
@@ -263,7 +261,7 @@ namespace AgroApp.Logic
             List<object[]> rows = new List<object[]>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetInt32(4)};
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetValue(3)};
                 rows.Add(row);
             }
             dataReader.Close();
