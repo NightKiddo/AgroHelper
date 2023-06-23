@@ -18,7 +18,7 @@ namespace AgroApp.Forms
     {
         int farmId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> fields, garages, storages;
+        List<object[]> fields, garages, storages, notes_activities;
         public FormShowFarm(int farmId)
         {
             InitializeComponent();
@@ -26,7 +26,20 @@ namespace AgroApp.Forms
             loadFields();
             loadGarages();
             loadStorages();
+            loadJournal();
+            setLabel();
         }
+
+        private void setLabel() 
+        {
+            string text = "";
+            string farmName = dboperator.select("SELECT name FROM Farms WHERE id = " + farmId).ToString();
+            text += farmName;
+            string date = DateTime.Now.ToShortDateString();
+            text += ", "+date;
+            label1.Text = text;
+        }
+
         private void loadFields()
         {
             dataGridViewFields.Rows.Clear();
@@ -72,6 +85,28 @@ namespace AgroApp.Forms
             }
 
             dataGridViewStorages.ClearSelection();
+        }
+
+        private void loadJournal() 
+        {
+            dataGridViewJournal.Rows.Clear();
+
+            int journalId;
+            int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
+
+            notes_activities = dboperator.getJournalEntries(journalId);
+            for(int i=0; i<dataGridViewJournal.Columns.Count;i++)
+            {
+                dataGridViewJournal.Columns[i].Width = dataGridViewJournal.Width / 4;
+            }
+
+            for(int i=0; i < notes_activities.Count; i++)
+            {
+                dataGridViewJournal.Rows.Add(notes_activities[i]);
+            }
+
+            dataGridViewJournal.Sort(dataGridViewJournal.Columns[3], ListSortDirection.Descending);
+            dataGridViewJournal.ClearSelection();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

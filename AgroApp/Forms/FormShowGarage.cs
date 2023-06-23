@@ -47,5 +47,29 @@ namespace AgroApp.Forms
             formAddMachine.ShowDialog();
             loadMachines();
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                int machineId;
+                int.TryParse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out machineId);
+                DeleteQuery query = new DeleteQuery("Machines", "id", machineId);
+                if (dboperator.delete(query) != 0)
+                {
+                    MessageBox.Show("Usunięto pomyślnie");
+                }
+                else
+                {
+                    MessageBox.Show("Błąd");
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Brak zaznaczenia");
+            }
+
+            loadMachines();
+        }
     }
 }

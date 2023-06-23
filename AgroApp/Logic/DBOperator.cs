@@ -194,6 +194,27 @@ namespace AgroApp.Logic
             return rows;
         }
 
+        public List<object[]> getResourceTypes() 
+        {
+            string query = "SELECT id, type FROM Resource_types";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
         public List<object[]> getGarages(int farmId) 
         {
             string query = "SELECT id, [name] FROM Garages WHERE Farm = "+farmId;
@@ -288,6 +309,42 @@ namespace AgroApp.Logic
             dataReader.Close();
             conn.Close();
 
+
+            return rows;
+        }
+
+        public List<object[]> getJournalEntries(int journalId) 
+        {
+            string queryActivities = "SELECT a.id, a.name, a.start_date, a.finish_date, f.name FROM Activities as a JOIN Fields as f ON a.field = f.id";
+            string queryNotes = "SELECT n.id, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id";
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(queryActivities, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetString(4) };
+                rows.Add(row);
+            }
+
+            dataReader.Close();
+
+            command = new SqlCommand(queryNotes, conn);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read()) 
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetString(4) };
+                rows.Add(row);
+            }
+
+            dataReader.Close();
+            conn.Close();
 
             return rows;
         }

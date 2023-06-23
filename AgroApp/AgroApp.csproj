@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormAddActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddActivity.Designer.cs">
+      <DependentUpon>FormAddActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAddFarm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,12 @@
     </Compile>
     <Compile Include="Forms\FormAddMachine.Designer.cs">
       <DependentUpon>FormAddMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormAddNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddNote.Designer.cs">
+      <DependentUpon>FormAddNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormAddResource.cs">
       <SubType>Form</SubType>
@@ -111,6 +123,12 @@
     <Compile Include="Forms\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormShowActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShowActivity.Designer.cs">
+      <DependentUpon>FormShowActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormShowFarm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +146,12 @@
     </Compile>
     <Compile Include="Forms\FormShowGarage.Designer.cs">
       <DependentUpon>FormShowGarage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormShowNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShowNote.Designer.cs">
+      <DependentUpon>FormShowNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormShowStorage.cs">
       <SubType>Form</SubType>
@@ -151,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddMachine.resx">
       <DependentUpon>FormAddMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddResource.resx">
+      <DependentUpon>FormAddResource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddStorage.resx">
       <DependentUpon>FormAddStorage.cs</DependentUpon>
