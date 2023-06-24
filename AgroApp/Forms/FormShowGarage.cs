@@ -71,5 +71,15 @@ namespace AgroApp.Forms
 
             loadMachines();
         }
+
+        private void buttonDeleteGarage_Click(object sender, EventArgs e)
+        {
+            DeleteQuery query = new DeleteQuery("Garages", "id", garageId);
+            if(dboperator.delete(query) != 0) 
+            {
+                MessageBox.Show("Usunięto");
+                this.Close();
+            }
+        }
     }
 }

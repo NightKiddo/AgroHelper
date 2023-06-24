@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonDeleteStorage = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonDeleteStorage);
             this.panel1.Controls.Add(this.buttonEdit);
             this.panel1.Controls.Add(this.buttonDelete);
             this.panel1.Controls.Add(this.buttonAdd);
@@ -52,6 +54,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonEdit.Location = new System.Drawing.Point(586, 304);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(201, 50);
+            this.buttonEdit.TabIndex = 6;
+            this.buttonEdit.Text = "EDYTUJ";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonDelete.Location = new System.Drawing.Point(586, 200);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(201, 50);
+            this.buttonDelete.TabIndex = 5;
+            this.buttonDelete.Text = "USUŃ";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAdd.Location = new System.Drawing.Point(586, 96);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(201, 50);
+            this.buttonAdd.TabIndex = 4;
+            this.buttonAdd.Text = "DODAJ";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // dataGridView1
             // 
@@ -96,37 +130,15 @@
             this.amount.Name = "amount";
             this.amount.ReadOnly = true;
             // 
-            // buttonEdit
+            // buttonDeleteStorage
             // 
-            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonEdit.Location = new System.Drawing.Point(586, 304);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(201, 50);
-            this.buttonEdit.TabIndex = 6;
-            this.buttonEdit.Text = "EDYTUJ";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonDelete.Location = new System.Drawing.Point(586, 200);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(201, 50);
-            this.buttonDelete.TabIndex = 5;
-            this.buttonDelete.Text = "USUŃ";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAdd.Location = new System.Drawing.Point(586, 96);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(201, 50);
-            this.buttonAdd.TabIndex = 4;
-            this.buttonAdd.Text = "DODAJ";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonDeleteStorage.Location = new System.Drawing.Point(710, 3);
+            this.buttonDeleteStorage.Name = "buttonDeleteStorage";
+            this.buttonDeleteStorage.Size = new System.Drawing.Size(87, 23);
+            this.buttonDeleteStorage.TabIndex = 7;
+            this.buttonDeleteStorage.Text = "Usuń magazyn";
+            this.buttonDeleteStorage.UseVisualStyleBackColor = true;
+            this.buttonDeleteStorage.Click += new System.EventHandler(this.buttonDeleteStorage_Click);
             // 
             // FormShowStorage
             // 
@@ -153,5 +165,6 @@
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonDeleteStorage;
     }
 }

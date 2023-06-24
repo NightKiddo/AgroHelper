@@ -39,12 +39,14 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonDeleteGarage = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonDeleteGarage);
             this.panel1.Controls.Add(this.buttonEdit);
             this.panel1.Controls.Add(this.buttonDelete);
             this.panel1.Controls.Add(this.buttonAdd);
@@ -144,6 +146,16 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
+            // buttonDeleteGarage
+            // 
+            this.buttonDeleteGarage.Location = new System.Drawing.Point(735, 3);
+            this.buttonDeleteGarage.Name = "buttonDeleteGarage";
+            this.buttonDeleteGarage.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteGarage.TabIndex = 4;
+            this.buttonDeleteGarage.Text = "Usuń garaż";
+            this.buttonDeleteGarage.UseVisualStyleBackColor = true;
+            this.buttonDeleteGarage.Click += new System.EventHandler(this.buttonDeleteGarage_Click);
+            // 
             // FormShowGarage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonDeleteGarage;
     }
 }

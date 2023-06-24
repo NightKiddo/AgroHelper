@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewGarages = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,21 +63,20 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pracęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notatkęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGarages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -103,6 +109,60 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(470, 444);
             this.panel5.TabIndex = 2;
+            // 
+            // dataGridViewJournal
+            // 
+            this.dataGridViewJournal.AllowUserToAddRows = false;
+            this.dataGridViewJournal.AllowUserToDeleteRows = false;
+            this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column10,
+            this.Column11,
+            this.Column12,
+            this.Column13,
+            this.Column14});
+            this.dataGridViewJournal.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridViewJournal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewJournal.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewJournal.Name = "dataGridViewJournal";
+            this.dataGridViewJournal.ReadOnly = true;
+            this.dataGridViewJournal.RowHeadersVisible = false;
+            this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewJournal.Size = new System.Drawing.Size(470, 444);
+            this.dataGridViewJournal.TabIndex = 0;
+            this.dataGridViewJournal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewJournal_MouseClick);
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "id";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "name";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "start";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "finish";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "field";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
             // 
             // panel3
             // 
@@ -327,57 +387,35 @@
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             // 
-            // dataGridViewJournal
+            // contextMenuStrip1
             // 
-            this.dataGridViewJournal.AllowUserToAddRows = false;
-            this.dataGridViewJournal.AllowUserToDeleteRows = false;
-            this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14});
-            this.dataGridViewJournal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewJournal.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewJournal.Name = "dataGridViewJournal";
-            this.dataGridViewJournal.ReadOnly = true;
-            this.dataGridViewJournal.RowHeadersVisible = false;
-            this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewJournal.Size = new System.Drawing.Size(470, 444);
-            this.dataGridViewJournal.TabIndex = 0;
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(106, 26);
             // 
-            // Column10
+            // dodajToolStripMenuItem
             // 
-            this.Column10.HeaderText = "id";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
+            this.dodajToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pracęToolStripMenuItem,
+            this.notatkęToolStripMenuItem});
+            this.dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
+            this.dodajToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.dodajToolStripMenuItem.Text = "Dodaj";
             // 
-            // Column11
+            // pracęToolStripMenuItem
             // 
-            this.Column11.HeaderText = "name";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
+            this.pracęToolStripMenuItem.Name = "pracęToolStripMenuItem";
+            this.pracęToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.pracęToolStripMenuItem.Text = "Pracę";
+            this.pracęToolStripMenuItem.Click += new System.EventHandler(this.pracęToolStripMenuItem_Click);
             // 
-            // Column12
+            // notatkęToolStripMenuItem
             // 
-            this.Column12.HeaderText = "start";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "finish";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "field";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
+            this.notatkęToolStripMenuItem.Name = "notatkęToolStripMenuItem";
+            this.notatkęToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.notatkęToolStripMenuItem.Text = "Notatkę";
+            this.notatkęToolStripMenuItem.Click += new System.EventHandler(this.notatkęToolStripMenuItem_Click);
             // 
             // FormShowFarm
             // 
@@ -390,13 +428,14 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGarages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -437,5 +476,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pracęToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notatkęToolStripMenuItem;
     }
 }

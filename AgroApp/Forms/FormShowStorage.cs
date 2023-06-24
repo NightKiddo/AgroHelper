@@ -71,7 +71,16 @@ namespace AgroApp.Forms
             }
 
             loadResources();
-        }           
-            
+        }
+
+        private void buttonDeleteStorage_Click(object sender, EventArgs e)
+        {
+            DeleteQuery query = new DeleteQuery("Storages", "id", storageId);
+            if(dboperator.delete(query) != 0)
+            {
+                MessageBox.Show("Usunięto");
+                this.Close();
+            }
+        }
     }
 }

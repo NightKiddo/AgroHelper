@@ -87,7 +87,7 @@ namespace AgroApp.Forms
             dataGridViewStorages.ClearSelection();
         }
 
-        private void loadJournal() 
+        private void loadJournal()
         {
             dataGridViewJournal.Rows.Clear();
 
@@ -95,18 +95,23 @@ namespace AgroApp.Forms
             int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
 
             notes_activities = dboperator.getJournalEntries(journalId);
-            for(int i=0; i<dataGridViewJournal.Columns.Count;i++)
+            for (int i = 0; i < dataGridViewJournal.Columns.Count; i++)
             {
                 dataGridViewJournal.Columns[i].Width = dataGridViewJournal.Width / 4;
             }
 
-            for(int i=0; i < notes_activities.Count; i++)
+            for (int i = 0; i < notes_activities.Count; i++)
             {
                 dataGridViewJournal.Rows.Add(notes_activities[i]);
             }
 
             dataGridViewJournal.Sort(dataGridViewJournal.Columns[3], ListSortDirection.Descending);
             dataGridViewJournal.ClearSelection();
+
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("Dodaj");
+
+            dataGridViewJournal.ContextMenu= cm;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -125,6 +130,38 @@ namespace AgroApp.Forms
             
             FormShowStorage formShowStorage = new FormShowStorage(storageId);
             formShowStorage.ShowDialog();
+            loadStorages();
+        }
+
+        private void pracęToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int journalId;
+            int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
+            FormAddActivity formAddActivity = new FormAddActivity(journalId, farmId);
+            formAddActivity.ShowDialog();
+            loadJournal();
+        }
+
+        private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int journalId;
+            int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
+            FormAddNote formAddNote = new FormAddNote(journalId, farmId);
+            formAddNote.ShowDialog();
+            loadJournal();
+        }
+
+        private void dataGridViewJournal_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewJournal_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) 
+            {
+                dataGridViewJournal.ContextMenuStrip.Show(new Point(e.X, e.Y));
+            }
         }
 
         private void dataGridViewGarages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -134,6 +171,7 @@ namespace AgroApp.Forms
             int.TryParse(row.Cells[0].Value.ToString(), out garageId);
             FormShowGarage formShowGarage = new FormShowGarage(garageId);
             formShowGarage.ShowDialog();
+            loadGarages();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

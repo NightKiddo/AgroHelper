@@ -164,6 +164,9 @@
     <Compile Include="Logic\InsertQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FormAddActivity.resx">
+      <DependentUpon>FormAddActivity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddFarm.resx">
       <DependentUpon>FormAddFarm.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddMachine.resx">
       <DependentUpon>FormAddMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddNote.resx">
+      <DependentUpon>FormAddNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddResource.resx">
       <DependentUpon>FormAddResource.cs</DependentUpon>

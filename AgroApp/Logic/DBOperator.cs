@@ -315,8 +315,8 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(int journalId) 
         {
-            string queryActivities = "SELECT a.id, a.name, a.start_date, a.finish_date, f.name FROM Activities as a JOIN Fields as f ON a.field = f.id";
-            string queryNotes = "SELECT n.id, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id";
+            string queryActivities = "SELECT a.id, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = "+journalId;
+            string queryNotes = "SELECT n.id, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = "+journalId;
 
             connect();
             conn.Open();
