@@ -197,6 +197,9 @@
     <EmbeddedResource Include="Forms\FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShowActivity.resx">
+      <DependentUpon>FormShowActivity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShowFarm.resx">
       <DependentUpon>FormShowFarm.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShowGarage.resx">
       <DependentUpon>FormShowGarage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShowNote.resx">
+      <DependentUpon>FormShowNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShowStorage.resx">
       <DependentUpon>FormShowStorage.cs</DependentUpon>

@@ -315,8 +315,8 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(int journalId) 
         {
-            string queryActivities = "SELECT a.id, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = "+journalId;
-            string queryNotes = "SELECT n.id, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = "+journalId;
+            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = "+journalId;
+            string queryNotes = "SELECT n.id, 0, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = "+journalId;
 
             connect();
             conn.Open();
@@ -328,7 +328,7 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetString(4) };
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1),dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
                 rows.Add(row);
             }
 
@@ -339,7 +339,7 @@ namespace AgroApp.Logic
 
             while (dataReader.Read()) 
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetString(4) };
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
                 rows.Add(row);
             }
 
@@ -347,6 +347,50 @@ namespace AgroApp.Logic
             conn.Close();
 
             return rows;
+        }
+
+        public object[] getActivity(int activityId) 
+        {
+            string query = "SELECT name, description, start_date, finish_date, field FROM Activities WHERE id = " + activityId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            object[] row = new object[0];
+
+            while (dataReader.Read())
+            {
+                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4) };
+            }
+
+            dataReader.Close();
+            conn.Close();
+
+            return row;
+        }
+
+        public object[] getNote(int noteId)
+        {
+            string query = "SELECT name, description, start_date, finish_date, field FROM Notes WHERE id = " + noteId;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            object[] row = new object[0];
+
+            while (dataReader.Read())
+            {
+                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4) };
+            }
+
+            dataReader.Close();
+            conn.Close();
+
+            return row;
         }
 
         public int delete(DeleteQuery query) 

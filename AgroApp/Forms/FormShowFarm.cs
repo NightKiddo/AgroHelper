@@ -30,13 +30,13 @@ namespace AgroApp.Forms
             setLabel();
         }
 
-        private void setLabel() 
+        private void setLabel()
         {
             string text = "";
             string farmName = dboperator.select("SELECT name FROM Farms WHERE id = " + farmId).ToString();
             text += farmName;
             string date = DateTime.Now.ToShortDateString();
-            text += ", "+date;
+            text += ", " + date;
             label1.Text = text;
         }
 
@@ -57,29 +57,29 @@ namespace AgroApp.Forms
             dataGridViewFields.ClearSelection();
         }
 
-        private void loadGarages() 
+        private void loadGarages()
         {
             dataGridViewGarages.Rows.Clear();
 
             garages = dboperator.getGarages(farmId);
             dataGridViewGarages.Columns[1].Width = dataGridViewGarages.Width;
 
-            for(int i=0; i< garages.Count; i++)
+            for (int i = 0; i < garages.Count; i++)
             {
                 dataGridViewGarages.Rows.Add(garages[i]);
             }
 
-            
+
         }
 
-        private void loadStorages() 
+        private void loadStorages()
         {
             dataGridViewStorages.Rows.Clear();
 
             storages = dboperator.getStorages(farmId);
             dataGridViewStorages.Columns[1].Width = dataGridViewStorages.Width;
 
-            for(int i=0;i < storages.Count; i++)
+            for (int i = 0; i < storages.Count; i++)
             {
                 dataGridViewStorages.Rows.Add(storages[i]);
             }
@@ -111,7 +111,7 @@ namespace AgroApp.Forms
             ContextMenu cm = new ContextMenu();
             cm.MenuItems.Add("Dodaj");
 
-            dataGridViewJournal.ContextMenu= cm;
+            dataGridViewJournal.ContextMenu = cm;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -127,7 +127,7 @@ namespace AgroApp.Forms
         {
             DataGridViewRow row = dataGridViewStorages.SelectedRows[0];
             int storageId = Convert.ToInt32(row.Cells[0].Value);
-            
+
             FormShowStorage formShowStorage = new FormShowStorage(storageId);
             formShowStorage.ShowDialog();
             loadStorages();
@@ -151,16 +151,34 @@ namespace AgroApp.Forms
             loadJournal();
         }
 
-        private void dataGridViewJournal_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void dataGridViewJournal_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) 
+            if (e.Button == MouseButtons.Right)
             {
+                dataGridViewJournal.ContextMenuStrip = contextMenuStrip1;
                 dataGridViewJournal.ContextMenuStrip.Show(new Point(e.X, e.Y));
+            }
+        }
+
+        private void dataGridViewJournal_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (dataGridViewJournal.SelectedRows[0].Cells[1].Value.ToString() == "0")
+            {
+                int noteId;
+                Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out noteId);
+
+                FormShowNote formShowNote = new FormShowNote(noteId);
+                formShowNote.ShowDialog();
+                loadJournal();
+            }
+            else 
+            {
+                int activityId;
+                Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out activityId);
+
+                FormShowActivity formShowActivity = new FormShowActivity(activityId);
+                formShowActivity.ShowDialog();
+                loadJournal();
             }
         }
 
