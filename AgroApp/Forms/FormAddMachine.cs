@@ -43,8 +43,8 @@ namespace AgroApp.Forms
                 InsertQuery query;
                 if (dateTimePicker1.Value == DateTime.Today)
                 {
-                    string values = "'" + textBox1.Text + "', " + dataGridView1.SelectedRows[0].Cells[0].Value + ", " + numericUpDown2.Value + ", " + DBNull.Value + ", " + numericUpDown1.Value;
-                    query = new InsertQuery("Machines", "name,type,mileage,inspection_date,fuel", values);
+                    string values = "'" + textBox1.Text + "', " + dataGridView1.SelectedRows[0].Cells[0].Value + ", " + numericUpDown2.Value + ", " + DBNull.Value + ", " + numericUpDown1.Value+", "+garageId;
+                    query = new InsertQuery("Machines", "name,type,mileage,inspection_date,fuel,garage", values);
                 }
                 else 
                 {

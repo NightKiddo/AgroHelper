@@ -164,6 +164,14 @@ INSERT INTO Garages (name,farm) VALUES ('garaz1',1), ('garaz2',1), ('garaz3',2);
 
 INSERT INTO Storages(name,farm) VALUES ('magazyn1',1), ('magazyn2',1), ('magazyn3',2);
 
+INSERT INTO Machine_types(type) VALUES ('Traktor'),('Kombajn zbo¿owy');
+
+INSERT INTO Tool_types(type) VALUES ('P³ug','Kultywator','Opryskiwacz','Rozsiewacz','Siewnik');
+
+INSERT INTO Machines(name, garage, mileage, type, inspection_date, fuel) VALUES ('Traktor1',1,150,1,'2023-09-01',10), ('Traktor2',1,2000,1,'2023-08-15',50), ('Kombajn1',1,1230,2,'2024-02-13',120), ('Traktor3',2,450,1,'2024-01-29',0), ('Traktor4',3,280,1,'2023-07-14',110);
+
+INSERT INTO Tools(name,garage,mileage,type) VALUES ('P³ug1',1,100,1), ('Kultywator1',1,250,2), ('Opryskiwacz1',2,70,3), ('Rozsiewacz1',2,190,4), ('Siewnik1',3,30,5);
+
 INSERT INTO Notes (name, description, field, start_date, finish_date, journal) VALUES ('test1', 'testOpis1',1,'2023-01-01', '2023-06-20',1), ('test2', 'testOpis2',2,'2023-01-01', '2023-06-24',1);
 
 INSERT INTO Activities(name, description, field, start_date, finish_date, journal) VALUES ('test1', 'testOpis1',1,'2023-01-01', '2023-06-20',1), ('test2', 'testOpis2',2,'2023-01-01', '2023-06-24',1);

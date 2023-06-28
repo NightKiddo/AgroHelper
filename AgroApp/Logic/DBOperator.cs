@@ -21,7 +21,8 @@ namespace AgroApp.Logic
         private SqlDataReader dataReader;
         int a = 0;
 
-        public void connect() {
+        public void connect()
+        {
             connectionString = @"Data Source = " + machineName + ";Initial Catalog=agro;User ID=agro;Password=demo123";
             conn = new SqlConnection(connectionString);
 
@@ -30,22 +31,23 @@ namespace AgroApp.Logic
                 conn.Open();
                 Console.Out.WriteLine("Połączenie udane");
                 conn.Close();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.Out.WriteLine("\nBŁĄD POŁĄCZENIA Z BAZĄ\n"+ex.ToString());
+                Console.Out.WriteLine("\nBŁĄD POŁĄCZENIA Z BAZĄ\n" + ex.ToString());
                 MessageBox.Show("Nie można połączyć z bazą!");
             }
         }
-        public SqlConnection getConn() 
+        public SqlConnection getConn()
         {
             return conn;
         }
 
-        public SqlCommand getCommand() 
-        { 
+        public SqlCommand getCommand()
+        {
             return command;
         }
-        public int insert(InsertQuery query) 
+        public int insert(InsertQuery query)
         {
             a = 0;
 
@@ -53,7 +55,7 @@ namespace AgroApp.Logic
             conn.Open();
             command = new SqlCommand(query.getQuery(), conn);
 
-            if (command.ExecuteNonQuery() != 0) 
+            if (command.ExecuteNonQuery() != 0)
             {
                 a = 1;
             }
@@ -61,7 +63,7 @@ namespace AgroApp.Logic
             conn.Close();
             return a;
         }
-        public object select(string query) 
+        public object select(string query)
         {
             connect();
             conn.Open();
@@ -71,7 +73,7 @@ namespace AgroApp.Logic
 
             string output = "";
 
-            while (dataReader.Read()) 
+            while (dataReader.Read())
             {
                 output = output + dataReader.GetValue(0);
             }
@@ -81,7 +83,7 @@ namespace AgroApp.Logic
 
         }
 
-        public List<object[]> getFarms(int userId) 
+        public List<object[]> getFarms(int userId)
         {
             string query = "SELECT id, [name] FROM Farms WHERE [user] = " + userId;
             connect();
@@ -92,9 +94,9 @@ namespace AgroApp.Logic
 
             List<object[]> rows = new List<object[]>();
 
-            while (dataReader.Read()) 
+            while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1)};
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
                 rows.Add(row);
             }
             dataReader.Close();
@@ -121,7 +123,7 @@ namespace AgroApp.Logic
                 string description = "";
                 int plantId = 0;
                 string plantName = "";
-                if (dataReader.GetValue(2) != DBNull.Value) 
+                if (dataReader.GetValue(2) != DBNull.Value)
                 {
                     description = dataReader.GetString(2);
                 }
@@ -129,7 +131,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
                     plantId = dataReader.GetInt32(3);
-                    string queryPlant = "SELECT p.[name] FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.plant = "+plantId+ " GROUP BY p.[name]";
+                    string queryPlant = "SELECT p.[name] FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.plant = " + plantId + " GROUP BY p.[name]";
                     SqlConnection conn2 = new SqlConnection(connectionString);
                     SqlCommand command2 = new SqlCommand(queryPlant, conn2);
                     conn2.Open();
@@ -141,7 +143,7 @@ namespace AgroApp.Logic
                     dataReader2.Close();
                     conn2.Close();
                 }
-                object[] row = new object[] { id, name, description, plantName};
+                object[] row = new object[] { id, name, description, plantName };
                 rows.Add(row);
             }
 
@@ -152,7 +154,7 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getPlants() 
+        public List<object[]> getPlants()
         {
             string query = "SELECT id, [name] FROM Plants";
             connect();
@@ -173,7 +175,7 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getMachineTypes() 
+        public List<object[]> getMachineTypes()
         {
             string query = "SELECT id, type FROM Machine_types";
             connect();
@@ -194,7 +196,28 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getResourceTypes() 
+        public List<object[]> getToolTypes()
+        {
+            string query = "SELECT id, type FROM Tool_types";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        }
+
+        public List<object[]> getResourceTypes()
         {
             string query = "SELECT id, type FROM Resource_types";
             connect();
@@ -215,9 +238,9 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getGarages(int farmId) 
+        public List<object[]> getGarages(int farmId)
         {
-            string query = "SELECT id, [name] FROM Garages WHERE Farm = "+farmId;
+            string query = "SELECT id, [name] FROM Garages WHERE Farm = " + farmId;
             connect();
             conn.Open();
 
@@ -225,9 +248,9 @@ namespace AgroApp.Logic
             dataReader = command.ExecuteReader();
 
             List<object[]> rows = new List<object[]>();
-            while (dataReader.Read()) 
+            while (dataReader.Read())
             {
-                object[] row = new object[] {dataReader.GetInt32(0), dataReader.GetString(1)};
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
                 rows.Add(row);
             }
             dataReader.Close();
@@ -236,7 +259,7 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getStorages(int farmId) 
+        public List<object[]> getStorages(int farmId)
         {
             string query = "SELECT id, [name] FROM Storages WHERE Farm = " + farmId;
             connect();
@@ -246,7 +269,7 @@ namespace AgroApp.Logic
             dataReader = command.ExecuteReader();
 
             List<object[]> rows = new List<object[]>();
-            while (dataReader.Read()) 
+            while (dataReader.Read())
             {
                 object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
                 rows.Add(row);
@@ -258,14 +281,14 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getMachines(int garageId) 
+        public List<object[]> getMachines(int garageId)
         {
-            string query = "SELECT m.id, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id WHERE m.garage = " + garageId;
+            string queryMachines = "SELECT m.id, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id WHERE m.garage = " + garageId;
 
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
+            command = new SqlCommand(queryMachines, conn);
             dataReader = command.ExecuteReader();
 
             List<object[]> rows = new List<object[]>();
@@ -274,14 +297,40 @@ namespace AgroApp.Logic
                 object[] row;
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetValue(4), dataReader.GetValue(5) };
+                    DateTime inspection = DateTime.Parse(dataReader.GetValue(4).ToString());
+                    
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), inspection.ToString("dd/MM/yyyy"), dataReader.GetValue(5)};
                     rows.Add(row);
                 }
-                else 
+                else
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty , dataReader.GetValue(5) };
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty, dataReader.GetValue(5) };
                     rows.Add(row);
                 }
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+            return rows;
+        }
+
+        public List<object[]> getTools(int garageId)
+        {
+            string queryTools = "SELECT t.id,t.name,t.mileage,tt.type FROM Tools as t JOIN Tool_types as tt on t.type = tt.id WHERE t.garage = " + garageId;
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(queryTools, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row;
+                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3)};
+                rows.Add(row);
             }
             dataReader.Close();
             conn.Close();
@@ -303,7 +352,7 @@ namespace AgroApp.Logic
             List<object[]> rows = new List<object[]>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetValue(3)};
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetValue(3) };
                 rows.Add(row);
             }
             dataReader.Close();
@@ -313,10 +362,10 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getJournalEntries(int journalId) 
+        public List<object[]> getJournalEntries(int journalId)
         {
-            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = "+journalId;
-            string queryNotes = "SELECT n.id, 0, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = "+journalId;
+            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = " + journalId;
+            string queryNotes = "SELECT n.id, 0, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = " + journalId;
 
             connect();
             conn.Open();
@@ -328,7 +377,7 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1),dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
                 rows.Add(row);
             }
 
@@ -337,7 +386,7 @@ namespace AgroApp.Logic
             command = new SqlCommand(queryNotes, conn);
             dataReader = command.ExecuteReader();
 
-            while (dataReader.Read()) 
+            while (dataReader.Read())
             {
                 object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
                 rows.Add(row);
@@ -349,7 +398,7 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public object[] getActivity(int activityId) 
+        public object[] getActivity(int activityId)
         {
             string query = "SELECT name, description, start_date, finish_date, field FROM Activities WHERE id = " + activityId;
             connect();
@@ -393,7 +442,7 @@ namespace AgroApp.Logic
             return row;
         }
 
-        public int delete(DeleteQuery query) 
+        public int delete(DeleteQuery query)
         {
             a = 0;
 
@@ -401,7 +450,7 @@ namespace AgroApp.Logic
             conn.Open();
             command = new SqlCommand(query.getQuery(), conn);
 
-            if (command.ExecuteNonQuery() != 0) 
+            if (command.ExecuteNonQuery() != 0)
             {
                 a = 1;
             }
@@ -410,16 +459,16 @@ namespace AgroApp.Logic
             return a;
         }
 
-        public SqlDataReader getReader() 
+        public SqlDataReader getReader()
         {
             return dataReader;
         }
-        public int login(string login, string password) 
+        public int login(string login, string password)
         {
             a = 0;
 
-            string query = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '"+login+"' AND password LIKE '"+password+"') " +
-                "BEGIN (SELECT id FROM Users WHERE login LIKE '"+login+"' AND password LIKE '"+password+"') END " +
+            string query = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') " +
+                "BEGIN (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') END " +
                 "ELSE BEGIN SELECT 0 END";
 
             string output = "";
@@ -429,7 +478,8 @@ namespace AgroApp.Logic
 
             dataReader = command.ExecuteReader();
 
-            while(dataReader.Read()){
+            while (dataReader.Read())
+            {
                 output += dataReader.GetValue(0);
 
                 if (output == "0")
@@ -437,7 +487,7 @@ namespace AgroApp.Logic
                     MessageBox.Show("Błąd logowania!");
                     break;
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Zalogowano pomyślnie");
                 }
@@ -451,18 +501,18 @@ namespace AgroApp.Logic
             return a;
         }
 
-        public int register(string login, string password) 
+        public int register(string login, string password)
         {
             a = 0;
             connect();
             conn.Open();
-            string check = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '"+login+"') " +
+            string check = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "') " +
                 "BEGIN SELECT 1 END " +
                 "ELSE BEGIN SELECT 2 END";
             string checkValue = "";
             command = new SqlCommand(check, conn);
             dataReader = command.ExecuteReader();
-            
+
 
             while (dataReader.Read())
             {
@@ -471,7 +521,8 @@ namespace AgroApp.Logic
 
             dataReader.Close();
 
-            if (checkValue == "2") {
+            if (checkValue == "2")
+            {
                 string query = "INSERT INTO Users(login,password) VALUES ('" + login + "','" + password + "')";
                 command = new SqlCommand(query, conn);
                 if (command.ExecuteNonQuery() != 0)

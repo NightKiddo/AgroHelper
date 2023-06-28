@@ -97,7 +97,10 @@ namespace AgroApp.Forms
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            addField(0);
+            if(fieldDrawn != 0)
+            {
+                addField(0);
+            }            
             FormAddGarage formAddGarage = new FormAddGarage(farmId);
             formAddGarage.ShowDialog();
             this.Close();
