@@ -23,6 +23,10 @@ namespace AgroApp.Forms
             this.journalId = journalId;
             this.farmId = farmId;
             loadFields();
+            loadTypes();
+            loadEmployees();
+            loadMachines();
+            loadTools();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -32,31 +36,111 @@ namespace AgroApp.Forms
 
         private void loadFields() 
         {
-            dataGridView1.Columns[1].Width = dataGridView1.Width;
+            dataGridViewField.Columns[1].Width = dataGridViewField.Width;
             List<object[]> fields = dboperator.getFields(farmId);
 
             for(int i=0; i< fields.Count; i++) 
             {
-                dataGridView1.Rows.Add(fields[i]);
+                dataGridViewField.Rows.Add(fields[i]);
+            }
+        }
+
+        private void loadTypes()
+        {
+            dataGridViewType.Columns[1].Width = dataGridViewField.Width;
+            List<object[]> types = dboperator.getActivityTypes();
+
+            for (int i = 0; i < types.Count; i++)
+            {
+                dataGridViewType.Rows.Add(types[i]);
+            }
+        }
+        private void loadEmployees() 
+        {
+            dataGridViewEmployee.Columns[1].Width = dataGridViewEmployee.Width;
+            dataGridViewEmployee.Rows.Add(new object[] { DBNull.Value, "(brak)" } );
+
+            List<object[]> employees = dboperator.getEmployees(farmId);
+
+            for (int i = 0; i < employees.Count; i++)
+            {
+                dataGridViewEmployee.Rows.Add(employees[i]);
+            }
+        }
+
+        private void loadMachines() 
+        {
+            dataGridViewMachine.Columns[1].Width = dataGridViewMachine.Width;
+            dataGridViewMachine.Rows.Add(new object[] { DBNull.Value, "(brak)" });
+
+            List<object[]> machines = dboperator.getMachines();
+
+            for (int i = 0; i < machines.Count; i++)
+            {
+                dataGridViewMachine.Rows.Add(machines[i]);
+            }
+        }
+
+        private void loadTools()
+        {
+            dataGridViewTool.Columns[1].Width = dataGridViewTool.Width;
+            dataGridViewTool.Rows.Add(new object[] { DBNull.Value, "(brak)" });
+
+            List<object[]> tools = dboperator.getTools();
+
+            for (int i = 0; i < tools.Count; i++)
+            {
+                dataGridViewTool.Rows.Add(tools[i]);
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count != 0)
+            if (dataGridViewField.SelectedRows.Count != 0)
             {
-                int chosenField = (int)(dataGridView1.SelectedRows[0].Cells[0].Value);
+                int chosenField = (int)(dataGridViewField.SelectedRows[0].Cells[0].Value);
+                int chosenType = (int)(dataGridViewType.SelectedRows[0].Cells[0].Value);
+                object chosenEmployee, chosenMachine, chosenTool;
+                if (dataGridViewEmployee.SelectedRows[0] == dataGridViewEmployee.Rows[0])
+                {
+                    chosenEmployee = "NULL";
+                }
+                else 
+                {
+                    chosenEmployee = (int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value);
+                }
+
+                if (dataGridViewMachine.SelectedRows[0] == dataGridViewMachine.Rows[0])
+                {
+                    chosenMachine = "NULL";
+                }
+                else
+                {
+                    chosenMachine = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
+                }
+
+                if (dataGridViewTool.SelectedRows[0] == dataGridViewTool.Rows[0])
+                {
+                    chosenTool = "NULL";
+                }
+                else
+                {
+                    chosenTool = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
+                }
+
 
                 string dateFormat = "yyyy-MM-dd";
                 string date = dateTimePicker1.Value.ToString();
                 DateTime dateParse = DateTime.ParseExact(date, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                 string dateString = dateParse.ToString(dateFormat);
 
-                string date2 = dateTimePicker1.Value.ToString();
-                string dateString2 = dateParse.ToString(dateFormat);
+                string date2 = dateTimePicker2.Value.ToString();
+                DateTime dateParse2 = DateTime.ParseExact(date2, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                string dateString2 = dateParse2.ToString(dateFormat);
 
-                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', "+journalId;
-                InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, journal", values);
+                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', "
+                    + chosenType +", "+chosenEmployee+", "+chosenMachine+", "+chosenTool+", "+journalId;
+                InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal", values);
 
                 if (dboperator.insert(query) != 0)
                 {

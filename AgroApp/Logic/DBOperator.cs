@@ -238,6 +238,28 @@ namespace AgroApp.Logic
             return rows;
         }
 
+        public List<object[]> getActivityTypes() 
+        {
+            string query = "SELECT id, type FROM Activity_types";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+        
+        }
+
         public List<object[]> getGarages(int farmId)
         {
             string query = "SELECT id, [name] FROM Garages WHERE Farm = " + farmId;
@@ -292,14 +314,16 @@ namespace AgroApp.Logic
             dataReader = command.ExecuteReader();
 
             List<object[]> rows = new List<object[]>();
+            object[] row;
+
             while (dataReader.Read())
             {
-                object[] row;
+
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
                     DateTime inspection = DateTime.Parse(dataReader.GetValue(4).ToString());
-                    
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), inspection.ToString("dd/MM/yyyy"), dataReader.GetValue(5)};
+
+                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), inspection.ToString("dd/MM/yyyy"), dataReader.GetValue(5) };
                     rows.Add(row);
                 }
                 else
@@ -308,9 +332,33 @@ namespace AgroApp.Logic
                     rows.Add(row);
                 }
             }
+
+
             dataReader.Close();
             conn.Close();
 
+
+            return rows;
+        }
+
+        public List<object[]> getMachines()
+        {
+            string query = "SELECT id, name FROM Machines";
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            object[] row;
+
+            while (dataReader.Read())
+            {
+                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
 
             return rows;
         }
@@ -329,7 +377,31 @@ namespace AgroApp.Logic
             while (dataReader.Read())
             {
                 object[] row;
-                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3)};
+                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+            return rows;
+        }
+
+        public List<object[]> getTools()
+        {
+            string queryTools = "SELECT id, name FROM Tools";
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(queryTools, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row;
+                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1)};
                 rows.Add(row);
             }
             dataReader.Close();
@@ -364,7 +436,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(int journalId)
         {
-            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, j.id FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id WHERE j.id = " + journalId;
+            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, at.type FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id JOIN Activity_types as at ON a.type = at.id WHERE j.id = " + journalId;
             string queryNotes = "SELECT n.id, 0, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = " + journalId;
 
             connect();
@@ -377,7 +449,9 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
+                DateTime start = DateTime.Parse(dataReader.GetValue(3).ToString());
+                DateTime finish = DateTime.Parse(dataReader.GetValue(4).ToString());
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), start.ToString("dd/MM/yyyy"), finish.ToString("dd/MM/yyyy"), dataReader.GetString(5), dataReader.GetString(6) };
                 rows.Add(row);
             }
 
@@ -388,7 +462,10 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), dataReader.GetValue(3), dataReader.GetValue(4), dataReader.GetString(5) };
+
+                DateTime start = DateTime.Parse(dataReader.GetValue(3).ToString());
+                DateTime finish = DateTime.Parse(dataReader.GetValue(4).ToString());
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), start.ToString("dd/MM/yyyy"), finish.ToString("dd/MM/yyyy"), dataReader.GetString(5) };
                 rows.Add(row);
             }
 
@@ -398,9 +475,32 @@ namespace AgroApp.Logic
             return rows;
         }
 
+        public List<object[]> getEmployees(int userId)
+        {
+            string query = "SELECT id, name FROM Employees WHERE [user] = " + userId;
+
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+
+            return rows;
+        }
+
         public object[] getActivity(int activityId)
         {
-            string query = "SELECT name, description, start_date, finish_date, field FROM Activities WHERE id = " + activityId;
+            string query = "SELECT name, description, start_date, finish_date, field, type, employee, machine, tool FROM Activities WHERE id = " + activityId;
             connect();
             conn.Open();
 
@@ -411,7 +511,7 @@ namespace AgroApp.Logic
 
             while (dataReader.Read())
             {
-                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4) };
+                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4), dataReader.GetInt32(5), dataReader.GetValue(6), dataReader.GetValue(7), dataReader.GetValue(8) };
             }
 
             dataReader.Close();

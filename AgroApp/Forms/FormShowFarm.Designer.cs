@@ -68,6 +68,7 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -122,7 +123,8 @@
             this.Column11,
             this.Column12,
             this.Column13,
-            this.Column14});
+            this.Column14,
+            this.type});
             this.dataGridViewJournal.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridViewJournal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewJournal.Location = new System.Drawing.Point(0, 0);
@@ -405,27 +407,33 @@
             // 
             // Column11
             // 
-            this.Column11.HeaderText = "name";
+            this.Column11.HeaderText = "tytul";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
             // 
             // Column12
             // 
-            this.Column12.HeaderText = "start";
+            this.Column12.HeaderText = "od";
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
             // 
             // Column13
             // 
-            this.Column13.HeaderText = "finish";
+            this.Column13.HeaderText = "do";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
             // 
             // Column14
             // 
-            this.Column14.HeaderText = "field";
+            this.Column14.HeaderText = "pole";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "typ";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
             // 
             // FormShowFarm
             // 
@@ -491,5 +499,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
     }
 }

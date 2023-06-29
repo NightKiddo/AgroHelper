@@ -97,7 +97,7 @@ namespace AgroApp.Forms
             notes_activities = dboperator.getJournalEntries(journalId);
             for (int i = 0; i < dataGridViewJournal.Columns.Count; i++)
             {
-                dataGridViewJournal.Columns[i].Width = dataGridViewJournal.Width / 4;
+                dataGridViewJournal.Columns[i].Width = dataGridViewJournal.Width / 5;
             }
 
             for (int i = 0; i < notes_activities.Count; i++)
