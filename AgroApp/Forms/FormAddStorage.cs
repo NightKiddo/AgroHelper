@@ -14,28 +14,41 @@ namespace AgroApp.Forms
 {
     public partial class FormAddStorage : Form
     {
-        int farmId;
+        int farmId, invokeType;
         DBOperator dboperator = new DBOperator();
-        public FormAddStorage(int farmId)
+        public FormAddStorage(int farmId, int invokeType)
         {
             InitializeComponent();
             this.farmId= farmId;
+            this.invokeType = invokeType;       //similiar as in FormAddGarage
         }
 
         private void addStorage() 
         {
             if (textBox1.Text == String.Empty)
-            { 
+            {
                 this.Close();
             }
             else
             {
-                InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
-                if (dboperator.insert(queryStorage) != 0)
+                if (invokeType == 0)
                 {
-                    MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show("Zakończono dodawanie gospodarstwa", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
+                    if (dboperator.insert(queryStorage) != 0)
+                    {
+                        MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Zakończono dodawanie gospodarstwa", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
+                    if (dboperator.insert(queryStorage) != 0)
+                    {
+                        MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
                 }
             }
         }

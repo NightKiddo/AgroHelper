@@ -155,7 +155,7 @@ namespace AgroApp.Forms
         {
             if (e.Button == MouseButtons.Right)
             {
-                dataGridViewJournal.ContextMenuStrip = contextMenuStrip1;
+                dataGridViewJournal.ContextMenuStrip = contextMenuStripJournal;
                 dataGridViewJournal.ContextMenuStrip.Show(new Point(e.X, e.Y));
             }
         }
@@ -182,6 +182,101 @@ namespace AgroApp.Forms
             }
         }
 
+        private void dataGridViewGarages_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                dataGridViewGarages.ContextMenuStrip = contextMenuStripGarages;
+                dataGridViewGarages.ContextMenuStrip.Show(new Point(e.X, e.Y));
+            }
+        }
+
+        private void dodajToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormAddGarage formAddGarage = new FormAddGarage(farmId,1);
+            formAddGarage.ShowDialog();
+            loadGarages();
+        }
+
+        private void dodajToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormAddStorage formAddStorage = new FormAddStorage(farmId,1);
+            formAddStorage.ShowDialog();
+            loadStorages();
+        }
+
+        private void dataGridViewStorages_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) 
+            {
+                dataGridViewStorages.ContextMenuStrip = contextMenuStripStorages;
+                dataGridViewStorages.ContextMenuStrip.Show(new Point(e.X, e.Y));
+            }
+        }
+
+        private void dataGridViewFields_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                dataGridViewFields.ContextMenuStrip = contextMenuStripFields;
+                dataGridViewFields.ContextMenuStrip.Show(new Point(e.X, e.Y));
+            }
+        }
+
+        private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewJournal.SelectedRows.Count > 0)
+            {
+                DeleteQuery query;
+                if ((int)dataGridViewJournal.SelectedRows[0].Cells[1].Value == 0)
+                {
+                    query = new DeleteQuery("Notes", "id", (int)dataGridViewJournal.SelectedRows[0].Cells[0].Value);
+                }
+                else 
+                {
+                    query = new DeleteQuery("Activities", "id", (int)dataGridViewJournal.SelectedRows[0].Cells[0].Value);
+                }                
+
+                if (dboperator.delete(query) != 0)
+                {
+                    MessageBox.Show("Usunięto");
+                }
+                else
+                {
+                    MessageBox.Show("Błąd");
+                }
+
+                loadJournal();
+            }
+        }
+
+        private void dodajToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FormAddField formAddField = new FormAddField(farmId);
+            formAddField.ShowDialog();
+            dataGridViewFields.Rows.Clear();
+            loadFields();
+        }
+
+        private void usuńToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFields.SelectedRows.Count > 0)
+            {
+                DeleteQuery query = new DeleteQuery("Fields", "id", (int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+
+                if (dboperator.delete(query) != 0)
+                {
+                    MessageBox.Show("Usunięto");
+                }
+                else
+                {
+                    MessageBox.Show("Błąd");
+                }
+
+                loadFields();
+            }
+        }
+
         private void dataGridViewGarages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dataGridViewGarages.SelectedRows[0];
@@ -190,30 +285,6 @@ namespace AgroApp.Forms
             FormShowGarage formShowGarage = new FormShowGarage(garageId);
             formShowGarage.ShowDialog();
             loadGarages();
-        }
-
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            FormAddField formAddField = new FormAddField(farmId);
-            formAddField.ShowDialog();
-            dataGridViewFields.Rows.Clear();
-            loadFields();
-        }
-
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            DeleteQuery query = new DeleteQuery("Fields", "id", (int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
-
-            if (dboperator.delete(query) != 0)
-            {
-                MessageBox.Show("Usunięto");
-            }
-            else
-            {
-                MessageBox.Show("Błąd");
-            }
-
-            loadFields();
         }
     }
 }

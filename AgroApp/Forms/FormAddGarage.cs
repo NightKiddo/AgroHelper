@@ -13,12 +13,13 @@ namespace AgroApp.Forms
 {
     public partial class FormAddGarage : Form
     {
-        int farmId;
+        int farmId, invokeType;
         DBOperator dboperator = new DBOperator();
-        public FormAddGarage(int farmId)
+        public FormAddGarage(int farmId, int invokeType)
         {
             InitializeComponent();
             this.farmId = farmId;
+            this.invokeType = invokeType;       // 0 is when this form is called in the process of adding a farm, 1 when called individually from FormShowFarm
         }
 
         private void addGarage(int option) 
@@ -29,26 +30,42 @@ namespace AgroApp.Forms
             }
             else
             {
-                InsertQuery query = new InsertQuery("Garages", "name, farm", "'" + textBox1.Text + "'," + farmId);
-                if (option == 0)
+                if (invokeType == 0)
                 {
-                    if (dboperator.insert(query) != 0)
+                    InsertQuery query = new InsertQuery("Garages", "name, farm", "'" + textBox1.Text + "'," + farmId);
+                    if (option == 0)
                     {
-                        MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
+                        if (dboperator.insert(query) != 0)
+                        {
+                            MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Błąd");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Błąd");
+                        if (dboperator.insert(query) != 0)
+                        {
+                            MessageBox.Show("Dodano pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            FormAddStorage formAddStorage = new FormAddStorage(farmId,0);
+                            formAddStorage.ShowDialog();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Błąd");
+                        }
                     }
                 }
-                else
+                else 
                 {
+                    InsertQuery query = new InsertQuery("Garages", "name, farm", "'" + textBox1.Text + "'," + farmId);
                     if (dboperator.insert(query) != 0)
                     {
-                        MessageBox.Show("Dodano pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FormAddStorage formAddStorage = new FormAddStorage(farmId);
-                        formAddStorage.ShowDialog();
+                        MessageBox.Show("Dodano pomyślnie!", "Suckes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else

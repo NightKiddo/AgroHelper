@@ -101,7 +101,7 @@ namespace AgroApp.Forms
             {
                 addField(0);
             }            
-            FormAddGarage formAddGarage = new FormAddGarage(farmId);
+            FormAddGarage formAddGarage = new FormAddGarage(farmId, 0);
             formAddGarage.ShowDialog();
             this.Close();
         }
