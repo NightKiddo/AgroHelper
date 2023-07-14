@@ -27,10 +27,10 @@ namespace AgroApp.Forms
         private void loadFarms() 
         {
             farms = dboperator.getFarms(userId);
-            dataGridView1.Columns[1].Width = dataGridView1.Width;
+            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             for (int i = 0; i < farms.Count; i++) {
 
-                dataGridView1.Rows.Add(farms[i]);
+                dataGridViewFarms.Rows.Add(farms[i]);
             }
         }
 
@@ -38,13 +38,13 @@ namespace AgroApp.Forms
         {
             FormAddFarm formAddFarm = new FormAddFarm(userId);
             formAddFarm.ShowDialog();
-            dataGridView1.Rows.Clear();
+            dataGridViewFarms.Rows.Clear();
             loadFarms();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            DataGridViewRow row = dataGridViewFarms.SelectedRows[0];
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
@@ -54,7 +54,7 @@ namespace AgroApp.Forms
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            DataGridViewRow row = dataGridViewFarms.SelectedRows[0];
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
@@ -69,13 +69,13 @@ namespace AgroApp.Forms
                 MessageBox.Show("Błąd");
             }
 
-            dataGridView1.Rows.Clear();
+            dataGridViewFarms.Rows.Clear();
             loadFarms();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            DataGridViewRow row = dataGridViewFarms.SelectedRows[0];
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
