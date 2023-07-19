@@ -161,6 +161,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAddTool";
             this.Text = "FormAddTool";
+            this.Shown += new System.EventHandler(this.FormAddTool_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

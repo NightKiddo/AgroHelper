@@ -16,13 +16,14 @@ namespace AgroApp.Forms
 {
     public partial class FormShowFarm : Form
     {
-        int farmId;
+        int farmId, userId;
         DBOperator dboperator = new DBOperator();
         List<object[]> fields, garages, storages, notes_activities;
-        public FormShowFarm(int farmId)
+        public FormShowFarm(int farmId, int userId)
         {
             InitializeComponent();
             this.farmId = farmId;
+            this.userId = userId;
             loadFields();
             loadGarages();
             loadStorages();
@@ -137,7 +138,7 @@ namespace AgroApp.Forms
         {
             int journalId;
             int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
-            FormAddActivity formAddActivity = new FormAddActivity(journalId, farmId);
+            FormAddActivity formAddActivity = new FormAddActivity(journalId, farmId, userId);
             formAddActivity.ShowDialog();
             loadJournal();
         }
@@ -221,6 +222,20 @@ namespace AgroApp.Forms
                 dataGridViewFields.ContextMenuStrip = contextMenuStripFields;
                 dataGridViewFields.ContextMenuStrip.Show(new Point(e.X, e.Y));
             }
+        }
+
+        private void pracownikaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAddEmployee formAddEmployee = new FormAddEmployee(userId);
+            formAddEmployee.ShowDialog();
+        }
+
+        private void FormShowFarm_Shown(object sender, EventArgs e)
+        {
+            dataGridViewFields.ClearSelection();
+            dataGridViewGarages.ClearSelection();
+            dataGridViewStorages.ClearSelection();
+            dataGridViewJournal.ClearSelection();
         }
 
         private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)

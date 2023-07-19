@@ -197,6 +197,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAddNote";
             this.Text = "FormAddNote";
+            this.Shown += new System.EventHandler(this.FormAddNote_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

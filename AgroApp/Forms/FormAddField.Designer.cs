@@ -194,6 +194,7 @@
             this.Name = "FormAddField";
             this.Text = "FormAddField";
             this.Load += new System.EventHandler(this.FormAddField_Load);
+            this.Shown += new System.EventHandler(this.FormAddField_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

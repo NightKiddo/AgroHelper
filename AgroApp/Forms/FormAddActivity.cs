@@ -15,13 +15,14 @@ namespace AgroApp.Forms
     public partial class FormAddActivity : Form
     {
         int journalId;
-        int farmId;
+        int farmId, userId;
         DBOperator dboperator = new DBOperator();
-        public FormAddActivity(int journalId, int farmId)
+        public FormAddActivity(int journalId, int farmId, int userId)
         {
             InitializeComponent();
             this.journalId = journalId;
             this.farmId = farmId;
+            this.userId = userId;
             loadFields();
             loadTypes();
             loadEmployees();
@@ -60,7 +61,7 @@ namespace AgroApp.Forms
             dataGridViewEmployee.Columns[1].Width = dataGridViewEmployee.Width;
             dataGridViewEmployee.Rows.Add(new object[] { DBNull.Value, "(brak)" } );
 
-            List<object[]> employees = dboperator.getEmployees(farmId);
+            List<object[]> employees = dboperator.getEmployees(userId);
 
             for (int i = 0; i < employees.Count; i++)
             {
@@ -92,6 +93,15 @@ namespace AgroApp.Forms
             {
                 dataGridViewTool.Rows.Add(tools[i]);
             }
+        }
+
+        private void FormAddActivity_Shown(object sender, EventArgs e)
+        {
+            dataGridViewEmployee.ClearSelection();
+            dataGridViewField.ClearSelection();
+            dataGridViewMachine.ClearSelection();
+            dataGridViewType.ClearSelection();
+            dataGridViewTool.ClearSelection();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

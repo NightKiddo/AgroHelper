@@ -23,7 +23,7 @@ namespace AgroApp.Forms
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            InsertQuery query = new InsertQuery("Employees", "name, user", textBox1.Text + ", " + userId.ToString());
+            InsertQuery query = new InsertQuery("Employees", "name, [user]", "'"+textBox1.Text + "', " + userId.ToString());
             dboperator.insert(query);
             this.Close();
         }

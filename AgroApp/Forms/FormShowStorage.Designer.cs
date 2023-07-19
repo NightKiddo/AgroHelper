@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDeleteStorage = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonDeleteStorage = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +54,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonDeleteStorage
+            // 
+            this.buttonDeleteStorage.Location = new System.Drawing.Point(710, 3);
+            this.buttonDeleteStorage.Name = "buttonDeleteStorage";
+            this.buttonDeleteStorage.Size = new System.Drawing.Size(87, 23);
+            this.buttonDeleteStorage.TabIndex = 7;
+            this.buttonDeleteStorage.Text = "Usuń magazyn";
+            this.buttonDeleteStorage.UseVisualStyleBackColor = true;
+            this.buttonDeleteStorage.Click += new System.EventHandler(this.buttonDeleteStorage_Click);
             // 
             // buttonEdit
             // 
@@ -130,16 +140,6 @@
             this.amount.Name = "amount";
             this.amount.ReadOnly = true;
             // 
-            // buttonDeleteStorage
-            // 
-            this.buttonDeleteStorage.Location = new System.Drawing.Point(710, 3);
-            this.buttonDeleteStorage.Name = "buttonDeleteStorage";
-            this.buttonDeleteStorage.Size = new System.Drawing.Size(87, 23);
-            this.buttonDeleteStorage.TabIndex = 7;
-            this.buttonDeleteStorage.Text = "Usuń magazyn";
-            this.buttonDeleteStorage.UseVisualStyleBackColor = true;
-            this.buttonDeleteStorage.Click += new System.EventHandler(this.buttonDeleteStorage_Click);
-            // 
             // FormShowStorage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +148,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormShowStorage";
             this.Text = "FormShowStorage";
+            this.Shown += new System.EventHandler(this.FormShowStorage_Shown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

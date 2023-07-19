@@ -29,6 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewType = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataGridViewTool = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGridViewMachine = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -43,28 +59,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dataGridViewTool = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dataGridViewMachine = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dataGridViewType = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTool)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,6 +94,170 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(567, 608);
             this.panel1.TabIndex = 0;
+            // 
+            // dataGridViewType
+            // 
+            this.dataGridViewType.AllowUserToAddRows = false;
+            this.dataGridViewType.AllowUserToDeleteRows = false;
+            this.dataGridViewType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewType.ColumnHeadersVisible = false;
+            this.dataGridViewType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8});
+            this.dataGridViewType.Location = new System.Drawing.Point(216, 145);
+            this.dataGridViewType.Name = "dataGridViewType";
+            this.dataGridViewType.ReadOnly = true;
+            this.dataGridViewType.RowHeadersVisible = false;
+            this.dataGridViewType.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewType.Size = new System.Drawing.Size(240, 33);
+            this.dataGridViewType.TabIndex = 19;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "id";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "name";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(133, 145);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 22);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Rodzaj:";
+            // 
+            // dataGridViewTool
+            // 
+            this.dataGridViewTool.AllowUserToAddRows = false;
+            this.dataGridViewTool.AllowUserToDeleteRows = false;
+            this.dataGridViewTool.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTool.ColumnHeadersVisible = false;
+            this.dataGridViewTool.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridViewTool.Location = new System.Drawing.Point(216, 361);
+            this.dataGridViewTool.Name = "dataGridViewTool";
+            this.dataGridViewTool.ReadOnly = true;
+            this.dataGridViewTool.RowHeadersVisible = false;
+            this.dataGridViewTool.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewTool.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTool.Size = new System.Drawing.Size(240, 33);
+            this.dataGridViewTool.TabIndex = 17;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "id";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(109, 361);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(94, 22);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Narzędzie:";
+            // 
+            // dataGridViewMachine
+            // 
+            this.dataGridViewMachine.AllowUserToAddRows = false;
+            this.dataGridViewMachine.AllowUserToDeleteRows = false;
+            this.dataGridViewMachine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMachine.ColumnHeadersVisible = false;
+            this.dataGridViewMachine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dataGridViewMachine.Location = new System.Drawing.Point(216, 307);
+            this.dataGridViewMachine.Name = "dataGridViewMachine";
+            this.dataGridViewMachine.ReadOnly = true;
+            this.dataGridViewMachine.RowHeadersVisible = false;
+            this.dataGridViewMachine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewMachine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewMachine.Size = new System.Drawing.Size(240, 33);
+            this.dataGridViewMachine.TabIndex = 15;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "id";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "name";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(118, 307);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 22);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Maszyna:";
+            // 
+            // dataGridViewEmployee
+            // 
+            this.dataGridViewEmployee.AllowUserToAddRows = false;
+            this.dataGridViewEmployee.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployee.ColumnHeadersVisible = false;
+            this.dataGridViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewEmployee.Location = new System.Drawing.Point(216, 258);
+            this.dataGridViewEmployee.Name = "dataGridViewEmployee";
+            this.dataGridViewEmployee.ReadOnly = true;
+            this.dataGridViewEmployee.RowHeadersVisible = false;
+            this.dataGridViewEmployee.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployee.Size = new System.Drawing.Size(240, 33);
+            this.dataGridViewEmployee.TabIndex = 13;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(105, 260);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 22);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Pracownik:";
             // 
             // buttonCancel
             // 
@@ -229,170 +393,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
-            // dataGridViewEmployee
-            // 
-            this.dataGridViewEmployee.AllowUserToAddRows = false;
-            this.dataGridViewEmployee.AllowUserToDeleteRows = false;
-            this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployee.ColumnHeadersVisible = false;
-            this.dataGridViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dataGridViewEmployee.Location = new System.Drawing.Point(216, 258);
-            this.dataGridViewEmployee.Name = "dataGridViewEmployee";
-            this.dataGridViewEmployee.ReadOnly = true;
-            this.dataGridViewEmployee.RowHeadersVisible = false;
-            this.dataGridViewEmployee.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployee.Size = new System.Drawing.Size(240, 33);
-            this.dataGridViewEmployee.TabIndex = 13;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(105, 260);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 22);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Pracownik:";
-            // 
-            // dataGridViewTool
-            // 
-            this.dataGridViewTool.AllowUserToAddRows = false;
-            this.dataGridViewTool.AllowUserToDeleteRows = false;
-            this.dataGridViewTool.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTool.ColumnHeadersVisible = false;
-            this.dataGridViewTool.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dataGridViewTool.Location = new System.Drawing.Point(216, 361);
-            this.dataGridViewTool.Name = "dataGridViewTool";
-            this.dataGridViewTool.ReadOnly = true;
-            this.dataGridViewTool.RowHeadersVisible = false;
-            this.dataGridViewTool.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewTool.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTool.Size = new System.Drawing.Size(240, 33);
-            this.dataGridViewTool.TabIndex = 17;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(109, 361);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 22);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Narzędzie:";
-            // 
-            // dataGridViewMachine
-            // 
-            this.dataGridViewMachine.AllowUserToAddRows = false;
-            this.dataGridViewMachine.AllowUserToDeleteRows = false;
-            this.dataGridViewMachine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMachine.ColumnHeadersVisible = false;
-            this.dataGridViewMachine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.dataGridViewMachine.Location = new System.Drawing.Point(216, 307);
-            this.dataGridViewMachine.Name = "dataGridViewMachine";
-            this.dataGridViewMachine.ReadOnly = true;
-            this.dataGridViewMachine.RowHeadersVisible = false;
-            this.dataGridViewMachine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewMachine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewMachine.Size = new System.Drawing.Size(240, 33);
-            this.dataGridViewMachine.TabIndex = 15;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "id";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "name";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(118, 307);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 22);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Maszyna:";
-            // 
-            // dataGridViewType
-            // 
-            this.dataGridViewType.AllowUserToAddRows = false;
-            this.dataGridViewType.AllowUserToDeleteRows = false;
-            this.dataGridViewType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewType.ColumnHeadersVisible = false;
-            this.dataGridViewType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.dataGridViewType.Location = new System.Drawing.Point(216, 145);
-            this.dataGridViewType.Name = "dataGridViewType";
-            this.dataGridViewType.ReadOnly = true;
-            this.dataGridViewType.RowHeadersVisible = false;
-            this.dataGridViewType.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewType.Size = new System.Drawing.Size(240, 33);
-            this.dataGridViewType.TabIndex = 19;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "id";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "name";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(133, 145);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 22);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Rodzaj:";
-            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,13 +401,14 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormAddActivity";
             this.Text = " ";
+            this.Shown += new System.EventHandler(this.FormAddActivity_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTool)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();
             this.ResumeLayout(false);
 
         }

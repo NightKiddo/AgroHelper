@@ -44,6 +44,8 @@
             this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pracęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notatkęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pracownikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuńToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewGarages = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,14 +70,12 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripGarages = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStripStorages = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pracownikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripStorages = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuńToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -197,7 +197,7 @@
             this.dodajToolStripMenuItem,
             this.usuńToolStripMenuItem1});
             this.contextMenuStripJournal.Name = "contextMenuStrip1";
-            this.contextMenuStripJournal.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripJournal.Size = new System.Drawing.Size(106, 48);
             // 
             // dodajToolStripMenuItem
             // 
@@ -212,16 +212,30 @@
             // pracęToolStripMenuItem
             // 
             this.pracęToolStripMenuItem.Name = "pracęToolStripMenuItem";
-            this.pracęToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pracęToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.pracęToolStripMenuItem.Text = "Pracę";
             this.pracęToolStripMenuItem.Click += new System.EventHandler(this.pracęToolStripMenuItem_Click);
             // 
             // notatkęToolStripMenuItem
             // 
             this.notatkęToolStripMenuItem.Name = "notatkęToolStripMenuItem";
-            this.notatkęToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notatkęToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.notatkęToolStripMenuItem.Text = "Notatkę";
             this.notatkęToolStripMenuItem.Click += new System.EventHandler(this.notatkęToolStripMenuItem_Click);
+            // 
+            // pracownikaToolStripMenuItem
+            // 
+            this.pracownikaToolStripMenuItem.Name = "pracownikaToolStripMenuItem";
+            this.pracownikaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pracownikaToolStripMenuItem.Text = "Pracownika";
+            this.pracownikaToolStripMenuItem.Click += new System.EventHandler(this.pracownikaToolStripMenuItem_Click);
+            // 
+            // usuńToolStripMenuItem1
+            // 
+            this.usuńToolStripMenuItem1.Name = "usuńToolStripMenuItem1";
+            this.usuńToolStripMenuItem1.Size = new System.Drawing.Size(105, 22);
+            this.usuńToolStripMenuItem1.Text = "Usuń";
+            this.usuńToolStripMenuItem1.Click += new System.EventHandler(this.usuńToolStripMenuItem1_Click);
             // 
             // panel3
             // 
@@ -432,25 +446,19 @@
             this.contextMenuStripGarages.Name = "contextMenuStripGarages";
             this.contextMenuStripGarages.Size = new System.Drawing.Size(106, 26);
             // 
-            // contextMenuStripStorages
-            // 
-            this.contextMenuStripStorages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dodajToolStripMenuItem2});
-            this.contextMenuStripStorages.Name = "contextMenuStripStorages";
-            this.contextMenuStripStorages.Size = new System.Drawing.Size(106, 26);
-            // 
-            // pracownikaToolStripMenuItem
-            // 
-            this.pracownikaToolStripMenuItem.Name = "pracownikaToolStripMenuItem";
-            this.pracownikaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pracownikaToolStripMenuItem.Text = "Pracownika";
-            // 
             // dodajToolStripMenuItem1
             // 
             this.dodajToolStripMenuItem1.Name = "dodajToolStripMenuItem1";
             this.dodajToolStripMenuItem1.Size = new System.Drawing.Size(105, 22);
             this.dodajToolStripMenuItem1.Text = "Dodaj";
             this.dodajToolStripMenuItem1.Click += new System.EventHandler(this.dodajToolStripMenuItem1_Click);
+            // 
+            // contextMenuStripStorages
+            // 
+            this.contextMenuStripStorages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem2});
+            this.contextMenuStripStorages.Name = "contextMenuStripStorages";
+            this.contextMenuStripStorages.Size = new System.Drawing.Size(106, 26);
             // 
             // dodajToolStripMenuItem2
             // 
@@ -470,23 +478,16 @@
             // dodajToolStripMenuItem3
             // 
             this.dodajToolStripMenuItem3.Name = "dodajToolStripMenuItem3";
-            this.dodajToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.dodajToolStripMenuItem3.Size = new System.Drawing.Size(105, 22);
             this.dodajToolStripMenuItem3.Text = "Dodaj";
             this.dodajToolStripMenuItem3.Click += new System.EventHandler(this.dodajToolStripMenuItem3_Click);
             // 
             // usuńToolStripMenuItem
             // 
             this.usuńToolStripMenuItem.Name = "usuńToolStripMenuItem";
-            this.usuńToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuńToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.usuńToolStripMenuItem.Text = "Usuń";
             this.usuńToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
-            // 
-            // usuńToolStripMenuItem1
-            // 
-            this.usuńToolStripMenuItem1.Name = "usuńToolStripMenuItem1";
-            this.usuńToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.usuńToolStripMenuItem1.Text = "Usuń";
-            this.usuńToolStripMenuItem1.Click += new System.EventHandler(this.usuńToolStripMenuItem1_Click);
             // 
             // FormShowFarm
             // 
@@ -496,6 +497,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormShowFarm";
             this.Text = "FormShowFarm";
+            this.Shown += new System.EventHandler(this.FormShowFarm_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);

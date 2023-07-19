@@ -65,5 +65,10 @@ namespace AgroApp.Forms
         {
             this.Close();
         }
+
+        private void FormAddTool_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
+        }
     }
 }

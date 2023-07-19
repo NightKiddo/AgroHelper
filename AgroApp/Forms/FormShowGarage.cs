@@ -149,5 +149,11 @@ namespace AgroApp.Forms
                 loadTools();
             }
         }
+
+        private void FormShowGarage_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            dataGridView2.ClearSelection();
+        }
     }
 }

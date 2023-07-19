@@ -114,6 +114,10 @@ namespace AgroApp.Forms
             {
                 dataGridView1.Rows.Add(plants[i]);
             }
+        }
+
+        private void FormAddField_Shown(object sender, EventArgs e)
+        {
             dataGridView1.ClearSelection();
         }
     }

@@ -16,22 +16,38 @@ namespace AgroApp.Forms
     {
         int userId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> farms;
+        List<object[]> farms, employees;
         public FormMainMenu(int userId)
         {
             InitializeComponent();
             this.userId = userId;
             loadFarms();
+            loadEmployees();
         }
 
         private void loadFarms() 
         {
+            dataGridViewFarms.Rows.Clear();
             farms = dboperator.getFarms(userId);
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             for (int i = 0; i < farms.Count; i++) {
 
                 dataGridViewFarms.Rows.Add(farms[i]);
             }
+        }
+
+        private void loadEmployees()
+        {
+            dataGridViewEmployees.Rows.Clear();
+            employees = dboperator.getEmployees(userId);
+            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
+
+            for(int i=0;i < employees.Count;i++)
+            {
+                dataGridViewEmployees.Rows.Add(employees[i]);
+            }
+
+            dataGridViewEmployees.ClearSelection();
         }
 
         private void buttonAddFarm_Click(object sender, EventArgs e)
@@ -48,7 +64,7 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-            FormShowFarm formShowFarm = new FormShowFarm(farmId);
+            FormShowFarm formShowFarm = new FormShowFarm(farmId, userId);
             formShowFarm.ShowDialog();
         }
 
@@ -69,8 +85,40 @@ namespace AgroApp.Forms
                 MessageBox.Show("Błąd");
             }
 
-            dataGridViewFarms.Rows.Clear();
             loadFarms();
+        }
+
+        private void buttonAddEmployee_Click(object sender, EventArgs e)
+        {
+            FormAddEmployee formAddEmployee = new FormAddEmployee(userId);
+            formAddEmployee.ShowDialog();
+            loadEmployees();
+        }
+
+        private void buttonDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridViewEmployees.SelectedRows[0];
+            int employeeId;
+            int.TryParse(row.Cells[0].Value.ToString(), out employeeId);
+
+
+            DeleteQuery query = new DeleteQuery("Employees", "id", employeeId);
+            if (dboperator.delete(query) != 0)
+            {
+                MessageBox.Show("Usunięto");
+            }
+            else
+            {
+                MessageBox.Show("Błąd");
+            }
+            
+            loadEmployees();
+        }
+
+        private void FormMainMenu_Shown(object sender, EventArgs e)
+        {
+            dataGridViewEmployees.ClearSelection();
+            dataGridViewFarms.ClearSelection();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
