@@ -63,6 +63,11 @@ CREATE TABLE Activity_types(
 	type varchar(250) NOT NULL UNIQUE
 )
 
+CREATE TABLE Note_types(
+	id int PRIMARY KEY IDENTITY(1,1),
+	type varchar(250) NOT NULL UNIQUE
+)
+
 CREATE TABLE Farms(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250),
@@ -132,17 +137,20 @@ CREATE TABLE Activities(
 	field int FOREIGN KEY REFERENCES Fields(id),
 	employee int FOREIGN KEY REFERENCES Employees(id),
 	machine int FOREIGN KEY REFERENCES Machines(id),
-	tool int FOREIGN KEY REFERENCES Tools(id)
+	tool int FOREIGN KEY REFERENCES Tools(id),
+	value float,
 )
 
 CREATE TABLE Notes(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(100) NOT NULL,
 	journal int FOREIGN KEY REFERENCES Journals(id) ON DELETE CASCADE,
+	type int FOREIGN KEY REFERENCES Note_types(id),
 	description varchar(250),
 	start_date date,
 	finish_date date,
 	field int FOREIGN KEY REFERENCES Fields(id),
+	value float,
 	photo image
 )
 
@@ -151,6 +159,8 @@ INSERT INTO Users (login,password) VALUES ('test1', 'qwe');
 INSERT INTO Farms ([name], [user]) VALUES ('test1',1), ('test2',1);
 
 INSERT INTO Activity_types (type) VALUES ('Orka'), ('Siew'), ('Podlewanie'), ('Nawo¿enie');
+
+INSERT INTO Note_types (type) VALUES ('Notatka'), ('Opady'), ('Chwasty'), ('Choroby');
 
 INSERT INTO Journals (farm) VALUES (1),(2);
 
@@ -177,6 +187,9 @@ INSERT INTO Tools(name,garage,mileage,type) VALUES ('P³ug1',1,100,1), ('Kultywat
 
 INSERT INTO Employees(name, [user]) VALUES ('pracownik1',1), ('pracownik2',1), ('pracownik3',1), ('pracownik4',1);
 
-INSERT INTO Notes (name, description, field, start_date, finish_date, journal) VALUES ('notatka1', 'notatkaOpis1',1,'2023-01-01', '2023-06-20',1), ('notatka2', 'notatkaOpis2',2,'2023-01-01', '2023-06-24',1);
+INSERT INTO Notes (name, description, field, start_date, finish_date, journal, type, value) VALUES ('notatka1', 'notatkaOpis1',1,'2023-01-01', '2023-06-20',1,1, NULL), ('notatka2', 'notatkaOpad',2,'2023-01-01', '2023-06-24',1,2,10);
 
-INSERT INTO Activities(name, description, field, start_date, finish_date, journal, type, employee, machine, tool) VALUES ('praca1', 'pracaOpis1',1,'2023-01-01', '2023-06-20',1,1,1,1,1), ('praca2', 'pracaOpis2',2,'2023-01-01', '2023-06-24',1,2,2,2,2);
+INSERT INTO Activities(name, description, field, start_date, finish_date, journal, type, employee, machine, tool, value) VALUES 
+('praca1', 'pracaOpis1',1,'2023-01-01', '2023-06-20',1,1,1,1,1,NULL), 
+('praca2', 'pracaPodlewanie1',3,'2023-01-01', '2023-06-24',1,2,2,2,2,40), 
+('praca3', 'pracaPodlewanie2',3,'2023-01-01', '2023-06-24',1,2,2,2,2,20);

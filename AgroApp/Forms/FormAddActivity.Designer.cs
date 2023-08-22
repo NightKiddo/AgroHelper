@@ -59,16 +59,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTool)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.dataGridViewType);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.dataGridViewTool);
@@ -92,7 +97,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(567, 608);
+            this.panel1.Size = new System.Drawing.Size(567, 656);
             this.panel1.TabIndex = 0;
             // 
             // dataGridViewType
@@ -262,7 +267,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonCancel.Location = new System.Drawing.Point(228, 542);
+            this.buttonCancel.Location = new System.Drawing.Point(228, 599);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(111, 36);
             this.buttonCancel.TabIndex = 11;
@@ -273,7 +278,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAdd.Location = new System.Drawing.Point(239, 500);
+            this.buttonAdd.Location = new System.Drawing.Point(239, 557);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(89, 36);
             this.buttonAdd.TabIndex = 10;
@@ -283,14 +288,14 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(216, 466);
+            this.dateTimePicker2.Location = new System.Drawing.Point(216, 523);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 9;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(216, 421);
+            this.dateTimePicker1.Location = new System.Drawing.Point(216, 478);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 8;
@@ -367,7 +372,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(168, 464);
+            this.label3.Location = new System.Drawing.Point(168, 521);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 22);
             this.label3.TabIndex = 2;
@@ -377,7 +382,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(168, 419);
+            this.label2.Location = new System.Drawing.Point(168, 476);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 22);
             this.label2.TabIndex = 1;
@@ -393,11 +398,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(122, 418);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(81, 22);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Wartość:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 2;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown1.Location = new System.Drawing.Point(216, 419);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(200, 26);
+            this.numericUpDown1.TabIndex = 21;
+            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 608);
+            this.ClientSize = new System.Drawing.Size(567, 656);
             this.Controls.Add(this.panel1);
             this.Name = "FormAddActivity";
             this.Text = " ";
@@ -409,6 +433,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,5 +471,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

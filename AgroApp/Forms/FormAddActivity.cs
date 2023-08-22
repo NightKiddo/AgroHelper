@@ -110,7 +110,7 @@ namespace AgroApp.Forms
             {
                 int chosenField = (int)(dataGridViewField.SelectedRows[0].Cells[0].Value);
                 int chosenType = (int)(dataGridViewType.SelectedRows[0].Cells[0].Value);
-                object chosenEmployee, chosenMachine, chosenTool;
+                object chosenEmployee, chosenMachine, chosenTool, value;
                 if (dataGridViewEmployee.SelectedRows[0] == dataGridViewEmployee.Rows[0])
                 {
                     chosenEmployee = "NULL";
@@ -138,6 +138,15 @@ namespace AgroApp.Forms
                     chosenTool = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
                 }
 
+                if (numericUpDown1.Value == 0)
+                {
+                    value = "NULL";
+                }
+                else 
+                {
+                    value = numericUpDown1.Value;
+                }
+
 
                 string dateFormat = "yyyy-MM-dd";
                 string date = dateTimePicker1.Value.ToString();
@@ -149,8 +158,8 @@ namespace AgroApp.Forms
                 string dateString2 = dateParse2.ToString(dateFormat);
 
                 string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', "
-                    + chosenType +", "+chosenEmployee+", "+chosenMachine+", "+chosenTool+", "+journalId;
-                InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal", values);
+                    + chosenType +", "+chosenEmployee+", "+chosenMachine+", "+chosenTool+", "+journalId+", "+value;
+                InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal, value", values);
 
                 if (dboperator.insert(query) != 0)
                 {

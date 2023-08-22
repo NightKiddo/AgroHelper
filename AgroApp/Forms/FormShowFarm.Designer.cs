@@ -76,6 +76,9 @@
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.wróćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -88,6 +91,7 @@
             this.contextMenuStripGarages.SuspendLayout();
             this.contextMenuStripStorages.SuspendLayout();
             this.contextMenuStripFields.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -347,6 +351,7 @@
             // 
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.dataGridViewFields);
+            this.panel2.Controls.Add(this.menuStrip1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -356,9 +361,9 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 493);
+            this.panel4.Location = new System.Drawing.Point(0, 517);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(407, 114);
+            this.panel4.Size = new System.Drawing.Size(407, 90);
             this.panel4.TabIndex = 1;
             // 
             // dataGridViewFields
@@ -373,7 +378,7 @@
             this.ColumnDescription,
             this.Plant});
             this.dataGridViewFields.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewFields.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewFields.Location = new System.Drawing.Point(0, 24);
             this.dataGridViewFields.Name = "dataGridViewFields";
             this.dataGridViewFields.ReadOnly = true;
             this.dataGridViewFields.RowHeadersVisible = false;
@@ -489,6 +494,30 @@
             this.usuńToolStripMenuItem.Text = "Usuń";
             this.usuńToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wróćToolStripMenuItem,
+            this.analizaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(407, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // wróćToolStripMenuItem
+            // 
+            this.wróćToolStripMenuItem.Name = "wróćToolStripMenuItem";
+            this.wróćToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.wróćToolStripMenuItem.Text = "Wróć";
+            this.wróćToolStripMenuItem.Click += new System.EventHandler(this.wróćToolStripMenuItem_Click);
+            // 
+            // analizaToolStripMenuItem
+            // 
+            this.analizaToolStripMenuItem.Name = "analizaToolStripMenuItem";
+            this.analizaToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.analizaToolStripMenuItem.Text = "Analiza";
+            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,10 +536,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGarages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             this.contextMenuStripGarages.ResumeLayout(false);
             this.contextMenuStripStorages.ResumeLayout(false);
             this.contextMenuStripFields.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -564,5 +596,8 @@
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem usuńToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuńToolStripMenuItem1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem wróćToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem analizaToolStripMenuItem;
     }
 }

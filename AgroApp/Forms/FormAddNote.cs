@@ -23,6 +23,7 @@ namespace AgroApp.Forms
             this.jounralId= journalId;
             this.farmId= farmId;
             loadFields();
+            loadTypes();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -41,12 +42,22 @@ namespace AgroApp.Forms
             }
         }
 
+        private void loadTypes() 
+        {
+            dataGridView2.Columns[1].Width = dataGridView2.Width;
+            List<object[]> types = dboperator.getNoteTypes();
 
+            for (int i = 0; i < types.Count; i++)
+            {                           
+                dataGridView2.Rows.Add(types[i]);
+            }
+        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count != 0)
             {
                 int chosenField = (int)(dataGridView1.SelectedRows[0].Cells[0].Value);
+                int chosenType = (int)(dataGridView2.SelectedRows[0].Cells[0].Value);
 
                 string dateFormat = "yyyy-MM-dd";
                 string date = dateTimePicker1.Value.ToString();
@@ -56,8 +67,20 @@ namespace AgroApp.Forms
                 string date2 = dateTimePicker1.Value.ToString();
                 string dateString2 = dateParse.ToString(dateFormat);
 
-                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId;
-                InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, journal", values);
+                object value = 0;
+
+                if (numericUpDown1.Value == 0)
+                {
+                    value = "NULL";
+                }
+                else 
+                {
+                    value = numericUpDown1.Value;
+                    value = 12.12f.ToString(CultureInfo.InvariantCulture);
+                }
+
+                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId+", "+value+", "+chosenType;
+                InsertQuery query = new InsertQuery("Notes", "name, description, field, start_date, finish_date, journal, value, type", values);
 
                 if (dboperator.insert(query) != 0)
                 {
@@ -69,6 +92,7 @@ namespace AgroApp.Forms
         private void FormAddNote_Shown(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
+            dataGridView2.ClearSelection();
         }
     }
 }

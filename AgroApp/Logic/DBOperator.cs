@@ -260,6 +260,28 @@ namespace AgroApp.Logic
         
         }
 
+        public List<object[]> getNoteTypes()
+        {
+            string query = "SELECT id, type FROM Note_types";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<object[]> rows = new List<object[]>();
+            while (dataReader.Read())
+            {
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
+                rows.Add(row);
+            }
+            dataReader.Close();
+            conn.Close();
+
+            return rows;
+
+        }
+
         public List<object[]> getGarages(int farmId)
         {
             string query = "SELECT id, [name] FROM Garages WHERE Farm = " + farmId;
@@ -436,8 +458,20 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(int journalId)
         {
-            string queryActivities = "SELECT a.id, 1, a.name, a.start_date, a.finish_date, f.name, at.type FROM Activities as a JOIN Fields as f ON a.field = f.id JOIN Journals as j on a.journal = j.id JOIN Activity_types as at ON a.type = at.id WHERE j.id = " + journalId;
-            string queryNotes = "SELECT n.id, 0, n.name, n.start_date, n.finish_date, f.name FROM Notes as n JOIN Fields as f ON n.field = f.id JOIN Journals as j on n.journal = j.id WHERE j.id = " + journalId;
+            string queryActivities = "SELECT " +
+                "a.id, 1, a.name, a.start_date, a.finish_date, f.name, at.type " +
+                "FROM Activities as a " +
+                "JOIN Fields as f ON a.field = f.id " +
+                "JOIN Journals as j on a.journal = j.id " +
+                "JOIN Activity_types as at ON a.type = at.id " +
+                "WHERE j.id = " + journalId;
+            string queryNotes = "SELECT " +
+                "n.id, 0, n.name, n.start_date, n.finish_date, f.name, nt.type " +
+                "FROM Notes as n " +
+                "JOIN Fields as f ON n.field = f.id " +
+                "JOIN Journals as j on n.journal = j.id " +
+                "JOIN Note_types as nt ON n.type = nt.id "+
+                "WHERE j.id = " + journalId;
 
             connect();
             conn.Open();
@@ -465,7 +499,7 @@ namespace AgroApp.Logic
 
                 DateTime start = DateTime.Parse(dataReader.GetValue(3).ToString());
                 DateTime finish = DateTime.Parse(dataReader.GetValue(4).ToString());
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), start.ToString("dd/MM/yyyy"), finish.ToString("dd/MM/yyyy"), dataReader.GetString(5) };
+                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetString(2), start.ToString("dd/MM/yyyy"), finish.ToString("dd/MM/yyyy"), dataReader.GetString(5), dataReader.GetString(6) };
                 rows.Add(row);
             }
 

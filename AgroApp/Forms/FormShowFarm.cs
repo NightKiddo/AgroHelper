@@ -238,6 +238,11 @@ namespace AgroApp.Forms
             dataGridViewJournal.ClearSelection();
         }
 
+        private void wróćToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (dataGridViewJournal.SelectedRows.Count > 0)
