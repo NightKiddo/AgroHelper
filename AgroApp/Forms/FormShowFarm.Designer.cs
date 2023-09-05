@@ -64,6 +64,9 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Plant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.wróćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,9 +79,6 @@
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.wróćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.analizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -88,10 +88,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.contextMenuStripGarages.SuspendLayout();
             this.contextMenuStripStorages.SuspendLayout();
             this.contextMenuStripFields.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -413,6 +413,31 @@
             this.Plant.Name = "Plant";
             this.Plant.ReadOnly = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wróćToolStripMenuItem,
+            this.analizaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(407, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // wróćToolStripMenuItem
+            // 
+            this.wróćToolStripMenuItem.Name = "wróćToolStripMenuItem";
+            this.wróćToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.wróćToolStripMenuItem.Text = "Wróć";
+            this.wróćToolStripMenuItem.Click += new System.EventHandler(this.wróćToolStripMenuItem_Click);
+            // 
+            // analizaToolStripMenuItem
+            // 
+            this.analizaToolStripMenuItem.Name = "analizaToolStripMenuItem";
+            this.analizaToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.analizaToolStripMenuItem.Text = "Analiza";
+            this.analizaToolStripMenuItem.Click += new System.EventHandler(this.analizaToolStripMenuItem_Click);
+            // 
             // Column5
             // 
             this.Column5.HeaderText = "id";
@@ -494,30 +519,6 @@
             this.usuńToolStripMenuItem.Text = "Usuń";
             this.usuńToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wróćToolStripMenuItem,
-            this.analizaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(407, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // wróćToolStripMenuItem
-            // 
-            this.wróćToolStripMenuItem.Name = "wróćToolStripMenuItem";
-            this.wróćToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.wróćToolStripMenuItem.Text = "Wróć";
-            this.wróćToolStripMenuItem.Click += new System.EventHandler(this.wróćToolStripMenuItem_Click);
-            // 
-            // analizaToolStripMenuItem
-            // 
-            this.analizaToolStripMenuItem.Name = "analizaToolStripMenuItem";
-            this.analizaToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.analizaToolStripMenuItem.Text = "Analiza";
-            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,11 +539,11 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.contextMenuStripGarages.ResumeLayout(false);
             this.contextMenuStripStorages.ResumeLayout(false);
             this.contextMenuStripFields.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }

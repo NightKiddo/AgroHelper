@@ -243,6 +243,12 @@ namespace AgroApp.Forms
             this.Close();
         }
 
+        private void analizaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormGraphs formGraphs = new FormGraphs(userId);
+            formGraphs.ShowDialog();
+        }
+
         private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (dataGridViewJournal.SelectedRows.Count > 0)
