@@ -23,7 +23,7 @@ GO
 CREATE TABLE Users(
 	id int PRIMARY KEY IDENTITY(1,1),
 	login varchar(50) NOT NULL UNIQUE,
-	password varchar(250) NOT NULL UNIQUE
+	password varchar(250) NOT NULL 
 )
 
 CREATE TABLE Resource_types(
@@ -70,7 +70,7 @@ CREATE TABLE Note_types(
 
 CREATE TABLE Farms(
 	id int PRIMARY KEY IDENTITY(1,1),
-	name varchar(250),
+	name varchar(250) NOT NULL,
 	[user] int FOREIGN KEY REFERENCES Users(id)
 )
 
