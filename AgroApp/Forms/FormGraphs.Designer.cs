@@ -32,6 +32,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewValues = new System.Windows.Forms.DataGridView();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewFields = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,23 +53,23 @@
             this.labelFarm = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelEmployee = new System.Windows.Forms.Label();
-            this.listBoxEmployee = new System.Windows.Forms.ListBox();
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
-            this.dataGridViewValues = new System.Windows.Forms.DataGridView();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridViewEmployees);
             this.panel1.Controls.Add(this.dataGridViewValues);
             this.panel1.Controls.Add(this.dataGridViewFields);
             this.panel1.Controls.Add(this.dataGridViewFarms);
@@ -80,7 +84,6 @@
             this.panel1.Controls.Add(this.labelFarm);
             this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.labelEmployee);
-            this.panel1.Controls.Add(this.listBoxEmployee);
             this.panel1.Controls.Add(this.labelField);
             this.panel1.Controls.Add(this.comboBoxGraphType);
             this.panel1.Controls.Add(this.labelGraphType);
@@ -89,6 +92,47 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(938, 640);
             this.panel1.TabIndex = 0;
+            // 
+            // dataGridViewValues
+            // 
+            this.dataGridViewValues.AllowUserToAddRows = false;
+            this.dataGridViewValues.AllowUserToDeleteRows = false;
+            this.dataGridViewValues.AllowUserToResizeColumns = false;
+            this.dataGridViewValues.AllowUserToResizeRows = false;
+            this.dataGridViewValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewValues.ColumnHeadersVisible = false;
+            this.dataGridViewValues.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.type,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridViewValues.Location = new System.Drawing.Point(16, 368);
+            this.dataGridViewValues.Name = "dataGridViewValues";
+            this.dataGridViewValues.ReadOnly = true;
+            this.dataGridViewValues.RowHeadersVisible = false;
+            this.dataGridViewValues.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewValues.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewValues.Size = new System.Drawing.Size(120, 103);
+            this.dataGridViewValues.TabIndex = 20;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "type";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            this.type.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "id";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewFields
             // 
@@ -265,15 +309,6 @@
             this.labelEmployee.TabIndex = 5;
             this.labelEmployee.Text = "Pracownik:";
             // 
-            // listBoxEmployee
-            // 
-            this.listBoxEmployee.FormattingEnabled = true;
-            this.listBoxEmployee.Location = new System.Drawing.Point(16, 499);
-            this.listBoxEmployee.Name = "listBoxEmployee";
-            this.listBoxEmployee.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxEmployee.Size = new System.Drawing.Size(120, 95);
-            this.listBoxEmployee.TabIndex = 4;
-            // 
             // labelField
             // 
             this.labelField.AutoSize = true;
@@ -302,46 +337,38 @@
             this.labelGraphType.TabIndex = 0;
             this.labelGraphType.Text = "Typ wykresu:";
             // 
-            // dataGridViewValues
+            // dataGridViewEmployees
             // 
-            this.dataGridViewValues.AllowUserToAddRows = false;
-            this.dataGridViewValues.AllowUserToDeleteRows = false;
-            this.dataGridViewValues.AllowUserToResizeColumns = false;
-            this.dataGridViewValues.AllowUserToResizeRows = false;
-            this.dataGridViewValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewValues.ColumnHeadersVisible = false;
-            this.dataGridViewValues.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.type,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dataGridViewValues.Location = new System.Drawing.Point(16, 368);
-            this.dataGridViewValues.Name = "dataGridViewValues";
-            this.dataGridViewValues.ReadOnly = true;
-            this.dataGridViewValues.RowHeadersVisible = false;
-            this.dataGridViewValues.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewValues.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewValues.Size = new System.Drawing.Size(120, 103);
-            this.dataGridViewValues.TabIndex = 20;
+            this.dataGridViewEmployees.AllowUserToAddRows = false;
+            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployees.AllowUserToResizeRows = false;
+            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployees.ColumnHeadersVisible = false;
+            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.dataGridViewEmployees.Location = new System.Drawing.Point(16, 499);
+            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
+            this.dataGridViewEmployees.ReadOnly = true;
+            this.dataGridViewEmployees.RowHeadersVisible = false;
+            this.dataGridViewEmployees.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(120, 103);
+            this.dataGridViewEmployees.TabIndex = 21;
             // 
-            // type
+            // dataGridViewTextBoxColumn6
             // 
-            this.type.HeaderText = "type";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            this.type.Visible = false;
+            this.dataGridViewTextBoxColumn6.HeaderText = "id";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
             // 
-            // dataGridViewTextBoxColumn3
+            // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.HeaderText = "name";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // FormGraphs
             // 
@@ -353,10 +380,11 @@
             this.Text = "FormGraphs";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,7 +396,6 @@
         private System.Windows.Forms.Label labelField;
         private System.Windows.Forms.ComboBox comboBoxGraphType;
         private System.Windows.Forms.Label labelEmployee;
-        private System.Windows.Forms.ListBox listBoxEmployee;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button buttonAddX;
         private System.Windows.Forms.Button buttonAddY;
@@ -389,5 +416,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridView dataGridViewEmployees;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

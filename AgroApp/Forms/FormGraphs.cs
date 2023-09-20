@@ -23,10 +23,11 @@ namespace AgroApp.Forms
             comboBoxGraphType.Items.AddRange(Enum.GetNames(typeof(System.Windows.Forms.DataVisualization.Charting.SeriesChartType)));
             loadFarms();
             loadValues();
+            loadEmployees();
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
             dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
-            listBoxEmployee.ClearSelected();
+            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
         }
 
         private void loadFarms()
@@ -56,26 +57,36 @@ namespace AgroApp.Forms
             List<object[]> notes = dboperator.getNoteTypes();
             List<object[]> activities = dboperator.getActivityTypes();
 
-            for(int i=0;i<notes.Count;i++)
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                DataGridViewCell cell = new DataGridViewCell();
-                cell.Value= 1;
+            List<object[]> values = new List<object[]>();
 
-                row.Cells.Add(1);
-                row.Cells.Add(notes[i].GetValue(0));
-                row.Cells.Add(notes[i].GetValue(1));                
-                dataGridViewValues.Rows.Add(row);
+            for (int i = 0; i < notes.Count; i++)
+            {
+                object[] o = new object[] { 1, notes[i].GetValue(0), notes[i].GetValue(1) };
+                values.Add(o);
             }
 
             for (int i = 0; i < activities.Count; i++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.Cells[0].Value = 2;
-                row.Cells[1].Value = activities[i].GetValue(0);
-                row.Cells[2].Value = activities[i].GetValue(1);
-                dataGridViewValues.Rows.Add(row);
-            } 
+                object[] o = new object[] { 2, activities[i].GetValue(0), activities[i].GetValue(1) };
+                values.Add(o);
+            }
+
+            for(int i=0; i < values.Count; i++)
+            {
+                dataGridViewValues.Rows.Add(values[i]);
+            }
+        }
+
+        private void loadEmployees()
+        {
+            List<object[]> employees = dboperator.getEmployees(userId);
+
+            for(int i=0; i < employees.Count; i++)
+            {
+                dataGridViewEmployees.Rows.Add(employees[i]);
+            }
+
+            dataGridViewEmployees.ClearSelection();
         }
 
         private void dataGridViewFarms_SelectionChanged(object sender, EventArgs e)

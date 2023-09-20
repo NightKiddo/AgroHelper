@@ -435,7 +435,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getResources(int storageId)
         {
-            string query = "SELECT r.id, r.name, rt.type, r.amount FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id WHERE storage = " + storageId;
+            string query = "SELECT r.id, r.type, rt.type, r.amount FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id WHERE storage = " + storageId;
 
             connect();
             conn.Open();
