@@ -20,14 +20,27 @@ namespace AgroApp.Forms
         {
             this.userId = userId;
             InitializeComponent();
-            comboBoxGraphType.Items.AddRange(Enum.GetNames(typeof(System.Windows.Forms.DataVisualization.Charting.SeriesChartType)));
+
+            loadChartTypes();
             loadFarms();
             loadValues();
             loadEmployees();
+
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
             dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
+
+        }
+
+        private void loadChartTypes() 
+        {            
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar);
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column);
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut);
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line);
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie);
+            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point);            
         }
 
         private void loadFarms()
@@ -36,8 +49,7 @@ namespace AgroApp.Forms
             for (int i = 0; i < farms.Count; i++)
             {
                 dataGridViewFarms.Rows.Add(farms[i]);
-            }
-            dataGridViewFields.ClearSelection();
+            }            
         }
 
         private void buttonAddSeries_Click(object sender, EventArgs e)
@@ -85,8 +97,6 @@ namespace AgroApp.Forms
             {
                 dataGridViewEmployees.Rows.Add(employees[i]);
             }
-
-            dataGridViewEmployees.ClearSelection();
         }
 
         private void dataGridViewFarms_SelectionChanged(object sender, EventArgs e)
@@ -101,8 +111,37 @@ namespace AgroApp.Forms
                 {
                     dataGridViewFields.Rows.Add(fields[i]);
                 }
-            }
+            }            
+        }
+
+        private void comboBoxGraphType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FormGraphs_Shown(object sender, EventArgs e)
+        {
+            dataGridViewEmployees.ClearSelection();
             dataGridViewFields.ClearSelection();
+            dataGridViewValues.ClearSelection();
+            dataGridViewFarms.ClearSelection();
+            textBox1.Visible = false;
+        }
+
+        private void dataGridViewFields_SelectionChanged(object sender, EventArgs e)
+        {            
+            if (dataGridViewFields.SelectedRows.Count > 0)
+            {
+                int selectedFieldId = (int)dataGridViewFields.SelectedRows[0].Cells[0].Value;
+
+                string query = "SELECT p.name FROM Plants as p JOIN Fields as f ON p.id = f.plant WHERE f.id = " + selectedFieldId;
+
+                string plant = dboperator.select(query).ToString();
+
+                textBox1.Text = "Obecna uprawa:\n"+plant;
+
+                textBox1.Visible = true;
+            }
         }
     }
 }

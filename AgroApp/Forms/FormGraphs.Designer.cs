@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewValues = new System.Windows.Forms.DataGridView();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,8 +49,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.buttonAddX = new System.Windows.Forms.Button();
-            this.buttonAddY = new System.Windows.Forms.Button();
             this.buttonAddSeries = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelFarm = new System.Windows.Forms.Label();
@@ -56,19 +57,18 @@
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
-            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.dataGridViewEmployees);
             this.panel1.Controls.Add(this.dataGridViewValues);
             this.panel1.Controls.Add(this.dataGridViewFields);
@@ -77,8 +77,6 @@
             this.panel1.Controls.Add(this.dateTimePicker2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.buttonAddX);
-            this.panel1.Controls.Add(this.buttonAddY);
             this.panel1.Controls.Add(this.buttonAddSeries);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.labelFarm);
@@ -93,6 +91,39 @@
             this.panel1.Size = new System.Drawing.Size(938, 640);
             this.panel1.TabIndex = 0;
             // 
+            // dataGridViewEmployees
+            // 
+            this.dataGridViewEmployees.AllowUserToAddRows = false;
+            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployees.AllowUserToResizeRows = false;
+            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployees.ColumnHeadersVisible = false;
+            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.dataGridViewEmployees.Location = new System.Drawing.Point(16, 437);
+            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
+            this.dataGridViewEmployees.ReadOnly = true;
+            this.dataGridViewEmployees.RowHeadersVisible = false;
+            this.dataGridViewEmployees.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(120, 103);
+            this.dataGridViewEmployees.TabIndex = 21;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "id";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "name";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
             // dataGridViewValues
             // 
             this.dataGridViewValues.AllowUserToAddRows = false;
@@ -105,7 +136,7 @@
             this.type,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridViewValues.Location = new System.Drawing.Point(16, 368);
+            this.dataGridViewValues.Location = new System.Drawing.Point(16, 306);
             this.dataGridViewValues.Name = "dataGridViewValues";
             this.dataGridViewValues.ReadOnly = true;
             this.dataGridViewValues.RowHeadersVisible = false;
@@ -145,7 +176,7 @@
             this.dataGridViewFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridViewFields.Location = new System.Drawing.Point(16, 235);
+            this.dataGridViewFields.Location = new System.Drawing.Point(16, 173);
             this.dataGridViewFields.Name = "dataGridViewFields";
             this.dataGridViewFields.ReadOnly = true;
             this.dataGridViewFields.RowHeadersVisible = false;
@@ -153,6 +184,7 @@
             this.dataGridViewFields.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFields.Size = new System.Drawing.Size(120, 103);
             this.dataGridViewFields.TabIndex = 19;
+            this.dataGridViewFields.SelectionChanged += new System.EventHandler(this.dataGridViewFields_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -178,7 +210,7 @@
             this.dataGridViewFarms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.name});
-            this.dataGridViewFarms.Location = new System.Drawing.Point(16, 101);
+            this.dataGridViewFarms.Location = new System.Drawing.Point(16, 39);
             this.dataGridViewFarms.Name = "dataGridViewFarms";
             this.dataGridViewFarms.ReadOnly = true;
             this.dataGridViewFarms.RowHeadersVisible = false;
@@ -235,27 +267,9 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 14;
             // 
-            // buttonAddX
-            // 
-            this.buttonAddX.Location = new System.Drawing.Point(142, 426);
-            this.buttonAddX.Name = "buttonAddX";
-            this.buttonAddX.Size = new System.Drawing.Size(110, 23);
-            this.buttonAddX.TabIndex = 13;
-            this.buttonAddX.Text = "Oś X";
-            this.buttonAddX.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddY
-            // 
-            this.buttonAddY.Location = new System.Drawing.Point(142, 397);
-            this.buttonAddY.Name = "buttonAddY";
-            this.buttonAddY.Size = new System.Drawing.Size(110, 23);
-            this.buttonAddY.TabIndex = 12;
-            this.buttonAddY.Text = "Oś Y";
-            this.buttonAddY.UseVisualStyleBackColor = true;
-            // 
             // buttonAddSeries
             // 
-            this.buttonAddSeries.Location = new System.Drawing.Point(142, 368);
+            this.buttonAddSeries.Location = new System.Drawing.Point(26, 606);
             this.buttonAddSeries.Name = "buttonAddSeries";
             this.buttonAddSeries.Size = new System.Drawing.Size(110, 23);
             this.buttonAddSeries.TabIndex = 11;
@@ -267,7 +281,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(12, 341);
+            this.label1.Location = new System.Drawing.Point(12, 279);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 24);
             this.label1.TabIndex = 10;
@@ -277,7 +291,7 @@
             // 
             this.labelFarm.AutoSize = true;
             this.labelFarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelFarm.Location = new System.Drawing.Point(12, 74);
+            this.labelFarm.Location = new System.Drawing.Point(12, 12);
             this.labelFarm.Name = "labelFarm";
             this.labelFarm.Size = new System.Drawing.Size(136, 24);
             this.labelFarm.TabIndex = 8;
@@ -285,16 +299,16 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea10.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart1.Legends.Add(legend10);
             this.chart1.Location = new System.Drawing.Point(258, 12);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chart1.Series.Add(series10);
             this.chart1.Size = new System.Drawing.Size(668, 551);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
@@ -303,7 +317,7 @@
             // 
             this.labelEmployee.AutoSize = true;
             this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelEmployee.Location = new System.Drawing.Point(12, 472);
+            this.labelEmployee.Location = new System.Drawing.Point(12, 410);
             this.labelEmployee.Name = "labelEmployee";
             this.labelEmployee.Size = new System.Drawing.Size(102, 24);
             this.labelEmployee.TabIndex = 5;
@@ -313,7 +327,7 @@
             // 
             this.labelField.AutoSize = true;
             this.labelField.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelField.Location = new System.Drawing.Point(12, 207);
+            this.labelField.Location = new System.Drawing.Point(12, 145);
             this.labelField.Name = "labelField";
             this.labelField.Size = new System.Drawing.Size(53, 24);
             this.labelField.TabIndex = 3;
@@ -322,53 +336,34 @@
             // comboBoxGraphType
             // 
             this.comboBoxGraphType.FormattingEnabled = true;
-            this.comboBoxGraphType.Location = new System.Drawing.Point(16, 36);
+            this.comboBoxGraphType.Location = new System.Drawing.Point(17, 574);
             this.comboBoxGraphType.Name = "comboBoxGraphType";
             this.comboBoxGraphType.Size = new System.Drawing.Size(117, 21);
             this.comboBoxGraphType.TabIndex = 1;
+            this.comboBoxGraphType.SelectedIndexChanged += new System.EventHandler(this.comboBoxGraphType_SelectedIndexChanged);
             // 
             // labelGraphType
             // 
             this.labelGraphType.AutoSize = true;
             this.labelGraphType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelGraphType.Location = new System.Drawing.Point(12, 9);
+            this.labelGraphType.Location = new System.Drawing.Point(13, 547);
             this.labelGraphType.Name = "labelGraphType";
-            this.labelGraphType.Size = new System.Drawing.Size(121, 24);
+            this.labelGraphType.Size = new System.Drawing.Size(86, 24);
             this.labelGraphType.TabIndex = 0;
-            this.labelGraphType.Text = "Typ wykresu:";
+            this.labelGraphType.Text = "Typ serii:";
             // 
-            // dataGridViewEmployees
+            // textBox1
             // 
-            this.dataGridViewEmployees.AllowUserToAddRows = false;
-            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
-            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
-            this.dataGridViewEmployees.AllowUserToResizeRows = false;
-            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployees.ColumnHeadersVisible = false;
-            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
-            this.dataGridViewEmployees.Location = new System.Drawing.Point(16, 499);
-            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
-            this.dataGridViewEmployees.ReadOnly = true;
-            this.dataGridViewEmployees.RowHeadersVisible = false;
-            this.dataGridViewEmployees.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployees.Size = new System.Drawing.Size(120, 103);
-            this.dataGridViewEmployees.TabIndex = 21;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "id";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "name";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox1.Location = new System.Drawing.Point(142, 173);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 103);
+            this.textBox1.TabIndex = 22;
+            this.textBox1.Text = "Obecna uprawa:";
             // 
             // FormGraphs
             // 
@@ -378,13 +373,14 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormGraphs";
             this.Text = "FormGraphs";
+            this.Shown += new System.EventHandler(this.FormGraphs_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -397,8 +393,6 @@
         private System.Windows.Forms.ComboBox comboBoxGraphType;
         private System.Windows.Forms.Label labelEmployee;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button buttonAddX;
-        private System.Windows.Forms.Button buttonAddY;
         private System.Windows.Forms.Button buttonAddSeries;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelFarm;
@@ -419,5 +413,6 @@
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
