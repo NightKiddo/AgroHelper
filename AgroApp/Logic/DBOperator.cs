@@ -238,7 +238,7 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getActivityTypes() 
+        public List<object[]> getActivityTypes()
         {
             string query = "SELECT id, type FROM Activity_types";
             connect();
@@ -257,7 +257,7 @@ namespace AgroApp.Logic
             conn.Close();
 
             return rows;
-        
+
         }
 
         public List<object[]> getNoteTypes()
@@ -423,7 +423,7 @@ namespace AgroApp.Logic
             while (dataReader.Read())
             {
                 object[] row;
-                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1)};
+                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
                 rows.Add(row);
             }
             dataReader.Close();
@@ -470,7 +470,7 @@ namespace AgroApp.Logic
                 "FROM Notes as n " +
                 "JOIN Fields as f ON n.field = f.id " +
                 "JOIN Journals as j on n.journal = j.id " +
-                "JOIN Note_types as nt ON n.type = nt.id "+
+                "JOIN Note_types as nt ON n.type = nt.id " +
                 "WHERE j.id = " + journalId;
 
             connect();
@@ -574,6 +574,38 @@ namespace AgroApp.Logic
             conn.Close();
 
             return row;
+        }
+
+        public object[,] getChartValues(int fieldId)
+        {
+            int rowCount = 0;            
+
+            string queryCount = "SELECT COUNT(*) FROM Activities WHERE field = " + fieldId;
+            
+            Int32.TryParse((string)select(queryCount), out rowCount);
+
+            object[,] values = new object[rowCount, 1];
+
+            connect();
+            conn.Open();
+
+            string query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId;
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                for (int i = 0; i < rowCount; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        values[i, j] = { dataReader.GetValue(j), dataReader.GetValue(j+1)};
+                    }
+                }
+            }
+
+            return values;
         }
 
         public int delete(DeleteQuery query)

@@ -245,7 +245,7 @@ namespace AgroApp.Forms
 
         private void analizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormGraphs formGraphs = new FormGraphs(userId);
+            FormCharts formGraphs = new FormCharts(userId);
             formGraphs.ShowDialog();
         }
 

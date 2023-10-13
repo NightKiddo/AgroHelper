@@ -12,14 +12,17 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgroApp.Forms
 {
-    public partial class FormGraphs : Form
+    public partial class FormCharts : Form
     {
         DBOperator dboperator = new DBOperator();
+
+        object[] types = { SeriesChartType.Column, SeriesChartType.Line, SeriesChartType.Point };
         int userId;
-        public FormGraphs(int userId)
+        public FormCharts(int userId)
         {
             this.userId = userId;
             InitializeComponent();
+
 
             loadChartTypes();
             loadFarms();
@@ -33,14 +36,15 @@ namespace AgroApp.Forms
 
         }
 
-        private void loadChartTypes() 
-        {            
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar);
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column);
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut);
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line);
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie);
-            comboBoxGraphType.Items.Add(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point);            
+        private void setChart()
+        {
+            chart1.Series.Clear();
+
+        }
+
+        private void loadChartTypes()
+        {
+            comboBoxGraphType.Items.AddRange(types);
         }
 
         private void loadFarms()
@@ -49,18 +53,33 @@ namespace AgroApp.Forms
             for (int i = 0; i < farms.Count; i++)
             {
                 dataGridViewFarms.Rows.Add(farms[i]);
-            }            
+            }
         }
 
         private void buttonAddSeries_Click(object sender, EventArgs e)
         {
+            /*
+             * error
+             * Osie obszaru wykresu — Obszar wykresu zawiera niezgodne typy wykresów. 
+             * Na przykład w jednym obszarze wykresu nie mogą znajdować się wykresy słupkowe i kolumnowe.
+             */
             if (dataGridViewFields.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Zaznacz choć jedno pole");
             }
             else
             {
+                Series series = new Series(textBox2.Text);
+                chart1.Series.Add(series);
+                chart1.Series[textBox2.Text].XValueType = ChartValueType.Date;
+                series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
+                object[,] seriesValues = dboperator.getChartValues((int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+
+                for (int i = 0; i < seriesValues.GetLength(0); i++)
+                {
+                    chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, i], seriesValues[i, 1]);
+                }
             }
         }
 
@@ -83,7 +102,7 @@ namespace AgroApp.Forms
                 values.Add(o);
             }
 
-            for(int i=0; i < values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             {
                 dataGridViewValues.Rows.Add(values[i]);
             }
@@ -93,7 +112,7 @@ namespace AgroApp.Forms
         {
             List<object[]> employees = dboperator.getEmployees(userId);
 
-            for(int i=0; i < employees.Count; i++)
+            for (int i = 0; i < employees.Count; i++)
             {
                 dataGridViewEmployees.Rows.Add(employees[i]);
             }
@@ -111,12 +130,12 @@ namespace AgroApp.Forms
                 {
                     dataGridViewFields.Rows.Add(fields[i]);
                 }
-            }            
+            }
         }
 
         private void comboBoxGraphType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void FormGraphs_Shown(object sender, EventArgs e)
@@ -129,7 +148,7 @@ namespace AgroApp.Forms
         }
 
         private void dataGridViewFields_SelectionChanged(object sender, EventArgs e)
-        {            
+        {
             if (dataGridViewFields.SelectedRows.Count > 0)
             {
                 int selectedFieldId = (int)dataGridViewFields.SelectedRows[0].Cells[0].Value;
@@ -138,7 +157,7 @@ namespace AgroApp.Forms
 
                 string plant = dboperator.select(query).ToString();
 
-                textBox1.Text = "Obecna uprawa:\n"+plant;
+                textBox1.Text = "Obecna uprawa:\n" + plant;
 
                 textBox1.Visible = true;
             }
