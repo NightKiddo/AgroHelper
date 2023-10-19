@@ -75,8 +75,7 @@ namespace AgroApp.Forms
                 }
                 else 
                 {
-                    value = numericUpDown1.Value;
-                    value = 12.12f.ToString(CultureInfo.InvariantCulture);
+                    value = numericUpDown1.Value.ToString(CultureInfo.InvariantCulture); 
                 }
 
                 string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId+", "+value+", "+chosenType;

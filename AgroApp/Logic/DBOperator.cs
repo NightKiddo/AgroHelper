@@ -576,33 +576,40 @@ namespace AgroApp.Logic
             return row;
         }
 
-        public object[,] getChartValues(int fieldId)
+        public object[,] getChartValues(int fieldId, int valueType, int valueTypeId)
         {
-            int rowCount = 0;            
+            int rowCount = 0;
 
             string queryCount = "SELECT COUNT(*) FROM Activities WHERE field = " + fieldId;
-            
+
             Int32.TryParse((string)select(queryCount), out rowCount);
 
-            object[,] values = new object[rowCount, 1];
+            object[,] values = new object[rowCount, 2];
 
             connect();
             conn.Open();
 
-            string query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId;
+            string query = "";
+
+            if (valueType == 1)
+            {
+                query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId;
+            }
+            else
+            {
+                query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId;
+            }
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
+            int i = 0;
+
             while (dataReader.Read())
             {
-                for (int i = 0; i < rowCount; i++)
-                {
-                    for (int j = 0; j < 2; j++)
-                    {
-                        values[i, j] = { dataReader.GetValue(j), dataReader.GetValue(j+1)};
-                    }
-                }
+                values[i, 0] = dataReader.GetValue(0);
+                values[i, 1] = dataReader.GetValue(1);
+                i++;
             }
 
             return values;

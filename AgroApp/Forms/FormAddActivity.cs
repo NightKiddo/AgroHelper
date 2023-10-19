@@ -97,11 +97,8 @@ namespace AgroApp.Forms
 
         private void FormAddActivity_Shown(object sender, EventArgs e)
         {
-            dataGridViewEmployee.ClearSelection();
             dataGridViewField.ClearSelection();
-            dataGridViewMachine.ClearSelection();
             dataGridViewType.ClearSelection();
-            dataGridViewTool.ClearSelection();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -144,7 +141,7 @@ namespace AgroApp.Forms
                 }
                 else 
                 {
-                    value = numericUpDown1.Value;
+                    value = numericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
                 }
 
 

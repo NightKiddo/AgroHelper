@@ -31,7 +31,7 @@ namespace AgroApp.Forms
 
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
-            dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
+            //dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
 
         }
@@ -59,6 +59,10 @@ namespace AgroApp.Forms
         private void buttonAddSeries_Click(object sender, EventArgs e)
         {
             /*
+             *  zrób filtrowanie po datach od do
+             */
+
+            /*
              * error
              * Osie obszaru wykresu — Obszar wykresu zawiera niezgodne typy wykresów. 
              * Na przykład w jednym obszarze wykresu nie mogą znajdować się wykresy słupkowe i kolumnowe.
@@ -74,11 +78,14 @@ namespace AgroApp.Forms
                 chart1.Series[textBox2.Text].XValueType = ChartValueType.Date;
                 series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
-                object[,] seriesValues = dboperator.getChartValues((int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+                object[,] seriesValues = dboperator.getChartValues(
+                    (int)dataGridViewFields.SelectedRows[0].Cells[0].Value, 
+                    (int)dataGridViewValues.SelectedRows[0].Cells[0].Value,
+                    (int)dataGridViewValues.SelectedRows[0].Cells[1].Value);
 
                 for (int i = 0; i < seriesValues.GetLength(0); i++)
                 {
-                    chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, i], seriesValues[i, 1]);
+                    chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
                 }
             }
         }
