@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.MaskedTextBox();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
-            this.buttonLogin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(434, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonLogin
+            // 
+            this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonLogin.Location = new System.Drawing.Point(97, 226);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(240, 64);
+            this.buttonLogin.TabIndex = 12;
+            this.buttonLogin.Text = "Zarejestruj";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // label2
             // 
@@ -85,23 +96,16 @@
             this.textBoxLogin.Size = new System.Drawing.Size(165, 20);
             this.textBoxLogin.TabIndex = 8;
             // 
-            // buttonLogin
-            // 
-            this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonLogin.Location = new System.Drawing.Point(97, 226);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(240, 64);
-            this.buttonLogin.TabIndex = 12;
-            this.buttonLogin.Text = "Zarejestruj";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 450);
             this.Controls.Add(this.panel1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormRegister";
             this.Text = "FormRegister";
             this.panel1.ResumeLayout(false);

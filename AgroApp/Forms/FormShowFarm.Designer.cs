@@ -129,6 +129,8 @@
             // 
             this.dataGridViewJournal.AllowUserToAddRows = false;
             this.dataGridViewJournal.AllowUserToDeleteRows = false;
+            this.dataGridViewJournal.AllowUserToResizeColumns = false;
+            this.dataGridViewJournal.AllowUserToResizeRows = false;
             this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column10,
@@ -141,9 +143,11 @@
             this.dataGridViewJournal.ContextMenuStrip = this.contextMenuStripJournal;
             this.dataGridViewJournal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewJournal.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewJournal.MultiSelect = false;
             this.dataGridViewJournal.Name = "dataGridViewJournal";
             this.dataGridViewJournal.ReadOnly = true;
             this.dataGridViewJournal.RowHeadersVisible = false;
+            this.dataGridViewJournal.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewJournal.Size = new System.Drawing.Size(470, 444);
@@ -255,6 +259,8 @@
             // 
             this.dataGridViewGarages.AllowUserToAddRows = false;
             this.dataGridViewGarages.AllowUserToDeleteRows = false;
+            this.dataGridViewGarages.AllowUserToResizeColumns = false;
+            this.dataGridViewGarages.AllowUserToResizeRows = false;
             this.dataGridViewGarages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGarages.ColumnHeadersVisible = false;
             this.dataGridViewGarages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -266,9 +272,11 @@
             this.Column4});
             this.dataGridViewGarages.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridViewGarages.Location = new System.Drawing.Point(236, 0);
+            this.dataGridViewGarages.MultiSelect = false;
             this.dataGridViewGarages.Name = "dataGridViewGarages";
             this.dataGridViewGarages.ReadOnly = true;
             this.dataGridViewGarages.RowHeadersVisible = false;
+            this.dataGridViewGarages.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewGarages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewGarages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewGarages.Size = new System.Drawing.Size(234, 114);
@@ -317,6 +325,8 @@
             // 
             this.dataGridViewStorages.AllowUserToAddRows = false;
             this.dataGridViewStorages.AllowUserToDeleteRows = false;
+            this.dataGridViewStorages.AllowUserToResizeColumns = false;
+            this.dataGridViewStorages.AllowUserToResizeRows = false;
             this.dataGridViewStorages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStorages.ColumnHeadersVisible = false;
             this.dataGridViewStorages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -324,9 +334,11 @@
             this.nameStorage});
             this.dataGridViewStorages.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridViewStorages.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewStorages.MultiSelect = false;
             this.dataGridViewStorages.Name = "dataGridViewStorages";
             this.dataGridViewStorages.ReadOnly = true;
             this.dataGridViewStorages.RowHeadersVisible = false;
+            this.dataGridViewStorages.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewStorages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewStorages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewStorages.Size = new System.Drawing.Size(232, 114);
@@ -370,6 +382,8 @@
             // 
             this.dataGridViewFields.AllowUserToAddRows = false;
             this.dataGridViewFields.AllowUserToDeleteRows = false;
+            this.dataGridViewFields.AllowUserToResizeColumns = false;
+            this.dataGridViewFields.AllowUserToResizeRows = false;
             this.dataGridViewFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFields.ColumnHeadersVisible = false;
             this.dataGridViewFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -379,9 +393,11 @@
             this.Plant});
             this.dataGridViewFields.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewFields.Location = new System.Drawing.Point(0, 24);
+            this.dataGridViewFields.MultiSelect = false;
             this.dataGridViewFields.Name = "dataGridViewFields";
             this.dataGridViewFields.ReadOnly = true;
             this.dataGridViewFields.RowHeadersVisible = false;
+            this.dataGridViewFields.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewFields.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFields.Size = new System.Drawing.Size(407, 493);
             this.dataGridViewFields.TabIndex = 0;
@@ -525,6 +541,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 607);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormShowFarm";
             this.Text = "FormShowFarm";
             this.Shown += new System.EventHandler(this.FormShowFarm_Shown);

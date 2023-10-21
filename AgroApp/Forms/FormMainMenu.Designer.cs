@@ -33,14 +33,14 @@
             this.buttonAddEmployee = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.employeeid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAddFarm = new System.Windows.Forms.Button();
-            this.employeeid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
@@ -94,6 +94,8 @@
             // 
             this.dataGridViewEmployees.AllowUserToAddRows = false;
             this.dataGridViewEmployees.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployees.AllowUserToResizeRows = false;
             this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployees.ColumnHeadersVisible = false;
             this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -101,12 +103,27 @@
             this.employeeName});
             this.dataGridViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewEmployees.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewEmployees.MultiSelect = false;
             this.dataGridViewEmployees.Name = "dataGridViewEmployees";
             this.dataGridViewEmployees.ReadOnly = true;
             this.dataGridViewEmployees.RowHeadersVisible = false;
+            this.dataGridViewEmployees.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmployees.Size = new System.Drawing.Size(582, 140);
             this.dataGridViewEmployees.TabIndex = 0;
+            // 
+            // employeeid
+            // 
+            this.employeeid.HeaderText = "id";
+            this.employeeid.Name = "employeeid";
+            this.employeeid.ReadOnly = true;
+            this.employeeid.Visible = false;
+            // 
+            // employeeName
+            // 
+            this.employeeName.HeaderText = "name";
+            this.employeeName.Name = "employeeName";
+            this.employeeName.ReadOnly = true;
             // 
             // buttonDelete
             // 
@@ -131,15 +148,20 @@
             // 
             this.dataGridViewFarms.AllowUserToAddRows = false;
             this.dataGridViewFarms.AllowUserToDeleteRows = false;
+            this.dataGridViewFarms.AllowUserToResizeColumns = false;
+            this.dataGridViewFarms.AllowUserToResizeRows = false;
             this.dataGridViewFarms.ColumnHeadersVisible = false;
             this.dataGridViewFarms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.name});
             this.dataGridViewFarms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewFarms.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataGridViewFarms.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewFarms.MultiSelect = false;
             this.dataGridViewFarms.Name = "dataGridViewFarms";
             this.dataGridViewFarms.ReadOnly = true;
             this.dataGridViewFarms.RowHeadersVisible = false;
+            this.dataGridViewFarms.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewFarms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFarms.Size = new System.Drawing.Size(582, 280);
             this.dataGridViewFarms.TabIndex = 0;
@@ -169,25 +191,15 @@
             this.buttonAddFarm.UseVisualStyleBackColor = true;
             this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
             // 
-            // employeeid
-            // 
-            this.employeeid.HeaderText = "id";
-            this.employeeid.Name = "employeeid";
-            this.employeeid.ReadOnly = true;
-            this.employeeid.Visible = false;
-            // 
-            // employeeName
-            // 
-            this.employeeName.HeaderText = "name";
-            this.employeeName.Name = "employeeName";
-            this.employeeName.ReadOnly = true;
-            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMainMenu";
             this.Text = "FormMainMenu";
             this.Shown += new System.EventHandler(this.FormMainMenu_Shown);

@@ -31,20 +31,15 @@ namespace AgroApp.Forms
 
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
             dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
-            //dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
+            dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
-
-        }
-
-        private void setChart()
-        {
             chart1.Series.Clear();
 
         }
 
         private void loadChartTypes()
         {
-            comboBoxGraphType.Items.AddRange(types);
+            comboBoxGraphType.Items.AddRange(types);            
         }
 
         private void loadFarms()
@@ -59,17 +54,25 @@ namespace AgroApp.Forms
         private void buttonAddSeries_Click(object sender, EventArgs e)
         {
             /*
-             *  zrób filtrowanie po datach od do
-             */
-
-            /*
              * error
              * Osie obszaru wykresu — Obszar wykresu zawiera niezgodne typy wykresów. 
              * Na przykład w jednym obszarze wykresu nie mogą znajdować się wykresy słupkowe i kolumnowe.
              */
+            foreach (Series s in chart1.Series)
+            {
+                if (s.Name == textBox2.Text)
+                {
+                    MessageBox.Show("Jest już seria o takiej nazwie");
+                }
+            }
+
             if (dataGridViewFields.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Zaznacz choć jedno pole");
+            }
+            else if (comboBoxGraphType.SelectedIndex == null)
+            {
+                MessageBox.Show("Wybierz rodzaj wykresu");
             }
             else
             {
@@ -79,9 +82,11 @@ namespace AgroApp.Forms
                 series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
                 object[,] seriesValues = dboperator.getChartValues(
-                    (int)dataGridViewFields.SelectedRows[0].Cells[0].Value, 
+                    (int)dataGridViewFields.SelectedRows[0].Cells[0].Value,
                     (int)dataGridViewValues.SelectedRows[0].Cells[0].Value,
-                    (int)dataGridViewValues.SelectedRows[0].Cells[1].Value);
+                    (int)dataGridViewValues.SelectedRows[0].Cells[1].Value,
+                    dateTimePicker1.Value,
+                    dateTimePicker2.Value);
 
                 for (int i = 0; i < seriesValues.GetLength(0); i++)
                 {

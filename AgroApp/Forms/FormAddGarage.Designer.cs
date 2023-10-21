@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonNext = new System.Windows.Forms.Button();
             this.buttonEnd = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,22 +48,16 @@
             this.panel1.Size = new System.Drawing.Size(378, 171);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // buttonEnd
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(31, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nazwa garażu:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(168, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 20);
-            this.textBox1.TabIndex = 2;
+            this.buttonEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonEnd.Location = new System.Drawing.Point(152, 111);
+            this.buttonEnd.Name = "buttonEnd";
+            this.buttonEnd.Size = new System.Drawing.Size(75, 32);
+            this.buttonEnd.TabIndex = 4;
+            this.buttonEnd.Text = "Zakończ";
+            this.buttonEnd.UseVisualStyleBackColor = true;
+            this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
             // 
             // buttonNext
             // 
@@ -77,16 +71,22 @@
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
-            // buttonEnd
+            // textBox1
             // 
-            this.buttonEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonEnd.Location = new System.Drawing.Point(152, 111);
-            this.buttonEnd.Name = "buttonEnd";
-            this.buttonEnd.Size = new System.Drawing.Size(75, 32);
-            this.buttonEnd.TabIndex = 4;
-            this.buttonEnd.Text = "Zakończ";
-            this.buttonEnd.UseVisualStyleBackColor = true;
-            this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
+            this.textBox1.Location = new System.Drawing.Point(168, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(196, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(31, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nazwa garażu:";
             // 
             // FormAddGarage
             // 
@@ -94,6 +94,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 171);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormAddGarage";
             this.Text = "FormAddGarage";
             this.panel1.ResumeLayout(false);

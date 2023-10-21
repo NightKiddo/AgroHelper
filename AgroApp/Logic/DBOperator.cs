@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -576,11 +577,20 @@ namespace AgroApp.Logic
             return row;
         }
 
-        public object[,] getChartValues(int fieldId, int valueType, int valueTypeId)
+        public object[,] getChartValues(int fieldId, int valueType, int valueTypeId, DateTime startDate, DateTime finishDate)
         {
             int rowCount = 0;
 
-            string queryCount = "SELECT COUNT(*) FROM Activities WHERE field = " + fieldId;
+            string dateFormat = "yyyy-MM-dd";
+
+            DateTime dateParse = DateTime.ParseExact(startDate.ToString(), "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string startDateString = dateParse.ToString(dateFormat);
+
+
+            dateParse = DateTime.ParseExact(finishDate.ToString(), "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string finishDateString = dateParse.ToString(dateFormat);
+
+            string queryCount = "SELECT COUNT(*) FROM Activities WHERE field = " + fieldId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
 
             Int32.TryParse((string)select(queryCount), out rowCount);
 
@@ -593,11 +603,11 @@ namespace AgroApp.Logic
 
             if (valueType == 1)
             {
-                query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId;
+                query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
             }
             else
             {
-                query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId;
+                query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'" ;
             }
 
             command = new SqlCommand(query, conn);

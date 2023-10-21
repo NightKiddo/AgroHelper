@@ -126,6 +126,8 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(12, 59);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBox1.Size = new System.Drawing.Size(329, 96);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
@@ -146,6 +148,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 404);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormShowNote";
             this.Text = "FormShowNote";
             this.panel1.ResumeLayout(false);

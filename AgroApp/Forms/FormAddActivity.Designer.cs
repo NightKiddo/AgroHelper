@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.dataGridViewType = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,15 +61,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTool)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,19 +100,42 @@
             this.panel1.Size = new System.Drawing.Size(567, 656);
             this.panel1.TabIndex = 0;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 2;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown1.Location = new System.Drawing.Point(216, 419);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(200, 26);
+            this.numericUpDown1.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(122, 418);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(81, 22);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Wartość:";
+            // 
             // dataGridViewType
             // 
             this.dataGridViewType.AllowUserToAddRows = false;
             this.dataGridViewType.AllowUserToDeleteRows = false;
+            this.dataGridViewType.AllowUserToResizeColumns = false;
+            this.dataGridViewType.AllowUserToResizeRows = false;
             this.dataGridViewType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewType.ColumnHeadersVisible = false;
             this.dataGridViewType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.dataGridViewType.Location = new System.Drawing.Point(216, 145);
+            this.dataGridViewType.MultiSelect = false;
             this.dataGridViewType.Name = "dataGridViewType";
             this.dataGridViewType.ReadOnly = true;
             this.dataGridViewType.RowHeadersVisible = false;
+            this.dataGridViewType.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewType.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewType.Size = new System.Drawing.Size(240, 33);
@@ -145,15 +168,19 @@
             // 
             this.dataGridViewTool.AllowUserToAddRows = false;
             this.dataGridViewTool.AllowUserToDeleteRows = false;
+            this.dataGridViewTool.AllowUserToResizeColumns = false;
+            this.dataGridViewTool.AllowUserToResizeRows = false;
             this.dataGridViewTool.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTool.ColumnHeadersVisible = false;
             this.dataGridViewTool.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.dataGridViewTool.Location = new System.Drawing.Point(216, 361);
+            this.dataGridViewTool.MultiSelect = false;
             this.dataGridViewTool.Name = "dataGridViewTool";
             this.dataGridViewTool.ReadOnly = true;
             this.dataGridViewTool.RowHeadersVisible = false;
+            this.dataGridViewTool.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewTool.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTool.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTool.Size = new System.Drawing.Size(240, 33);
@@ -186,15 +213,19 @@
             // 
             this.dataGridViewMachine.AllowUserToAddRows = false;
             this.dataGridViewMachine.AllowUserToDeleteRows = false;
+            this.dataGridViewMachine.AllowUserToResizeColumns = false;
+            this.dataGridViewMachine.AllowUserToResizeRows = false;
             this.dataGridViewMachine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMachine.ColumnHeadersVisible = false;
             this.dataGridViewMachine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.dataGridViewMachine.Location = new System.Drawing.Point(216, 307);
+            this.dataGridViewMachine.MultiSelect = false;
             this.dataGridViewMachine.Name = "dataGridViewMachine";
             this.dataGridViewMachine.ReadOnly = true;
             this.dataGridViewMachine.RowHeadersVisible = false;
+            this.dataGridViewMachine.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewMachine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewMachine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMachine.Size = new System.Drawing.Size(240, 33);
@@ -227,15 +258,19 @@
             // 
             this.dataGridViewEmployee.AllowUserToAddRows = false;
             this.dataGridViewEmployee.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployee.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployee.AllowUserToResizeRows = false;
             this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployee.ColumnHeadersVisible = false;
             this.dataGridViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.dataGridViewEmployee.Location = new System.Drawing.Point(216, 258);
+            this.dataGridViewEmployee.MultiSelect = false;
             this.dataGridViewEmployee.Name = "dataGridViewEmployee";
             this.dataGridViewEmployee.ReadOnly = true;
             this.dataGridViewEmployee.RowHeadersVisible = false;
+            this.dataGridViewEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewEmployee.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmployee.Size = new System.Drawing.Size(240, 33);
@@ -304,15 +339,19 @@
             // 
             this.dataGridViewField.AllowUserToAddRows = false;
             this.dataGridViewField.AllowUserToDeleteRows = false;
+            this.dataGridViewField.AllowUserToResizeColumns = false;
+            this.dataGridViewField.AllowUserToResizeRows = false;
             this.dataGridViewField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewField.ColumnHeadersVisible = false;
             this.dataGridViewField.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
             this.dataGridViewField.Location = new System.Drawing.Point(216, 204);
+            this.dataGridViewField.MultiSelect = false;
             this.dataGridViewField.Name = "dataGridViewField";
             this.dataGridViewField.ReadOnly = true;
             this.dataGridViewField.RowHeadersVisible = false;
+            this.dataGridViewField.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewField.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewField.Size = new System.Drawing.Size(240, 33);
@@ -335,6 +374,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(216, 71);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox1.Size = new System.Drawing.Size(240, 52);
             this.richTextBox1.TabIndex = 6;
@@ -398,42 +438,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(122, 418);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(81, 22);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Wartość:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown1.Location = new System.Drawing.Point(216, 419);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(200, 26);
-            this.numericUpDown1.TabIndex = 21;
-            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 656);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormAddActivity";
             this.Text = " ";
             this.Shown += new System.EventHandler(this.FormAddActivity_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTool)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMachine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
