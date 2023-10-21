@@ -594,35 +594,43 @@ namespace AgroApp.Logic
 
             Int32.TryParse((string)select(queryCount), out rowCount);
 
-            object[,] values = new object[rowCount, 2];
-
-            connect();
-            conn.Open();
-
-            string query = "";
-
-            if (valueType == 1)
+            if (rowCount != 0)
             {
-                query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
+
+                object[,] values = new object[rowCount, 2];
+
+                connect();
+                conn.Open();
+
+                string query = "";
+
+                if (valueType == 1)
+                {
+                    query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
+                }
+                else
+                {
+                    query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
+                }
+
+                command = new SqlCommand(query, conn);
+                dataReader = command.ExecuteReader();
+
+                int i = 0;
+
+                while (dataReader.Read())
+                {
+                    values[i, 0] = dataReader.GetValue(0);
+                    values[i, 1] = dataReader.GetValue(1);
+                    i++;
+                }
+
+                return values;
             }
             else
             {
-                query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'" ;
+                return null;
             }
-
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
-
-            int i = 0;
-
-            while (dataReader.Read())
-            {
-                values[i, 0] = dataReader.GetValue(0);
-                values[i, 1] = dataReader.GetValue(1);
-                i++;
-            }
-
-            return values;
         }
 
         public int delete(DeleteQuery query)

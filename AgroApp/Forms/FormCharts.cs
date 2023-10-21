@@ -39,7 +39,7 @@ namespace AgroApp.Forms
 
         private void loadChartTypes()
         {
-            comboBoxGraphType.Items.AddRange(types);            
+            comboBoxGraphType.Items.AddRange(types);
         }
 
         private void loadFarms()
@@ -63,6 +63,7 @@ namespace AgroApp.Forms
                 if (s.Name == textBox2.Text)
                 {
                     MessageBox.Show("Jest już seria o takiej nazwie");
+                    return;
                 }
             }
 
@@ -70,7 +71,7 @@ namespace AgroApp.Forms
             {
                 MessageBox.Show("Zaznacz choć jedno pole");
             }
-            else if (comboBoxGraphType.SelectedIndex == null)
+            else if (comboBoxGraphType.SelectedIndex <= -1)
             {
                 MessageBox.Show("Wybierz rodzaj wykresu");
             }
@@ -81,6 +82,7 @@ namespace AgroApp.Forms
                 chart1.Series[textBox2.Text].XValueType = ChartValueType.Date;
                 series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
+
                 object[,] seriesValues = dboperator.getChartValues(
                     (int)dataGridViewFields.SelectedRows[0].Cells[0].Value,
                     (int)dataGridViewValues.SelectedRows[0].Cells[0].Value,
@@ -88,9 +90,17 @@ namespace AgroApp.Forms
                     dateTimePicker1.Value,
                     dateTimePicker2.Value);
 
-                for (int i = 0; i < seriesValues.GetLength(0); i++)
+                if (seriesValues != null)
                 {
-                    chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
+                    for (int i = 0; i < seriesValues.GetLength(0); i++)
+                    {
+                        chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
+                    }
+                }
+                else
+                {
+                    chart1.Series.Remove(series);
+                    MessageBox.Show("Brak danych");
                 }
             }
         }
@@ -143,11 +153,6 @@ namespace AgroApp.Forms
                     dataGridViewFields.Rows.Add(fields[i]);
                 }
             }
-        }
-
-        private void comboBoxGraphType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void FormGraphs_Shown(object sender, EventArgs e)

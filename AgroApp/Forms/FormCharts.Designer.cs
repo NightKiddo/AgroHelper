@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -59,6 +59,7 @@
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
@@ -69,6 +70,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.dataGridViewEmployees);
@@ -95,9 +97,9 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(625, 587);
+            this.textBox2.Location = new System.Drawing.Point(406, 604);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(117, 20);
             this.textBox2.TabIndex = 23;
             // 
             // textBox1
@@ -267,7 +269,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(254, 596);
+            this.label3.Location = new System.Drawing.Point(12, 600);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 24);
             this.label3.TabIndex = 17;
@@ -275,16 +277,16 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(297, 600);
+            this.dateTimePicker2.Location = new System.Drawing.Point(55, 604);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(187, 20);
             this.dateTimePicker2.TabIndex = 16;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(254, 570);
+            this.label2.Location = new System.Drawing.Point(12, 574);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 24);
             this.label2.TabIndex = 15;
@@ -292,14 +294,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(297, 574);
+            this.dateTimePicker1.Location = new System.Drawing.Point(55, 578);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(187, 20);
             this.dateTimePicker1.TabIndex = 14;
             // 
             // buttonAddSeries
             // 
-            this.buttonAddSeries.Location = new System.Drawing.Point(26, 606);
+            this.buttonAddSeries.Location = new System.Drawing.Point(529, 603);
             this.buttonAddSeries.Name = "buttonAddSeries";
             this.buttonAddSeries.Size = new System.Drawing.Size(110, 23);
             this.buttonAddSeries.TabIndex = 11;
@@ -329,16 +331,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(258, 12);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(668, 551);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
@@ -366,21 +368,30 @@
             // comboBoxGraphType
             // 
             this.comboBoxGraphType.FormattingEnabled = true;
-            this.comboBoxGraphType.Location = new System.Drawing.Point(17, 574);
+            this.comboBoxGraphType.Location = new System.Drawing.Point(278, 605);
             this.comboBoxGraphType.Name = "comboBoxGraphType";
             this.comboBoxGraphType.Size = new System.Drawing.Size(117, 21);
             this.comboBoxGraphType.TabIndex = 1;
-            this.comboBoxGraphType.SelectedIndexChanged += new System.EventHandler(this.comboBoxGraphType_SelectedIndexChanged);
             // 
             // labelGraphType
             // 
             this.labelGraphType.AutoSize = true;
             this.labelGraphType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelGraphType.Location = new System.Drawing.Point(13, 547);
+            this.labelGraphType.Location = new System.Drawing.Point(274, 578);
             this.labelGraphType.Name = "labelGraphType";
             this.labelGraphType.Size = new System.Drawing.Size(86, 24);
             this.labelGraphType.TabIndex = 0;
             this.labelGraphType.Text = "Typ serii:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(411, 574);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 24);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Nazwa:";
             // 
             // FormCharts
             // 
@@ -435,5 +446,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Label label4;
     }
 }
