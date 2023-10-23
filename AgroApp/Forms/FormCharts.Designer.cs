@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxXminorGrid = new System.Windows.Forms.CheckBox();
+            this.checkBox3D = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
@@ -59,7 +62,8 @@
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
@@ -70,6 +74,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.checkBoxYminorGrid);
+            this.panel1.Controls.Add(this.checkBoxXminorGrid);
+            this.panel1.Controls.Add(this.checkBox3D);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
@@ -92,12 +100,44 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(938, 640);
+            this.panel1.Size = new System.Drawing.Size(1246, 771);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBoxXminorGrid
+            // 
+            this.checkBoxXminorGrid.AutoSize = true;
+            this.checkBoxXminorGrid.Location = new System.Drawing.Point(290, 648);
+            this.checkBoxXminorGrid.Name = "checkBoxXminorGrid";
+            this.checkBoxXminorGrid.Size = new System.Drawing.Size(136, 17);
+            this.checkBoxXminorGrid.TabIndex = 26;
+            this.checkBoxXminorGrid.Text = "Pomniejsza siatka osi X";
+            this.checkBoxXminorGrid.UseVisualStyleBackColor = true;
+            this.checkBoxXminorGrid.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            // 
+            // checkBox3D
+            // 
+            this.checkBox3D.AutoSize = true;
+            this.checkBox3D.Location = new System.Drawing.Point(290, 630);
+            this.checkBox3D.Name = "checkBox3D";
+            this.checkBox3D.Size = new System.Drawing.Size(40, 17);
+            this.checkBox3D.TabIndex = 25;
+            this.checkBox3D.Text = "3D";
+            this.checkBox3D.UseVisualStyleBackColor = true;
+            this.checkBox3D.CheckedChanged += new System.EventHandler(this.checkBox3D_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(150, 648);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 24);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Nazwa:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(406, 604);
+            this.textBox2.Location = new System.Drawing.Point(145, 678);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(117, 20);
             this.textBox2.TabIndex = 23;
@@ -279,7 +319,7 @@
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(55, 604);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(187, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(167, 20);
             this.dateTimePicker2.TabIndex = 16;
             // 
             // label2
@@ -296,12 +336,12 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(55, 578);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(187, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(167, 20);
             this.dateTimePicker1.TabIndex = 14;
             // 
             // buttonAddSeries
             // 
-            this.buttonAddSeries.Location = new System.Drawing.Point(529, 603);
+            this.buttonAddSeries.Location = new System.Drawing.Point(16, 726);
             this.buttonAddSeries.Name = "buttonAddSeries";
             this.buttonAddSeries.Size = new System.Drawing.Size(110, 23);
             this.buttonAddSeries.TabIndex = 11;
@@ -331,17 +371,21 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
+            chartArea2.Area3DStyle.IsClustered = true;
+            chartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(258, 12);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(668, 551);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(976, 612);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             // 
@@ -368,7 +412,7 @@
             // comboBoxGraphType
             // 
             this.comboBoxGraphType.FormattingEnabled = true;
-            this.comboBoxGraphType.Location = new System.Drawing.Point(278, 605);
+            this.comboBoxGraphType.Location = new System.Drawing.Point(17, 679);
             this.comboBoxGraphType.Name = "comboBoxGraphType";
             this.comboBoxGraphType.Size = new System.Drawing.Size(117, 21);
             this.comboBoxGraphType.TabIndex = 1;
@@ -377,27 +421,38 @@
             // 
             this.labelGraphType.AutoSize = true;
             this.labelGraphType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelGraphType.Location = new System.Drawing.Point(274, 578);
+            this.labelGraphType.Location = new System.Drawing.Point(13, 652);
             this.labelGraphType.Name = "labelGraphType";
             this.labelGraphType.Size = new System.Drawing.Size(86, 24);
             this.labelGraphType.TabIndex = 0;
             this.labelGraphType.Text = "Typ serii:";
             // 
-            // label4
+            // checkBoxYminorGrid
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(411, 574);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 24);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Nazwa:";
+            this.checkBoxYminorGrid.AutoSize = true;
+            this.checkBoxYminorGrid.Location = new System.Drawing.Point(290, 671);
+            this.checkBoxYminorGrid.Name = "checkBoxYminorGrid";
+            this.checkBoxYminorGrid.Size = new System.Drawing.Size(136, 17);
+            this.checkBoxYminorGrid.TabIndex = 27;
+            this.checkBoxYminorGrid.Text = "Pomniejsza siatka osi X";
+            this.checkBoxYminorGrid.UseVisualStyleBackColor = true;
+            this.checkBoxYminorGrid.CheckedChanged += new System.EventHandler(this.checkBoxYminorGrid_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(154, 726);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 640);
+            this.ClientSize = new System.Drawing.Size(1246, 771);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -447,5 +502,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox3D;
+        private System.Windows.Forms.CheckBox checkBoxXminorGrid;
+        private System.Windows.Forms.CheckBox checkBoxYminorGrid;
+        private System.Windows.Forms.Button button1;
     }
 }

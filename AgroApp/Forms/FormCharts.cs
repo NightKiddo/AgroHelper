@@ -35,6 +35,8 @@ namespace AgroApp.Forms
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
             chart1.Series.Clear();
 
+
+
         }
 
         private void loadChartTypes()
@@ -178,6 +180,66 @@ namespace AgroApp.Forms
 
                 textBox1.Visible = true;
             }
+        }
+
+        private void checkBox3D_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chart1.ChartAreas[0].Area3DStyle.Enable3D == false)
+            {
+                chart1.ChartAreas[0].Area3DStyle.Enable3D = true;
+            }
+            else
+            {
+                chart1.ChartAreas[0].Area3DStyle.Enable3D = false;
+            }
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (chart1.ChartAreas[0].AxisX.MinorGrid.Enabled == false)
+            {
+                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = true;
+            }
+            else
+            {
+                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = false;
+            }
+
+        }
+
+        private void checkBoxYminorGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chart1.ChartAreas[0].AxisY.MinorGrid.Enabled == false)
+            {
+                chart1.ChartAreas[0].AxisY.MinorGrid.Enabled = true;
+            }
+            else
+            {
+                chart1.ChartAreas[0].AxisY.MinorGrid.Enabled = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Series series = new Series("ser");
+            chart1.Series.Add(series);
+            chart1.Series["ser"].XValueType = ChartValueType.Date;
+            series.ChartType = SeriesChartType.Line;
+
+
+            object[,] seriesValues = dboperator.getChartValues(
+                1,
+                2,
+                3,
+                new DateTime(2023, 10, 16),
+                DateTime.Today);
+
+
+            for (int i = 0; i < seriesValues.GetLength(0); i++)
+            {
+                chart1.Series["ser"].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
+            }
+
         }
     }
 }
