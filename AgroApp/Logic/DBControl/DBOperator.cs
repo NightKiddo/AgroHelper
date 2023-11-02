@@ -64,6 +64,26 @@ namespace AgroApp.Logic
             conn.Close();
             return a;
         }
+
+        public int insertWithIdOutput(InsertQuery query)
+        {
+            int output = 0;
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query.getQuery(), conn);
+
+            dataReader = command.ExecuteReader();
+
+            if (dataReader.HasRows)
+            {
+                dataReader.Read();
+                output = dataReader.GetInt32(0);
+            }
+            
+            return output;
+        }
+
         public object select(string query)
         {
             connect();
@@ -714,12 +734,10 @@ namespace AgroApp.Logic
 
             if (checkValue == "2")
             {
-                string query = "INSERT INTO Users(login,password) VALUES ('" + login + "','" + password + "')";
-                command = new SqlCommand(query, conn);
-                if (command.ExecuteNonQuery() != 0)
-                {
-                    a = 1;
-                };
+                string values = "'"+login + "', '" + password+"'";
+                InsertQuery insertQuery = new InsertQuery("Users", "login,password", values);
+                insert(insertQuery);
+                a = 1;
             }
             conn.Close();
 

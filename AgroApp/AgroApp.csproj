@@ -178,9 +178,22 @@
     <Compile Include="Forms\FormShowStorage.Designer.cs">
       <DependentUpon>FormShowStorage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logic\DBOperator.cs" />
-    <Compile Include="Logic\DeleteQuery.cs" />
-    <Compile Include="Logic\InsertQuery.cs" />
+    <Compile Include="Logic\Activity.cs" />
+    <Compile Include="Logic\DBControl\DBOperator.cs" />
+    <Compile Include="Logic\DBControl\DeleteQuery.cs" />
+    <Compile Include="Logic\DBControl\InsertQuery.cs" />
+    <Compile Include="Logic\Employee.cs" />
+    <Compile Include="Logic\Farm.cs" />
+    <Compile Include="Logic\Field.cs" />
+    <Compile Include="Logic\Garage.cs" />
+    <Compile Include="Logic\Journal.cs" />
+    <Compile Include="Logic\Machine.cs" />
+    <Compile Include="Logic\Note.cs" />
+    <Compile Include="Logic\Plant.cs" />
+    <Compile Include="Logic\Resource.cs" />
+    <Compile Include="Logic\Storage.cs" />
+    <Compile Include="Logic\Tool.cs" />
+    <Compile Include="Logic\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormAddActivity.resx">
