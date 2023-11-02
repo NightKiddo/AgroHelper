@@ -16,14 +16,16 @@ namespace AgroApp.Forms
     {
         int jounralId;
         int farmId;
+        int userId;
         DBOperator dboperator = new DBOperator();
-        public FormAddNote(int journalId, int farmId)
+        public FormAddNote(int journalId, int farmId, int userId)
         {
             InitializeComponent();
-            this.jounralId= journalId;
-            this.farmId= farmId;
+            this.jounralId = journalId;
+            this.farmId = farmId;
             loadFields();
             loadTypes();
+            this.userId = userId;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace AgroApp.Forms
         private void loadFields()
         {
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            List<object[]> fields = dboperator.getFields(farmId);
+            List<object[]> fields = dboperator.getFields(farmId, userId);
 
             for (int i = 0; i < fields.Count; i++)
             {

@@ -14,10 +14,11 @@ namespace AgroApp.Forms
     public partial class FormShowGarage : Form
     {
         int garageId;
+        int userId;
         List<object[]> machines = new List<object[]>();
         List<object[]> tools = new List<object[]>();
         DBOperator dboperator = new DBOperator();
-        public FormShowGarage(int garageId)
+        public FormShowGarage(int garageId, int userId)
         {
             InitializeComponent();
             this.garageId = garageId;
@@ -26,12 +27,13 @@ namespace AgroApp.Forms
 
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView2.ContextMenuStrip = contextMenuStrip2;
+            this.userId = userId;
         }
 
         public void loadMachines() 
         {
             dataGridView1.Rows.Clear();
-            machines = dboperator.getMachines(garageId);
+            machines = dboperator.getMachines(garageId, userId);
 
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {

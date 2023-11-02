@@ -38,7 +38,7 @@ namespace AgroApp.Forms
         private void loadFields() 
         {
             dataGridViewField.Columns[1].Width = dataGridViewField.Width;
-            List<object[]> fields = dboperator.getFields(farmId);
+            List<object[]> fields = dboperator.getFields(farmId, userId);
 
             for(int i=0; i< fields.Count; i++) 
             {

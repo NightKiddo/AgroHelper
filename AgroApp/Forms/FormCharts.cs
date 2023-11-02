@@ -148,7 +148,7 @@ namespace AgroApp.Forms
 
             ; if (dataGridViewFarms.SelectedRows.Count != 0)
             {
-                List<object[]> fields = dboperator.getFields((int)dataGridViewFarms.SelectedRows[0].Cells[0].Value);
+                List<object[]> fields = dboperator.getFields((int)dataGridViewFarms.SelectedRows[0].Cells[0].Value, userId);
 
                 for (int i = 0; i < fields.Count; i++)
                 {

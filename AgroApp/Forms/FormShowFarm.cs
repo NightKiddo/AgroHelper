@@ -45,7 +45,7 @@ namespace AgroApp.Forms
         {
             dataGridViewFields.Rows.Clear();
 
-            fields = dboperator.getFields(farmId);
+            fields = dboperator.getFields(farmId, userId);
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
             dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
             dataGridViewFields.Columns[3].Width = (int)(dataGridViewFields.Width * 0.2);
@@ -62,7 +62,7 @@ namespace AgroApp.Forms
         {
             dataGridViewGarages.Rows.Clear();
 
-            garages = dboperator.getGarages(farmId);
+            garages = dboperator.getGarages(farmId, userId);
             dataGridViewGarages.Columns[1].Width = dataGridViewGarages.Width;
 
             for (int i = 0; i < garages.Count; i++)
@@ -77,7 +77,7 @@ namespace AgroApp.Forms
         {
             dataGridViewStorages.Rows.Clear();
 
-            storages = dboperator.getStorages(farmId);
+            storages = dboperator.getStorages(farmId, userId);
             dataGridViewStorages.Columns[1].Width = dataGridViewStorages.Width;
 
             for (int i = 0; i < storages.Count; i++)
@@ -147,7 +147,7 @@ namespace AgroApp.Forms
         {
             int journalId;
             int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
-            FormAddNote formAddNote = new FormAddNote(journalId, farmId);
+            FormAddNote formAddNote = new FormAddNote(journalId, farmId, userId);
             formAddNote.ShowDialog();
             loadJournal();
         }
@@ -308,7 +308,7 @@ namespace AgroApp.Forms
             DataGridViewRow row = dataGridViewGarages.SelectedRows[0];
             int garageId;
             int.TryParse(row.Cells[0].Value.ToString(), out garageId);
-            FormShowGarage formShowGarage = new FormShowGarage(garageId);
+            FormShowGarage formShowGarage = new FormShowGarage(garageId, userId);
             formShowGarage.ShowDialog();
             loadGarages();
         }

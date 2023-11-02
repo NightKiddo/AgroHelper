@@ -191,5 +191,18 @@ INSERT INTO Notes (name, description, field, start_date, finish_date, journal, t
 
 INSERT INTO Activities(name, description, field, start_date, finish_date, journal, type, employee, machine, tool, value) VALUES 
 ('praca1', 'pracaOpis1',1,'2023-01-01', '2023-06-20',1,1,1,1,1,NULL), 
-('praca2', 'pracaPodlewanie1',3,'2023-01-01', '2023-06-24',1,2,2,2,2,40), 
-('praca3', 'pracaPodlewanie2',3,'2023-01-01', '2023-06-24',1,2,2,2,2,20);
+('praca2', 'pracaPodlewanie1',2,'2023-01-01', '2023-06-24',1,2,2,2,2,40), 
+('praca3', 'pracaPodlewanie2',2,'2023-01-01', '2023-06-24',1,2,2,2,2,20);
+
+GO
+CREATE VIEW farmsView1 AS SELECT id, [name] FROM Farms WHERE [user] = 1;
+GO
+CREATE VIEW employeesView1 AS SELECT id, name FROM Employees WHERE [user] = 1;
+GO
+CREATE VIEW fieldsView1 AS SELECT fld.id, fld.[name], fld.[description], fld.plant, fld.farm FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm WHERE frm.[user] = 1
+GO
+CREATE VIEW garagesView1 AS SELECT g.id, g.name, g.farm FROM Garages as g JOIN Farms as f on g.farm = f.id WHERE f.[user] = 1
+GO
+CREATE VIEW storagesView1 AS SELECT s.id, s.[name] FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm WHERE frm.[user] = 1
+GO 
+CREATE VIEW machinesView1 AS SELECT m.id,m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id WHERE f.[user] = 1
