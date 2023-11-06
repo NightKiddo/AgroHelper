@@ -64,7 +64,7 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-            FormShowFarm formShowFarm = new FormShowFarm(farmId, userId);
+                FormShowFarm formShowFarm = new FormShowFarm(farmId, userId);
             formShowFarm.ShowDialog();
         }
 

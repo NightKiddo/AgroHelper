@@ -306,7 +306,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getGarages(int farmId, int userId)
         {
-            string query = "SELECT * FROM garagesView"+userId + " WHERE farm = " + farmId;
+            string query = "SELECT * FROM garagesView" + userId + " WHERE farm = " + farmId;
             connect();
             conn.Open();
 
@@ -327,7 +327,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getStorages(int farmId, int userId)
         {
-            string query = "SELECT * FROM storagesView" + userId + " WHERE Farm = " + farmId;
+            string query = "SELECT * FROM storagesView" + userId + " WHERE farm = " + farmId;
             connect();
             conn.Open();
 
@@ -480,21 +480,8 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(int journalId)
         {
-            string queryActivities = "SELECT " +
-                "a.id, 1, a.name, a.start_date, a.finish_date, f.name, at.type " +
-                "FROM Activities as a " +
-                "JOIN Fields as f ON a.field = f.id " +
-                "JOIN Journals as j on a.journal = j.id " +
-                "JOIN Activity_types as at ON a.type = at.id " +
-                "WHERE j.id = " + journalId;
-            string queryNotes = "SELECT " +
-                "n.id, 0, n.name, n.start_date, n.finish_date, f.name, nt.type " +
-                "FROM Notes as n " +
-                "JOIN Fields as f ON n.field = f.id " +
-                "JOIN Journals as j on n.journal = j.id " +
-                "JOIN Note_types as nt ON n.type = nt.id " +
-                "WHERE j.id = " + journalId;
-
+            string queryActivities = "SELECT * FROM activitiesJournalEntriesView WHERE journalId = " + journalId;
+            string queryNotes = "SELECT * FROM notesJournalEntriesView WHERE journalId = " + journalId;
             connect();
             conn.Open();
 
@@ -556,7 +543,7 @@ namespace AgroApp.Logic
 
         public object[] getActivity(int activityId)
         {
-            string query = "SELECT name, description, start_date, finish_date, field, type, employee, machine, tool FROM Activities WHERE id = " + activityId;
+            string query = "SELECT * FROM activitiesView WHERE id = " + activityId;
             connect();
             conn.Open();
 
@@ -764,7 +751,15 @@ namespace AgroApp.Logic
                 command = new SqlCommand(createView, conn);
                 command.ExecuteNonQuery();
 
-                createView = "CREATE VIEW machinesView" + userId + " AS SELECT m.id,m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id WHERE f.[user] =" + userId;
+                createView = "CREATE VIEW machinesView" + userId + " AS SELECT m.id,m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m " +
+                    "JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id WHERE f.[user] =" + userId;
+                command = new SqlCommand(createView, conn);
+                command.ExecuteNonQuery();
+
+                createView = "CREATE VIEW resourcesView" + userId + " AS SELECT r.id, r.type, rt.type, r.amount FROM Resources as r " +
+                    "JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id WHERE f.[user] = " + userId;
+                command = new SqlCommand(createView, conn);
+                command.ExecuteNonQuery();
             }
 
 
