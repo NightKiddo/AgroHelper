@@ -598,7 +598,7 @@ namespace AgroApp.Logic
             dateParse = DateTime.ParseExact(finishDate.ToString(), "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             string finishDateString = dateParse.ToString(dateFormat);
 
-            string queryCount = "SELECT COUNT(*) FROM Activities WHERE field = " + fieldId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
+            string queryCount = "SELECT COUNT(*) FROM activitiesView WHERE field = " + fieldId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
 
             Int32.TryParse((string)select(queryCount), out rowCount);
 

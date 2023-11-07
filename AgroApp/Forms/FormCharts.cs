@@ -34,9 +34,6 @@ namespace AgroApp.Forms
             dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
             chart1.Series.Clear();
-
-
-
         }
 
         private void loadChartTypes()

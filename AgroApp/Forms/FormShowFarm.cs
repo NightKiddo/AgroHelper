@@ -69,8 +69,6 @@ namespace AgroApp.Forms
             {
                 dataGridViewGarages.Rows.Add(garages[i]);
             }
-
-
         }
 
         private void loadStorages()

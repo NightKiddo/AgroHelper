@@ -33,13 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripJournal = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pracęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +72,13 @@
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -154,50 +154,6 @@
             this.dataGridViewJournal.TabIndex = 0;
             this.dataGridViewJournal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewJournal_MouseClick);
             this.dataGridViewJournal.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewJournal_MouseDoubleClick);
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "id";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // identifier
-            // 
-            this.identifier.HeaderText = "identifier";
-            this.identifier.Name = "identifier";
-            this.identifier.ReadOnly = true;
-            this.identifier.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "tytul";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "od";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "do";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "pole";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "typ";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
             // 
             // contextMenuStripJournal
             // 
@@ -535,6 +491,50 @@
             this.usuńToolStripMenuItem.Text = "Usuń";
             this.usuńToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
             // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "id";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // identifier
+            // 
+            this.identifier.HeaderText = "identifier";
+            this.identifier.Name = "identifier";
+            this.identifier.ReadOnly = true;
+            this.identifier.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "tytul";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "od";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "do";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "pole";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "typ";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,13 +600,6 @@
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pracęToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem notatkęToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.ToolStripMenuItem pracownikaToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGarages;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripStorages;
@@ -619,5 +612,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem wróćToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analizaToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
     }
 }
