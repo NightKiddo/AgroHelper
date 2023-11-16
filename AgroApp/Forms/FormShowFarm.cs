@@ -277,7 +277,7 @@ namespace AgroApp.Forms
         private void dodajToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             FormAddField formAddField = new FormAddField(farmId);
-            formAddField.ShowDialog();
+            formAddField.ShowDialog(this);
             dataGridViewFields.Rows.Clear();
             loadFields();
         }

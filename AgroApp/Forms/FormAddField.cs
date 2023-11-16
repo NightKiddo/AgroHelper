@@ -47,7 +47,7 @@ namespace AgroApp.Forms
                 values = "'" + coordinates + "','" + textBox1.Text + "','" + richTextBox1.Text + "'," + farmId + ", " + plantId;
             }
             InsertQuery queryField = new InsertQuery("Fields", "coordinates,name,description,farm,plant", values);
-            if (option == 0)
+            if (option == 1)
             {
 
                 if (dboperator.insert(queryField) != 0)
@@ -58,7 +58,7 @@ namespace AgroApp.Forms
                 {
                     MessageBox.Show("Błąd", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }else if(option == 1)
+            }else if(option == 0)
             {
                 if (dboperator.insert(queryField) != 0)
                 {
@@ -80,7 +80,7 @@ namespace AgroApp.Forms
             }
             else
             {
-                addField(1);
+                addField(0);
             }
         }
 
@@ -97,13 +97,24 @@ namespace AgroApp.Forms
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            if(fieldDrawn != 0)
+            if ( this.Owner.Name == "FormAddFarm")
             {
-                addField(0);
-            }            
-            FormAddGarage formAddGarage = new FormAddGarage(farmId, 0);
-            formAddGarage.ShowDialog();
-            this.Close();
+                if (fieldDrawn != 0)
+                {
+                    addField(1);
+                }
+                FormAddGarage formAddGarage = new FormAddGarage(farmId, 0);
+                formAddGarage.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                if (fieldDrawn != 0)
+                {
+                    addField(1);
+                }
+                this.Close();
+            }
         }
 
         private void loadPlants() 

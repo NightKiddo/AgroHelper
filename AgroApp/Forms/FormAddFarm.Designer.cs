@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddFarm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonEnd = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
@@ -95,10 +96,12 @@
             this.ClientSize = new System.Drawing.Size(291, 183);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddFarm";
-            this.Text = "FormAddFarm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Dodawania gospodarstwa";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

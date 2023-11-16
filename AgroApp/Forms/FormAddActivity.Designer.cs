@@ -448,7 +448,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddActivity";
-            this.Text = " ";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Dodawanie pracy";
             this.Shown += new System.EventHandler(this.FormAddActivity_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -31,7 +31,10 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCharts));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
             this.checkBoxXminorGrid = new System.Windows.Forms.CheckBox();
             this.checkBox3D = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,8 +65,6 @@
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
-            this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
@@ -102,6 +103,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1246, 771);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(154, 726);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBoxYminorGrid
+            // 
+            this.checkBoxYminorGrid.AutoSize = true;
+            this.checkBoxYminorGrid.Location = new System.Drawing.Point(290, 671);
+            this.checkBoxYminorGrid.Name = "checkBoxYminorGrid";
+            this.checkBoxYminorGrid.Size = new System.Drawing.Size(136, 17);
+            this.checkBoxYminorGrid.TabIndex = 27;
+            this.checkBoxYminorGrid.Text = "Pomniejsza siatka osi X";
+            this.checkBoxYminorGrid.UseVisualStyleBackColor = true;
+            this.checkBoxYminorGrid.CheckedChanged += new System.EventHandler(this.checkBoxYminorGrid_CheckedChanged);
             // 
             // checkBoxXminorGrid
             // 
@@ -427,27 +449,6 @@
             this.labelGraphType.TabIndex = 0;
             this.labelGraphType.Text = "Typ serii:";
             // 
-            // checkBoxYminorGrid
-            // 
-            this.checkBoxYminorGrid.AutoSize = true;
-            this.checkBoxYminorGrid.Location = new System.Drawing.Point(290, 671);
-            this.checkBoxYminorGrid.Name = "checkBoxYminorGrid";
-            this.checkBoxYminorGrid.Size = new System.Drawing.Size(136, 17);
-            this.checkBoxYminorGrid.TabIndex = 27;
-            this.checkBoxYminorGrid.Text = "Pomniejsza siatka osi X";
-            this.checkBoxYminorGrid.UseVisualStyleBackColor = true;
-            this.checkBoxYminorGrid.CheckedChanged += new System.EventHandler(this.checkBoxYminorGrid_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(154, 726);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,10 +456,12 @@
             this.ClientSize = new System.Drawing.Size(1246, 771);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCharts";
-            this.Text = "FormGraphs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Analiza";
             this.Shown += new System.EventHandler(this.FormGraphs_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
