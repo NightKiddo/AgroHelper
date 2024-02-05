@@ -101,10 +101,10 @@ CREATE TABLE Machines(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250),
 	garage int FOREIGN KEY REFERENCES Garages(id),
-	mileage int,
+	mileage int DEFAULT 0,
 	type int FOREIGN KEY REFERENCES Machine_types(id),
 	inspection_date date,
-	fuel float
+	fuel float DEFAULT 0
 )
 
 CREATE TABLE Storages(
@@ -281,17 +281,17 @@ CREATE VIEW machinesView AS SELECT id, [name] FROM Machines;
 GO
 CREATE VIEW plantsView AS SELECT * FROM Plants;
 GO
-CREATE VIEW machine_typesView AS SELECT id, type FROM Machine_types;
+CREATE VIEW machine_typesView AS SELECT * FROM Machine_types;
 GO
-CREATE VIEW tool_typesView AS SELECT id, type FROM Tool_types;
+CREATE VIEW tool_typesView AS SELECT * FROM Tool_types;
 GO
-CREATE VIEW resource_typesView AS SELECT id, type FROM Resource_types;
+CREATE VIEW resource_typesView AS SELECT * FROM Resource_types;
 GO
 CREATE VIEW activity_typesView AS SELECT id, type FROM Activity_types;
 GO
 CREATE VIEW note_typesView AS SELECT id, type FROM Note_types;
 GO
-CREATE VIEW toolsView AS SELECT id, [name] FROM Tools;
+CREATE VIEW toolsView AS SELECT t.id,t.name,t.mileage,tt.type FROM Tools as t JOIN Tool_types as tt on t.type = tt.id; 
 GO
 CREATE VIEW activitiesView AS SELECT  name, description, start_date, finish_date, field, type, employee, machine, tool, id FROM Activities;
 GO
@@ -305,13 +305,13 @@ CREATE VIEW farmsView AS SELECT * FROM Farms;
 GO
 CREATE VIEW employeesView1 AS SELECT id, name FROM Employees WHERE [user] = 1;
 GO
-CREATE VIEW fieldsView1 AS SELECT fld.id, fld.[name], fld.[description], fld.coordinates, fld.plant, fld.farm FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm WHERE frm.[user] = 1;
+CREATE VIEW fieldsView1 AS SELECT fld.id, fld.[name], fld.[description], fld.coordinates, fld.plant, fld.farm FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm;
 GO
 CREATE VIEW garagesView1 AS SELECT g.id, g.name, g.farm FROM Garages as g JOIN Farms as f on g.farm = f.id WHERE f.[user] = 1;
 GO
 CREATE VIEW storagesView1 AS SELECT s.id, s.[name], s.farm FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm WHERE frm.[user] = 1;
 GO
-CREATE VIEW machinesView1 AS SELECT m.id, m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id WHERE f.[user] = 1;
+CREATE VIEW machinesView AS SELECT m.id, m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id;
 GO
-CREATE VIEW resourcesView1 AS SELECT r.id, rt.type, r.amount FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id WHERE f.[user] = 1;
+CREATE VIEW resourcesView1 AS SELECT r.id, rt.type, r.amount, st.id FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id;
 

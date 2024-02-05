@@ -22,8 +22,11 @@ namespace AgroApp.Logic
         private SqlDataReader dataReader;
         int a = 0;
 
-        private User user;
+        internal User user;
         private PlantsCollection plantsCollection = new PlantsCollection();
+        private MachineTypesCollection machineTypesCollection = new MachineTypesCollection();
+        private ToolTypesCollection toolTypesCollection = new ToolTypesCollection();
+        private ResourceTypesCollection resourceTypesCollection = new ResourceTypesCollection();
 
         public void connect()
         {
@@ -194,67 +197,67 @@ namespace AgroApp.Logic
             return plants;
         }
 
-        public List<object[]> getMachineTypes()
+        public List<MachineType> getMachineTypes()
         {
-            string query = "SELECT id, type FROM Machine_types";
+            string query = "SELECT * FROM machine_TypesView";
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<MachineType> machineTypes = new List<MachineType>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                MachineType type = new MachineType(dataReader.GetInt32(0), dataReader.GetString(1));
+                machineTypes.Add(type);
             }
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return machineTypes;
         }
 
-        public List<object[]> getToolTypes()
+        public List<ToolType> getToolTypes()
         {
-            string query = "SELECT id, type FROM Tool_types";
+            string query = "SELECT * FROM tool_TypesView";
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<ToolType> toolTypes = new List<ToolType>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                ToolType type = new ToolType(dataReader.GetInt32(0), dataReader.GetString(1));
+                toolTypes.Add(type);
             }
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return toolTypes;
         }
 
-        public List<object[]> getResourceTypes()
+        public List<ResourceType> getResourceTypes()
         {
-            string query = "SELECT id, type FROM Resource_types";
+            string query = "SELECT * FROM resource_typesView";
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<ResourceType> types = new List<ResourceType>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                ResourceType type = new ResourceType(dataReader.GetInt32(0), dataReader.GetString(1));
+                types.Add(type);
             }
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return types;
         }
 
         public List<object[]> getActivityTypes()
@@ -315,7 +318,7 @@ namespace AgroApp.Logic
             {
                 int garageId = dataReader.GetInt32(0);
                 string garageName = dataReader.GetString(1);
-                Garage garage = new Garage(garageId,garageName);
+                Garage garage = new Garage(garageId, garageName);
                 garages.Add(garage);
             }
             dataReader.Close();
@@ -324,7 +327,7 @@ namespace AgroApp.Logic
             return garages;
         }
 
-        public List<object[]> getStorages(Farm farm)
+        public List<Storage> getStorages(Farm farm)
         {
             string query = "SELECT * FROM storagesView" + farm.User.Id + " WHERE farm = " + farm.Id;
             connect();
@@ -348,9 +351,9 @@ namespace AgroApp.Logic
             return storages;
         }
 
-        public List<object[]> getMachines(int garageId, int userId)
+        public List<Machine> getMachines(int garageId)
         {
-            string queryMachines = "SELECT * FROM machinesView" + userId + " WHERE garage = " + garageId;
+            string queryMachines = "SELECT * FROM machinesView WHERE garage = " + garageId;
 
             connect();
             conn.Open();
@@ -358,24 +361,43 @@ namespace AgroApp.Logic
             command = new SqlCommand(queryMachines, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
-            object[] row;
+            List<Machine> machines = new List<Machine>();
+            Machine machine;
 
             while (dataReader.Read())
             {
+                int machineId = dataReader.GetInt32(0);
+                string machineName = dataReader.GetString(1);
+                int mileage = 0;
+                MachineType machineType = null;
+                DateTime inspection = DateTime.MinValue;
+                float fuel = 0;
+
+                if (dataReader.GetValue(2) != DBNull.Value)
+                {
+                    mileage = dataReader.GetInt32(2);
+                }
+
+                if (dataReader.GetValue(3) != DBNull.Value)
+                {
+                    int machineTypeId = dataReader.GetInt32(3);
+                    machineType = machineTypesCollection.getMachineTypesList().Find(x => x.Id == machineTypeId);
+                }
 
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    DateTime inspection = DateTime.Parse(dataReader.GetValue(4).ToString());
+                    inspection = DateTime.Parse(dataReader.GetValue(4).ToString());
+                }
 
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), inspection.ToString("dd/MM/yyyy"), dataReader.GetValue(5) };
-                    rows.Add(row);
-                }
-                else
+                if (dataReader.GetValue(5) != DBNull.Value)
                 {
-                    row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), String.Empty, dataReader.GetValue(5) };
-                    rows.Add(row);
+                    fuel = dataReader.GetFloat(5);
                 }
+
+                machine = new Machine(machineId, machineName, mileage, machineType, inspection, fuel);
+
+                machines.Add(machine);
+
             }
 
 
@@ -383,7 +405,7 @@ namespace AgroApp.Logic
             conn.Close();
 
 
-            return rows;
+            return machines;
         }
 
         public List<object[]> getMachines()
@@ -408,9 +430,9 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getTools(int garageId)
+        public List<Tool> getTools(int garageId)
         {
-            string queryTools = "SELECT t.id,t.name,t.mileage,tt.type FROM Tools as t JOIN Tool_types as tt on t.type = tt.id WHERE t.garage = " + garageId;
+            string queryTools = "SELECT * FROM toolsView WHERE t.garage = " + garageId;
 
             connect();
             conn.Open();
@@ -418,18 +440,34 @@ namespace AgroApp.Logic
             command = new SqlCommand(queryTools, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Tool> tools = new List<Tool>();
             while (dataReader.Read())
             {
-                object[] row;
-                row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3) };
-                rows.Add(row);
+                Tool tool = null;
+                int toolId = dataReader.GetInt32(0);
+                string toolName = dataReader.GetString(1);
+                int mileage = 0;
+                ToolType type = null;
+
+                if (dataReader.GetValue(2) != DBNull.Value)
+                {
+                    mileage = dataReader.GetInt32(2);
+                }
+
+                if (dataReader.GetValue(3) != DBNull.Value)
+                {
+                    int toolTypeId = dataReader.GetInt32(3);
+                    type = toolTypesCollection.getToolTypesList().Find(x => x.Id == toolTypeId);
+                }
+
+                tool = new Tool(toolId, toolName, mileage, type);
+                tools.Add(tool);
             }
             dataReader.Close();
             conn.Close();
 
 
-            return rows;
+            return tools;
         }
 
         public List<object[]> getTools()
@@ -456,9 +494,9 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getResources(int storageId)
+        public List<Resource> getResources(Storage storage)
         {
-            string query = "SELECT r.id, r.type, rt.type, r.amount FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id WHERE storage = " + storageId;
+            string query = "SELECT * WHERE storage = " + storage.Id;
 
             connect();
             conn.Open();
@@ -466,17 +504,34 @@ namespace AgroApp.Logic
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Resource> resources = new List<Resource>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetValue(3) };
-                rows.Add(row);
+                int resourceId = dataReader.GetInt32(0);
+                string resourceName = dataReader.GetString(1);
+                ResourceType type = null;
+                float amount = 0;
+
+                if (dataReader.GetValue(2) != DBNull.Value)
+                {
+                    int resourceTypeId = dataReader.GetInt32(2);
+                    type = resourceTypesCollection.getResourceTypesList().Find(x => x.Id == resourceTypeId);
+                }
+
+                if (dataReader.GetValue(3) != DBNull.Value)
+                {
+                    amount = dataReader.GetFloat(3);
+                }
+
+
+                Resource resource = new Resource(resourceId, resourceName, type, amount);
+                resources.Add(resource);
             }
             dataReader.Close();
             conn.Close();
 
 
-            return rows;
+            return resources;
         }
 
         public List<object[]> getJournalEntries(int journalId)

@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    internal class Tool
+    public class Tool
     {
         private int id;
-        private string name;
-        private Garage garage;
+        private string name;        
         private int mileage;
-        private int type;
+        private ToolType type;
 
-        public Tool(int id, string name, Garage garage, int mileage, int type)
+        public Tool(int id, string name,int mileage, ToolType type)
         {
             this.Id = id;
-            this.Name = name;
-            this.Garage = garage;
+            this.Name = name;            
             this.Mileage = mileage;
             this.Type = type;
         }
@@ -26,7 +24,6 @@ namespace AgroApp.Logic
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int Mileage { get => mileage; set => mileage = value; }
-        public int Type { get => type; set => type = value; }
-        internal Garage Garage { get => garage; set => garage = value; }
+        public ToolType Type { get => type; set => type = value; }
     }
 }

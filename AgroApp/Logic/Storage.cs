@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Storage
+    public class Storage : ClassBase
     {
         private int id;
         private string name;
-        
+        private List<Resource> resourcesList;
         public Storage(int id, string name)
         {
             this.Id = id;
-            this.Name = name;            
+            this.Name = name;
+            this.resourcesList = databaseOperator.getResources(this);
         }
 
         public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }        
+        public string Name { get => name; set => name = value; }
+        internal List<Resource> ResourcesList { get => resourcesList; set => resourcesList = value; }
     }
 }
