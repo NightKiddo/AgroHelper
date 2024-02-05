@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    class DeleteQuery
+    public class DeleteQuery
     {
         private string tableName;
         private string whereColumn;

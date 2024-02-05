@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    internal class Field
+    public class Field
     {
         private int id;
         private string name;

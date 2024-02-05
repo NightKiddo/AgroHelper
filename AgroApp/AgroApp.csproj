@@ -179,17 +179,21 @@
       <DependentUpon>FormShowStorage.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\Activity.cs" />
+    <Compile Include="Logic\ClassBase.cs" />
+    <Compile Include="Logic\CollectionBase.cs" />
     <Compile Include="Logic\DBControl\DBOperator.cs" />
     <Compile Include="Logic\DBControl\DeleteQuery.cs" />
     <Compile Include="Logic\DBControl\InsertQuery.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\Farm.cs" />
+    <Compile Include="Logic\FarmsCollection.cs" />
     <Compile Include="Logic\Field.cs" />
     <Compile Include="Logic\Garage.cs" />
     <Compile Include="Logic\Journal.cs" />
     <Compile Include="Logic\Machine.cs" />
     <Compile Include="Logic\Note.cs" />
     <Compile Include="Logic\Plant.cs" />
+    <Compile Include="Logic\PlantsCollection.cs" />
     <Compile Include="Logic\Resource.cs" />
     <Compile Include="Logic\Storage.cs" />
     <Compile Include="Logic\Tool.cs" />

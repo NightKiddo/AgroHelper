@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    class InsertQuery
+    public class InsertQuery
     {
         private string tableName;
         private string columns;

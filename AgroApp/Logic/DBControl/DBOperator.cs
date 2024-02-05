@@ -13,7 +13,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace AgroApp.Logic
 {
-    internal class DBOperator
+    public class DBOperator
     {
         private string machineName = Environment.MachineName;
         private string connectionString;
@@ -21,6 +21,9 @@ namespace AgroApp.Logic
         private SqlCommand command;
         private SqlDataReader dataReader;
         int a = 0;
+
+        private User user;
+        private PlantsCollection plantsCollection = new PlantsCollection();
 
         public void connect()
         {
@@ -105,21 +108,23 @@ namespace AgroApp.Logic
 
         }
 
-        public List<object[]> getFarms(int userId)
+        public List<Farm> getFarms(int userId)
         {
-            string query = "SELECT * FROM farmsView" + userId;
+            string query = "SELECT * FROM farmsView WHERE [user] = " + userId;
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Farm> rows = new List<Farm>();
 
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                int farmId = dataReader.GetInt32(0);
+                string farmName = dataReader.GetString(1);
+                Farm farm = new Farm(farmId, farmName, user);
+                rows.Add(farm);
             }
             dataReader.Close();
             conn.Close();
@@ -127,16 +132,16 @@ namespace AgroApp.Logic
             return rows;
         }
 
-        public List<object[]> getFields(int farmId, int userId)
+        public List<Field> getFields(Farm farm)
         {
-            string query = "SELECT * FROM fieldsView" + userId + " WHERE farm = " + farmId;
+            string query = "SELECT * FROM fieldsView" + farm.User.Id + "WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Field> fields = new List<Field>();
 
             while (dataReader.Read())
             {
@@ -144,57 +149,49 @@ namespace AgroApp.Logic
                 string name = dataReader.GetString(1);
                 string description = "";
                 int plantId = 0;
-                string plantName = "";
+                Plant plant = null;
                 if (dataReader.GetValue(2) != DBNull.Value)
                 {
                     description = dataReader.GetString(2);
                 }
 
-                if (dataReader.GetValue(3) != DBNull.Value)
+                string coordinates = dataReader.GetString(3);
+
+                if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    plantId = dataReader.GetInt32(3);
-                    string queryPlant = "SELECT p.[name] FROM Fields as f JOIN Plants as p ON f.plant = p.id WHERE f.plant = " + plantId + " GROUP BY p.[name]";
-                    SqlConnection conn2 = new SqlConnection(connectionString);
-                    SqlCommand command2 = new SqlCommand(queryPlant, conn2);
-                    conn2.Open();
-                    SqlDataReader dataReader2 = command2.ExecuteReader();
-                    while (dataReader2.Read())
-                    {
-                        plantName = dataReader2.GetString(0);
-                    }
-                    dataReader2.Close();
-                    conn2.Close();
+                    plantId = dataReader.GetInt32(4);
+                    plant = plantsCollection.getPlantsList().Find(x => x.Id == plantId);
                 }
-                object[] row = new object[] { id, name, description, plantName };
-                rows.Add(row);
+                Field field = new Field(id, name, description, coordinates, farm, plant);
+                fields.Add(field);
             }
 
 
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return fields;
         }
 
-        public List<object[]> getPlants()
+        public List<Plant> getPlants()
         {
-            string query = "SELECT id, [name] FROM Plants";
+            string query = "SELECT * FROM plantsView";
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Plant> plants = new List<Plant>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                Plant plant = new Plant(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2));
+                plants.Add(plant);
             }
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return plants;
         }
 
         public List<object[]> getMachineTypes()
@@ -304,47 +301,51 @@ namespace AgroApp.Logic
 
         }
 
-        public List<object[]> getGarages(int farmId, int userId)
+        public List<Garage> getGarages(Farm farm)
         {
-            string query = "SELECT * FROM garagesView" + userId + " WHERE farm = " + farmId;
+            string query = "SELECT * FROM garagesView" + farm.User.Id + " WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Garage> garages = new List<Garage>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                int garageId = dataReader.GetInt32(0);
+                string garageName = dataReader.GetString(1);
+                Garage garage = new Garage(garageId,garageName);
+                garages.Add(garage);
             }
             dataReader.Close();
             conn.Close();
 
-            return rows;
+            return garages;
         }
 
-        public List<object[]> getStorages(int farmId, int userId)
+        public List<object[]> getStorages(Farm farm)
         {
-            string query = "SELECT * FROM storagesView" + userId + " WHERE farm = " + farmId;
+            string query = "SELECT * FROM storagesView" + farm.User.Id + " WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
             command = new SqlCommand(query, conn);
             dataReader = command.ExecuteReader();
 
-            List<object[]> rows = new List<object[]>();
+            List<Storage> storages = new List<Storage>();
             while (dataReader.Read())
             {
-                object[] row = new object[] { dataReader.GetInt32(0), dataReader.GetString(1) };
-                rows.Add(row);
+                int storageId = dataReader.GetInt32(0);
+                string storageName = dataReader.GetString(1);
+                Storage storage = new Storage(storageId, storageName);
+                storages.Add(storage);
             }
             dataReader.Close();
             conn.Close();
 
 
-            return rows;
+            return storages;
         }
 
         public List<object[]> getMachines(int garageId, int userId)
@@ -664,7 +665,7 @@ namespace AgroApp.Logic
         }
         public int login(string login, string password)
         {
-            a = 0;
+            int id = 0;
 
             string query = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') " +
                 "BEGIN (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') END " +
@@ -695,9 +696,11 @@ namespace AgroApp.Logic
             dataReader.Close();
             conn.Close();
 
-            int.TryParse(output, out a);
+            int.TryParse(output, out id);
 
-            return a;
+            user = new User(id, login, password);
+
+            return id;
         }
 
         public int register(string login, string password)
