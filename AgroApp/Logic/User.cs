@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class User : ClassBase
+    public class User
     {
         private int id;
         private string login;
@@ -24,9 +24,7 @@ namespace AgroApp.Logic
         {
             this.id = id;
             this.login = login;
-            this.password = password;
-            employeesList = databaseOperator.getEmployees();
-            farmsList = databaseOperator.getFarms();
+            this.password = password;            
         }
     }
 }

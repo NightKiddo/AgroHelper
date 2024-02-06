@@ -280,6 +280,8 @@ CREATE VIEW allMachinesView AS SELECT * FROM Machines
 GO
 CREATE VIEW allToolsView AS SELECT * FROM Tools
 GO
+CREATE VIEW plantTypesView AS SELECT * FROM Plant_types;
+GO
 CREATE VIEW plantsView AS SELECT * FROM Plants;
 GO
 CREATE VIEW machine_typesView AS SELECT * FROM Machine_types;

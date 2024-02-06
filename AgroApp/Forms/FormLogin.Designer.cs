@@ -1,6 +1,6 @@
-﻿namespace AgroApp
+﻿namespace AgroApp.Forms
 {
-    partial class LoginForm
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.

@@ -26,7 +26,7 @@ namespace AgroApp.Forms
 
             loadChartTypes();
             loadFarms();
-            loadValues();
+            //loadValues();
             loadEmployees();
 
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
@@ -43,7 +43,7 @@ namespace AgroApp.Forms
 
         private void loadFarms()
         {
-            List<object[]> farms = dboperator.getFarms(userId);
+            List<Farm> farms = dboperator.getFarms();
             for (int i = 0; i < farms.Count; i++)
             {
                 dataGridViewFarms.Rows.Add(farms[i]);
@@ -104,34 +104,34 @@ namespace AgroApp.Forms
             }
         }
 
-        private void loadValues()
-        {
-            List<object[]> notes = dboperator.getNoteTypes();
-            List<object[]> activities = dboperator.getActivityTypes();
+        //private void loadValues()
+        //{
+        //    List<NoteType> notes = dboperator.getNoteTypes();
+        //    List<ActivityType> activities = dboperator.getActivityTypes();
 
-            List<object[]> values = new List<object[]>();
+        //    List<object[]> values = new List<object[]>();
 
-            for (int i = 0; i < notes.Count; i++)
-            {
-                object[] o = new object[] { 1, notes[i].GetValue(0), notes[i].GetValue(1) };
-                values.Add(o);
-            }
+        //    for (int i = 0; i < notes.Count; i++)
+        //    {
+        //        object[] o = new object[] { 1, notes[i].GetValue(0), notes[i].GetValue(1) };
+        //        values.Add(o);
+        //    }
 
-            for (int i = 0; i < activities.Count; i++)
-            {
-                object[] o = new object[] { 2, activities[i].GetValue(0), activities[i].GetValue(1) };
-                values.Add(o);
-            }
+        //    for (int i = 0; i < activities.Count; i++)
+        //    {
+        //        object[] o = new object[] { 2, activities[i].GetValue(0), activities[i].GetValue(1) };
+        //        values.Add(o);
+        //    }
 
-            for (int i = 0; i < values.Count; i++)
-            {
-                dataGridViewValues.Rows.Add(values[i]);
-            }
-        }
+        //    for (int i = 0; i < values.Count; i++)
+        //    {
+        //        dataGridViewValues.Rows.Add(values[i]);
+        //    }
+        //}
 
         private void loadEmployees()
         {
-            List<object[]> employees = dboperator.getEmployees(userId);
+            List<Employee> employees = dboperator.getEmployees();
 
             for (int i = 0; i < employees.Count; i++)
             {
@@ -145,7 +145,7 @@ namespace AgroApp.Forms
 
             ; if (dataGridViewFarms.SelectedRows.Count != 0)
             {
-                List<object[]> fields = dboperator.getFields((int)dataGridViewFarms.SelectedRows[0].Cells[0].Value, userId);
+                List<Field> fields = dboperator.getFields((Farm)dataGridViewFarms.SelectedRows[0].Cells[0].Value);
 
                 for (int i = 0; i < fields.Count; i++)
                 {

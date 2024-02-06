@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Garage : ClassBase
+    public class Garage
     {
         private int id;
         private string name;
@@ -16,9 +16,7 @@ namespace AgroApp.Logic
         public Garage(int id, string name)
         {
             this.Id = id;
-            this.Name = name;
-            this.MachinesList = databaseOperator.getMachines(Id);
-            this.ToolsList = databaseOperator.getTools(Id);
+            this.Name = name;            
         }
 
         public int Id { get => id; set => id = value; }

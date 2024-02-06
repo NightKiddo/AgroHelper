@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Storage : ClassBase
+    public class Storage
     {
         private int id;
         private string name;
@@ -14,8 +14,7 @@ namespace AgroApp.Logic
         public Storage(int id, string name)
         {
             this.Id = id;
-            this.Name = name;
-            this.resourcesList = databaseOperator.getResources(this);
+            this.Name = name;            
         }
 
         public int Id { get => id; set => id = value; }

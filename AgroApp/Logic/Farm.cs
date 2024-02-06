@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Farm : ClassBase
+    public class Farm
     {
         private int id;
         private string name;
@@ -17,9 +17,9 @@ namespace AgroApp.Logic
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public List<Field> FieldsList { get => fieldsList; set => databaseOperator.getFields(this); }
-        public List<Garage> GaragesList { get => garagesList; set => databaseOperator.getGarages(this); }
-        public List<Storage> StoragesList { get => storagesList; set => databaseOperator.getStorages(this); }
+        public List<Field> FieldsList { get => fieldsList; set => fieldsList = value; }
+        public List<Garage> GaragesList { get => garagesList; set => garagesList = value; }
+        public List<Storage> StoragesList { get => storagesList; set => storagesList = value; }
         public Journal Journal { get => journal; set => journal = value; }
 
         public List<Machine> getAllMachines()
@@ -56,9 +56,6 @@ namespace AgroApp.Logic
         {
             this.Id = id;
             this.Name = name;
-
-            Journal.ActivitiesList = databaseOperator.getActivities(this);
-            Journal.NotesList = databaseOperator.getNotes(this);
         }
     }
 }

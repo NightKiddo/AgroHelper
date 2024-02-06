@@ -9,11 +9,9 @@ namespace AgroApp.Logic
     public class CollectionBase
     {
         internal DBOperator databaseOperator = new DBOperator();
-        internal User user;
         
         public CollectionBase()
         {
-            user = databaseOperator.user;
         }
     }
 }

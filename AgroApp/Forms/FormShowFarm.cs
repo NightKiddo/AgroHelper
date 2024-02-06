@@ -144,10 +144,8 @@ namespace AgroApp.Forms
         }
 
         private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int journalId;
-            int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
-            FormAddNote formAddNote = new FormAddNote(journalId, farmId, userId);
+        {            
+            FormAddNote formAddNote = new FormAddNote(farm);
             formAddNote.ShowDialog();
             loadJournal();
         }
@@ -226,7 +224,7 @@ namespace AgroApp.Forms
 
         private void pracownikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddEmployee formAddEmployee = new FormAddEmployee(userId);
+            FormAddEmployee formAddEmployee = new FormAddEmployee(dboperator.user.Id);
             formAddEmployee.ShowDialog();
         }
 
@@ -245,7 +243,7 @@ namespace AgroApp.Forms
 
         private void analizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCharts formGraphs = new FormCharts(userId);
+            FormCharts formGraphs = new FormCharts(dboperator.user.Id);
             formGraphs.ShowDialog();
         }
 

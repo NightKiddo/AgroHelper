@@ -132,7 +132,7 @@ namespace AgroApp.Forms
                 string dateString2 = dateParse2.ToString(dateFormat);
 
                 string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', "
-                    + chosenType +", "+chosenEmployee+", "+chosenMachine+", "+chosenTool+", "+journalId+", "+value;
+                    + chosenType +", "+chosenEmployee+", "+chosenMachine+", "+chosenTool+", "+farm.Journal.Id+", "+value;
                 InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal, value", values);
 
                 if (dboperator.insert(query) != 0)

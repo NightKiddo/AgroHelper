@@ -10,9 +10,9 @@ namespace AgroApp.Logic
     {
         private int id;
         private string name;
-        private int type;
+        private PlantType type;
 
-        public Plant(int id, string name, int type)
+        public Plant(int id, string name, PlantType type)
         {
             this.Id = id;
             this.Name = name;
@@ -21,6 +21,6 @@ namespace AgroApp.Logic
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public int Type { get => type; set => type = value; }
+        public PlantType Type { get => type; set => type = value; }
     }
 }

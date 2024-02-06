@@ -65,7 +65,7 @@ namespace AgroApp.Forms
                     value = numericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
                 }
 
-                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId + ", " + value + ", " + chosenType;
+                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + farm.Journal.Id + ", " + value + ", " + chosenType;
                 InsertQuery query = new InsertQuery("Notes", "name, description, field, start_date, finish_date, journal, value, type", values);
 
                 if (dboperator.insert(query) != 0)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Journal : ClassBase
+    public class Journal
     {
         private int id;
         private List<Activity> activitiesList;

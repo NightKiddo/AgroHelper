@@ -118,6 +118,12 @@
     <Compile Include="Forms\FormAddTool.Designer.cs">
       <DependentUpon>FormAddTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormCharts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,33 +186,26 @@
     </Compile>
     <Compile Include="Logic\Activity.cs" />
     <Compile Include="Logic\ClassTypes\ActivityType.cs" />
-    <Compile Include="Logic\ClassCollections\ActivityTypesCollection.cs" />
-    <Compile Include="Logic\ClassBase.cs" />
     <Compile Include="Logic\CollectionBase.cs" />
     <Compile Include="Logic\DBControl\DBOperator.cs" />
     <Compile Include="Logic\DBControl\DeleteQuery.cs" />
     <Compile Include="Logic\DBControl\InsertQuery.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\Farm.cs" />
-    <Compile Include="Logic\ClassCollections\FarmsCollection.cs" />
     <Compile Include="Logic\Field.cs" />
     <Compile Include="Logic\Garage.cs" />
     <Compile Include="Logic\Journal.cs" />
     <Compile Include="Logic\Machine.cs" />
     <Compile Include="Logic\ClassTypes\MachineType.cs" />
-    <Compile Include="Logic\ClassCollections\MachineTypesCollection.cs" />
     <Compile Include="Logic\Note.cs" />
     <Compile Include="Logic\ClassTypes\NoteType.cs" />
-    <Compile Include="Logic\ClassCollections\NoteTypesCollection.cs" />
     <Compile Include="Logic\Plant.cs" />
-    <Compile Include="Logic\ClassCollections\PlantsCollection.cs" />
+    <Compile Include="Logic\ClassTypes\PlantType.cs" />
     <Compile Include="Logic\Resource.cs" />
     <Compile Include="Logic\ClassTypes\ResourceType.cs" />
-    <Compile Include="Logic\ClassCollections\ResourceTypesCollection.cs" />
     <Compile Include="Logic\Storage.cs" />
     <Compile Include="Logic\Tool.cs" />
     <Compile Include="Logic\ClassTypes\ToolType.cs" />
-    <Compile Include="Logic\ClassCollections\ToolTypesCollection.cs" />
     <Compile Include="Logic\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

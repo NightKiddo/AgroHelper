@@ -23,12 +23,18 @@ namespace AgroApp.Logic
         int a = 0;
 
         internal User user;
-        private PlantsCollection plantsCollection = new PlantsCollection();
-        private MachineTypesCollection machineTypesCollection = new MachineTypesCollection();
-        private ToolTypesCollection toolTypesCollection = new ToolTypesCollection();
-        private ResourceTypesCollection resourceTypesCollection = new ResourceTypesCollection();
-        private ActivityTypesCollection activityTypesCollection = new ActivityTypesCollection();
-        private NoteTypesCollection noteTypesCollection = new NoteTypesCollection();
+        private List<Plant> plantsCollection;
+        private List<PlantType> plantTypesCollection;
+        private List<MachineType> machineTypesCollection;
+        private List<ToolType> toolTypesCollection;
+        private List<ResourceType> resourceTypesCollection;
+        private List<ActivityType> activityTypesCollection;
+        private List<NoteType> noteTypesCollection;
+
+        public DBOperator()
+        {
+            setupCollections();
+        }
 
         public void connect()
         {
@@ -113,6 +119,43 @@ namespace AgroApp.Logic
 
         }
 
+        public void setupCollections()
+        {
+            plantTypesCollection = getPlantTypes();
+            plantsCollection = getPlants();
+            machineTypesCollection = getMachineTypes();
+            toolTypesCollection = getToolTypes();
+            resourceTypesCollection = getResourceTypes();
+            activityTypesCollection = getActivityTypes();
+            noteTypesCollection = getNoteTypes();
+        }
+
+        public List<PlantType> getPlantTypes()
+        {
+            string query = "SELECT * FROM plantTypesView";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            List<PlantType> plantTypes = new List<PlantType>();
+
+            while (dataReader.Read())
+            {
+                int typeId = dataReader.GetInt32(0);
+                string typeName = dataReader.GetString(1);
+
+                PlantType plantType = new PlantType(typeId, typeName);
+                plantTypes.Add(plantType);
+            }
+
+            dataReader.Close();
+            conn.Close();
+
+            return plantTypes;
+        }
+
         public List<Farm> getFarms()
         {
             string query = "SELECT * FROM farmsView WHERE [user] = " + user.Id;
@@ -128,7 +171,7 @@ namespace AgroApp.Logic
             {
                 int farmId = dataReader.GetInt32(0);
                 string farmName = dataReader.GetString(1);
-                Farm farm = new Farm(farmId, farmName, user);
+                Farm farm = new Farm(farmId, farmName);
                 rows.Add(farm);
             }
             dataReader.Close();
@@ -139,7 +182,7 @@ namespace AgroApp.Logic
 
         public List<Field> getFields(Farm farm)
         {
-            string query = "SELECT * FROM fieldsView" + farm.User.Id + "WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM fieldsView" + user.Id + "WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -165,7 +208,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
                     plantId = dataReader.GetInt32(4);
-                    plant = plantsCollection.getPlantsList().Find(x => x.Id == plantId);
+                    plant = plantsCollection.Find(x => x.Id == plantId);
                 }
                 Field field = new Field(id, name, description, coordinates, farm, plant);
                 fields.Add(field);
@@ -190,7 +233,8 @@ namespace AgroApp.Logic
             List<Plant> plants = new List<Plant>();
             while (dataReader.Read())
             {
-                Plant plant = new Plant(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2));
+                PlantType type = plantTypesCollection.Find(x=>x.Id == dataReader.GetInt32(2));
+                Plant plant = new Plant(dataReader.GetInt32(0), dataReader.GetString(1), type);
                 plants.Add(plant);
             }
             dataReader.Close();
@@ -308,7 +352,7 @@ namespace AgroApp.Logic
 
         public List<Garage> getGarages(Farm farm)
         {
-            string query = "SELECT * FROM garagesView" + farm.User.Id + " WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM garagesView" + user.Id + " WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -331,7 +375,7 @@ namespace AgroApp.Logic
 
         public List<Storage> getStorages(Farm farm)
         {
-            string query = "SELECT * FROM storagesView" + farm.User.Id + " WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM storagesView" + user.Id + " WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -383,7 +427,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
                     int machineTypeId = dataReader.GetInt32(3);
-                    machineType = machineTypesCollection.getMachineTypesList().Find(x => x.Id == machineTypeId);
+                    machineType = machineTypesCollection.Find(x => x.Id == machineTypeId);
                 }
 
                 if (dataReader.GetValue(4) != DBNull.Value)
@@ -437,7 +481,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
                     int toolTypeId = dataReader.GetInt32(3);
-                    type = toolTypesCollection.getToolTypesList().Find(x => x.Id == toolTypeId);
+                    type = toolTypesCollection.Find(x => x.Id == toolTypeId);
                 }
 
                 tool = new Tool(toolId, toolName, mileage, type);
@@ -471,7 +515,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(2) != DBNull.Value)
                 {
                     int resourceTypeId = dataReader.GetInt32(2);
-                    type = resourceTypesCollection.getResourceTypesList().Find(x => x.Id == resourceTypeId);
+                    type = resourceTypesCollection.Find(x => x.Id == resourceTypeId);
                 }
 
                 if (dataReader.GetValue(3) != DBNull.Value)
@@ -528,7 +572,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(6) != DBNull.Value)
                 {
                     int activityTypeId = dataReader.GetInt32(6);
-                    activityType = activityTypesCollection.getactivityTypesList().Find(x => x.Id == activityTypeId);
+                    activityType = activityTypesCollection.Find(x => x.Id == activityTypeId);
                 }
 
                 Employee employee = null;
@@ -616,7 +660,7 @@ namespace AgroApp.Logic
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
                     int noteTypeId = dataReader.GetInt32(3);
-                    type = noteTypesCollection.getNoteTypesList().Find(x => x.Id == noteTypeId);
+                    type = noteTypesCollection.Find(x => x.Id == noteTypeId);
                 }
 
                 DateTime start = DateTime.Parse(dataReader.GetValue(3).ToString());

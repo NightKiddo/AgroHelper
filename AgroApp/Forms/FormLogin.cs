@@ -1,5 +1,4 @@
-﻿using AgroApp.Forms;
-using AgroApp.Logic;
+﻿using AgroApp.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,13 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AgroApp
+namespace AgroApp.Forms
 {
-    public partial class LoginForm : Form
-    {
-        private DBOperator dboperator = new DBOperator();
-        public LoginForm()
+    public partial class FormLogin : Form
+    {        
+        public FormLogin()
         {
+
             InitializeComponent();
         }
 
@@ -24,7 +23,7 @@ namespace AgroApp
         {
             try 
             {
-                int userId = dboperator.login(textBoxLogin.Text, textBoxPassword.Text);
+                int userId = FormBase.dboperator.login(textBoxLogin.Text, textBoxPassword.Text);
                 if (userId != 0)
                 {
                     FormMainMenu formMainMenu = new FormMainMenu();
