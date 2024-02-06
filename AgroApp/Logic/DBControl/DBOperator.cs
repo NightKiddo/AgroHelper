@@ -871,6 +871,8 @@ namespace AgroApp.Logic
             int.TryParse(output, out id);
 
             user = new User(id, login, password);
+            user.FarmsList = getFarms();
+            user.EmployeesList = getEmployees();
 
             return id;
         }

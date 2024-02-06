@@ -38,8 +38,6 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAddFarm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -151,9 +149,6 @@
             this.dataGridViewFarms.AllowUserToResizeColumns = false;
             this.dataGridViewFarms.AllowUserToResizeRows = false;
             this.dataGridViewFarms.ColumnHeadersVisible = false;
-            this.dataGridViewFarms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name});
             this.dataGridViewFarms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewFarms.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataGridViewFarms.Location = new System.Drawing.Point(0, 0);
@@ -167,19 +162,6 @@
             this.dataGridViewFarms.TabIndex = 0;
             this.dataGridViewFarms.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridViewFarms.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Column1";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Column1";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
             // 
             // buttonAddFarm
             // 
@@ -218,8 +200,6 @@
         private System.Windows.Forms.Button buttonAddFarm;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridViewFarms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridViewEmployees;

@@ -13,13 +13,12 @@ using System.Windows.Forms;
 namespace AgroApp.Forms
 {
     public partial class FormMainMenu : Form
-    {
-        DBOperator dboperator = new DBOperator();
+    {        
         int userId;        
         public FormMainMenu()
         {
             InitializeComponent();
-            userId = dboperator.user.Id;
+            userId = FormBase.dboperator.user.Id;
             loadFarms();
             loadEmployees();
         }
@@ -27,9 +26,14 @@ namespace AgroApp.Forms
         private void loadFarms() 
         {
             dataGridViewFarms.Rows.Clear();
-            
+            dataGridViewFarms.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = FormBase.dboperator.user.FarmsList; //TAK RÓB DATAGRIDY
+            dataGridViewFarms.DataSource = source;                  //USUŃ KOLUMNY Z DATAGRIDÓW W DESGINERZE 
+
+            dataGridViewFarms.Columns[0].Visible = false;
+            dataGridViewFarms.Columns[2].Visible = false;
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
-            dataGridViewFarms.DataSource = dboperator.user.FarmsList;
         }
 
         private void loadEmployees()
@@ -37,7 +41,7 @@ namespace AgroApp.Forms
             dataGridViewEmployees.Rows.Clear();
             
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
-            dataGridViewEmployees.DataSource = dboperator.getEmployees();
+            dataGridViewEmployees.DataSource = FormBase.dboperator.getEmployees();
             
 
             dataGridViewEmployees.ClearSelection();
@@ -68,7 +72,7 @@ namespace AgroApp.Forms
 
 
             DeleteQuery query = new DeleteQuery("Farms", "id", farmId);
-            if (dboperator.delete(query) != 0)
+            if (FormBase.dboperator.delete(query) != 0)
             {
                 MessageBox.Show("Usunięto");
             }
@@ -95,7 +99,7 @@ namespace AgroApp.Forms
 
 
             DeleteQuery query = new DeleteQuery("Employees", "id", employeeId);
-            if (dboperator.delete(query) != 0)
+            if (FormBase.dboperator.delete(query) != 0)
             {
                 MessageBox.Show("Usunięto");
             }
