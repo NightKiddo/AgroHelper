@@ -16,29 +16,20 @@ namespace AgroApp.Forms
     {
         int storageId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> resources = new List<object[]>();
-        public FormShowStorage(int storageId)
+        Storage storage;
+        public FormShowStorage(Storage storage)
         {
             InitializeComponent();
-            this.storageId = storageId;
+            this.storage = storage;
+            this.storageId = storage.Id;
             loadResources();
         }
 
         private void loadResources() 
         {
             dataGridView1.Rows.Clear();
-            resources = dboperator.getResources(storageId);
 
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
-            {
-                dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / 3);
-            }
-
-            for (int j = 0; j < resources.Count; j++)
-            {
-                dataGridView1.Rows.Add(resources[j]);
-            }
-
+            dataGridView1.DataSource = storage.ResourcesList;
             dataGridView1.ClearSelection();
         }
 

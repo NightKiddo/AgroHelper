@@ -14,12 +14,11 @@ namespace AgroApp.Forms
 {
     public partial class FormAddField : Form
     {
-        int userId;
         int fieldDrawn = 0;
         string coordinates;
         int farmId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> plants;
+        List<Plant> plants;
         public FormAddField(int farmId)
         {
             InitializeComponent();
@@ -110,10 +109,8 @@ namespace AgroApp.Forms
         {
             dataGridView1.Columns[1].Width = dataGridView1.Width;
             plants = dboperator.getPlants();
-            for(int i=0; i <  plants.Count; i++) 
-            {
-                dataGridView1.Rows.Add(plants[i]);
-            }
+
+            dataGridView1.DataSource = plants;
         }
 
         private void FormAddField_Shown(object sender, EventArgs e)

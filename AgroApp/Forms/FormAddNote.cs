@@ -14,18 +14,13 @@ namespace AgroApp.Forms
 {
     public partial class FormAddNote : Form
     {
-        int jounralId;
-        int farmId;
-        int userId;
+        Farm farm;
         DBOperator dboperator = new DBOperator();
-        public FormAddNote(int journalId, int farmId, int userId)
+        public FormAddNote(Farm farm)
         {
-            InitializeComponent();
-            this.jounralId = journalId;
-            this.farmId = farmId;
+            InitializeComponent();            
             loadFields();
-            loadTypes();
-            this.userId = userId;
+            loadTypes();            
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -36,23 +31,13 @@ namespace AgroApp.Forms
         private void loadFields()
         {
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            List<object[]> fields = dboperator.getFields(farmId, userId);
-
-            for (int i = 0; i < fields.Count; i++)
-            {
-                dataGridView1.Rows.Add(fields[i]);
-            }
+            dataGridView1.DataSource = farm.FieldsList;
         }
 
-        private void loadTypes() 
+        private void loadTypes()
         {
             dataGridView2.Columns[1].Width = dataGridView2.Width;
-            List<object[]> types = dboperator.getNoteTypes();
-
-            for (int i = 0; i < types.Count; i++)
-            {                           
-                dataGridView2.Rows.Add(types[i]);
-            }
+            dataGridView2.DataSource = dboperator.getNoteTypes();
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -75,12 +60,12 @@ namespace AgroApp.Forms
                 {
                     value = "NULL";
                 }
-                else 
+                else
                 {
-                    value = numericUpDown1.Value.ToString(CultureInfo.InvariantCulture); 
+                    value = numericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
                 }
 
-                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId+", "+value+", "+chosenType;
+                string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + dateString + "', '" + dateString2 + "', " + jounralId + ", " + value + ", " + chosenType;
                 InsertQuery query = new InsertQuery("Notes", "name, description, field, start_date, finish_date, journal, value, type", values);
 
                 if (dboperator.insert(query) != 0)

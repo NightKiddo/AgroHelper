@@ -13,37 +13,25 @@ namespace AgroApp.Forms
 {
     public partial class FormShowGarage : Form
     {
+        Garage garage;
         int garageId;
-        int userId;
-        List<object[]> machines = new List<object[]>();
-        List<object[]> tools = new List<object[]>();
         DBOperator dboperator = new DBOperator();
-        public FormShowGarage(int garageId, int userId)
+        public FormShowGarage(Garage garage)
         {
             InitializeComponent();
-            this.garageId = garageId;
+            this.garage = garage;
+            garageId = garage.Id;
             loadMachines();
             loadTools();
 
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView2.ContextMenuStrip = contextMenuStrip2;
-            this.userId = userId;
         }
 
         public void loadMachines() 
         {
             dataGridView1.Rows.Clear();
-            machines = dboperator.getMachines(garageId, userId);
-
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
-            {
-                dataGridView1.Columns[i].Width = (int)(dataGridView1.Width / 5);
-            }
-
-            for (int j=0;j<machines.Count;j++) 
-            {
-                dataGridView1.Rows.Add(machines[j]);
-            }
+            dataGridView1.DataSource = garage.MachinesList;
 
             dataGridView1.ClearSelection();
         }
@@ -51,17 +39,7 @@ namespace AgroApp.Forms
         public void loadTools() 
         {
             dataGridView2.Rows.Clear();
-            tools = dboperator.getTools(garageId);
-
-            for (int i = 0; i < dataGridView2.Columns.Count; i++)
-            {
-                dataGridView2.Columns[i].Width = (int)(dataGridView2.Width / 3);
-            }
-
-            for (int j = 0; j < tools.Count; j++)
-            {
-                dataGridView2.Rows.Add(tools[j]);
-            }
+            dataGridView2.DataSource = garage.MachinesList;
 
             dataGridView2.ClearSelection();
         }

@@ -13,12 +13,12 @@ namespace AgroApp.Forms
 {
     public partial class FormAddFarm : Form
     {
-        int userId;
         DBOperator dboperator= new DBOperator();
-        public FormAddFarm(int userId)
+        int userId;
+        public FormAddFarm()
         {
             InitializeComponent();
-            this.userId = userId;
+            userId = dboperator.user.Id;
         }
 
         private void addFarm(int option) 

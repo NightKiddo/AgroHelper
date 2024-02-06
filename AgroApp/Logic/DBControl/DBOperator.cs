@@ -113,9 +113,9 @@ namespace AgroApp.Logic
 
         }
 
-        public List<Farm> getFarms(int userId)
+        public List<Farm> getFarms()
         {
-            string query = "SELECT * FROM farmsView WHERE [user] = " + userId;
+            string query = "SELECT * FROM farmsView WHERE [user] = " + user.Id;
             connect();
             conn.Open();
 
@@ -647,7 +647,7 @@ namespace AgroApp.Logic
             return notes;
         }
 
-        public List<Employee> getEmployees(User user)
+        public List<Employee> getEmployees()
         {
             string query = "SELECT * FROM employeesView" + user.Id;
 

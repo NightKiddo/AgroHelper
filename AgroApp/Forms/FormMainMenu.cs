@@ -14,13 +14,12 @@ namespace AgroApp.Forms
 {
     public partial class FormMainMenu : Form
     {
-        int userId;
         DBOperator dboperator = new DBOperator();
-        List<object[]> farms, employees;
-        public FormMainMenu(int userId)
+        int userId;        
+        public FormMainMenu()
         {
             InitializeComponent();
-            this.userId = userId;
+            userId = dboperator.user.Id;
             loadFarms();
             loadEmployees();
         }
@@ -28,33 +27,26 @@ namespace AgroApp.Forms
         private void loadFarms() 
         {
             dataGridViewFarms.Rows.Clear();
-            farms = dboperator.getFarms(userId);
+            
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
-            for (int i = 0; i < farms.Count; i++) {
-
-                dataGridViewFarms.Rows.Add(farms[i]);
-            }
+            dataGridViewFarms.DataSource = dboperator.user.FarmsList;
         }
 
         private void loadEmployees()
         {
             dataGridViewEmployees.Rows.Clear();
-            employees = dboperator.getEmployees(userId);
+            
             dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
-
-            for(int i=0;i < employees.Count;i++)
-            {
-                dataGridViewEmployees.Rows.Add(employees[i]);
-            }
+            dataGridViewEmployees.DataSource = dboperator.getEmployees();
+            
 
             dataGridViewEmployees.ClearSelection();
         }
 
         private void buttonAddFarm_Click(object sender, EventArgs e)
         {
-            FormAddFarm formAddFarm = new FormAddFarm(userId);
+            FormAddFarm formAddFarm = new FormAddFarm();
             formAddFarm.ShowDialog();
-            dataGridViewFarms.Rows.Clear();
             loadFarms();
         }
 
@@ -64,7 +56,7 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-                FormShowFarm formShowFarm = new FormShowFarm(farmId, userId);
+                FormShowFarm formShowFarm = new FormShowFarm(farmId);
             formShowFarm.ShowDialog();
         }
 

@@ -27,7 +27,7 @@ namespace AgroApp
                 int userId = dboperator.login(textBoxLogin.Text, textBoxPassword.Text);
                 if (userId != 0)
                 {
-                    FormMainMenu formMainMenu = new FormMainMenu(userId);
+                    FormMainMenu formMainMenu = new FormMainMenu();
                     formMainMenu.ShowDialog();
                 }
             }catch(Exception ex)

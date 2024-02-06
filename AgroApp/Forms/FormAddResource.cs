@@ -14,7 +14,7 @@ namespace AgroApp.Forms
     public partial class FormAddResource : Form
     {
         int storageId;
-        List<object[]> resources;
+        List<ResourceType> resourceTypes;
         DBOperator dboperator = new DBOperator();
         public FormAddResource(int storageId)
         {
@@ -44,11 +44,9 @@ namespace AgroApp.Forms
         private void loadResourceTypes() 
         {
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            resources = dboperator.getResourceTypes();
-            for(int i=0; i<resources.Count;i++) 
-            {
-                dataGridView1.Rows.Add(resources[i]);
-            }
+            resourceTypes = dboperator.getResourceTypes();
+
+            dataGridView1.DataSource = resourceTypes;
             dataGridView1.ClearSelection();
         }
 

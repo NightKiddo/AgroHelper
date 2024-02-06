@@ -15,7 +15,7 @@ namespace AgroApp.Forms
     public partial class FormAddMachine : Form
     {
         int garageId;
-        List<object[]> machines;
+        List<MachineType> machineTypes;
         DBOperator dboperator = new DBOperator();
         public FormAddMachine(int garageId)
         {
@@ -27,10 +27,10 @@ namespace AgroApp.Forms
         private void loadMachineTypes() 
         {
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            machines = dboperator.getMachineTypes();
-            for(int i=0; i<machines.Count; i++)
+            machineTypes = dboperator.getMachineTypes();
+            for(int i=0; i<machineTypes.Count; i++)
             {
-                dataGridView1.Rows.Add(machines[i]);
+                dataGridView1.Rows.Add(machineTypes[i]);
             }
 
             dataGridView1.ClearSelection();

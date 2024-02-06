@@ -14,15 +14,12 @@ namespace AgroApp.Forms
 {
     public partial class FormAddActivity : Form
     {
-        int journalId;
-        int farmId, userId;
+        Farm farm;
         DBOperator dboperator = new DBOperator();
-        public FormAddActivity(int journalId, int farmId, int userId)
+        public FormAddActivity(Farm farm)
         {
             InitializeComponent();
-            this.journalId = journalId;
-            this.farmId = farmId;
-            this.userId = userId;
+            this.farm = farm;
             loadFields();
             loadTypes();
             loadEmployees();
@@ -38,35 +35,22 @@ namespace AgroApp.Forms
         private void loadFields() 
         {
             dataGridViewField.Columns[1].Width = dataGridViewField.Width;
-            List<object[]> fields = dboperator.getFields(farmId, userId);
+            List<Field> fields = dboperator.getFields(farm);
 
-            for(int i=0; i< fields.Count; i++) 
-            {
-                dataGridViewField.Rows.Add(fields[i]);
-            }
+            dataGridViewField.DataSource = fields;
         }
 
         private void loadTypes()
         {
             dataGridViewType.Columns[1].Width = dataGridViewField.Width;
-            List<object[]> types = dboperator.getActivityTypes();
-
-            for (int i = 0; i < types.Count; i++)
-            {
-                dataGridViewType.Rows.Add(types[i]);
-            }
+            dataGridViewType.DataSource = dboperator.getActivityTypes();
         }
         private void loadEmployees() 
         {
             dataGridViewEmployee.Columns[1].Width = dataGridViewEmployee.Width;
             dataGridViewEmployee.Rows.Add(new object[] { DBNull.Value, "(brak)" } );
 
-            List<object[]> employees = dboperator.getEmployees(userId);
-
-            for (int i = 0; i < employees.Count; i++)
-            {
-                dataGridViewEmployee.Rows.Add(employees[i]);
-            }
+            dataGridViewEmployee.DataSource = dboperator.user.EmployeesList;
         }
 
         private void loadMachines() 
@@ -74,12 +58,8 @@ namespace AgroApp.Forms
             dataGridViewMachine.Columns[1].Width = dataGridViewMachine.Width;
             dataGridViewMachine.Rows.Add(new object[] { DBNull.Value, "(brak)" });
 
-            List<object[]> machines = dboperator.getAllMachines();
 
-            for (int i = 0; i < machines.Count; i++)
-            {
-                dataGridViewMachine.Rows.Add(machines[i]);
-            }
+            dataGridViewMachine.DataSource = farm.getAllMachines();
         }
 
         private void loadTools()
@@ -87,12 +67,9 @@ namespace AgroApp.Forms
             dataGridViewTool.Columns[1].Width = dataGridViewTool.Width;
             dataGridViewTool.Rows.Add(new object[] { DBNull.Value, "(brak)" });
 
-            List<object[]> tools = dboperator.getAllTools();
+            List<Tool> tools = farm.getAllTools();
 
-            for (int i = 0; i < tools.Count; i++)
-            {
-                dataGridViewTool.Rows.Add(tools[i]);
-            }
+            dataGridViewTool.DataSource = tools;
         }
 
         private void FormAddActivity_Shown(object sender, EventArgs e)
