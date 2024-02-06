@@ -14,6 +14,7 @@ namespace AgroApp.Logic
         private List<Field> fieldsList;
         private List<Garage> garagesList;
         private List<Storage> storagesList;
+        private Journal journal;
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -21,12 +22,16 @@ namespace AgroApp.Logic
         public List<Field> FieldsList { get => fieldsList; set => databaseOperator.getFields(this); }
         public List<Garage> GaragesList { get => garagesList; set => databaseOperator.getGarages(this); }
         public List<Storage> StoragesList { get => storagesList; set => databaseOperator.getStorages(this); }
+        public Journal Journal { get => journal; set => journal = value; }
 
         public Farm(int id, string name, User user)
         {
             this.Id = id;
             this.Name = name;
-            this.User = user;            
+            this.User = user;
+
+            Journal.ActivitiesList = databaseOperator.getActivities(this);
+            Journal.NotesList = databaseOperator.getNotes(this);
         }
     }
 }

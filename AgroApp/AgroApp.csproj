@@ -179,6 +179,8 @@
       <DependentUpon>FormShowStorage.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\Activity.cs" />
+    <Compile Include="Logic\ActivityType.cs" />
+    <Compile Include="Logic\ActivityTypesCollection.cs" />
     <Compile Include="Logic\ClassBase.cs" />
     <Compile Include="Logic\CollectionBase.cs" />
     <Compile Include="Logic\DBControl\DBOperator.cs" />
@@ -194,6 +196,8 @@
     <Compile Include="Logic\MachineType.cs" />
     <Compile Include="Logic\MachineTypesCollection.cs" />
     <Compile Include="Logic\Note.cs" />
+    <Compile Include="Logic\NoteType.cs" />
+    <Compile Include="Logic\NoteTypesCollection.cs" />
     <Compile Include="Logic\Plant.cs" />
     <Compile Include="Logic\PlantsCollection.cs" />
     <Compile Include="Logic\Resource.cs" />

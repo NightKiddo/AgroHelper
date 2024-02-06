@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    internal class Journal
+    public class Journal : ClassBase
     {
         private int id;
-        private Farm farm;
+        private List<Activity> activitiesList;
+        private List<Note> notesList;
 
-        public Journal(int id, Farm farm)
+        public Journal(int id)
         {
             this.Id = id;
-            this.Farm = farm;
         }
 
         public int Id { get => id; set => id = value; }
-        internal Farm Farm { get => farm; set => farm = value; }
+        public List<Activity> ActivitiesList { get => activitiesList; set => activitiesList = value; }
+        internal List<Note> NotesList { get => notesList; set => notesList = value; }
     }
 }

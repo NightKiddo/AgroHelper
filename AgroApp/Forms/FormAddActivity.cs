@@ -74,7 +74,7 @@ namespace AgroApp.Forms
             dataGridViewMachine.Columns[1].Width = dataGridViewMachine.Width;
             dataGridViewMachine.Rows.Add(new object[] { DBNull.Value, "(brak)" });
 
-            List<object[]> machines = dboperator.getMachines();
+            List<object[]> machines = dboperator.getAllMachines();
 
             for (int i = 0; i < machines.Count; i++)
             {
@@ -87,7 +87,7 @@ namespace AgroApp.Forms
             dataGridViewTool.Columns[1].Width = dataGridViewTool.Width;
             dataGridViewTool.Rows.Add(new object[] { DBNull.Value, "(brak)" });
 
-            List<object[]> tools = dboperator.getTools();
+            List<object[]> tools = dboperator.getAllTools();
 
             for (int i = 0; i < tools.Count; i++)
             {

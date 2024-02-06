@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace AgroApp.Logic
 {
-    public class Employee
+    public class ActivityType
     {
         private int id;
-        private string name;
-        
+        private string type;
 
         public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }        
+        public string Type { get => type; set => type = value; }
 
-        public Employee(int id, string name)
+        public ActivityType(int id, string type) 
         {
             this.id = id;
-            this.name = name;            
+            this.type = type;
         }
     }
 }
