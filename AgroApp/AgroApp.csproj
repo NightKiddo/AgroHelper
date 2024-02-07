@@ -186,7 +186,6 @@
     </Compile>
     <Compile Include="Logic\Activity.cs" />
     <Compile Include="Logic\ClassTypes\ActivityType.cs" />
-    <Compile Include="Logic\CollectionBase.cs" />
     <Compile Include="Logic\DBControl\DBOperator.cs" />
     <Compile Include="Logic\DBControl\DeleteQuery.cs" />
     <Compile Include="Logic\DBControl\InsertQuery.cs" />
@@ -238,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddTool.resx">
       <DependentUpon>FormAddTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCharts.resx">
       <DependentUpon>FormCharts.cs</DependentUpon>

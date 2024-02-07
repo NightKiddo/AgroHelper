@@ -33,8 +33,6 @@
             this.buttonAddEmployee = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.employeeid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
@@ -96,9 +94,6 @@
             this.dataGridViewEmployees.AllowUserToResizeRows = false;
             this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployees.ColumnHeadersVisible = false;
-            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeid,
-            this.employeeName});
             this.dataGridViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewEmployees.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewEmployees.MultiSelect = false;
@@ -109,19 +104,6 @@
             this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmployees.Size = new System.Drawing.Size(582, 140);
             this.dataGridViewEmployees.TabIndex = 0;
-            // 
-            // employeeid
-            // 
-            this.employeeid.HeaderText = "id";
-            this.employeeid.Name = "employeeid";
-            this.employeeid.ReadOnly = true;
-            this.employeeid.Visible = false;
-            // 
-            // employeeName
-            // 
-            this.employeeName.HeaderText = "name";
-            this.employeeName.Name = "employeeName";
-            this.employeeName.ReadOnly = true;
             // 
             // buttonDelete
             // 
@@ -205,7 +187,5 @@
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
         private System.Windows.Forms.Button buttonDeleteEmployee;
         private System.Windows.Forms.Button buttonAddEmployee;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeName;
     }
 }

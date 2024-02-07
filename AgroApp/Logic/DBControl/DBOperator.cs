@@ -130,6 +130,31 @@ namespace AgroApp.Logic
             noteTypesCollection = getNoteTypes();
         }
 
+        public Journal getJournal(Farm farm)
+        {
+            string query = "SELECT * FROM allJournalsView";
+            connect();
+            conn.Open();
+
+            command = new SqlCommand(query, conn);
+            dataReader = command.ExecuteReader();
+
+            Journal journal = null;
+
+            while (dataReader.Read())
+            {                
+                int farmId = dataReader.GetInt32(1);
+                if(farm.Id == farmId)
+                {
+                    int journalId = dataReader.GetInt32(0);
+                    journal = new Journal(journalId);
+                    break;
+                }
+            }
+
+            return journal;
+        }
+
         public List<PlantType> getPlantTypes()
         {
             string query = "SELECT * FROM plantTypesView";
@@ -172,6 +197,21 @@ namespace AgroApp.Logic
                 int farmId = dataReader.GetInt32(0);
                 string farmName = dataReader.GetString(1);
                 Farm farm = new Farm(farmId, farmName);
+                farm.FieldsList = getFields(farm);
+                farm.GaragesList = getGarages(farm);
+                foreach(Garage g in farm.GaragesList)
+                {
+                    g.MachinesList = getMachines(g.Id);
+                    g.ToolsList = getTools(g.Id);
+                }
+                farm.StoragesList = getStorages(farm);
+                foreach(Storage s in farm.StoragesList)
+                {
+                    s.ResourcesList = getResources(s);
+                }
+                farm.Journal = getJournal(farm);
+                farm.Journal.ActivitiesList = getActivities(farm);
+                farm.Journal.NotesList = getNotes(farm);
                 rows.Add(farm);
             }
             dataReader.Close();
@@ -182,7 +222,7 @@ namespace AgroApp.Logic
 
         public List<Field> getFields(Farm farm)
         {
-            string query = "SELECT * FROM fieldsView" + user.Id + "WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM fieldsView" + user.Id + " WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -413,7 +453,7 @@ namespace AgroApp.Logic
             while (dataReader.Read())
             {
                 int machineId = dataReader.GetInt32(0);
-                string machineName = dataReader.GetString(1);
+                string machineName = dataReader.GetString(2);
                 int mileage = 0;
                 MachineType machineType = null;
                 DateTime inspection = DateTime.MinValue;
@@ -871,8 +911,16 @@ namespace AgroApp.Logic
             int.TryParse(output, out id);
 
             user = new User(id, login, password);
-            user.FarmsList = getFarms();
             user.EmployeesList = getEmployees();
+            user.FarmsList = getFarms();
+            
+
+            foreach(Farm f in user.FarmsList)
+            {
+                f.FieldsList = getFields(f);
+                f.GaragesList = getGarages(f);
+                f.StoragesList = getStorages(f);
+            }
 
             return id;
         }

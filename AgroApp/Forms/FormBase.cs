@@ -18,9 +18,14 @@ namespace AgroApp.Forms
         {
             InitializeComponent();
             this.Visible = false;
+        }
+
+        private void FormBase_Load(object sender, EventArgs e)
+        {
             FormLogin formLogin = new FormLogin();
             formLogin.Owner = this;
             formLogin.ShowDialog();
+            this.Close();
         }
     }
 }

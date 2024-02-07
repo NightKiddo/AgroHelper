@@ -110,7 +110,7 @@
             this.textBoxLogin.Size = new System.Drawing.Size(165, 20);
             this.textBoxLogin.TabIndex = 0;
             // 
-            // LoginForm
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +119,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "LoginForm";
+            this.Name = "FormLogin";
             this.Text = "Logowanie";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

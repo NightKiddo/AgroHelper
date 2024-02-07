@@ -16,7 +16,7 @@ namespace AgroApp.Forms
 {
     public partial class FormShowFarm : Form
     {
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         int farmId;
         Farm farm;
         public FormShowFarm(int farmId)

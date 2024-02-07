@@ -34,16 +34,20 @@ namespace AgroApp.Forms
             dataGridViewFarms.Columns[0].Visible = false;
             dataGridViewFarms.Columns[2].Visible = false;
             dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
+
+            dataGridViewFarms.ClearSelection();
         }
 
         private void loadEmployees()
         {
-            dataGridViewEmployees.Rows.Clear();
+            dataGridViewEmployees.Rows.Clear();            
             
-            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
-            dataGridViewEmployees.DataSource = FormBase.dboperator.getEmployees();
-            
+            var source = new BindingSource();
+            source.DataSource = FormBase.dboperator.getEmployees();
+            dataGridViewEmployees.DataSource = source;
 
+            dataGridViewEmployees.Columns[0].Visible = false;
+            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
             dataGridViewEmployees.ClearSelection();
         }
 
@@ -60,7 +64,7 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-                FormShowFarm formShowFarm = new FormShowFarm(farmId);
+            FormShowFarm formShowFarm = new FormShowFarm(farmId);
             formShowFarm.ShowDialog();
         }
 
