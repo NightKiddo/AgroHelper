@@ -15,9 +15,9 @@ namespace AgroApp.Logic
         private DateTime start_date;
         private DateTime finish_date;
         private Field field;
-        private float value;
+        private double value;
 
-        public Note(int id, string name, NoteType type, string description, DateTime start_date, DateTime finish_date, Field field, float value)
+        public Note(int id, string name, NoteType type, string description, DateTime start_date, DateTime finish_date, Field field, double value)
         {
             this.Id = id;
             this.Name = name;
@@ -35,7 +35,7 @@ namespace AgroApp.Logic
         public string Description { get => description; set => description = value; }
         public DateTime Start_date { get => start_date; set => start_date = value; }
         public DateTime Finish_date { get => finish_date; set => finish_date = value; }
-        public float Value { get => value; set => this.value = value; }
+        public double Value { get => value; set => this.value = value; }
         internal Field Field { get => field; set => field = value; }
     }
 }

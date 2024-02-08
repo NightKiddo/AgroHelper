@@ -136,15 +136,15 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             Journal journal = null;
 
             while (dataReader.Read())
-            {                
+            {
                 int farmId = dataReader.GetInt32(1);
-                if(farm.Id == farmId)
+                if (farm.Id == farmId)
                 {
                     int journalId = dataReader.GetInt32(0);
                     journal = new Journal(journalId);
@@ -199,13 +199,13 @@ namespace AgroApp.Logic
                 Farm farm = new Farm(farmId, farmName);
                 farm.FieldsList = getFields(farm);
                 farm.GaragesList = getGarages(farm);
-                foreach(Garage g in farm.GaragesList)
+                foreach (Garage g in farm.GaragesList)
                 {
                     g.MachinesList = getMachines(g.Id);
                     g.ToolsList = getTools(g.Id);
                 }
                 farm.StoragesList = getStorages(farm);
-                foreach(Storage s in farm.StoragesList)
+                foreach (Storage s in farm.StoragesList)
                 {
                     s.ResourcesList = getResources(s);
                 }
@@ -226,8 +226,8 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Field> fields = new List<Field>();
 
@@ -273,7 +273,7 @@ namespace AgroApp.Logic
             List<Plant> plants = new List<Plant>();
             while (dataReader.Read())
             {
-                PlantType type = plantTypesCollection.Find(x=>x.Id == dataReader.GetInt32(2));
+                PlantType type = plantTypesCollection.Find(x => x.Id == dataReader.GetInt32(2));
                 Plant plant = new Plant(dataReader.GetInt32(0), dataReader.GetString(1), type);
                 plants.Add(plant);
             }
@@ -396,8 +396,8 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Garage> garages = new List<Garage>();
             while (dataReader.Read())
@@ -419,8 +419,8 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Storage> storages = new List<Storage>();
             while (dataReader.Read())
@@ -444,8 +444,8 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(queryMachines, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(queryMachines, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Machine> machines = new List<Machine>();
             Machine machine;
@@ -457,27 +457,27 @@ namespace AgroApp.Logic
                 int mileage = 0;
                 MachineType machineType = null;
                 DateTime inspection = DateTime.MinValue;
-                float fuel = 0;
-
-                if (dataReader.GetValue(2) != DBNull.Value)
-                {
-                    mileage = dataReader.GetInt32(2);
-                }
+                double fuel = 0;
 
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
-                    int machineTypeId = dataReader.GetInt32(3);
-                    machineType = machineTypesCollection.Find(x => x.Id == machineTypeId);
+                    mileage = dataReader.GetInt32(3);
                 }
 
                 if (dataReader.GetValue(4) != DBNull.Value)
                 {
-                    inspection = DateTime.Parse(dataReader.GetValue(4).ToString());
+                    int machineTypeId = dataReader.GetInt32(4);
+                    machineType = machineTypesCollection.Find(x => x.Id == machineTypeId);
                 }
 
                 if (dataReader.GetValue(5) != DBNull.Value)
                 {
-                    fuel = dataReader.GetFloat(5);
+                    inspection = DateTime.Parse(dataReader.GetValue(5).ToString());
+                }
+
+                if (dataReader.GetValue(6) != DBNull.Value)
+                {
+                    fuel = dataReader.GetDouble(6);
                 }
 
                 machine = new Machine(machineId, machineName, mileage, machineType, inspection, fuel);
@@ -496,13 +496,13 @@ namespace AgroApp.Logic
 
         public List<Tool> getTools(int garageId)
         {
-            string queryTools = "SELECT * FROM toolsView WHERE t.garage = " + garageId;
+            string queryTools = "SELECT * FROM toolsView WHERE garage = " + garageId;
 
             connect();
             conn.Open();
 
-            command = new SqlCommand(queryTools, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(queryTools, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Tool> tools = new List<Tool>();
             while (dataReader.Read())
@@ -536,13 +536,13 @@ namespace AgroApp.Logic
 
         public List<Resource> getResources(Storage storage)
         {
-            string query = "SELECT * WHERE storage = " + storage.Id;
+            string query = "SELECT * FROM resourcesView WHERE storageId = " + storage.Id;
 
             connect();
             conn.Open();
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Resource> resources = new List<Resource>();
             while (dataReader.Read())
@@ -550,7 +550,7 @@ namespace AgroApp.Logic
                 int resourceId = dataReader.GetInt32(0);
                 string resourceName = dataReader.GetString(1);
                 ResourceType type = null;
-                float amount = 0;
+                double amount = 0;
 
                 if (dataReader.GetValue(2) != DBNull.Value)
                 {
@@ -560,7 +560,7 @@ namespace AgroApp.Logic
 
                 if (dataReader.GetValue(3) != DBNull.Value)
                 {
-                    amount = dataReader.GetFloat(3);
+                    amount = dataReader.GetDouble(3);
                 }
 
 
@@ -580,8 +580,8 @@ namespace AgroApp.Logic
             connect();
             conn.Open();
 
-            command = new SqlCommand(queryActivities, conn);
-            dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(queryActivities, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
 
             List<Activity> activities = new List<Activity>();
 
@@ -647,11 +647,23 @@ namespace AgroApp.Logic
                     }
                 }
 
-                float value = 0;
+                Resource resource = null;
 
                 if (dataReader.GetValue(10) != DBNull.Value)
                 {
-                    value = dataReader.GetFloat(10);
+                    int resourceId = dataReader.GetInt32(10);
+                    foreach (Storage s in farm.StoragesList)
+                    {
+                        resource = s.ResourcesList.Find(x => x.Id == resourceId);
+                        break;
+                    }
+                }
+
+                double value = 0;
+
+                if (dataReader.GetValue(10) != DBNull.Value)
+                {
+                    value = dataReader.GetDouble(10);
                 }
 
                 Activity activity = new Activity(
@@ -664,6 +676,7 @@ namespace AgroApp.Logic
                     employee,
                     machine,
                     tool,
+                    resource,
                     value
                     );
 
@@ -678,11 +691,13 @@ namespace AgroApp.Logic
 
         public List<Note> getNotes(Farm farm)
         {
-            string queryNotes = "SELECT * FROM notesJournalEntriesView WHERE journalId = " + farm.Journal.Id;
+            string queryNotes = "SELECT * FROM notesJournalEntriesView WHERE journal = " + farm.Journal.Id;
+            connect();
+            conn.Open();
 
-            command = new SqlCommand(queryNotes, conn);
-            dataReader = command.ExecuteReader();
-
+            SqlCommand command = new SqlCommand(queryNotes, conn);
+            SqlDataReader dataReader = command.ExecuteReader();
+            
             List<Note> notes = new List<Note>();
 
             while (dataReader.Read())
@@ -703,22 +718,22 @@ namespace AgroApp.Logic
                     type = noteTypesCollection.Find(x => x.Id == noteTypeId);
                 }
 
-                DateTime start = DateTime.Parse(dataReader.GetValue(3).ToString());
-                DateTime finish = DateTime.Parse(dataReader.GetValue(4).ToString());
+                DateTime start = DateTime.Parse(dataReader.GetValue(4).ToString());
+                DateTime finish = DateTime.Parse(dataReader.GetValue(5).ToString());
 
                 Field field = null;
 
-                if (dataReader.GetValue(5) != DBNull.Value)
+                if (dataReader.GetValue(6) != DBNull.Value)
                 {
-                    int fieldId = dataReader.GetInt32(5);
+                    int fieldId = dataReader.GetInt32(6);
                     field = farm.FieldsList.Find(x => x.Id == fieldId);
                 }
 
-                float value = 0;
+                double value = 0;
 
-                if(dataReader.GetValue(6) != DBNull.Value)
+                if (dataReader.GetValue(7) != DBNull.Value)
                 {
-                    value = dataReader.GetFloat(6);
+                    value = dataReader.GetDouble(7);
                 }
 
                 Note note = new Note(noteId, noteName, type, noteDescrition, start, finish, field, value);
@@ -913,9 +928,9 @@ namespace AgroApp.Logic
             user = new User(id, login, password);
             user.EmployeesList = getEmployees();
             user.FarmsList = getFarms();
-            
 
-            foreach(Farm f in user.FarmsList)
+
+            foreach (Farm f in user.FarmsList)
             {
                 f.FieldsList = getFields(f);
                 f.GaragesList = getGarages(f);

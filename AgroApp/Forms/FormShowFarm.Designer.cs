@@ -41,22 +41,10 @@
             this.usuńToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewGarages = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewStorages = new System.Windows.Forms.DataGridView();
-            this.idStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridViewFields = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Plant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.wróćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +61,6 @@
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,7 +121,6 @@
             this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column10,
-            this.identifier,
             this.Column11,
             this.Column12,
             this.Column13,
@@ -219,13 +205,6 @@
             this.dataGridViewGarages.AllowUserToResizeRows = false;
             this.dataGridViewGarages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGarages.ColumnHeadersVisible = false;
-            this.dataGridViewGarages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
             this.dataGridViewGarages.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridViewGarages.Location = new System.Drawing.Point(236, 0);
             this.dataGridViewGarages.MultiSelect = false;
@@ -240,43 +219,6 @@
             this.dataGridViewGarages.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGarages_CellDoubleClick);
             this.dataGridViewGarages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewGarages_MouseClick);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // dataGridViewStorages
             // 
             this.dataGridViewStorages.AllowUserToAddRows = false;
@@ -285,9 +227,6 @@
             this.dataGridViewStorages.AllowUserToResizeRows = false;
             this.dataGridViewStorages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStorages.ColumnHeadersVisible = false;
-            this.dataGridViewStorages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idStorage,
-            this.nameStorage});
             this.dataGridViewStorages.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridViewStorages.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewStorages.MultiSelect = false;
@@ -301,19 +240,6 @@
             this.dataGridViewStorages.TabIndex = 0;
             this.dataGridViewStorages.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStorages_CellDoubleClick);
             this.dataGridViewStorages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewStorages_MouseClick);
-            // 
-            // idStorage
-            // 
-            this.idStorage.HeaderText = "Column1";
-            this.idStorage.Name = "idStorage";
-            this.idStorage.ReadOnly = true;
-            this.idStorage.Visible = false;
-            // 
-            // nameStorage
-            // 
-            this.nameStorage.HeaderText = "Column1";
-            this.nameStorage.Name = "nameStorage";
-            this.nameStorage.ReadOnly = true;
             // 
             // panel2
             // 
@@ -342,11 +268,6 @@
             this.dataGridViewFields.AllowUserToResizeRows = false;
             this.dataGridViewFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFields.ColumnHeadersVisible = false;
-            this.dataGridViewFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name,
-            this.ColumnDescription,
-            this.Plant});
             this.dataGridViewFields.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewFields.Location = new System.Drawing.Point(0, 24);
             this.dataGridViewFields.MultiSelect = false;
@@ -359,31 +280,6 @@
             this.dataGridViewFields.TabIndex = 0;
             this.dataGridViewFields.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridViewFields.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewFields_MouseClick);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Column1";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Column1";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // ColumnDescription
-            // 
-            this.ColumnDescription.HeaderText = "Description";
-            this.ColumnDescription.Name = "ColumnDescription";
-            this.ColumnDescription.ReadOnly = true;
-            // 
-            // Plant
-            // 
-            this.Plant.HeaderText = "Plant";
-            this.Plant.Name = "Plant";
-            this.Plant.ReadOnly = true;
             // 
             // menuStrip1
             // 
@@ -498,13 +394,6 @@
             this.Column10.ReadOnly = true;
             this.Column10.Visible = false;
             // 
-            // identifier
-            // 
-            this.identifier.HeaderText = "identifier";
-            this.identifier.Name = "identifier";
-            this.identifier.ReadOnly = true;
-            this.identifier.Visible = false;
-            // 
             // Column11
             // 
             this.Column11.HeaderText = "tytul";
@@ -574,20 +463,8 @@
         private System.Windows.Forms.DataGridView dataGridViewFields;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Plant;
         private System.Windows.Forms.DataGridView dataGridViewGarages;
         private System.Windows.Forms.DataGridView dataGridViewStorages;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idStorage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameStorage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -613,7 +490,6 @@
         private System.Windows.Forms.ToolStripMenuItem wróćToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analizaToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;

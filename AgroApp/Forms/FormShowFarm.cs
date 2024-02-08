@@ -17,13 +17,12 @@ namespace AgroApp.Forms
     public partial class FormShowFarm : Form
     {
         DBOperator dboperator = FormBase.dboperator;
-        int farmId;
+
         Farm farm;
-        public FormShowFarm(int farmId)
+        public FormShowFarm(Farm farm)
         {
             InitializeComponent();
-            this.farmId = farmId;
-            farm = dboperator.user.FarmsList.Find(x => x.Id == farmId);
+            this.farm = farm;
             loadFields();
             loadGarages();
             loadStorages();
@@ -34,7 +33,7 @@ namespace AgroApp.Forms
         private void setLabel()
         {
             string text = "";
-            string farmName = dboperator.select("SELECT name FROM Farms WHERE id = " + farmId).ToString();
+            string farmName = farm.Name;
             text += farmName;
             string date = DateTime.Now.ToShortDateString();
             text += ", " + date;
@@ -42,32 +41,37 @@ namespace AgroApp.Forms
         }
 
         private void loadFields()
-        {
-            dataGridViewFields.Rows.Clear();
-
+        {            
+            dataGridViewFields.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = farm.FieldsList;
+            dataGridViewFields.DataSource = source;
 
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
             dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
             dataGridViewFields.Columns[3].Width = (int)(dataGridViewFields.Width * 0.2);
 
-            dataGridViewFields.DataSource = farm.FieldsList;
-
             dataGridViewFields.ClearSelection();
         }
 
         private void loadGarages()
-        {
-            dataGridViewGarages.Rows.Clear();
+        {            
+            dataGridViewGarages.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = farm.GaragesList;
+            dataGridViewGarages.DataSource = source;
 
 
             dataGridViewGarages.Columns[1].Width = dataGridViewGarages.Width;
-            dataGridViewGarages.DataSource = farm.GaragesList;
+            dataGridViewGarages.ClearSelection();
         }
 
         private void loadStorages()
-        {
-            dataGridViewStorages.Rows.Clear();
-
+        {            
+            dataGridViewStorages.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = farm.StoragesList;
+            dataGridViewStorages.DataSource = source;
 
             dataGridViewStorages.Columns[1].Width = dataGridViewStorages.Width;
             dataGridViewStorages.DataSource = farm.StoragesList;
@@ -79,34 +83,45 @@ namespace AgroApp.Forms
         {
             dataGridViewJournal.Rows.Clear();
 
-            for (int i = 0; i < dataGridViewJournal.Columns.Count; i++)
-            {
-                dataGridViewJournal.Columns[i].Width = dataGridViewJournal.Width / 5;
-            }
+            List<object[]> journalEntries = new List<object[]>();
 
             for (int i = 0; i < farm.Journal.ActivitiesList.Count; i++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.Cells[0].Value = farm.Journal.ActivitiesList[i].Name;
-                row.Cells[1].Value = farm.Journal.ActivitiesList[i].Start_date;
-                row.Cells[2].Value = farm.Journal.ActivitiesList[i].Finish_date;
-                row.Cells[3].Value = farm.Journal.ActivitiesList[i].Field.Name;
-
-                dataGridViewJournal.Rows.Add(row);
+                Activity activity = farm.Journal.ActivitiesList[i];
+                object[] activityString = new object[] 
+                { activity.Id,
+                activity.Name,
+                activity.Start_date.ToString("dd/MM/yyyy"),
+                activity.Finish_date.ToString("dd/MM/yyyy"),
+                activity.Field.Name,
+                activity.Type.Type
+                };
+                
+                journalEntries.Add(activityString);
             }
 
             for (int i = 0; i < farm.Journal.NotesList.Count; i++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.Cells[0].Value = farm.Journal.NotesList[i].Name;
-                row.Cells[1].Value = farm.Journal.NotesList[i].Start_date;
-                row.Cells[2].Value = farm.Journal.NotesList[i].Finish_date;
-                row.Cells[3].Value = farm.Journal.NotesList[i].Field.Name;
+                Note note = farm.Journal.NotesList[i];
+                object[] noteString = new object[]
+                {
+                    note.Id,
+                    note.Name,
+                    note.Start_date.ToString("dd/MM/yyyy"),
+                    note.Finish_date.ToString("dd/MM/yyyy"),
+                    note.Field.Name,
+                    note.Type.Type
+                };
 
-                dataGridViewJournal.Rows.Add(row);
+                journalEntries.Add(noteString);
             }
 
-            dataGridViewJournal.Sort(dataGridViewJournal.Columns[3], ListSortDirection.Descending);
+            for(int i = 0; i < journalEntries.Count; i++)
+            {
+                dataGridViewJournal.Rows.Add(journalEntries[i]);
+            }
+
+            dataGridViewJournal.Sort(dataGridViewJournal.Columns[2], ListSortDirection.Descending);
             dataGridViewJournal.ClearSelection();
 
             ContextMenu cm = new ContextMenu();
@@ -136,15 +151,13 @@ namespace AgroApp.Forms
 
         private void pracęToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int journalId;
-            int.TryParse(dboperator.select("SELECT id FROM Journals WHERE farm = " + farmId).ToString(), out journalId);
             FormAddActivity formAddActivity = new FormAddActivity(farm);
             formAddActivity.ShowDialog();
             loadJournal();
         }
 
         private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             FormAddNote formAddNote = new FormAddNote(farm);
             formAddNote.ShowDialog();
             loadJournal();
@@ -192,14 +205,14 @@ namespace AgroApp.Forms
 
         private void dodajToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormAddGarage formAddGarage = new FormAddGarage(farmId, 1);
+            FormAddGarage formAddGarage = new FormAddGarage(farm.Id, 1);
             formAddGarage.ShowDialog();
             loadGarages();
         }
 
         private void dodajToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormAddStorage formAddStorage = new FormAddStorage(farmId, 1);
+            FormAddStorage formAddStorage = new FormAddStorage(farm.Id, 1);
             formAddStorage.ShowDialog();
             loadStorages();
         }
@@ -276,7 +289,7 @@ namespace AgroApp.Forms
 
         private void dodajToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            FormAddField formAddField = new FormAddField(farmId);
+            FormAddField formAddField = new FormAddField(farm.Id);
             formAddField.ShowDialog();
             dataGridViewFields.Rows.Clear();
             loadFields();

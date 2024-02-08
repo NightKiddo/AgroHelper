@@ -11,9 +11,9 @@ namespace AgroApp.Logic
         private int id;
         private string name;
         private ResourceType type;
-        private float amount;
+        private double amount;
 
-        public Resource(int id, string name, ResourceType type, float amount)
+        public Resource(int id, string name, ResourceType type, double amount)
         {
             this.Id = id;
             this.name = name;
@@ -23,6 +23,6 @@ namespace AgroApp.Logic
 
         public int Id { get => id; set => id = value; }
         public ResourceType Type { get => type; set => type = value; }
-        public float Amount { get => amount; set => amount = value; }
+        public double Amount { get => amount; set => amount = value; }
     }
 }

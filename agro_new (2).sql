@@ -115,6 +115,7 @@ CREATE TABLE Storages(
 
 CREATE TABLE Resources(
 	id int PRIMARY KEY IDENTITY(1,1),
+	[name] VARCHAR(100) NOT NULL,
 	type int FOREIGN KEY REFERENCES Resource_types(id),
 	storage int FOREIGN KEY REFERENCES Storages(id),
 	amount float DEFAULT 0
@@ -137,6 +138,7 @@ CREATE TABLE Activities(
 	employee int FOREIGN KEY REFERENCES Employees(id),
 	machine int FOREIGN KEY REFERENCES Machines(id),
 	tool int FOREIGN KEY REFERENCES Tools(id),
+	[resource] int FOREIGN KEY REFERENCES Resources(id),
 	value float,
 )
 
@@ -296,15 +298,15 @@ CREATE VIEW activity_typesView AS SELECT * FROM Activity_types;
 GO
 CREATE VIEW note_typesView AS SELECT id, type FROM Note_types;
 GO
-CREATE VIEW toolsView AS SELECT t.id,t.name,t.mileage,tt.type FROM Tools as t JOIN Tool_types as tt on t.type = tt.id; 
+CREATE VIEW toolsView AS SELECT t.id,t.name,t.mileage,tt.id as type, t.garage FROM Tools as t JOIN Tool_types as tt on t.type = tt.id; 
 GO
 CREATE VIEW activitiesView AS SELECT  name, description, start_date, finish_date, field, type, employee, machine, tool, id FROM Activities;
 GO
 CREATE VIEW notesView AS SELECT name, description, start_date, finish_date, field, id FROM Notes;
 GO 
-CREATE VIEW notesJournalEntriesView AS SELECT n.id, n.name, n.description, nt.id as type, n.start_date, n.finish_date, f.id as field, n.value FROM Notes as n JOIN Fields as f on n.field = f.id JOIN Note_types as nt ON n.type = nt.id;
+CREATE VIEW notesJournalEntriesView AS SELECT n.id, n.name, n.description, nt.id as type, n.start_date, n.finish_date, f.id as field, n.value, n.journal FROM Notes as n JOIN Fields as f on n.field = f.id JOIN Note_types as nt ON n.type = nt.id;
 GO
-CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.journal as journalId FROM Activities as a JOIN Fields as f on a.field = f.id JOIN Activity_types as at ON a.type = at.id
+CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.machine ,a.tool, a.[resource], a.journal as journalId FROM Activities as a JOIN Fields as f on a.field = f.id JOIN Activity_types as at ON a.type = at.id
 GO
 CREATE VIEW farmsView AS SELECT * FROM Farms;
 GO
@@ -316,7 +318,9 @@ CREATE VIEW garagesView1 AS SELECT g.id, g.name, g.farm FROM Garages as g JOIN F
 GO
 CREATE VIEW storagesView1 AS SELECT s.id, s.[name], s.farm FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm;
 GO
-CREATE VIEW machinesView AS SELECT m.id, m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id;
+CREATE VIEW machinesView AS SELECT m.id, m.garage, m.name, m.mileage, mt.id as type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id;
 GO
-CREATE VIEW resourcesView1 AS SELECT r.id as resourceId, rt.type, r.amount, st.id as storageId FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id;
+CREATE VIEW resourcesView AS SELECT r.id as resourceId, r.name as resourceName, rt.id as type, r.amount, st.id as storageId FROM Resources as r JOIN Resource_types as rt ON r.type = rt.id JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id;
+GO
+INSERT INTO Resources (name, type, storage, amount) VALUES ('zasob1', 1,1,12.43), ('zasob2', 2,1,10)
 

@@ -64,7 +64,9 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-            FormShowFarm formShowFarm = new FormShowFarm(farmId);
+            Farm farm = FormBase.dboperator.user.FarmsList.Find(x=> x.Id == farmId);
+
+            FormShowFarm formShowFarm = new FormShowFarm(farm);
             formShowFarm.ShowDialog();
         }
 

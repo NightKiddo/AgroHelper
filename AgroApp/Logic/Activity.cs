@@ -18,9 +18,10 @@ namespace AgroApp.Logic
         private Employee employee;
         private Machine machine;
         private Tool tool;
-        private float value;
+        private Resource resource;
+        private double value;
 
-        public Activity(int id, string name, string description, DateTime start_date, DateTime finish_date, ActivityType type, Field field, Employee employee, Machine machine, Tool tool, float value)
+        public Activity(int id, string name, string description, DateTime start_date, DateTime finish_date, ActivityType type, Field field, Employee employee, Machine machine, Tool tool,  Resource resource, double value)
         {
             this.Id = id;
             this.Name = name;            
@@ -32,6 +33,7 @@ namespace AgroApp.Logic
             this.Employee = employee;
             this.Machine = machine;
             this.Tool = tool;
+            this.Resource = resource;
             this.Value = value;
         }
 
@@ -41,7 +43,8 @@ namespace AgroApp.Logic
         public DateTime Start_date { get => start_date; set => start_date = value; }
         public DateTime Finish_date { get => finish_date; set => finish_date = value; }
         public ActivityType Type { get => type; set => type = value; }
-        public float Value { get => value; set => this.value = value; }        
+        public double Value { get => value; set => this.value = value; }
+        public Resource Resource { get => resource; set => resource = value; }
         internal Field Field { get => field; set => field = value; }
         internal Employee Employee { get => employee; set => employee = value; }
         internal Machine Machine { get => machine; set => machine = value; }

@@ -13,9 +13,9 @@ namespace AgroApp.Logic
         private int mileage;
         private MachineType type;
         private DateTime inspection_date;
-        private float fuel;
+        private double fuel;
 
-        public Machine(int id, string name, int mileage, MachineType type, DateTime inspection_date, float fuel)
+        public Machine(int id, string name, int mileage, MachineType type, DateTime inspection_date, double fuel)
         {
             this.Id = id;
             this.Name = name;
@@ -30,6 +30,6 @@ namespace AgroApp.Logic
         public int Mileage { get => mileage; set => mileage = value; }
         public MachineType Type { get => type; set => type = value; }
         public DateTime Inspection_date { get => inspection_date; set => inspection_date = value; }
-        public float Fuel { get => fuel; set => fuel = value; }
+        public double Fuel { get => fuel; set => fuel = value; }
     }
 }
