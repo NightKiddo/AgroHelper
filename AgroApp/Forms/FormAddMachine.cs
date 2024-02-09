@@ -15,8 +15,7 @@ namespace AgroApp.Forms
     public partial class FormAddMachine : Form
     {
         int garageId;
-        List<MachineType> machineTypes;
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddMachine(int garageId)
         {
             InitializeComponent();
@@ -26,13 +25,12 @@ namespace AgroApp.Forms
 
         private void loadMachineTypes() 
         {
+            dataGridView1.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = dboperator.machineTypesCollection;
+            dataGridView1.DataSource = source;
+            dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            machineTypes = dboperator.getMachineTypes();
-            for(int i=0; i<machineTypes.Count; i++)
-            {
-                dataGridView1.Rows.Add(machineTypes[i]);
-            }
-
             dataGridView1.ClearSelection();
         }
 
@@ -41,9 +39,9 @@ namespace AgroApp.Forms
             if (textBox1.Text != String.Empty && dataGridView1.SelectedRows.Count != 0)
             {
                 InsertQuery query;
-                if (dateTimePicker1.Value == DateTime.Today)
+                if (dateTimePicker1.Value.Date == DateTime.Today.Date)
                 {
-                    string values = "'" + textBox1.Text + "', " + dataGridView1.SelectedRows[0].Cells[0].Value + ", " + numericUpDown2.Value + ", " + DBNull.Value + ", " + numericUpDown1.Value+", "+garageId;
+                    string values = "'" + textBox1.Text + "', " + dataGridView1.SelectedRows[0].Cells[0].Value + ", " + numericUpDown2.Value + ", NULL , " + numericUpDown1.Value+", "+garageId;
                     query = new InsertQuery("Machines", "name,type,mileage,inspection_date,fuel,garage", values);
                 }
                 else 
@@ -60,15 +58,18 @@ namespace AgroApp.Forms
                 if (dboperator.insert(query) != 0)
                 {
                     MessageBox.Show("Dodano pomyślnie");
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
                     MessageBox.Show("Błąd");
+                    this.DialogResult = DialogResult.None;
                 }
             }
             else 
             {
                 MessageBox.Show("Błąd");
+                this.DialogResult = DialogResult.None;
             }
         }
 

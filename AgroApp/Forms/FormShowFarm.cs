@@ -47,6 +47,7 @@ namespace AgroApp.Forms
             source.DataSource = farm.FieldsList;
             dataGridViewFields.DataSource = source;
 
+            dataGridViewFields.Columns[0].Visible = false;
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
             dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
             dataGridViewFields.Columns[3].Width = (int)(dataGridViewFields.Width * 0.2);
@@ -60,8 +61,7 @@ namespace AgroApp.Forms
             var source = new BindingSource();
             source.DataSource = farm.GaragesList;
             dataGridViewGarages.DataSource = source;
-
-
+            dataGridViewGarages.Columns[0].Visible = false;
             dataGridViewGarages.Columns[1].Width = dataGridViewGarages.Width;
             dataGridViewGarages.ClearSelection();
         }
@@ -73,6 +73,7 @@ namespace AgroApp.Forms
             source.DataSource = farm.StoragesList;
             dataGridViewStorages.DataSource = source;
 
+            dataGridViewStorages.Columns[0].Visible = false;
             dataGridViewStorages.Columns[1].Width = dataGridViewStorages.Width;
             dataGridViewStorages.DataSource = farm.StoragesList;
 

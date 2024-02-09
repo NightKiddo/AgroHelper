@@ -30,17 +30,20 @@ namespace AgroApp.Forms
 
         public void loadMachines() 
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.DataSource = garage.MachinesList;
-
+            garage.MachinesList = dboperator.getMachines(garage.Id);
+            dataGridView1.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = garage.MachinesList;
+            dataGridView1.DataSource = source;            
             dataGridView1.ClearSelection();
         }
 
         public void loadTools() 
         {
-            dataGridView2.Rows.Clear();
-            dataGridView2.DataSource = garage.MachinesList;
-
+            dataGridView2.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = garage.ToolsList;
+            dataGridView2.DataSource = source;
             dataGridView2.ClearSelection();
         }
 
@@ -87,8 +90,10 @@ namespace AgroApp.Forms
         private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAddMachine formAddMachine = new FormAddMachine(garageId);
-            formAddMachine.ShowDialog();
-            loadMachines();
+            if(formAddMachine.ShowDialog() == DialogResult.OK)
+            {
+                loadMachines();
+            }
         }
 
         private void usuńToolStripMenuItem_Click(object sender, EventArgs e)

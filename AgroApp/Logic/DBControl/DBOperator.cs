@@ -23,13 +23,13 @@ namespace AgroApp.Logic
         int a = 0;
 
         internal User user;
-        private List<Plant> plantsCollection;
-        private List<PlantType> plantTypesCollection;
-        private List<MachineType> machineTypesCollection;
-        private List<ToolType> toolTypesCollection;
-        private List<ResourceType> resourceTypesCollection;
-        private List<ActivityType> activityTypesCollection;
-        private List<NoteType> noteTypesCollection;
+        public List<Plant> plantsCollection;
+        public List<PlantType> plantTypesCollection;
+        public List<MachineType> machineTypesCollection;
+        public List<ToolType> toolTypesCollection;
+        public List<ResourceType> resourceTypesCollection;
+        public List<ActivityType> activityTypesCollection;
+        public List<NoteType> noteTypesCollection;
 
         public DBOperator()
         {
@@ -405,6 +405,8 @@ namespace AgroApp.Logic
                 int garageId = dataReader.GetInt32(0);
                 string garageName = dataReader.GetString(1);
                 Garage garage = new Garage(garageId, garageName);
+                garage.MachinesList = getMachines(garageId);
+                garage.ToolsList = getTools(garageId);
                 garages.Add(garage);
             }
             dataReader.Close();

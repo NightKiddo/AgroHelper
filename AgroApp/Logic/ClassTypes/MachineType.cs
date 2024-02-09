@@ -14,6 +14,11 @@ namespace AgroApp.Logic
         public int Id { get => id; set => id = value; }
         public string Type{ get => type; set => type = value; }
 
+        public override string ToString()
+        {
+            return type;
+        }
+
         public MachineType(int id, string type) 
         {
             this.id = id;
