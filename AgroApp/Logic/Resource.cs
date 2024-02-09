@@ -16,13 +16,19 @@ namespace AgroApp.Logic
         public Resource(int id, string name, ResourceType type, double amount)
         {
             this.Id = id;
-            this.name = name;
+            this.Name = name;
             this.Type = type;
             this.Amount = amount;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public int Id { get => id; set => id = value; }
         public ResourceType Type { get => type; set => type = value; }
         public double Amount { get => amount; set => amount = value; }
+        public string Name { get => name; set => name = value; }
     }
 }

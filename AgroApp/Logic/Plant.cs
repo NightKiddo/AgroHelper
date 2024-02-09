@@ -19,6 +19,10 @@ namespace AgroApp.Logic
             this.Type = type;
         }
 
+        public override string ToString()
+        {
+            return name;
+        }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public PlantType Type { get => type; set => type = value; }

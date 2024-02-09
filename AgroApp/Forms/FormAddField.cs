@@ -17,8 +17,7 @@ namespace AgroApp.Forms
         int fieldDrawn = 0;
         string coordinates;
         int farmId;
-        DBOperator dboperator = new DBOperator();
-        List<Plant> plants;
+        DBOperator dboperator = FormBase.dboperator;        
         public FormAddField(int farmId)
         {
             InitializeComponent();
@@ -107,10 +106,12 @@ namespace AgroApp.Forms
 
         private void loadPlants() 
         {
-            dataGridView1.Columns[1].Width = dataGridView1.Width;
-            plants = dboperator.getPlants();
+            dataGridView1.AutoGenerateColumns = true;
+            var source = new BindingSource();
+            source.DataSource = dboperator.plantsCollection;
+            dataGridView1.DataSource = source;
 
-            dataGridView1.DataSource = plants;
+            dataGridView1.Columns[1].Width = dataGridView1.Width;            
         }
 
         private void FormAddField_Shown(object sender, EventArgs e)

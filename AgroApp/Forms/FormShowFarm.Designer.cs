@@ -66,6 +66,7 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -125,11 +126,11 @@
             this.Column12,
             this.Column13,
             this.Column14,
-            this.type});
+            this.type,
+            this.deleteColumn});
             this.dataGridViewJournal.ContextMenuStrip = this.contextMenuStripJournal;
             this.dataGridViewJournal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewJournal.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewJournal.MultiSelect = false;
             this.dataGridViewJournal.Name = "dataGridViewJournal";
             this.dataGridViewJournal.ReadOnly = true;
             this.dataGridViewJournal.RowHeadersVisible = false;
@@ -424,6 +425,13 @@
             this.type.Name = "type";
             this.type.ReadOnly = true;
             // 
+            // deleteColumn
+            // 
+            this.deleteColumn.HeaderText = "Column1";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.ReadOnly = true;
+            this.deleteColumn.Visible = false;
+            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,5 +503,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deleteColumn;
     }
 }

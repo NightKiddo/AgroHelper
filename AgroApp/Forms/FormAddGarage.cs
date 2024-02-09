@@ -14,7 +14,7 @@ namespace AgroApp.Forms
     public partial class FormAddGarage : Form
     {
         int farmId, invokeType;
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddGarage(int farmId, int invokeType)
         {
             InitializeComponent();

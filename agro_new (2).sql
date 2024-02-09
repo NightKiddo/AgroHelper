@@ -310,13 +310,13 @@ CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as
 GO
 CREATE VIEW farmsView AS SELECT * FROM Farms;
 GO
-CREATE VIEW employeesView1 AS SELECT id, name FROM Employees WHERE [user] = 1;
+CREATE VIEW employeesView AS SELECT * FROM Employees;
 GO
-CREATE VIEW fieldsView1 AS SELECT fld.id, fld.[name], fld.[description], fld.coordinates, fld.plant, fld.farm FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm;
+CREATE VIEW fieldsView AS SELECT fld.id, fld.[name], fld.[description], fld.coordinates, fld.plant, fld.farm FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm;
 GO
-CREATE VIEW garagesView1 AS SELECT g.id, g.name, g.farm FROM Garages as g JOIN Farms as f on g.farm = f.id WHERE f.[user] = 1;
+CREATE VIEW garagesView AS SELECT g.id, g.name, g.farm FROM Garages as g JOIN Farms as f on g.farm = f.id;
 GO
-CREATE VIEW storagesView1 AS SELECT s.id, s.[name], s.farm FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm;
+CREATE VIEW storagesView AS SELECT s.id, s.[name], s.farm FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm;
 GO
 CREATE VIEW machinesView AS SELECT m.id, m.garage, m.name, m.mileage, mt.id as type, m.inspection_date, m.fuel FROM Machines as m JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id;
 GO

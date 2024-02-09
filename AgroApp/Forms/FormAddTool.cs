@@ -14,9 +14,8 @@ namespace AgroApp.Forms
 {
     public partial class FormAddTool : Form
     {
-        int garageId;
-        List<ToolType> toolTypes;
-        DBOperator dboperator = new DBOperator();
+        int garageId;        
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddTool(int garageId)
         {
             InitializeComponent();
@@ -26,12 +25,11 @@ namespace AgroApp.Forms
 
         private void loadToolTypes()
         {
-            dataGridView1.Columns[1].Width = dataGridView1.Width;
-            toolTypes = dboperator.getToolTypes();
+            dataGridView1.AutoGenerateColumns = true;
 
-            dataGridView1.DataSource = toolTypes;
-
-            dataGridView1.ClearSelection();
+            var source = new BindingSource();
+            source.DataSource = dboperator.toolTypesCollection;
+            dataGridView1.DataSource = source;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

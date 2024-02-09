@@ -15,7 +15,7 @@ namespace AgroApp.Forms
     public partial class FormAddActivity : Form
     {
         Farm farm;
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddActivity(Farm farm)
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace AgroApp.Forms
             loadEmployees();
             loadMachines();
             loadTools();
+            loadResources();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -32,50 +33,105 @@ namespace AgroApp.Forms
             this.Close();
         }
 
+        private void clearDataGridViewSelections()
+        {
+            dataGridViewType.ClearSelection();
+            dataGridViewField.ClearSelection();
+            dataGridViewEmployee.ClearSelection();
+            dataGridViewMachine.ClearSelection();
+            dataGridViewTool.ClearSelection();
+            dataGridViewResource.ClearSelection();
+        }
+
         private void loadFields() 
         {
-            dataGridViewField.Columns[1].Width = dataGridViewField.Width;
-            List<Field> fields = dboperator.getFields(farm);
+            dataGridViewField.AutoGenerateColumns = true;
 
-            dataGridViewField.DataSource = fields;
+            var source = new BindingSource();
+            source.DataSource = farm.FieldsList;
+            dataGridViewField.DataSource = source;
+
+
+            dataGridViewField.Columns[0].Visible = false;
+            dataGridViewField.Columns[2].Visible = false;
+            dataGridViewField.Columns[3].Visible = false;
+            dataGridViewField.Columns[1].Width = (int)(dataGridViewField.Width * 0.33);
+            dataGridViewField.Columns[4].Width = (int)(dataGridViewField.Width * 0.33);
+            dataGridViewField.Columns[5].Width = (int)(dataGridViewField.Width * 0.33);
+            
         }
 
         private void loadTypes()
         {
+            dataGridViewType.AutoGenerateColumns = true;
+
+            var source = new BindingSource();
+            source.DataSource = dboperator.activityTypesCollection;
+            dataGridViewType.DataSource = source;
+
+            dataGridViewType.Columns[0].Visible = false;
             dataGridViewType.Columns[1].Width = dataGridViewField.Width;
-            dataGridViewType.DataSource = dboperator.getActivityTypes();
+
+            
         }
         private void loadEmployees() 
         {
-            dataGridViewEmployee.Columns[1].Width = dataGridViewEmployee.Width;
-            dataGridViewEmployee.Rows.Add(new object[] { DBNull.Value, "(brak)" } );
+            dataGridViewEmployee.AutoGenerateColumns = true;
 
-            dataGridViewEmployee.DataSource = dboperator.user.EmployeesList;
+            var source = new BindingSource();
+            source.DataSource = dboperator.user.EmployeesList;
+            dataGridViewEmployee.DataSource = source;
+
+            dataGridViewEmployee.Columns[0].Visible = false;
+            dataGridViewEmployee.Columns[1].Width = dataGridViewField.Width;
+
+            
         }
 
         private void loadMachines() 
         {
-            dataGridViewMachine.Columns[1].Width = dataGridViewMachine.Width;
-            dataGridViewMachine.Rows.Add(new object[] { DBNull.Value, "(brak)" });
+            dataGridViewMachine.AutoGenerateColumns = true;
 
+            var source = new BindingSource();
+            source.DataSource = farm.getAllMachines();
+            dataGridViewMachine.DataSource = source;
 
-            dataGridViewMachine.DataSource = farm.getAllMachines();
+            dataGridViewMachine.Columns[0].Visible = false;
+            dataGridViewMachine.Columns[2].Visible = false;
+            dataGridViewMachine.Columns[4].Visible = false;
+            dataGridViewMachine.Columns[5].Visible = false;
+            dataGridViewMachine.Columns[1].Width = (int)(dataGridViewField.Width * 0.6);
+            dataGridViewMachine.Columns[3].Width = (int)(dataGridViewField.Width * 0.4);
+
+            
         }
 
         private void loadTools()
         {
-            dataGridViewTool.Columns[1].Width = dataGridViewTool.Width;
-            dataGridViewTool.Rows.Add(new object[] { DBNull.Value, "(brak)" });
+            dataGridViewTool.AutoGenerateColumns = true;
 
-            List<Tool> tools = farm.getAllTools();
+            var source = new BindingSource();
+            source.DataSource = farm.getAllTools();
+            dataGridViewTool.DataSource = source;
+            dataGridViewTool.Columns[0].Visible = false;
+            dataGridViewTool.Columns[1].Width = dataGridViewField.Width;
 
-            dataGridViewTool.DataSource = tools;
+            
         }
 
-        private void FormAddActivity_Shown(object sender, EventArgs e)
+        private void loadResources()
         {
-            dataGridViewField.ClearSelection();
-            dataGridViewType.ClearSelection();
+            dataGridViewResource.AutoGenerateColumns = true;
+
+            var source = new BindingSource();
+            source.DataSource = farm.getAllResources();
+            dataGridViewResource.DataSource = source;
+
+            dataGridViewResource.Columns[0].Visible = false;            
+            dataGridViewResource.Columns[1].Width = (int)(dataGridViewResource.Width * 0.34);
+            dataGridViewResource.Columns[2].Width = (int)(dataGridViewResource.Width * 0.33);
+            dataGridViewResource.Columns[3].Width = (int)(dataGridViewResource.Width * 0.33);
+
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -85,7 +141,7 @@ namespace AgroApp.Forms
                 int chosenField = (int)(dataGridViewField.SelectedRows[0].Cells[0].Value);
                 int chosenType = (int)(dataGridViewType.SelectedRows[0].Cells[0].Value);
                 object chosenEmployee, chosenMachine, chosenTool, value;
-                if (dataGridViewEmployee.SelectedRows[0] == dataGridViewEmployee.Rows[0])
+                if (dataGridViewEmployee.SelectedRows.Count == 0)
                 {
                     chosenEmployee = "NULL";
                 }
@@ -94,7 +150,7 @@ namespace AgroApp.Forms
                     chosenEmployee = (int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value);
                 }
 
-                if (dataGridViewMachine.SelectedRows[0] == dataGridViewMachine.Rows[0])
+                if (dataGridViewMachine.SelectedRows.Count == 0)
                 {
                     chosenMachine = "NULL";
                 }
@@ -103,7 +159,7 @@ namespace AgroApp.Forms
                     chosenMachine = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
                 }
 
-                if (dataGridViewTool.SelectedRows[0] == dataGridViewTool.Rows[0])
+                if (dataGridViewTool.SelectedRows.Count == 0)
                 {
                     chosenTool = "NULL";
                 }
@@ -140,6 +196,23 @@ namespace AgroApp.Forms
                     MessageBox.Show("Dodano");
                 }
             }
+
+            textBox1.Text = string.Empty;
+            richTextBox1.Text = string.Empty;
+            clearDataGridViewSelections();
+            numericUpDown1.Value = 0m;
+            dateTimePicker1.Value = DateTime.Today;
+            dateTimePicker2.Value = DateTime.Today;                        
+        }
+
+        private void FormAddActivity_Load(object sender, EventArgs e)
+        {
+            clearDataGridViewSelections();
+        }
+
+        private void dataGridViewResource_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

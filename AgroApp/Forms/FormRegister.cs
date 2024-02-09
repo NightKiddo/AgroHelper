@@ -13,7 +13,7 @@ namespace AgroApp.Forms
 {
     public partial class FormRegister : Form
     {
-        private DBOperator dboperator = new DBOperator();
+        private DBOperator dboperator = FormBase.dboperator;
         public FormRegister()
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace AgroApp.Forms
             }
             else {
                 MessageBox.Show("Zarejestrowano pomyślnie");
+                this.Close();
             };
 
         }

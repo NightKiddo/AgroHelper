@@ -29,7 +29,7 @@ namespace AgroApp.Logic
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public string Coordinates { get => coordinates; set => coordinates = value; }
-        internal Farm Farm { get => farm; set => farm = value; }
-        internal Plant Plant { get => plant; set => plant = value; }
+        public Farm Farm { get => farm; set => farm = value; }
+        public Plant Plant { get => plant; set => plant = value; }
     }
 }

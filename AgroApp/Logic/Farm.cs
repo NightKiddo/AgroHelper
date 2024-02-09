@@ -52,6 +52,26 @@ namespace AgroApp.Logic
             return allTools;
         }
 
+        public List<Resource> getAllResources()
+        {
+            List<Resource> allResources = new List<Resource>();
+
+           foreach(Storage s in StoragesList)
+            {
+                foreach(Resource r in s.ResourcesList)
+                {
+                    allResources.Add(r);
+                }
+            }
+
+            return allResources;
+        }
+
+        public override string ToString()
+        {
+            return name;
+        }
+
         public Farm(int id, string name)
         {
             this.Id = id;

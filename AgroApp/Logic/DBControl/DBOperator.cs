@@ -222,7 +222,7 @@ namespace AgroApp.Logic
 
         public List<Field> getFields(Farm farm)
         {
-            string query = "SELECT * FROM fieldsView" + user.Id + " WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM fieldsView WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -392,7 +392,7 @@ namespace AgroApp.Logic
 
         public List<Garage> getGarages(Farm farm)
         {
-            string query = "SELECT * FROM garagesView" + user.Id + " WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM garagesView WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -417,7 +417,7 @@ namespace AgroApp.Logic
 
         public List<Storage> getStorages(Farm farm)
         {
-            string query = "SELECT * FROM storagesView" + user.Id + " WHERE farm = " + farm.Id;
+            string query = "SELECT * FROM storagesView WHERE farm = " + farm.Id;
             connect();
             conn.Open();
 
@@ -430,6 +430,7 @@ namespace AgroApp.Logic
                 int storageId = dataReader.GetInt32(0);
                 string storageName = dataReader.GetString(1);
                 Storage storage = new Storage(storageId, storageName);
+                storage.ResourcesList = getResources(storage);
                 storages.Add(storage);
             }
             dataReader.Close();
@@ -699,7 +700,7 @@ namespace AgroApp.Logic
 
             SqlCommand command = new SqlCommand(queryNotes, conn);
             SqlDataReader dataReader = command.ExecuteReader();
-            
+
             List<Note> notes = new List<Note>();
 
             while (dataReader.Read())
@@ -750,7 +751,7 @@ namespace AgroApp.Logic
 
         public List<Employee> getEmployees()
         {
-            string query = "SELECT * FROM employeesView" + user.Id;
+            string query = "SELECT * FROM employeesView WHERE [user] = " + user.Id + ";";
 
             connect();
             conn.Open();
@@ -969,43 +970,9 @@ namespace AgroApp.Logic
                 InsertQuery insertQuery = new InsertQuery("Users", "login,password", values, "id");
                 userId = insertWithIdOutput(insertQuery);
                 a = 1;
-
-                //tworzenie wszystkich widokow dla uzytkownika
-
-                string createView = "CREATE VIEW farmsView" + userId + " AS SELECT id, [name] FROM Farms WHERE [user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW employeesView" + userId + " AS SELECT id, name FROM Employees WHERE [user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW fieldsview" + userId + " AS SELECT fld.id, fld.[name], fld.[description], fld.plant, fld.farm " +
-                    "FROM Fields as fld JOIN Farms AS frm ON frm.id = fld.farm WHERE frm.[user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW garagesView" + userId + " AS SELECT g.id, g.[name] FROM Garages as g JOIN Farms AS frm ON frm.id = g.farm WHERE frm.[user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW storagesView" + userId + " AS SELECT s.id, s.[name] FROM Storages as s JOIN Farms AS frm ON frm.id = s.farm WHERE frm.[user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW machinesView" + userId + " AS SELECT m.id,m.garage, m.name, m.mileage, mt.type, m.inspection_date, m.fuel FROM Machines as m " +
-                    "JOIN Machine_types as mt ON m.type = mt.id JOIN Garages as g ON m.garage = g.id JOIN Farms as f ON g.farm = f.id WHERE f.[user] =" + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
-
-                createView = "CREATE VIEW resourcesView" + userId + " AS SELECT r.id, r.type, rt.type, r.amount FROM Resources as r " +
-                    "JOIN Storages as st ON r.storage = st.id JOIN Farms as f ON st.farm = f.id WHERE f.[user] = " + userId;
-                command = new SqlCommand(createView, conn);
-                command.ExecuteNonQuery();
+                
             }
-
-
-
+            
             conn.Close();
 
             return a;

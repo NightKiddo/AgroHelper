@@ -84,6 +84,8 @@ namespace AgroApp.Forms
         {
             dataGridViewJournal.Rows.Clear();
 
+            farm.Journal.ActivitiesList = dboperator.getActivities(farm);
+
             List<object[]> journalEntries = new List<object[]>();
 
             for (int i = 0; i < farm.Journal.ActivitiesList.Count; i++)
@@ -95,11 +97,14 @@ namespace AgroApp.Forms
                 activity.Start_date.ToString("dd/MM/yyyy"),
                 activity.Finish_date.ToString("dd/MM/yyyy"),
                 activity.Field.Name,
-                activity.Type.Type
+                activity.Type.Type,
+                "1"
                 };
                 
                 journalEntries.Add(activityString);
             }
+
+            farm.Journal.NotesList = dboperator.getNotes(farm);
 
             for (int i = 0; i < farm.Journal.NotesList.Count; i++)
             {
@@ -111,7 +116,8 @@ namespace AgroApp.Forms
                     note.Start_date.ToString("dd/MM/yyyy"),
                     note.Finish_date.ToString("dd/MM/yyyy"),
                     note.Field.Name,
-                    note.Type.Type
+                    note.Type.Type,
+                    "0"
                 };
 
                 journalEntries.Add(noteString);
@@ -265,25 +271,24 @@ namespace AgroApp.Forms
         {
             if (dataGridViewJournal.SelectedRows.Count > 0)
             {
-                DeleteQuery query;
-                if ((int)dataGridViewJournal.SelectedRows[0].Cells[1].Value == 0)
+                foreach (DataGridViewRow r in dataGridViewJournal.SelectedRows)
                 {
-                    query = new DeleteQuery("Notes", "id", (int)dataGridViewJournal.SelectedRows[0].Cells[0].Value);
-                }
-                else
-                {
-                    query = new DeleteQuery("Activities", "id", (int)dataGridViewJournal.SelectedRows[0].Cells[0].Value);
-                }
+                    DeleteQuery query;
+                    if (r.Cells[6].Value.ToString() == "0")
+                    {
+                        query = new DeleteQuery("Notes", "id", (int)r.Cells[0].Value);
+                    }
+                    else
+                    {
+                        query = new DeleteQuery("Activities", "id", (int)r.Cells[0].Value);
+                    }
 
-                if (dboperator.delete(query) != 0)
-                {
-                    MessageBox.Show("Usunięto");
+                    if (dboperator.delete(query) == 0)
+                    {
+                        MessageBox.Show("Błąd");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Błąd");
-                }
-
+                MessageBox.Show("Usunięto");
                 loadJournal();
             }
         }

@@ -13,7 +13,7 @@ namespace AgroApp.Forms
 {
     public partial class FormAddFarm : Form
     {
-        DBOperator dboperator= new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         int userId;
         public FormAddFarm()
         {
