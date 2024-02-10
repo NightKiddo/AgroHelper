@@ -16,76 +16,65 @@ namespace AgroApp.Forms
     public partial class FormShowActivity : Form
     {
         int activityId;
-        DBOperator dboperator = new DBOperator();
-        object[] activity;
-        public FormShowActivity(int activityId)
+        DBOperator dboperator = FormBase.dboperator;
+        Activity activity;
+        public FormShowActivity(Activity activity)
         {
             InitializeComponent();
-            this.activityId = activityId;
+            this.activity = activity;
             loadActivity();
         }
 
-        private void loadActivity() 
+        private void loadActivity()
         {
-            string name, description, type, fieldName, employeeName, machineName, toolName;
-            DateTime startDate, finishDate;
-
-            activity = dboperator.getActivity(activityId);
-
-            name = activity[0].ToString();
-            description = activity[1].ToString();
-            DateTime.TryParse(activity[2].ToString(), out startDate);
-            DateTime.TryParse(activity[3].ToString(), out finishDate);
-
-
-            fieldName = dboperator.select("SELECT name FROM Fields WHERE id = " + activity[4]).ToString();
-            type = dboperator.select("SELECT type FROM Activity_types WHERE id = " + activity[5]).ToString();
-
-            if (activity[6] == DBNull.Value)
+            label1.Text = activity.Name;
+            richTextBox1.Text = activity.Description;
+            dateTimePicker1.Value = activity.Start_date;
+            dateTimePicker2.Value = activity.Finish_date;
+            label4.Text = "Pole: " + activity.Field.Name;
+            label5.Text = "Rodzaj pracy: " + activity.Type.Type;
+            if (activity.Employee == null)
             {
-                employeeName = "";                
+                label6.Text = "Pracownik: brak";
             }
-            else 
+            else
             {
-                employeeName = dboperator.select("SELECT name FROM Employees WHERE id = " + activity[6]).ToString();
-            }
-
-            if (activity[7] == DBNull.Value)
-            {
-                machineName = "";
-            }
-            else 
-            {
-                machineName = dboperator.select("SELECT name FROM Machines WHERE id = " + activity[7]).ToString();
-            }
-
-
-            if (activity[8] == DBNull.Value)
-            {
-                toolName = "";
-            }
-            else 
-            {
-                toolName = dboperator.select("SELECT name FROM Tools WHERE id = " + activity[8]).ToString();
+                label6.Text = "Pracownik: " + activity.Employee.Name;
             }
             
+            if(activity.Machine == null)
+            {
+                label7.Text = "Maszyna: brak";
+            }
+            else
+            {
+                label7.Text = "Maszyna: " + activity.Machine.Name;
+            }
+            
+            if(activity.Tool == null)
+            {
+                label8.Text = "Narzędzie: brak";
+            }
+            else
+            {
+                label8.Text = "Narzędzie: " + activity.Tool.Name;
+            }
 
-            label1.Text = name;
-            richTextBox1.Text = description;
-            dateTimePicker1.Value = startDate;
-            dateTimePicker2.Value = finishDate;
-            label4.Text = "Pole: " + fieldName;
-            label5.Text = "Rodzaj pracy: " + type;
-            label6.Text = "Pracownik: " + employeeName;
-            label7.Text = "Maszyna: " + machineName;
-            label8.Text = "Narzędzie: " + toolName;
+            if(activity.Resource == null)
+            {
+                label9.Text = "Użyte zasoby: brak";
+            }
+            else
+            {
+                label9.Text = "Użyte zasoby: " + activity.Resource.Name;
+            }
+            
+            label10.Text = "Ilość: " + activity.Value;
         }
 
         private void buttonShowField_Click(object sender, EventArgs e)
-        {
-            int fieldId;
-            Int32.TryParse(activity[4].ToString(), out fieldId);
-            FormShowField formShowField = new FormShowField(fieldId);
+        {            
+            FormShowField formShowField = new FormShowField(activity.Field.Id);
             formShowField.ShowDialog();
         }
 
@@ -94,6 +83,11 @@ namespace AgroApp.Forms
             DeleteQuery query = new DeleteQuery("Activities", "id", activityId);
             dboperator.delete(query);
             this.Close();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

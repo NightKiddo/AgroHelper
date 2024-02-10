@@ -189,6 +189,7 @@
     <Compile Include="Logic\DBControl\DBOperator.cs" />
     <Compile Include="Logic\DBControl\DeleteQuery.cs" />
     <Compile Include="Logic\DBControl\InsertQuery.cs" />
+    <Compile Include="Logic\DBControl\UpdateQuery.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\Farm.cs" />
     <Compile Include="Logic\Field.cs" />

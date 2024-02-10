@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgroApp.Logic.DBControl;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -71,6 +72,23 @@ namespace AgroApp.Logic
             command = new SqlCommand(query.getQuery(), conn);
 
             if (command.ExecuteNonQuery() != 0)
+            {
+                a = 1;
+            }
+
+            conn.Close();
+            return a;
+        }
+
+        public int update(UpdateQuery query)
+        {
+            a = 0;
+
+            connect();
+            conn.Open();
+            command = new SqlCommand(query.getQuery(), conn);
+
+            if(command.ExecuteNonQuery() != 0)
             {
                 a = 1;
             }

@@ -158,7 +158,7 @@ namespace AgroApp.Forms
 
         private void pracęToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddActivity formAddActivity = new FormAddActivity(farm);
+            FormAddActivity formAddActivity = new FormAddActivity(farm,0);
             formAddActivity.ShowDialog();
             loadJournal();
         }
@@ -181,12 +181,15 @@ namespace AgroApp.Forms
 
         private void dataGridViewJournal_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (dataGridViewJournal.SelectedRows[0].Cells[1].Value.ToString() == "0")
-            {
+            if (dataGridViewJournal.SelectedRows[0].Cells[6].Value.ToString() == "0")
+            {                
                 int noteId;
                 Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out noteId);
 
-                FormShowNote formShowNote = new FormShowNote(noteId);
+                Note note = null;
+                note = farm.Journal.NotesList.Find(x => x.Id == noteId);
+
+                FormShowNote formShowNote = new FormShowNote(note);
                 formShowNote.ShowDialog();
                 loadJournal();
             }
@@ -195,7 +198,11 @@ namespace AgroApp.Forms
                 int activityId;
                 Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out activityId);
 
-                FormShowActivity formShowActivity = new FormShowActivity(activityId);
+                Activity activity = null;
+                activity = farm.Journal.ActivitiesList.Find(x => x.Id == activityId);
+
+
+                FormShowActivity formShowActivity = new FormShowActivity(activity);
                 formShowActivity.ShowDialog();
                 loadJournal();
             }

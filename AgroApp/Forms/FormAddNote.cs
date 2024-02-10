@@ -15,10 +15,11 @@ namespace AgroApp.Forms
     public partial class FormAddNote : Form
     {
         Farm farm;
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddNote(Farm farm)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.farm = farm;
             loadFields();
             loadTypes();            
         }
@@ -30,14 +31,31 @@ namespace AgroApp.Forms
 
         private void loadFields()
         {
-            dataGridView1.Columns[1].Width = dataGridView1.Width;
-            dataGridView1.DataSource = farm.FieldsList;
+            dataGridView1.AutoGenerateColumns = true;
+
+            var source = new BindingSource();
+            source.DataSource = farm.FieldsList;
+            dataGridView1.DataSource = source;
+
+
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[1].Width = (int)(dataGridView1.Width * 0.33);
+            dataGridView1.Columns[4].Width = (int)(dataGridView1.Width * 0.33);
+            dataGridView1.Columns[5].Width = (int)(dataGridView1.Width * 0.33);
         }
 
         private void loadTypes()
         {
+            dataGridView2.AutoGenerateColumns = true;
+
+            var source = new BindingSource();
+            source.DataSource = dboperator.noteTypesCollection;
+            dataGridView2.DataSource = source;
+
+            dataGridView2.Columns[0].Visible = false;
             dataGridView2.Columns[1].Width = dataGridView2.Width;
-            dataGridView2.DataSource = dboperator.getNoteTypes();
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
