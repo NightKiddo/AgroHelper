@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,21 +32,27 @@ namespace AgroApp.Logic.DBControl
             {
                 builder.Append(columns[i]);
                 builder.Append(" = ");
-                if (values[i].GetType() == typeof(Int32))
+                if (values[i].GetType() == typeof(string))
                 {
+                    builder.Append("'");
                     builder.Append(values[i]);
+                    builder.Append("'");                    
+                }
+                else if (values[i].GetType() == typeof(decimal))
+                {
+                    var value = values[i].ToString();
+                    string v = value.Replace(',', '.');
+                    builder.Append(v);
                 }
                 else
                 {
-                    builder.Append("'");
                     builder.Append(values[i]);
-                    builder.Append("'");
                 }
                 
                 builder.Append(", ");
             }
 
-            builder.Remove(builder.Length - 1, 1);
+            builder.Remove(builder.Length - 2, 2);
             builder.Append(" WHERE id = ");
             builder.Append(id.ToString());
             builder.Append(';');

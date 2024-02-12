@@ -682,9 +682,9 @@ namespace AgroApp.Logic
 
                 double value = 0;
 
-                if (dataReader.GetValue(10) != DBNull.Value)
+                if (dataReader.GetValue(11) != DBNull.Value)
                 {
-                    value = dataReader.GetDouble(10);
+                    value = dataReader.GetDouble(11);
                 }
 
                 Activity activity = new Activity(

@@ -274,8 +274,8 @@ INSERT INTO Notes (name, description, field, start_date, finish_date, journal, t
 
 INSERT INTO Activities(name, description, field, start_date, finish_date, journal, type, employee, machine, tool, value) VALUES 
 ('praca1', 'pracaOpis1',1,'2023-01-01', '2023-06-20',1,1,1,1,1,NULL), 
-('praca2', 'pracaPodlewanie1',2,'2023-10-01', '2023-10-01',1,3,2,2,2,40), 
-('praca3', 'pracaPodlewanie2',2,'2023-10-01', '2023-10-10',1,3,2,2,2,20);
+('praca2', 'pracaPodlewanie1',2,'2023-10-01', '2023-10-01',1,3,2,2,2,40.65), 
+('praca3', 'pracaPodlewanie2',2,'2023-10-01', '2023-10-10',1,3,2,2,2,20.12);
 
 GO
 CREATE VIEW allJournalsView AS SELECT * FROM Journals;
@@ -306,7 +306,7 @@ CREATE VIEW notesView AS SELECT name, description, start_date, finish_date, fiel
 GO 
 CREATE VIEW notesJournalEntriesView AS SELECT n.id, n.name, n.description, nt.id as type, n.start_date, n.finish_date, f.id as field, n.value, n.journal FROM Notes as n JOIN Fields as f on n.field = f.id JOIN Note_types as nt ON n.type = nt.id;
 GO
-CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.machine ,a.tool, a.[resource], a.journal as journalId FROM Activities as a JOIN Fields as f on a.field = f.id JOIN Activity_types as at ON a.type = at.id
+CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.machine ,a.tool, a.[resource], a.[value] as [value], a.journal as journalId FROM Activities as a JOIN Fields as f on a.field = f.id JOIN Activity_types as at ON a.type = at.id
 GO
 CREATE VIEW farmsView AS SELECT * FROM Farms;
 GO

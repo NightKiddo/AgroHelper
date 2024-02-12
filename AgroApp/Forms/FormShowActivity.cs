@@ -15,7 +15,6 @@ namespace AgroApp.Forms
 {
     public partial class FormShowActivity : Form
     {
-        int activityId;
         DBOperator dboperator = FormBase.dboperator;
         Activity activity;
         public FormShowActivity(Activity activity)
@@ -41,8 +40,8 @@ namespace AgroApp.Forms
             {
                 label6.Text = "Pracownik: " + activity.Employee.Name;
             }
-            
-            if(activity.Machine == null)
+
+            if (activity.Machine == null)
             {
                 label7.Text = "Maszyna: brak";
             }
@@ -50,8 +49,8 @@ namespace AgroApp.Forms
             {
                 label7.Text = "Maszyna: " + activity.Machine.Name;
             }
-            
-            if(activity.Tool == null)
+
+            if (activity.Tool == null)
             {
                 label8.Text = "Narzędzie: brak";
             }
@@ -60,7 +59,7 @@ namespace AgroApp.Forms
                 label8.Text = "Narzędzie: " + activity.Tool.Name;
             }
 
-            if(activity.Resource == null)
+            if (activity.Resource == null)
             {
                 label9.Text = "Użyte zasoby: brak";
             }
@@ -68,26 +67,55 @@ namespace AgroApp.Forms
             {
                 label9.Text = "Użyte zasoby: " + activity.Resource.Name;
             }
-            
+
             label10.Text = "Ilość: " + activity.Value;
         }
 
         private void buttonShowField_Click(object sender, EventArgs e)
-        {            
+        {
             FormShowField formShowField = new FormShowField(activity.Field.Id);
             formShowField.ShowDialog();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            DeleteQuery query = new DeleteQuery("Activities", "id", activityId);
+            DeleteQuery query = new DeleteQuery("Activities", "id", activity.Id);
             dboperator.delete(query);
             this.Close();
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
+            Farm farm = null;
+            foreach (Farm f in dboperator.getFarms())
+            {
+                foreach (Activity a in f.Journal.ActivitiesList)
+                {
+                    if (a.Id == activity.Id)
+                    {
+                        farm = f; break;
+                    }
+                }
+            }
+            FormAddActivity formAddActivity = new FormAddActivity(farm, activity.Id);
+            formAddActivity.ShowDialog();
 
+            foreach(Farm f in dboperator.getFarms())
+            {
+                if(farm.Id == f.Id)
+                {
+                    farm = f; break;
+                }
+            }
+
+            foreach(Activity a in farm.Journal.ActivitiesList)
+            {
+                if(activity.Id == a.Id)
+                {
+                    activity = a;
+                }
+            }
+            loadActivity();
         }
     }
 }

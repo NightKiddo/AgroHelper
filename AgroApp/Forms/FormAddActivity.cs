@@ -19,22 +19,20 @@ namespace AgroApp.Forms
         DBOperator dboperator = FormBase.dboperator;
         int invokeType;
         Activity editedActivity; //only used when editing
+        List<string> updatedColumns = new List<string>();
+        List<object> updatedValues = new List<object>();
         public FormAddActivity(Farm farm, int invokeType)
         {
             InitializeComponent();
             this.farm = farm;
             this.invokeType = invokeType;
+            numericUpDown1.Maximum = Int32.MaxValue;
             loadFields();
             loadTypes();
             loadEmployees();
             loadMachines();
             loadTools();
             loadResources();
-            if (invokeType != 0)
-            {
-                setupControlsIfEditing();
-                buttonAdd.Text = "Edytuj";
-            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -300,8 +298,7 @@ namespace AgroApp.Forms
                 }
                 else
                 {
-                    List<string> updatedColumns = new List<string>();
-                    List<object> updatedValues = new List<object>();
+
 
                     if (editedActivity.Name != textBox1.Text)
                     {
@@ -433,7 +430,7 @@ namespace AgroApp.Forms
                     if ((decimal)(editedActivity.Value) != numericUpDown1.Value)
                     {
                         updatedColumns.Add("value");
-                        updatedValues.Add((decimal)(dataGridViewResource.SelectedRows[0].Cells[0].Value));
+                        updatedValues.Add(numericUpDown1.Value);
                     }
 
                     if(editedActivity.Start_date == null)
@@ -476,6 +473,8 @@ namespace AgroApp.Forms
                     if(FormBase.dboperator.update(updateQuery) != 0)
                     {
                         MessageBox.Show("Edytowano");
+                        this.Close();
+                        return;
                     }
                     else
                     {
@@ -494,7 +493,15 @@ namespace AgroApp.Forms
 
         private void FormAddActivity_Load(object sender, EventArgs e)
         {
-            clearDataGridViewSelections();
+            if (invokeType == 0)
+            {
+                clearDataGridViewSelections();
+            }
+            else
+            {
+                setupControlsIfEditing();
+                buttonAdd.Text = "Edytuj";
+            }
         }
 
         private void dataGridViewResource_CellContentClick(object sender, DataGridViewCellEventArgs e)
