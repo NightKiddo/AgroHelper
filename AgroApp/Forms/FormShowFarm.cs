@@ -41,22 +41,27 @@ namespace AgroApp.Forms
         }
 
         private void loadFields()
-        {            
+        {
+            dataGridViewFields.Rows.Clear();
             dataGridViewFields.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.FieldsList;
             dataGridViewFields.DataSource = source;
 
             dataGridViewFields.Columns[0].Visible = false;
-            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.2);
-            dataGridViewFields.Columns[2].Width = (int)(dataGridViewFields.Width * 0.6);
-            dataGridViewFields.Columns[3].Width = (int)(dataGridViewFields.Width * 0.2);
+            dataGridViewFields.Columns[2].Visible = false;
+            dataGridViewFields.Columns[3].Visible = false;
+            dataGridViewFields.Columns[4].Visible = false;
+
+            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.7);            
+            dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
 
             dataGridViewFields.ClearSelection();
         }
 
         private void loadGarages()
-        {            
+        {
+            dataGridViewGarages.Rows.Clear();
             dataGridViewGarages.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.GaragesList;
@@ -67,7 +72,8 @@ namespace AgroApp.Forms
         }
 
         private void loadStorages()
-        {            
+        {
+            dataGridViewStorages.Rows.Clear();
             dataGridViewStorages.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.StoragesList;
@@ -84,52 +90,7 @@ namespace AgroApp.Forms
         {
             dataGridViewJournal.Rows.Clear();
 
-            farm.Journal.ActivitiesList = dboperator.getActivities(farm);
-
-            List<object[]> journalEntries = new List<object[]>();
-
-            for (int i = 0; i < farm.Journal.ActivitiesList.Count; i++)
-            {
-                Activity activity = farm.Journal.ActivitiesList[i];
-
-                object type = "";
-
-                if (activity.Type != null)
-                {
-                    type = activity.Type.Type;
-                }
-
-                object[] activityString = new object[] 
-                { activity.Id,
-                activity.Name,
-                activity.Start_date.ToString("dd/MM/yyyy"),
-                activity.Finish_date.ToString("dd/MM/yyyy"),
-                activity.Field.Name,                
-                type,
-                "1"
-                };
-                
-                journalEntries.Add(activityString);
-            }
-
-            farm.Journal.NotesList = dboperator.getNotes(farm);
-
-            for (int i = 0; i < farm.Journal.NotesList.Count; i++)
-            {
-                Note note = farm.Journal.NotesList[i];
-                object[] noteString = new object[]
-                {
-                    note.Id,
-                    note.Name,
-                    note.Start_date.ToString("dd/MM/yyyy"),
-                    note.Finish_date.ToString("dd/MM/yyyy"),
-                    note.Field.Name,
-                    note.Type.Type,
-                    "0"
-                };
-
-                journalEntries.Add(noteString);
-            }
+            List<object[]> journalEntries = farm.Journal.getJournalEntries(farm);
 
             for(int i = 0; i < journalEntries.Count; i++)
             {
@@ -150,7 +111,8 @@ namespace AgroApp.Forms
             DataGridViewRow row = dataGridViewFields.SelectedRows[0];
             int fieldId;
             int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
-            FormShowField formShowField = new FormShowField(fieldId);
+            Field field = farm.FieldsList.Find(X=>X.Id == fieldId);
+            FormShowField formShowField = new FormShowField(field);
             formShowField.ShowDialog();
         }
 

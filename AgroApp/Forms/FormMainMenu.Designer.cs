@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelFarm = new System.Windows.Forms.Label();
             this.buttonDeleteEmployee = new System.Windows.Forms.Button();
             this.buttonAddEmployee = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -37,16 +38,20 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
             this.buttonAddFarm = new System.Windows.Forms.Button();
-            this.labelFarm = new System.Windows.Forms.Label();
+            this.labelEmployee = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.wylogujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelEmployee);
             this.panel1.Controls.Add(this.labelFarm);
             this.panel1.Controls.Add(this.buttonDeleteEmployee);
             this.panel1.Controls.Add(this.buttonAddEmployee);
@@ -55,14 +60,24 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.buttonAddFarm);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 533);
+            this.panel1.Size = new System.Drawing.Size(800, 438);
             this.panel1.TabIndex = 0;
+            // 
+            // labelFarm
+            // 
+            this.labelFarm.AutoSize = true;
+            this.labelFarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelFarm.Location = new System.Drawing.Point(19, 12);
+            this.labelFarm.Name = "labelFarm";
+            this.labelFarm.Size = new System.Drawing.Size(181, 22);
+            this.labelFarm.TabIndex = 6;
+            this.labelFarm.Text = "Twoje gospodarstwa:";
             // 
             // buttonDeleteEmployee
             // 
-            this.buttonDeleteEmployee.Location = new System.Drawing.Point(36, 476);
+            this.buttonDeleteEmployee.Location = new System.Drawing.Point(36, 384);
             this.buttonDeleteEmployee.Name = "buttonDeleteEmployee";
             this.buttonDeleteEmployee.Size = new System.Drawing.Size(123, 42);
             this.buttonDeleteEmployee.TabIndex = 5;
@@ -72,7 +87,7 @@
             // 
             // buttonAddEmployee
             // 
-            this.buttonAddEmployee.Location = new System.Drawing.Point(36, 428);
+            this.buttonAddEmployee.Location = new System.Drawing.Point(36, 336);
             this.buttonAddEmployee.Name = "buttonAddEmployee";
             this.buttonAddEmployee.Size = new System.Drawing.Size(123, 42);
             this.buttonAddEmployee.TabIndex = 4;
@@ -109,7 +124,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(36, 384);
+            this.buttonDelete.Location = new System.Drawing.Point(36, 107);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(123, 42);
             this.buttonDelete.TabIndex = 2;
@@ -149,7 +164,7 @@
             // 
             // buttonAddFarm
             // 
-            this.buttonAddFarm.Location = new System.Drawing.Point(36, 336);
+            this.buttonAddFarm.Location = new System.Drawing.Point(36, 59);
             this.buttonAddFarm.Name = "buttonAddFarm";
             this.buttonAddFarm.Size = new System.Drawing.Size(123, 42);
             this.buttonAddFarm.TabIndex = 0;
@@ -157,23 +172,44 @@
             this.buttonAddFarm.UseVisualStyleBackColor = true;
             this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
             // 
-            // labelFarm
+            // labelEmployee
             // 
-            this.labelFarm.AutoSize = true;
-            this.labelFarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelFarm.Location = new System.Drawing.Point(19, 12);
-            this.labelFarm.Name = "labelFarm";
-            this.labelFarm.Size = new System.Drawing.Size(181, 22);
-            this.labelFarm.TabIndex = 6;
-            this.labelFarm.Text = "Twoje gospodarstwa:";
+            this.labelEmployee.AutoSize = true;
+            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelEmployee.Location = new System.Drawing.Point(19, 298);
+            this.labelEmployee.Name = "labelEmployee";
+            this.labelEmployee.Size = new System.Drawing.Size(149, 22);
+            this.labelEmployee.TabIndex = 7;
+            this.labelEmployee.Text = "Twoi pracownicy:";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wylogujToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // wylogujToolStripMenuItem
+            // 
+            this.wylogujToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            this.wylogujToolStripMenuItem.Name = "wylogujToolStripMenuItem";
+            this.wylogujToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.wylogujToolStripMenuItem.Text = "Wyloguj";
+            this.wylogujToolStripMenuItem.Click += new System.EventHandler(this.wylogujToolStripMenuItem_Click);
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 533);
+            this.ClientSize = new System.Drawing.Size(800, 462);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMainMenu";
@@ -185,7 +221,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -201,5 +240,8 @@
         private System.Windows.Forms.Button buttonDeleteEmployee;
         private System.Windows.Forms.Button buttonAddEmployee;
         private System.Windows.Forms.Label labelFarm;
+        private System.Windows.Forms.Label labelEmployee;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem wylogujToolStripMenuItem;
     }
 }

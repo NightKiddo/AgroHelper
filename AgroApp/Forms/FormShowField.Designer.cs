@@ -29,41 +29,68 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
+            this.richTextBoxDesciption = new System.Windows.Forms.RichTextBox();
+            this.labelNameAndPlant = new System.Windows.Forms.Label();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.richTextBox1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.dataGridViewJournal);
+            this.panel1.Controls.Add(this.richTextBoxDesciption);
+            this.panel1.Controls.Add(this.labelNameAndPlant);
             this.panel1.Controls.Add(this.webView21);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 543);
+            this.panel1.Size = new System.Drawing.Size(973, 603);
             this.panel1.TabIndex = 0;
             // 
-            // richTextBox1
+            // dataGridViewJournal
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 471);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(800, 72);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.dataGridViewJournal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
+            this.Column6,
+            this.Column3,
+            this.Column4,
+            this.Column1});
+            this.dataGridViewJournal.Location = new System.Drawing.Point(288, 495);
+            this.dataGridViewJournal.Name = "dataGridViewJournal";
+            this.dataGridViewJournal.ReadOnly = true;
+            this.dataGridViewJournal.RowHeadersVisible = false;
+            this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewJournal.Size = new System.Drawing.Size(673, 96);
+            this.dataGridViewJournal.TabIndex = 3;
             // 
-            // textBox1
+            // richTextBoxDesciption
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 450);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(800, 20);
-            this.textBox1.TabIndex = 1;
+            this.richTextBoxDesciption.Location = new System.Drawing.Point(15, 495);
+            this.richTextBoxDesciption.Name = "richTextBoxDesciption";
+            this.richTextBoxDesciption.Size = new System.Drawing.Size(267, 96);
+            this.richTextBoxDesciption.TabIndex = 2;
+            this.richTextBoxDesciption.Text = "";
+            // 
+            // labelNameAndPlant
+            // 
+            this.labelNameAndPlant.AutoSize = true;
+            this.labelNameAndPlant.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelNameAndPlant.Location = new System.Drawing.Point(12, 462);
+            this.labelNameAndPlant.Name = "labelNameAndPlant";
+            this.labelNameAndPlant.Size = new System.Drawing.Size(70, 26);
+            this.labelNameAndPlant.TabIndex = 1;
+            this.labelNameAndPlant.Text = "label1";
             // 
             // webView21
             // 
@@ -73,16 +100,46 @@
             this.webView21.Dock = System.Windows.Forms.DockStyle.Top;
             this.webView21.Location = new System.Drawing.Point(0, 0);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(800, 450);
+            this.webView21.Size = new System.Drawing.Size(973, 450);
             this.webView21.TabIndex = 0;
             this.webView21.ZoomFactor = 1D;
             this.webView21.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.webView21_NavigationCompleted);
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "tytul";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "typ";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "od";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "do";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ilość";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // FormShowField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 543);
+            this.ClientSize = new System.Drawing.Size(973, 603);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -91,6 +148,7 @@
             this.Text = "FormShowField";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
 
@@ -100,7 +158,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxDesciption;
+        private System.Windows.Forms.Label labelNameAndPlant;
+        private System.Windows.Forms.DataGridView dataGridViewJournal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

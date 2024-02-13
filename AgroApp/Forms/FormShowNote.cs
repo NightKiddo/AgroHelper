@@ -38,7 +38,7 @@ namespace AgroApp.Forms
 
         private void buttonShowField_Click(object sender, EventArgs e)
         {
-            FormShowField formShowField = new FormShowField(note.Field.Id);
+            FormShowField formShowField = new FormShowField(note.Field);
             formShowField.ShowDialog();
         }
 

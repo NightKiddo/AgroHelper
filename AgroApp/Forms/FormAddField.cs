@@ -62,6 +62,7 @@ namespace AgroApp.Forms
                 {
                     MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     webView21.Reload();
+                    fieldDrawn = 0;
                 }
                 else
                 {
@@ -110,8 +111,9 @@ namespace AgroApp.Forms
             var source = new BindingSource();
             source.DataSource = dboperator.plantsCollection;
             dataGridView1.DataSource = source;
-
-            dataGridView1.Columns[1].Width = dataGridView1.Width;            
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].Width = dataGridView1.Width;
+            dataGridView1.Columns[2].Visible = false;            
         }
 
         private void FormAddField_Shown(object sender, EventArgs e)

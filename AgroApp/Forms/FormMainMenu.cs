@@ -13,35 +13,44 @@ using System.Windows.Forms;
 namespace AgroApp.Forms
 {
     public partial class FormMainMenu : Form
-    {        
-        int userId;        
+    {
+        User user = FormBase.dboperator.user;        
         public FormMainMenu()
         {
-            InitializeComponent();
-            userId = FormBase.dboperator.user.Id;
+            InitializeComponent();            
             loadFarms();
             loadEmployees();
         }
 
         private void loadFarms() 
-        {
+        {            
             dataGridViewFarms.Rows.Clear();
             dataGridViewFarms.AutoGenerateColumns = true;
+
+            user.FarmsList = FormBase.dboperator.getFarms();
+
             var source = new BindingSource();
             source.DataSource = FormBase.dboperator.user.FarmsList; //TAK RÓB DATAGRIDY
             dataGridViewFarms.DataSource = source;                  //USUŃ KOLUMNY Z DATAGRIDÓW W DESGINERZE 
 
             dataGridViewFarms.Columns[0].Visible = false;
             dataGridViewFarms.Columns[2].Visible = false;
-            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;            
+
+            dataGridViewFarms.Columns[1].Width = (int)(dataGridViewFarms.Width * 0.4);
+            dataGridViewFarms.Columns[3].Width = (int)(dataGridViewFarms.Width * 0.2);
+            dataGridViewFarms.Columns[4].Width = (int)(dataGridViewFarms.Width * 0.2);
+            dataGridViewFarms.Columns[5].Width = (int)(dataGridViewFarms.Width * 0.2);
+
 
             dataGridViewFarms.ClearSelection();
         }
 
         private void loadEmployees()
         {
-            dataGridViewEmployees.Rows.Clear();            
-            
+            dataGridViewEmployees.Rows.Clear();
+
+            user.EmployeesList = FormBase.dboperator.getEmployees();
+
             var source = new BindingSource();
             source.DataSource = FormBase.dboperator.getEmployees();
             dataGridViewEmployees.DataSource = source;
@@ -92,7 +101,7 @@ namespace AgroApp.Forms
 
         private void buttonAddEmployee_Click(object sender, EventArgs e)
         {
-            FormAddEmployee formAddEmployee = new FormAddEmployee(userId);
+            FormAddEmployee formAddEmployee = new FormAddEmployee(user.Id);
             formAddEmployee.ShowDialog();
             loadEmployees();
         }
@@ -129,6 +138,11 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
+        }
+
+        private void wylogujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

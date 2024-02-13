@@ -958,6 +958,8 @@ namespace AgroApp.Logic
                 f.StoragesList = getStorages(f);
             }
 
+            user.FarmsList = getFarms();
+
             return id;
         }
 

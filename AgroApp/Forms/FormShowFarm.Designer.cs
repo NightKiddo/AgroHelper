@@ -33,6 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripJournal = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pracęToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +47,8 @@
             this.pracownikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelMagazyny = new System.Windows.Forms.Label();
+            this.labelGarages = new System.Windows.Forms.Label();
             this.dataGridViewGarages = new System.Windows.Forms.DataGridView();
             this.dataGridViewStorages = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,13 +69,6 @@
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
@@ -108,7 +110,7 @@
             // 
             this.panel5.Controls.Add(this.dataGridViewJournal);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(407, 49);
+            this.panel5.Location = new System.Drawing.Point(407, 47);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(470, 444);
             this.panel5.TabIndex = 2;
@@ -117,7 +119,6 @@
             // 
             this.dataGridViewJournal.AllowUserToAddRows = false;
             this.dataGridViewJournal.AllowUserToDeleteRows = false;
-            this.dataGridViewJournal.AllowUserToResizeColumns = false;
             this.dataGridViewJournal.AllowUserToResizeRows = false;
             this.dataGridViewJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -135,12 +136,56 @@
             this.dataGridViewJournal.ReadOnly = true;
             this.dataGridViewJournal.RowHeadersVisible = false;
             this.dataGridViewJournal.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dataGridViewJournal.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewJournal.Size = new System.Drawing.Size(470, 444);
             this.dataGridViewJournal.TabIndex = 0;
             this.dataGridViewJournal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewJournal_MouseClick);
             this.dataGridViewJournal.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewJournal_MouseDoubleClick);
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "id";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "tytul";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "od";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "do";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "pole";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "typ";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            // 
+            // deleteColumn
+            // 
+            this.deleteColumn.HeaderText = "Column1";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.ReadOnly = true;
+            this.deleteColumn.Visible = false;
             // 
             // contextMenuStripJournal
             // 
@@ -190,13 +235,35 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.labelMagazyny);
+            this.panel3.Controls.Add(this.labelGarages);
             this.panel3.Controls.Add(this.dataGridViewGarages);
             this.panel3.Controls.Add(this.dataGridViewStorages);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(407, 493);
+            this.panel3.Location = new System.Drawing.Point(407, 491);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(470, 114);
+            this.panel3.Size = new System.Drawing.Size(470, 116);
             this.panel3.TabIndex = 1;
+            // 
+            // labelMagazyny
+            // 
+            this.labelMagazyny.AutoSize = true;
+            this.labelMagazyny.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMagazyny.Location = new System.Drawing.Point(241, 3);
+            this.labelMagazyny.Name = "labelMagazyny";
+            this.labelMagazyny.Size = new System.Drawing.Size(84, 20);
+            this.labelMagazyny.TabIndex = 5;
+            this.labelMagazyny.Text = "Magazyny:";
+            // 
+            // labelGarages
+            // 
+            this.labelGarages.AutoSize = true;
+            this.labelGarages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelGarages.Location = new System.Drawing.Point(3, 3);
+            this.labelGarages.Name = "labelGarages";
+            this.labelGarages.Size = new System.Drawing.Size(66, 20);
+            this.labelGarages.TabIndex = 4;
+            this.labelGarages.Text = "Garaże:";
             // 
             // dataGridViewGarages
             // 
@@ -206,8 +273,7 @@
             this.dataGridViewGarages.AllowUserToResizeRows = false;
             this.dataGridViewGarages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGarages.ColumnHeadersVisible = false;
-            this.dataGridViewGarages.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridViewGarages.Location = new System.Drawing.Point(236, 0);
+            this.dataGridViewGarages.Location = new System.Drawing.Point(236, 26);
             this.dataGridViewGarages.MultiSelect = false;
             this.dataGridViewGarages.Name = "dataGridViewGarages";
             this.dataGridViewGarages.ReadOnly = true;
@@ -215,7 +281,7 @@
             this.dataGridViewGarages.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewGarages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewGarages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewGarages.Size = new System.Drawing.Size(234, 114);
+            this.dataGridViewGarages.Size = new System.Drawing.Size(234, 88);
             this.dataGridViewGarages.TabIndex = 1;
             this.dataGridViewGarages.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGarages_CellDoubleClick);
             this.dataGridViewGarages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewGarages_MouseClick);
@@ -228,8 +294,7 @@
             this.dataGridViewStorages.AllowUserToResizeRows = false;
             this.dataGridViewStorages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStorages.ColumnHeadersVisible = false;
-            this.dataGridViewStorages.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridViewStorages.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewStorages.Location = new System.Drawing.Point(0, 26);
             this.dataGridViewStorages.MultiSelect = false;
             this.dataGridViewStorages.Name = "dataGridViewStorages";
             this.dataGridViewStorages.ReadOnly = true;
@@ -237,7 +302,7 @@
             this.dataGridViewStorages.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewStorages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewStorages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewStorages.Size = new System.Drawing.Size(232, 114);
+            this.dataGridViewStorages.Size = new System.Drawing.Size(232, 87);
             this.dataGridViewStorages.TabIndex = 0;
             this.dataGridViewStorages.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStorages_CellDoubleClick);
             this.dataGridViewStorages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewStorages_MouseClick);
@@ -256,9 +321,9 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 517);
+            this.panel4.Location = new System.Drawing.Point(0, 604);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(407, 90);
+            this.panel4.Size = new System.Drawing.Size(407, 3);
             this.panel4.TabIndex = 1;
             // 
             // dataGridViewFields
@@ -277,7 +342,7 @@
             this.dataGridViewFields.RowHeadersVisible = false;
             this.dataGridViewFields.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewFields.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFields.Size = new System.Drawing.Size(407, 493);
+            this.dataGridViewFields.Size = new System.Drawing.Size(407, 580);
             this.dataGridViewFields.TabIndex = 0;
             this.dataGridViewFields.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridViewFields.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewFields_MouseClick);
@@ -388,50 +453,6 @@
             this.usuńToolStripMenuItem.Text = "Usuń";
             this.usuńToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
             // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "id";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "tytul";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "od";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "do";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "pole";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "typ";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // deleteColumn
-            // 
-            this.deleteColumn.HeaderText = "Column1";
-            this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.ReadOnly = true;
-            this.deleteColumn.Visible = false;
-            // 
             // FormShowFarm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +471,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).EndInit();
             this.contextMenuStripJournal.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGarages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStorages)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -504,5 +526,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn deleteColumn;
+        private System.Windows.Forms.Label labelMagazyny;
+        private System.Windows.Forms.Label labelGarages;
     }
 }
