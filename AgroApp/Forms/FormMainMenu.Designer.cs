@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
             this.buttonAddFarm = new System.Windows.Forms.Button();
+            this.labelFarm = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
@@ -46,6 +47,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelFarm);
             this.panel1.Controls.Add(this.buttonDeleteEmployee);
             this.panel1.Controls.Add(this.buttonAddEmployee);
             this.panel1.Controls.Add(this.panel3);
@@ -55,12 +57,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(800, 533);
             this.panel1.TabIndex = 0;
             // 
             // buttonDeleteEmployee
             // 
-            this.buttonDeleteEmployee.Location = new System.Drawing.Point(39, 364);
+            this.buttonDeleteEmployee.Location = new System.Drawing.Point(36, 476);
             this.buttonDeleteEmployee.Name = "buttonDeleteEmployee";
             this.buttonDeleteEmployee.Size = new System.Drawing.Size(123, 42);
             this.buttonDeleteEmployee.TabIndex = 5;
@@ -70,7 +72,7 @@
             // 
             // buttonAddEmployee
             // 
-            this.buttonAddEmployee.Location = new System.Drawing.Point(39, 316);
+            this.buttonAddEmployee.Location = new System.Drawing.Point(36, 428);
             this.buttonAddEmployee.Name = "buttonAddEmployee";
             this.buttonAddEmployee.Size = new System.Drawing.Size(123, 42);
             this.buttonAddEmployee.TabIndex = 4;
@@ -107,7 +109,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(39, 78);
+            this.buttonDelete.Location = new System.Drawing.Point(36, 384);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(123, 42);
             this.buttonDelete.TabIndex = 2;
@@ -147,7 +149,7 @@
             // 
             // buttonAddFarm
             // 
-            this.buttonAddFarm.Location = new System.Drawing.Point(39, 30);
+            this.buttonAddFarm.Location = new System.Drawing.Point(36, 336);
             this.buttonAddFarm.Name = "buttonAddFarm";
             this.buttonAddFarm.Size = new System.Drawing.Size(123, 42);
             this.buttonAddFarm.TabIndex = 0;
@@ -155,11 +157,21 @@
             this.buttonAddFarm.UseVisualStyleBackColor = true;
             this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
             // 
+            // labelFarm
+            // 
+            this.labelFarm.AutoSize = true;
+            this.labelFarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelFarm.Location = new System.Drawing.Point(19, 12);
+            this.labelFarm.Name = "labelFarm";
+            this.labelFarm.Size = new System.Drawing.Size(181, 22);
+            this.labelFarm.TabIndex = 6;
+            this.labelFarm.Text = "Twoje gospodarstwa:";
+            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 533);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -168,6 +180,7 @@
             this.Text = "FormMainMenu";
             this.Shown += new System.EventHandler(this.FormMainMenu_Shown);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -187,5 +200,6 @@
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
         private System.Windows.Forms.Button buttonDeleteEmployee;
         private System.Windows.Forms.Button buttonAddEmployee;
+        private System.Windows.Forms.Label labelFarm;
     }
 }

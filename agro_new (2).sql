@@ -134,7 +134,7 @@ CREATE TABLE Activities(
 	start_date date,
 	finish_date date,
 	type int FOREIGN KEY REFERENCES Activity_types(id),
-	field int FOREIGN KEY REFERENCES Fields(id),
+	field int FOREIGN KEY REFERENCES Fields(id) NOT NULL,
 	employee int FOREIGN KEY REFERENCES Employees(id),
 	machine int FOREIGN KEY REFERENCES Machines(id),
 	tool int FOREIGN KEY REFERENCES Tools(id),
@@ -167,7 +167,7 @@ INSERT INTO Farms ([name], [user]) VALUES
 ('Farm 1', 3), 
 ('Farm 2', 3);
 
-INSERT INTO Activity_types (type) VALUES ('Orka'), ('Siew'), ('Podlewanie'), ('Nawo¿enie'),('Pryskanie'), ('Zbiory');
+INSERT INTO Activity_types (type) VALUES ('Orka'), ('Siew'), ('Podlewanie'), ('Nawo¿enie'),('Oprysk'), ('Zbiory');
 
 INSERT INTO Note_types (type) VALUES ('Notatka'), ('Opady'), ('Chwasty'), ('Choroby');
 
@@ -306,7 +306,7 @@ CREATE VIEW notesView AS SELECT name, description, start_date, finish_date, fiel
 GO 
 CREATE VIEW notesJournalEntriesView AS SELECT n.id, n.name, n.description, nt.id as type, n.start_date, n.finish_date, f.id as field, n.value, n.journal FROM Notes as n JOIN Fields as f on n.field = f.id JOIN Note_types as nt ON n.type = nt.id;
 GO
-CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.machine ,a.tool, a.[resource], a.[value] as [value], a.journal as journalId FROM Activities as a JOIN Fields as f on a.field = f.id JOIN Activity_types as at ON a.type = at.id
+CREATE VIEW activitiesJournalEntriesView AS SELECT a.id as activityId, a.name as ActivityName, a.description as activityDescription, a.start_date, a.finish_date, f.id as fieldId, at.id as activityType, a.employee as employeeId, a.machine ,a.tool, a.[resource], a.[value] as [value], a.journal as journalId FROM Activities as a LEFT JOIN Fields as f on a.field = f.id LEFT JOIN Activity_types as at ON a.type = at.id
 GO
 CREATE VIEW farmsView AS SELECT * FROM Farms;
 GO

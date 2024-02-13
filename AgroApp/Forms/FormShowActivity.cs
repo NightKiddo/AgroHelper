@@ -31,7 +31,14 @@ namespace AgroApp.Forms
             dateTimePicker1.Value = activity.Start_date;
             dateTimePicker2.Value = activity.Finish_date;
             label4.Text = "Pole: " + activity.Field.Name;
-            label5.Text = "Rodzaj pracy: " + activity.Type.Type;
+            if (activity.Type == null)
+            {
+                label5.Text = "Rodzaj pracy: brak";
+            }
+            else
+            {
+                label5.Text = "Rodzaj pracy: " + activity.Type.Type;
+            }
             if (activity.Employee == null)
             {
                 label6.Text = "Pracownik: brak";
@@ -69,6 +76,28 @@ namespace AgroApp.Forms
             }
 
             label10.Text = "Ilość: " + activity.Value;
+
+            switch(activity.Type.Type) 
+            {
+                case "Orka":
+                    label10.Text += " cm głębokości";
+                    break;
+                case "Siew":
+                    label10.Text += " kg/ha";
+                    break;
+                case "Podlewanie":
+                    label10.Text += " l/ha";
+                    break;
+                case "Nawożenie":
+                    label10.Text += " kg/ha";
+                    break;
+                case "Oprysk":
+                    label10.Text += " l/ha";
+                    break;
+                case "Zbiory":
+                    label10.Text += " t/ha";
+                    break;
+            }
         }
 
         private void buttonShowField_Click(object sender, EventArgs e)
@@ -100,17 +129,17 @@ namespace AgroApp.Forms
             FormAddActivity formAddActivity = new FormAddActivity(farm, activity.Id);
             formAddActivity.ShowDialog();
 
-            foreach(Farm f in dboperator.getFarms())
+            foreach (Farm f in dboperator.getFarms())
             {
-                if(farm.Id == f.Id)
+                if (farm.Id == f.Id)
                 {
                     farm = f; break;
                 }
             }
 
-            foreach(Activity a in farm.Journal.ActivitiesList)
+            foreach (Activity a in farm.Journal.ActivitiesList)
             {
-                if(activity.Id == a.Id)
+                if (activity.Id == a.Id)
                 {
                     activity = a;
                 }

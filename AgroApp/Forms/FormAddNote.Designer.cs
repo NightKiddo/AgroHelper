@@ -32,7 +32,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewField = new System.Windows.Forms.DataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -40,12 +40,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewType = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,24 +85,24 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 20;
             // 
-            // dataGridView1
+            // dataGridViewField
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(113, 223);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(473, 69);
-            this.dataGridView1.TabIndex = 19;
+            this.dataGridViewField.AllowUserToAddRows = false;
+            this.dataGridViewField.AllowUserToDeleteRows = false;
+            this.dataGridViewField.AllowUserToResizeColumns = false;
+            this.dataGridViewField.AllowUserToResizeRows = false;
+            this.dataGridViewField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewField.ColumnHeadersVisible = false;
+            this.dataGridViewField.Location = new System.Drawing.Point(113, 223);
+            this.dataGridViewField.MultiSelect = false;
+            this.dataGridViewField.Name = "dataGridViewField";
+            this.dataGridViewField.ReadOnly = true;
+            this.dataGridViewField.RowHeadersVisible = false;
+            this.dataGridViewField.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridViewField.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewField.Size = new System.Drawing.Size(473, 69);
+            this.dataGridViewField.TabIndex = 19;
             // 
             // richTextBox1
             // 
@@ -171,24 +171,24 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Tytuł:";
             // 
-            // dataGridView2
+            // dataGridViewType
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.ColumnHeadersVisible = false;
-            this.dataGridView2.Location = new System.Drawing.Point(113, 138);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(473, 69);
-            this.dataGridView2.TabIndex = 25;
+            this.dataGridViewType.AllowUserToAddRows = false;
+            this.dataGridViewType.AllowUserToDeleteRows = false;
+            this.dataGridViewType.AllowUserToResizeColumns = false;
+            this.dataGridViewType.AllowUserToResizeRows = false;
+            this.dataGridViewType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewType.ColumnHeadersVisible = false;
+            this.dataGridViewType.Location = new System.Drawing.Point(113, 138);
+            this.dataGridViewType.MultiSelect = false;
+            this.dataGridViewType.Name = "dataGridViewType";
+            this.dataGridViewType.ReadOnly = true;
+            this.dataGridViewType.RowHeadersVisible = false;
+            this.dataGridViewType.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridViewType.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewType.Size = new System.Drawing.Size(473, 69);
+            this.dataGridViewType.TabIndex = 25;
             // 
             // label6
             // 
@@ -226,13 +226,13 @@
             this.ClientSize = new System.Drawing.Size(602, 547);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridViewType);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewField);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
@@ -245,9 +245,9 @@
             this.MinimizeBox = false;
             this.Name = "FormAddNote";
             this.Text = "FormAddNote";
-            this.Shown += new System.EventHandler(this.FormAddNote_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.Load += new System.EventHandler(this.FormAddNote_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,7 +260,7 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewField;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
@@ -268,7 +268,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDown1;

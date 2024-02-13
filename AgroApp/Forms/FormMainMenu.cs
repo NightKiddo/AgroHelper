@@ -33,7 +33,7 @@ namespace AgroApp.Forms
 
             dataGridViewFarms.Columns[0].Visible = false;
             dataGridViewFarms.Columns[2].Visible = false;
-            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
+            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;            
 
             dataGridViewFarms.ClearSelection();
         }

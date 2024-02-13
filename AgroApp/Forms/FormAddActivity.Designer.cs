@@ -53,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelUnit = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelUnit);
             this.panel1.Controls.Add(this.dataGridViewResource);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.numericUpDown1);
@@ -113,7 +115,6 @@
             this.dataGridViewResource.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewResource.Size = new System.Drawing.Size(402, 60);
             this.dataGridViewResource.TabIndex = 23;
-            this.dataGridViewResource.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewResource_CellContentClick);
             // 
             // label11
             // 
@@ -162,6 +163,7 @@
             this.dataGridViewType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewType.Size = new System.Drawing.Size(402, 60);
             this.dataGridViewType.TabIndex = 19;
+            this.dataGridViewType.SelectionChanged += new System.EventHandler(this.dataGridViewType_SelectionChanged);
             // 
             // label9
             // 
@@ -382,6 +384,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
+            // labelUnit
+            // 
+            this.labelUnit.AutoSize = true;
+            this.labelUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelUnit.Location = new System.Drawing.Point(422, 561);
+            this.labelUnit.Name = "labelUnit";
+            this.labelUnit.Size = new System.Drawing.Size(0, 26);
+            this.labelUnit.TabIndex = 24;
+            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,5 +445,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.DataGridView dataGridViewResource;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelUnit;
     }
 }
