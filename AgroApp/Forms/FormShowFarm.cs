@@ -53,7 +53,7 @@ namespace AgroApp.Forms
             dataGridViewFields.Columns[3].Visible = false;
             dataGridViewFields.Columns[4].Visible = false;
 
-            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.7);            
+            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.7);
             dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
 
             dataGridViewFields.ClearSelection();
@@ -61,8 +61,8 @@ namespace AgroApp.Forms
 
         private void loadGarages()
         {
-            dataGridViewGarages.Rows.Clear();
             dataGridViewGarages.AutoGenerateColumns = true;
+            farm.GaragesList = dboperator.getGarages(farm);
             var source = new BindingSource();
             source.DataSource = farm.GaragesList;
             dataGridViewGarages.DataSource = source;
@@ -73,8 +73,8 @@ namespace AgroApp.Forms
 
         private void loadStorages()
         {
-            dataGridViewStorages.Rows.Clear();
             dataGridViewStorages.AutoGenerateColumns = true;
+            farm.StoragesList = dboperator.getStorages(farm);
             var source = new BindingSource();
             source.DataSource = farm.StoragesList;
             dataGridViewStorages.DataSource = source;
@@ -92,7 +92,7 @@ namespace AgroApp.Forms
 
             List<object[]> journalEntries = farm.Journal.getJournalEntries(farm);
 
-            for(int i = 0; i < journalEntries.Count; i++)
+            for (int i = 0; i < journalEntries.Count; i++)
             {
                 dataGridViewJournal.Rows.Add(journalEntries[i]);
             }
@@ -108,34 +108,40 @@ namespace AgroApp.Forms
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridViewFields.SelectedRows[0];
-            int fieldId;
-            int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
-            Field field = farm.FieldsList.Find(X=>X.Id == fieldId);
-            FormShowField formShowField = new FormShowField(field);
-            formShowField.ShowDialog();
+            if (dataGridViewFields.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dataGridViewFields.SelectedRows[0];
+                int fieldId;
+                int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
+                Field field = farm.FieldsList.Find(X => X.Id == fieldId);
+                FormShowField formShowField = new FormShowField(field);
+                formShowField.ShowDialog();
+            }
         }
 
         private void dataGridViewStorages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridViewStorages.SelectedRows[0];
-            Storage storage = (Storage)row.DataBoundItem;
+            if (dataGridViewStorages.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dataGridViewStorages.SelectedRows[0];
+                Storage storage = (Storage)row.DataBoundItem;
 
-            FormShowStorage formShowStorage = new FormShowStorage(storage);
-            formShowStorage.ShowDialog();
-            loadStorages();
+                FormShowStorage formShowStorage = new FormShowStorage(storage);
+                formShowStorage.ShowDialog();
+                loadStorages();
+            }
         }
 
         private void pracęToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddActivity formAddActivity = new FormAddActivity(farm,0);
+            FormAddActivity formAddActivity = new FormAddActivity(farm, 0);
             formAddActivity.ShowDialog();
             loadJournal();
         }
 
         private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddNote formAddNote = new FormAddNote(farm,0);
+            FormAddNote formAddNote = new FormAddNote(farm, 0);
             formAddNote.ShowDialog();
             loadJournal();
         }
@@ -151,30 +157,33 @@ namespace AgroApp.Forms
 
         private void dataGridViewJournal_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (dataGridViewJournal.SelectedRows[0].Cells[6].Value.ToString() == "0")
-            {                
-                int noteId;
-                Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out noteId);
-
-                Note note = null;
-                note = farm.Journal.NotesList.Find(x => x.Id == noteId);
-
-                FormShowNote formShowNote = new FormShowNote(note);
-                formShowNote.ShowDialog();
-                loadJournal();
-            }
-            else
+            if (dataGridViewJournal.SelectedRows.Count != 0)
             {
-                int activityId;
-                Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out activityId);
+                if (dataGridViewJournal.SelectedRows[0].Cells[6].Value.ToString() == "0")
+                {
+                    int noteId;
+                    Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out noteId);
 
-                Activity activity = null;
-                activity = farm.Journal.ActivitiesList.Find(x => x.Id == activityId);
+                    Note note = null;
+                    note = farm.Journal.NotesList.Find(x => x.Id == noteId);
+
+                    FormShowNote formShowNote = new FormShowNote(note);
+                    formShowNote.ShowDialog();
+                    loadJournal();
+                }
+                else
+                {
+                    int activityId;
+                    Int32.TryParse(dataGridViewJournal.SelectedRows[0].Cells[0].Value.ToString(), out activityId);
+
+                    Activity activity = null;
+                    activity = farm.Journal.ActivitiesList.Find(x => x.Id == activityId);
 
 
-                FormShowActivity formShowActivity = new FormShowActivity(activity);
-                formShowActivity.ShowDialog();
-                loadJournal();
+                    FormShowActivity formShowActivity = new FormShowActivity(activity);
+                    formShowActivity.ShowDialog();
+                    loadJournal();
+                }
             }
         }
 

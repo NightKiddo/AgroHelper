@@ -14,18 +14,22 @@ namespace AgroApp.Forms
     public partial class FormShowGarage : Form
     {
         Garage garage;
+        Farm farm;
         int garageId;
         DBOperator dboperator = new DBOperator();
-        public FormShowGarage(Garage garage)
+        public FormShowGarage(Garage garage, Farm farm)
         {
             InitializeComponent();
             this.garage = garage;
+            this.farm = farm;
             garageId = garage.Id;
+            this.Text = garage.Name;
             loadMachines();
             loadTools();
 
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView2.ContextMenuStrip = contextMenuStrip2;
+            
         }
 
         public void loadMachines()
@@ -164,6 +168,14 @@ namespace AgroApp.Forms
         {
             dataGridView1.ClearSelection();
             dataGridView2.ClearSelection();
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count != 0)
+            {
+
+            }
         }
     }
 }

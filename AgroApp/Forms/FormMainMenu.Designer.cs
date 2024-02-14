@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelEmployee = new System.Windows.Forms.Label();
             this.labelFarm = new System.Windows.Forms.Label();
             this.buttonDeleteEmployee = new System.Windows.Forms.Button();
             this.buttonAddEmployee = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
             this.buttonAddFarm = new System.Windows.Forms.Button();
-            this.labelEmployee = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.wylogujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
@@ -62,8 +62,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 438);
+            this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // labelEmployee
+            // 
+            this.labelEmployee.AutoSize = true;
+            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelEmployee.Location = new System.Drawing.Point(19, 298);
+            this.labelEmployee.Name = "labelEmployee";
+            this.labelEmployee.Size = new System.Drawing.Size(149, 22);
+            this.labelEmployee.TabIndex = 7;
+            this.labelEmployee.Text = "Twoi pracownicy:";
             // 
             // labelFarm
             // 
@@ -149,7 +159,6 @@
             this.dataGridViewFarms.AllowUserToResizeRows = false;
             this.dataGridViewFarms.ColumnHeadersVisible = false;
             this.dataGridViewFarms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewFarms.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataGridViewFarms.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewFarms.MultiSelect = false;
             this.dataGridViewFarms.Name = "dataGridViewFarms";
@@ -159,7 +168,6 @@
             this.dataGridViewFarms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFarms.Size = new System.Drawing.Size(582, 280);
             this.dataGridViewFarms.TabIndex = 0;
-            this.dataGridViewFarms.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridViewFarms.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // buttonAddFarm
@@ -171,16 +179,6 @@
             this.buttonAddFarm.Text = "Dodaj gospodarstwo";
             this.buttonAddFarm.UseVisualStyleBackColor = true;
             this.buttonAddFarm.Click += new System.EventHandler(this.buttonAddFarm_Click);
-            // 
-            // labelEmployee
-            // 
-            this.labelEmployee.AutoSize = true;
-            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelEmployee.Location = new System.Drawing.Point(19, 298);
-            this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Size = new System.Drawing.Size(149, 22);
-            this.labelEmployee.TabIndex = 7;
-            this.labelEmployee.Text = "Twoi pracownicy:";
             // 
             // menuStrip1
             // 
@@ -199,13 +197,12 @@
             this.wylogujToolStripMenuItem.Name = "wylogujToolStripMenuItem";
             this.wylogujToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.wylogujToolStripMenuItem.Text = "Wyloguj";
-            this.wylogujToolStripMenuItem.Click += new System.EventHandler(this.wylogujToolStripMenuItem_Click);
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 462);
+            this.ClientSize = new System.Drawing.Size(800, 474);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

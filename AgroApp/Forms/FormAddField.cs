@@ -63,6 +63,9 @@ namespace AgroApp.Forms
                     MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     webView21.Reload();
                     fieldDrawn = 0;
+                    dataGridView1.ClearSelection();
+                    textBox1.Text = "";
+                    richTextBox1.Text = "";
                 }
                 else
                 {

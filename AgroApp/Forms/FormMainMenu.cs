@@ -14,16 +14,16 @@ namespace AgroApp.Forms
 {
     public partial class FormMainMenu : Form
     {
-        User user = FormBase.dboperator.user;        
+        User user = FormBase.dboperator.user;
         public FormMainMenu()
         {
-            InitializeComponent();            
+            InitializeComponent();
             loadFarms();
             loadEmployees();
         }
 
-        private void loadFarms() 
-        {            
+        private void loadFarms()
+        {
             dataGridViewFarms.Rows.Clear();
             dataGridViewFarms.AutoGenerateColumns = true;
 
@@ -73,7 +73,7 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-            Farm farm = FormBase.dboperator.user.FarmsList.Find(x=> x.Id == farmId);
+            Farm farm = FormBase.dboperator.user.FarmsList.Find(x => x.Id == farmId);
 
             FormShowFarm formShowFarm = new FormShowFarm(farm);
             formShowFarm.ShowDialog();
@@ -81,22 +81,25 @@ namespace AgroApp.Forms
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dataGridViewFarms.SelectedRows[0];
-            int farmId;
-            int.TryParse(row.Cells[0].Value.ToString(), out farmId);
-
-
-            DeleteQuery query = new DeleteQuery("Farms", "id", farmId);
-            if (FormBase.dboperator.delete(query) != 0)
+            if (dataGridViewFarms.SelectedRows.Count != 0)
             {
-                MessageBox.Show("Usunięto");
-            }
-            else 
-            {
-                MessageBox.Show("Błąd");
-            }
+                DataGridViewRow row = dataGridViewFarms.SelectedRows[0];
+                int farmId;
+                int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-            loadFarms();
+
+                DeleteQuery query = new DeleteQuery("Farms", "id", farmId);
+                if (FormBase.dboperator.delete(query) != 0)
+                {
+                    MessageBox.Show("Usunięto");
+                }
+                else
+                {
+                    MessageBox.Show("Błąd");
+                }
+
+                loadFarms();
+            }
         }
 
         private void buttonAddEmployee_Click(object sender, EventArgs e)
@@ -108,22 +111,26 @@ namespace AgroApp.Forms
 
         private void buttonDeleteEmployee_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dataGridViewEmployees.SelectedRows[0];
-            int employeeId;
-            int.TryParse(row.Cells[0].Value.ToString(), out employeeId);
+            if (dataGridViewEmployees.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dataGridViewEmployees.SelectedRows[0];
+                int employeeId;
+                int.TryParse(row.Cells[0].Value.ToString(), out employeeId);
 
 
-            DeleteQuery query = new DeleteQuery("Employees", "id", employeeId);
-            if (FormBase.dboperator.delete(query) != 0)
-            {
-                MessageBox.Show("Usunięto");
+                DeleteQuery query = new DeleteQuery("Employees", "id", employeeId);
+                if (FormBase.dboperator.delete(query) != 0)
+                {
+                    MessageBox.Show("Usunięto");
+                }
+                else
+                {
+                    MessageBox.Show("Błąd");
+                }
+
+                loadEmployees();
             }
-            else
-            {
-                MessageBox.Show("Błąd");
-            }
-            
-            loadEmployees();
+
         }
 
         private void FormMainMenu_Shown(object sender, EventArgs e)
@@ -138,11 +145,6 @@ namespace AgroApp.Forms
             int farmId;
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
-        }
-
-        private void wylogujToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
