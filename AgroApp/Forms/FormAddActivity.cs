@@ -255,13 +255,14 @@ namespace AgroApp.Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (invokeType == 0)
+
+            if (dataGridViewField.SelectedRows.Count == 0 || textBox1.Text == string.Empty)
             {
-                if (dataGridViewField.SelectedRows.Count == 0 || textBox1.Text == string.Empty)
-                {
-                    MessageBox.Show("Należy wprowadzić nazwę i wybrać pole");
-                }
-                else
+                MessageBox.Show("Należy wprowadzić nazwę i wybrać pole");
+            }
+            else
+            {
+                if (invokeType == 0)
                 {
                     if (dateTimePicker1.Value.Date > dateTimePicker2.Value.Date)
                     {
@@ -334,195 +335,12 @@ namespace AgroApp.Forms
                     if (dboperator.insert(query) != 0)
                     {
                         MessageBox.Show("Dodano");
-                    }
-
-                    textBox1.Text = string.Empty;
-                    richTextBox1.Text = string.Empty;
-                    clearDataGridViewSelections();
-                    numericUpDown1.Value = 0m;
-                    dateTimePicker1.Value = DateTime.Today;
-                    dateTimePicker2.Value = DateTime.Today;
-                }
-            }
-            else
-            {
-                if (editedActivity.Name != textBox1.Text)
-                {
-                    updatedColumns.Add("name");
-                    updatedValues.Add(textBox1.Text);
-                }
-
-                if (editedActivity.Description != richTextBox1.Text)
-                {
-                    updatedColumns.Add("description");
-                    updatedValues.Add(richTextBox1.Text);
-                }
-
-                //datagridviews
-                #region
-                //type
-                if (editedActivity.Type == null)
-                {
-                    if (dataGridViewType.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("type");
-                        updatedValues.Add((int)(dataGridViewType.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Type.Id != (int)(dataGridViewType.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("type");
-                        updatedValues.Add((int)(dataGridViewType.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-                //field
-                if (editedActivity.Field == null)
-                {
-                    if (dataGridViewField.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("field");
-                        updatedValues.Add((int)(dataGridViewField.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Field.Id != (int)(dataGridViewField.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("field");
-                        updatedValues.Add((int)(dataGridViewField.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-                //employee
-                if (editedActivity.Employee == null)
-                {
-                    if (dataGridViewEmployee.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("employee");
-                        updatedValues.Add((int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Employee.Id != (int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("employee");
-                        updatedValues.Add((int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-
-                //machine
-                if (editedActivity.Machine == null)
-                {
-                    if (dataGridViewMachine.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("machine");
-                        updatedValues.Add((int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Machine.Id != (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("machine");
-                        updatedValues.Add((int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-                //tool
-                if (editedActivity.Tool == null)
-                {
-                    if (dataGridViewTool.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("tool");
-                        updatedValues.Add((int)(dataGridViewTool.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Tool.Id != (int)(dataGridViewTool.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("tool");
-                        updatedValues.Add((int)(dataGridViewTool.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-                //resource
-                if (editedActivity.Resource == null)
-                {
-                    if (dataGridViewResource.SelectedRows.Count > 0)
-                    {
-                        updatedColumns.Add("resource");
-                        updatedValues.Add((int)(dataGridViewResource.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Resource.Id != (int)(dataGridViewResource.SelectedRows[0].Cells[0].Value))
-                    {
-                        updatedColumns.Add("resource");
-                        updatedValues.Add((int)(dataGridViewResource.SelectedRows[0].Cells[0].Value));
-                    }
-                }
-
-                #endregion
-
-                //datetimepickers
-                #region
-                if ((decimal)(editedActivity.Value) != numericUpDown1.Value)
-                {
-                    updatedColumns.Add("value");
-                    updatedValues.Add(numericUpDown1.Value);
-                }
-
-                if (editedActivity.Start_date == null)
-                {
-                    if (dateTimePicker1.Value > DateTime.MinValue)
-                    {
-                        updatedColumns.Add("start_date");
-                        updatedValues.Add(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Start_date.Date != dateTimePicker1.Value.Date)
-                    {
-                        updatedColumns.Add("start_date");
-                        updatedValues.Add(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                    }
-                }
-
-                if (editedActivity.Finish_date == null)
-                {
-                    if (dateTimePicker2.Value > DateTime.MinValue)
-                    {
-                        updatedColumns.Add("finish_date");
-                        updatedValues.Add(dateTimePicker2.Value.ToString("yyyy-MM-dd"));
-                    }
-                }
-                else
-                {
-                    if (editedActivity.Finish_date.Date != dateTimePicker2.Value.Date)
-                    {
-                        updatedColumns.Add("finish_date");
-                        updatedValues.Add(dateTimePicker2.Value.ToString("yyyy-MM-dd"));
-                    }
-                }
-                #endregion
-
-
-                if (updatedColumns.Count != 0)
-                {
-                    UpdateQuery updateQuery = new UpdateQuery("Activities", updatedColumns, updatedValues, editedActivity.Id);
-                    if (FormBase.dboperator.update(updateQuery) != 0)
-                    {
-                        MessageBox.Show("Edytowano");
-                        this.Close();
-                        return;
+                        textBox1.Text = string.Empty;
+                        richTextBox1.Text = string.Empty;
+                        clearDataGridViewSelections();
+                        numericUpDown1.Value = 0m;
+                        dateTimePicker1.Value = DateTime.Today;
+                        dateTimePicker2.Value = DateTime.Today;
                     }
                     else
                     {
@@ -531,14 +349,201 @@ namespace AgroApp.Forms
                 }
                 else
                 {
-                    DialogResult messageBoxResult = MessageBox.Show("Nie wprowadzono żadnych zmian, czy chcesz powrócić?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (messageBoxResult == DialogResult.No)
+                    if (editedActivity.Name != textBox1.Text)
                     {
-                        this.Close();
-                        return;
+                        updatedColumns.Add("name");
+                        updatedValues.Add(textBox1.Text);
+                    }
+
+                    if (editedActivity.Description != richTextBox1.Text)
+                    {
+                        updatedColumns.Add("description");
+                        updatedValues.Add(richTextBox1.Text);
+                    }
+
+                    //datagridviews
+                    #region
+                    //type
+                    if (editedActivity.Type == null)
+                    {
+                        if (dataGridViewType.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("type");
+                            updatedValues.Add((int)(dataGridViewType.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Type.Id != (int)(dataGridViewType.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("type");
+                            updatedValues.Add((int)(dataGridViewType.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+                    //field
+                    if (editedActivity.Field == null)
+                    {
+                        if (dataGridViewField.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("field");
+                            updatedValues.Add((int)(dataGridViewField.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Field.Id != (int)(dataGridViewField.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("field");
+                            updatedValues.Add((int)(dataGridViewField.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+                    //employee
+                    if (editedActivity.Employee == null)
+                    {
+                        if (dataGridViewEmployee.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("employee");
+                            updatedValues.Add((int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Employee.Id != (int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("employee");
+                            updatedValues.Add((int)(dataGridViewEmployee.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+
+                    //machine
+                    if (editedActivity.Machine == null)
+                    {
+                        if (dataGridViewMachine.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("machine");
+                            updatedValues.Add((int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Machine.Id != (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("machine");
+                            updatedValues.Add((int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+                    //tool
+                    if (editedActivity.Tool == null)
+                    {
+                        if (dataGridViewTool.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("tool");
+                            updatedValues.Add((int)(dataGridViewTool.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Tool.Id != (int)(dataGridViewTool.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("tool");
+                            updatedValues.Add((int)(dataGridViewTool.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+                    //resource
+                    if (editedActivity.Resource == null)
+                    {
+                        if (dataGridViewResource.SelectedRows.Count > 0)
+                        {
+                            updatedColumns.Add("resource");
+                            updatedValues.Add((int)(dataGridViewResource.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Resource.Id != (int)(dataGridViewResource.SelectedRows[0].Cells[0].Value))
+                        {
+                            updatedColumns.Add("resource");
+                            updatedValues.Add((int)(dataGridViewResource.SelectedRows[0].Cells[0].Value));
+                        }
+                    }
+
+                    #endregion
+
+                    //datetimepickers
+                    #region
+                    if ((decimal)(editedActivity.Value) != numericUpDown1.Value)
+                    {
+                        updatedColumns.Add("value");
+                        updatedValues.Add(numericUpDown1.Value);
+                    }
+
+                    if (editedActivity.Start_date == null)
+                    {
+                        if (dateTimePicker1.Value > DateTime.MinValue)
+                        {
+                            updatedColumns.Add("start_date");
+                            updatedValues.Add(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Start_date.Date != dateTimePicker1.Value.Date)
+                        {
+                            updatedColumns.Add("start_date");
+                            updatedValues.Add(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                        }
+                    }
+
+                    if (editedActivity.Finish_date == null)
+                    {
+                        if (dateTimePicker2.Value > DateTime.MinValue)
+                        {
+                            updatedColumns.Add("finish_date");
+                            updatedValues.Add(dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+                        }
+                    }
+                    else
+                    {
+                        if (editedActivity.Finish_date.Date != dateTimePicker2.Value.Date)
+                        {
+                            updatedColumns.Add("finish_date");
+                            updatedValues.Add(dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+                        }
+                    }
+                    #endregion
+
+
+                    if (updatedColumns.Count != 0)
+                    {
+                        UpdateQuery updateQuery = new UpdateQuery("Activities", updatedColumns, updatedValues, editedActivity.Id);
+                        if (FormBase.dboperator.update(updateQuery) != 0)
+                        {
+                            MessageBox.Show("Edytowano");
+                            this.Close();
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Błąd");
+                        }
+                    }
+                    else
+                    {
+                        DialogResult messageBoxResult = MessageBox.Show("Nie wprowadzono żadnych zmian, czy chcesz powrócić?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (messageBoxResult == DialogResult.No)
+                        {
+                            this.Close();
+                            return;
+                        }
                     }
                 }
             }
+
         }
 
         private void FormAddActivity_Load(object sender, EventArgs e)

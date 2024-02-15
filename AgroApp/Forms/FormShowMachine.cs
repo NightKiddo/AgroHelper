@@ -16,15 +16,17 @@ namespace AgroApp.Forms
         DBOperator dboperator = FormBase.dboperator;
         Machine machine;
         Farm farm;
-        public FormShowMachine(Machine machine, Farm farm)
+        Garage garage;
+        public FormShowMachine(Farm farm, Garage garage, Machine machine)
         {
             InitializeComponent();
             this.machine = machine;
+            this.garage = garage;
             this.farm = farm;
-            loadData();            
+            loadMachine();
         }
 
-        private void loadData()
+        private void loadMachine()
         {
             labelName.Text = machine.Name;
             if (machine.Type != null)
@@ -32,21 +34,32 @@ namespace AgroApp.Forms
                 labelType.Text = machine.Type.Type;
             }
             labelMileage.Text = "Przebieg: " + machine.Mileage.ToString();
-            dateTimePickerInspection.Value = machine.Inspection_date;
+            if (machine.Inspection_date < DateTimePicker.MinimumDateTime)
+            {
+                dateTimePickerInspection.Visible = false;
+            }
+            else
+            {
+                dateTimePickerInspection.Value = machine.Inspection_date;
+            }
             labelFuel.Text = "Stan paliwa: " + machine.Fuel.ToString();
+            prepareJournal();
         }
 
         private void prepareJournal()
         {
+            dataGridViewActivities.Rows.Clear();
+
             List<object[]> journalEntries = new List<object[]>();
 
             foreach (Activity a in farm.Journal.ActivitiesList)
             {
-                if (a.Machine.Id == machine.Id)
+                if (a.Machine != null && a.Machine.Id == machine.Id)
                 {
                     journalEntries.Add(new object[] { a.Name, a.Type.Type, a.Start_date.ToString("dd-MM-yyyy"), a.Finish_date.ToString("dd-MM-yyyy"), a.Value });
                 }
             }
+
             for (int i = 0; i < journalEntries.Count; i++)
             {
                 dataGridViewActivities.Rows.Add(journalEntries[i]);
@@ -54,6 +67,23 @@ namespace AgroApp.Forms
 
             dataGridViewActivities.Sort(dataGridViewActivities.Columns[2], ListSortDirection.Descending);
             dataGridViewActivities.ClearSelection();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DeleteQuery query = new DeleteQuery("machines", "id", machine.Id);
+            dboperator.delete(query);
+            this.Close();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            FormAddMachine formAddMachine = new FormAddMachine(garage, machine.Id);
+            formAddMachine.ShowDialog();
+
+            garage.MachinesList = dboperator.getMachines(garage.Id);
+            machine = garage.MachinesList.Find(x => x.Id == machine.Id);
+            loadMachine();
         }
     }
 }

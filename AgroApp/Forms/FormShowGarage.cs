@@ -29,7 +29,7 @@ namespace AgroApp.Forms
 
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView2.ContextMenuStrip = contextMenuStrip2;
-            
+
         }
 
         public void loadMachines()
@@ -70,37 +70,6 @@ namespace AgroApp.Forms
             dataGridView2.ClearSelection();
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            FormAddMachine formAddMachine = new FormAddMachine(garageId);
-            formAddMachine.ShowDialog();
-            loadMachines();
-        }
-
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count != 0)
-            {
-                int machineId;
-                int.TryParse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out machineId);
-                DeleteQuery query = new DeleteQuery("Machines", "id", machineId);
-                if (dboperator.delete(query) != 0)
-                {
-                    MessageBox.Show("Usunięto pomyślnie");
-                }
-                else
-                {
-                    MessageBox.Show("Błąd");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Brak zaznaczenia");
-            }
-
-            loadMachines();
-        }
-
         private void buttonDeleteGarage_Click(object sender, EventArgs e)
         {
             DeleteQuery query = new DeleteQuery("Garages", "id", garageId);
@@ -112,11 +81,9 @@ namespace AgroApp.Forms
         }
         private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddMachine formAddMachine = new FormAddMachine(garageId);
-            if (formAddMachine.ShowDialog() == DialogResult.OK)
-            {
-                loadMachines();
-            }
+            FormAddMachine formAddMachine = new FormAddMachine(garage, 0);
+            formAddMachine.ShowDialog();
+            loadMachines();
         }
 
         private void usuńToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,11 +137,23 @@ namespace AgroApp.Forms
             dataGridView2.ClearSelection();
         }
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count != 0)
+            if (dataGridView1.SelectedRows.Count != 0)
             {
+                Machine machine = null;
+                foreach (Machine m in garage.MachinesList)
+                {
+                    if (m.Id == (int)dataGridView1.SelectedRows[0].Cells[0].Value)
+                    {
+                        machine = m;
+                    }
+                }
+                FormShowMachine formShowMachine = new FormShowMachine(farm, garage, machine);
+                formShowMachine.ShowDialog();
 
+                garage.MachinesList = dboperator.getMachines(garageId);
+                loadMachines();
             }
         }
     }

@@ -310,7 +310,7 @@ namespace AgroApp.Forms
         {
             DataGridViewRow row = dataGridViewGarages.SelectedRows[0];
             Garage garage = (Garage)row.DataBoundItem;
-            FormShowGarage formShowGarage = new FormShowGarage(garage);
+            FormShowGarage formShowGarage = new FormShowGarage(garage, farm);
             formShowGarage.ShowDialog();
             loadGarages();
         }

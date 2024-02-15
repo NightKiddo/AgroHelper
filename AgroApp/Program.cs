@@ -23,7 +23,7 @@ namespace AgroApp
 }
 /*
  * do zrobienia:
- * -form do pokazywania i edytowania maszyn
+ * -form do pokazywania i edytowania maszyn (trzeba stesować)
  * -form do pokazywania i edytowania narzędzi
  * -edytowanie pracowników
  * -edytowanie gospodarstw

@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelMileage = new System.Windows.Forms.Label();
-            this.labelType = new System.Windows.Forms.Label();
-            this.dateTimePickerInspection = new System.Windows.Forms.DateTimePicker();
-            this.labelInspection = new System.Windows.Forms.Label();
-            this.labelFuel = new System.Windows.Forms.Label();
             this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelFuel = new System.Windows.Forms.Label();
+            this.labelInspection = new System.Windows.Forms.Label();
+            this.dateTimePickerInspection = new System.Windows.Forms.DateTimePicker();
+            this.labelType = new System.Windows.Forms.Label();
+            this.labelMileage = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).BeginInit();
             this.SuspendLayout();
@@ -63,84 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(630, 554);
             this.panel1.TabIndex = 0;
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonEdit.Location = new System.Drawing.Point(12, 282);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(75, 45);
-            this.buttonEdit.TabIndex = 17;
-            this.buttonEdit.Text = "Edytuj";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.BackColor = System.Drawing.Color.LightCoral;
-            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonDelete.Location = new System.Drawing.Point(93, 282);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 45);
-            this.buttonDelete.TabIndex = 16;
-            this.buttonDelete.Text = "Usuń";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelName.Location = new System.Drawing.Point(12, 15);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(70, 26);
-            this.labelName.TabIndex = 18;
-            this.labelName.Text = "label1";
-            // 
-            // labelMileage
-            // 
-            this.labelMileage.AutoSize = true;
-            this.labelMileage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMileage.Location = new System.Drawing.Point(12, 71);
-            this.labelMileage.Name = "labelMileage";
-            this.labelMileage.Size = new System.Drawing.Size(70, 26);
-            this.labelMileage.TabIndex = 19;
-            this.labelMileage.Text = "label2";
-            // 
-            // labelType
-            // 
-            this.labelType.AutoSize = true;
-            this.labelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelType.Location = new System.Drawing.Point(12, 127);
-            this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(70, 26);
-            this.labelType.TabIndex = 20;
-            this.labelType.Text = "label3";
-            // 
-            // dateTimePickerInspection
-            // 
-            this.dateTimePickerInspection.Location = new System.Drawing.Point(217, 186);
-            this.dateTimePickerInspection.Name = "dateTimePickerInspection";
-            this.dateTimePickerInspection.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerInspection.TabIndex = 21;
-            // 
-            // labelInspection
-            // 
-            this.labelInspection.AutoSize = true;
-            this.labelInspection.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInspection.Location = new System.Drawing.Point(12, 183);
-            this.labelInspection.Name = "labelInspection";
-            this.labelInspection.Size = new System.Drawing.Size(199, 26);
-            this.labelInspection.TabIndex = 22;
-            this.labelInspection.Text = "Następny przegląd:";
-            // 
-            // labelFuel
-            // 
-            this.labelFuel.AutoSize = true;
-            this.labelFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelFuel.Location = new System.Drawing.Point(12, 239);
-            this.labelFuel.Name = "labelFuel";
-            this.labelFuel.Size = new System.Drawing.Size(70, 26);
-            this.labelFuel.TabIndex = 23;
-            this.labelFuel.Text = "label5";
             // 
             // dataGridViewActivities
             // 
@@ -193,6 +115,87 @@
             this.Column5.HeaderText = "ilosc";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            // 
+            // labelFuel
+            // 
+            this.labelFuel.AutoSize = true;
+            this.labelFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelFuel.Location = new System.Drawing.Point(12, 239);
+            this.labelFuel.Name = "labelFuel";
+            this.labelFuel.Size = new System.Drawing.Size(70, 26);
+            this.labelFuel.TabIndex = 23;
+            this.labelFuel.Text = "label5";
+            // 
+            // labelInspection
+            // 
+            this.labelInspection.AutoSize = true;
+            this.labelInspection.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelInspection.Location = new System.Drawing.Point(12, 183);
+            this.labelInspection.Name = "labelInspection";
+            this.labelInspection.Size = new System.Drawing.Size(199, 26);
+            this.labelInspection.TabIndex = 22;
+            this.labelInspection.Text = "Następny przegląd:";
+            // 
+            // dateTimePickerInspection
+            // 
+            this.dateTimePickerInspection.Enabled = false;
+            this.dateTimePickerInspection.Location = new System.Drawing.Point(217, 186);
+            this.dateTimePickerInspection.Name = "dateTimePickerInspection";
+            this.dateTimePickerInspection.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerInspection.TabIndex = 21;
+            // 
+            // labelType
+            // 
+            this.labelType.AutoSize = true;
+            this.labelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelType.Location = new System.Drawing.Point(12, 127);
+            this.labelType.Name = "labelType";
+            this.labelType.Size = new System.Drawing.Size(70, 26);
+            this.labelType.TabIndex = 20;
+            this.labelType.Text = "label3";
+            // 
+            // labelMileage
+            // 
+            this.labelMileage.AutoSize = true;
+            this.labelMileage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMileage.Location = new System.Drawing.Point(12, 71);
+            this.labelMileage.Name = "labelMileage";
+            this.labelMileage.Size = new System.Drawing.Size(70, 26);
+            this.labelMileage.TabIndex = 19;
+            this.labelMileage.Text = "label2";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelName.Location = new System.Drawing.Point(12, 15);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(70, 26);
+            this.labelName.TabIndex = 18;
+            this.labelName.Text = "label1";
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonEdit.Location = new System.Drawing.Point(12, 282);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(75, 45);
+            this.buttonEdit.TabIndex = 17;
+            this.buttonEdit.Text = "Edytuj";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonDelete.Location = new System.Drawing.Point(93, 282);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 45);
+            this.buttonDelete.TabIndex = 16;
+            this.buttonDelete.Text = "Usuń";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormShowMachine
             // 
