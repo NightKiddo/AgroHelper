@@ -190,6 +190,12 @@
     <Compile Include="Forms\FormShowStorage.Designer.cs">
       <DependentUpon>FormShowStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormShowTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShowTool.Designer.cs">
+      <DependentUpon>FormShowTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Activity.cs" />
     <Compile Include="Logic\ClassTypes\ActivityType.cs" />
     <Compile Include="Logic\DBControl\DBOperator.cs" />
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShowStorage.resx">
       <DependentUpon>FormShowStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShowTool.resx">
+      <DependentUpon>FormShowTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

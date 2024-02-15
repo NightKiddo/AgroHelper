@@ -107,7 +107,7 @@ namespace AgroApp.Forms
 
         private void dodajToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormAddTool formAddTool = new FormAddTool(garageId);
+            FormAddTool formAddTool = new FormAddTool(garage, 0);
             formAddTool.ShowDialog();
             loadTools();
         }
@@ -154,6 +154,19 @@ namespace AgroApp.Forms
 
                 garage.MachinesList = dboperator.getMachines(garageId);
                 loadMachines();
+            }
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count != 0)
+            {
+                Tool tool = garage.ToolsList.Find(x => x.Id == (int)dataGridView2.SelectedRows[0].Cells[0].Value);
+                FormShowTool formShowTool = new FormShowTool(farm, garage, tool);
+                formShowTool.ShowDialog();
+
+                garage.ToolsList = dboperator.getTools(garage.Id);
+                loadTools();
             }
         }
     }

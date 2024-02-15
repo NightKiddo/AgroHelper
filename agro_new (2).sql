@@ -55,7 +55,7 @@ CREATE TABLE Tool_types(
 CREATE TABLE Employees(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250) NOT NULL,
-	[user] int FOREIGN KEY REFERENCES Users(id)
+	[user] int FOREIGN KEY REFERENCES Users(id) ON DELETE CASCADE
 )
 
 CREATE TABLE Activity_types(
@@ -71,7 +71,7 @@ CREATE TABLE Note_types(
 CREATE TABLE Farms(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250) NOT NULL,
-	[user] int FOREIGN KEY REFERENCES Users(id)
+	[user] int FOREIGN KEY REFERENCES Users(id) ON DELETE CASCADE
 )
 
 CREATE TABLE Fields(
@@ -80,7 +80,7 @@ CREATE TABLE Fields(
 	[description] varchar (500),
 	coordinates VARCHAR(5000),
 	farm int FOREIGN KEY REFERENCES Farms(id) ON DELETE CASCADE,
-	plant int FOREIGN KEY REFERENCES Plants(id) ON DELETE CASCADE
+	plant int FOREIGN KEY REFERENCES Plants(id) ON DELETE NO ACTION
 )
 
 CREATE TABLE Garages(
@@ -92,17 +92,17 @@ CREATE TABLE Garages(
 CREATE TABLE Tools(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250),
-	garage int FOREIGN KEY REFERENCES Garages(id),
+	garage int FOREIGN KEY REFERENCES Garages(id) ON DELETE CASCADE,
 	mileage int,
-	type int FOREIGN KEY REFERENCES Tool_types(id)
+	type int FOREIGN KEY REFERENCES Tool_types(id) ON DELETE NO ACTION
 )
 
 CREATE TABLE Machines(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(250),
-	garage int FOREIGN KEY REFERENCES Garages(id),
+	garage int FOREIGN KEY REFERENCES Garages(id) ON DELETE CASCADE,
 	mileage int DEFAULT 0,
-	type int FOREIGN KEY REFERENCES Machine_types(id),
+	type int FOREIGN KEY REFERENCES Machine_types(id) ON DELETE NO ACTION,
 	inspection_date date,
 	fuel float DEFAULT 0
 )
@@ -117,7 +117,7 @@ CREATE TABLE Resources(
 	id int PRIMARY KEY IDENTITY(1,1),
 	[name] VARCHAR(100) NOT NULL,
 	type int FOREIGN KEY REFERENCES Resource_types(id),
-	storage int FOREIGN KEY REFERENCES Storages(id),
+	storage int FOREIGN KEY REFERENCES Storages(id) ON DELETE CASCADE,
 	amount float DEFAULT 0
 )
 
@@ -134,11 +134,11 @@ CREATE TABLE Activities(
 	start_date date,
 	finish_date date,
 	type int FOREIGN KEY REFERENCES Activity_types(id),
-	field int FOREIGN KEY REFERENCES Fields(id) NOT NULL,
-	employee int FOREIGN KEY REFERENCES Employees(id),
-	machine int FOREIGN KEY REFERENCES Machines(id),
-	tool int FOREIGN KEY REFERENCES Tools(id),
-	[resource] int FOREIGN KEY REFERENCES Resources(id),
+	field int FOREIGN KEY REFERENCES Fields(id) ON DELETE NO ACTION NOT NULL,
+	employee int FOREIGN KEY REFERENCES Employees(id) ON DELETE NO ACTION,
+	machine int FOREIGN KEY REFERENCES Machines(id) ON DELETE NO ACTION,
+	tool int FOREIGN KEY REFERENCES Tools(id) ON DELETE NO ACTION,
+	[resource] int FOREIGN KEY REFERENCES Resources(id) ON DELETE NO ACTION,
 	value float,
 )
 
@@ -146,11 +146,11 @@ CREATE TABLE Notes(
 	id int PRIMARY KEY IDENTITY(1,1),
 	name varchar(100) NOT NULL,
 	journal int FOREIGN KEY REFERENCES Journals(id) ON DELETE CASCADE,
-	type int FOREIGN KEY REFERENCES Note_types(id),
+	type int FOREIGN KEY REFERENCES Note_types(id) ON DELETE NO ACTION,
 	description varchar(250),
 	start_date date,
 	finish_date date,
-	field int FOREIGN KEY REFERENCES Fields(id),
+	field int FOREIGN KEY REFERENCES Fields(id) ON DELETE NO ACTION,
 	value float
 )
 
@@ -217,7 +217,7 @@ INSERT INTO Storages(name,farm) VALUES ('magazyn1',1), ('magazyn2',1), ('magazyn
 
 INSERT INTO Machine_types(type) VALUES ('Traktor'),('Kombajn zbo¿owy'), ('Opryskiwacz samojezdny'), ('£adowarka teleskopowa');
 
-INSERT INTO Tool_types(type) VALUES ('Agregat uprawowy'),('Brona talerzowa'), ('Deszczownia'), ('Glebogryzarka'), ('Kopaczka do ziemniaków'), ('Kultywator'),('Mulczer'),('Opryskiwacz'), ('Prasa'), ('Przetrz¹sacz'), ('P³ug'), ('Przyczepa'), ('Przyczepa zbieraj¹ca'),('Rozsiewacz nawozów'), ('Rozrzutnik obornika'), ('Sadzarka'), ('Siewnik')   , ('Zbrabiarka');
+INSERT INTO Tool_types(type) VALUES ('Agregat uprawowy'),('Brona talerzowa'), ('Deszczownia'), ('Glebogryzarka'), ('Kopaczka do ziemniaków'), ('Kultywator'),('Mulczer'),('Opryskiwacz'), ('Prasa'), ('Przetrz¹sacz'), ('P³ug'), ('Przyczepa'), ('Przyczepa zbieraj¹ca'),('Rozsiewacz nawozów'), ('Rozrzutnik obornika'), ('Sadzarka'), ('Siewnik'), ('Zgrabiarka');
 
 INSERT INTO Resource_types (type) VALUES ('Oprysk grzybobójczy'), ('Oprysk owadobójczy'), ('Od¿ywka'), ('Nawóz');
 

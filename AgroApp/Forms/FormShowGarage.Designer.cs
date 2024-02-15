@@ -96,17 +96,19 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(588, 210);
             this.dataGridView2.TabIndex = 5;
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
             // 
             // buttonDeleteGarage
             // 
             this.buttonDeleteGarage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteGarage.BackColor = System.Drawing.Color.LightCoral;
             this.buttonDeleteGarage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonDeleteGarage.Location = new System.Drawing.Point(690, 12);
+            this.buttonDeleteGarage.Location = new System.Drawing.Point(606, 12);
             this.buttonDeleteGarage.Name = "buttonDeleteGarage";
-            this.buttonDeleteGarage.Size = new System.Drawing.Size(75, 37);
+            this.buttonDeleteGarage.Size = new System.Drawing.Size(159, 37);
             this.buttonDeleteGarage.TabIndex = 4;
-            this.buttonDeleteGarage.Text = "Usuń";
-            this.buttonDeleteGarage.UseVisualStyleBackColor = true;
+            this.buttonDeleteGarage.Text = "Usuń garaż";
+            this.buttonDeleteGarage.UseVisualStyleBackColor = false;
             this.buttonDeleteGarage.Click += new System.EventHandler(this.buttonDeleteGarage_Click);
             // 
             // dataGridView1

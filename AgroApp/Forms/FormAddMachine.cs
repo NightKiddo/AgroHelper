@@ -84,7 +84,7 @@ namespace AgroApp.Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == String.Empty && dataGridView1.SelectedRows.Count == 0)
+            if (textBox1.Text == String.Empty || dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Należy wprowadzić nazwę i wybrać typ");
             }
@@ -118,7 +118,7 @@ namespace AgroApp.Forms
 
                     string values =
                         "'" + textBox1.Text + "', " + chosenType + ", " +
-                        numericUpDown2.Value + ", " + dateString + ", " + numericUpDown1.Value + ", " + garage.Id;
+                        numericUpDown2.Value + ", " + dateString + ", " + numericUpDown1.Value.ToString(CultureInfo.InvariantCulture) + ", " + garage.Id;
                     InsertQuery query = new InsertQuery("Machines", "name,type,mileage,inspection_date,fuel,garage", values);
 
 

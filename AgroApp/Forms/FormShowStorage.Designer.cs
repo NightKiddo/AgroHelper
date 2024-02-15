@@ -34,10 +34,6 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,12 +53,14 @@
             // 
             // buttonDeleteStorage
             // 
-            this.buttonDeleteStorage.Location = new System.Drawing.Point(710, 3);
+            this.buttonDeleteStorage.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonDeleteStorage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonDeleteStorage.Location = new System.Drawing.Point(586, 12);
             this.buttonDeleteStorage.Name = "buttonDeleteStorage";
-            this.buttonDeleteStorage.Size = new System.Drawing.Size(87, 23);
+            this.buttonDeleteStorage.Size = new System.Drawing.Size(202, 32);
             this.buttonDeleteStorage.TabIndex = 7;
             this.buttonDeleteStorage.Text = "Usuń magazyn";
-            this.buttonDeleteStorage.UseVisualStyleBackColor = true;
+            this.buttonDeleteStorage.UseVisualStyleBackColor = false;
             this.buttonDeleteStorage.Click += new System.EventHandler(this.buttonDeleteStorage_Click);
             // 
             // buttonEdit
@@ -74,6 +72,7 @@
             this.buttonEdit.TabIndex = 6;
             this.buttonEdit.Text = "EDYTUJ";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
@@ -103,12 +102,8 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name,
-            this.type,
-            this.amount});
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -117,31 +112,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(580, 450);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Nazwa";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Typ";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // amount
-            // 
-            this.amount.HeaderText = "Ilość";
-            this.amount.Name = "amount";
-            this.amount.ReadOnly = true;
             // 
             // FormShowStorage
             // 
@@ -154,7 +124,6 @@
             this.MinimizeBox = false;
             this.Name = "FormShowStorage";
             this.Text = "FormShowStorage";
-            this.Shown += new System.EventHandler(this.FormShowStorage_Shown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -165,10 +134,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;

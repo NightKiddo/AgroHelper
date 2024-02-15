@@ -15,7 +15,7 @@ namespace AgroApp.Forms
     public partial class FormShowStorage : Form
     {
         int storageId;
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
         Storage storage;
         public FormShowStorage(Storage storage)
         {
@@ -25,24 +25,30 @@ namespace AgroApp.Forms
             loadResources();
         }
 
-        private void loadResources() 
+        private void loadResources()
         {
-            dataGridView1.Rows.Clear();
+            storage.ResourcesList = dboperator.getResources(storage);
+            dataGridView1.AutoGenerateColumns = true;
 
-            dataGridView1.DataSource = storage.ResourcesList;
+            var source = new BindingSource();
+            source.DataSource = storage.ResourcesList;
+            dataGridView1.DataSource = source;
+
+            dataGridView1.Columns[0].Visible = false;
+
             dataGridView1.ClearSelection();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            FormAddResource formAddResource = new FormAddResource(storageId);
+            FormAddResource formAddResource = new FormAddResource(storage, 0);
             formAddResource.ShowDialog();
             loadResources();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count != 0) 
+            if (dataGridView1.SelectedRows.Count != 0)
             {
                 int resourceId;
                 int.TryParse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out resourceId);
@@ -56,7 +62,7 @@ namespace AgroApp.Forms
                     MessageBox.Show("Błąd");
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Brak zaznaczenia");
             }
@@ -67,16 +73,22 @@ namespace AgroApp.Forms
         private void buttonDeleteStorage_Click(object sender, EventArgs e)
         {
             DeleteQuery query = new DeleteQuery("Storages", "id", storageId);
-            if(dboperator.delete(query) != 0)
+            if (dboperator.delete(query) != 0)
             {
                 MessageBox.Show("Usunięto");
                 this.Close();
             }
         }
 
-        private void FormShowStorage_Shown(object sender, EventArgs e)
+        private void buttonEdit_Click(object sender, EventArgs e)
         {
-            dataGridView1.ClearSelection();
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                FormAddResource formAddResource = new FormAddResource(storage, (int)dataGridView1.SelectedRows[0].Cells[0].Value);
+                formAddResource.ShowDialog();
+                
+                loadResources();
+            }
         }
     }
 }
