@@ -42,7 +42,8 @@ namespace AgroApp.Forms
 
         private void loadFields()
         {
-            dataGridViewFields.Rows.Clear();
+            farm.FieldsList = dboperator.getFields(farm);
+
             dataGridViewFields.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.FieldsList;
@@ -89,6 +90,8 @@ namespace AgroApp.Forms
         private void loadJournal()
         {
             dataGridViewJournal.Rows.Clear();
+            farm.Journal.ActivitiesList = dboperator.getActivities(farm);
+            farm.Journal.NotesList = dboperator.getNotes(farm);
 
             List<object[]> journalEntries = farm.Journal.getJournalEntries(farm);
 
@@ -249,7 +252,7 @@ namespace AgroApp.Forms
 
         private void analizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCharts formGraphs = new FormCharts(dboperator.user.Id);
+            FormCharts formGraphs = new FormCharts();
             formGraphs.ShowDialog();
         }
 

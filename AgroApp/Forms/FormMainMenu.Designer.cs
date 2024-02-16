@@ -62,7 +62,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(800, 585);
             this.panel1.TabIndex = 0;
             // 
             // labelEmployee
@@ -110,7 +110,7 @@
             this.panel3.Controls.Add(this.dataGridViewEmployees);
             this.panel3.Location = new System.Drawing.Point(206, 298);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(582, 140);
+            this.panel3.Size = new System.Drawing.Size(582, 280);
             this.panel3.TabIndex = 3;
             // 
             // dataGridViewEmployees
@@ -129,7 +129,7 @@
             this.dataGridViewEmployees.RowHeadersVisible = false;
             this.dataGridViewEmployees.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployees.Size = new System.Drawing.Size(582, 140);
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(582, 280);
             this.dataGridViewEmployees.TabIndex = 0;
             // 
             // buttonDelete
@@ -197,12 +197,13 @@
             this.wylogujToolStripMenuItem.Name = "wylogujToolStripMenuItem";
             this.wylogujToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.wylogujToolStripMenuItem.Text = "Wyloguj";
+            this.wylogujToolStripMenuItem.Click += new System.EventHandler(this.wylogujToolStripMenuItem_Click);
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 474);
+            this.ClientSize = new System.Drawing.Size(800, 609);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

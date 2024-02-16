@@ -28,28 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
             this.checkBoxXminorGrid = new System.Windows.Forms.CheckBox();
             this.checkBox3D = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewValues = new System.Windows.Forms.DataGridView();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewFields = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewFarms = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,8 +55,9 @@
             this.labelField = new System.Windows.Forms.Label();
             this.comboBoxGraphType = new System.Windows.Forms.ComboBox();
             this.labelGraphType = new System.Windows.Forms.Label();
-            this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
@@ -102,6 +96,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1246, 771);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(154, 726);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBoxYminorGrid
+            // 
+            this.checkBoxYminorGrid.AutoSize = true;
+            this.checkBoxYminorGrid.Location = new System.Drawing.Point(290, 671);
+            this.checkBoxYminorGrid.Name = "checkBoxYminorGrid";
+            this.checkBoxYminorGrid.Size = new System.Drawing.Size(136, 17);
+            this.checkBoxYminorGrid.TabIndex = 27;
+            this.checkBoxYminorGrid.Text = "Pomniejsza siatka osi X";
+            this.checkBoxYminorGrid.UseVisualStyleBackColor = true;
+            this.checkBoxYminorGrid.CheckedChanged += new System.EventHandler(this.checkBoxYminorGrid_CheckedChanged);
             // 
             // checkBoxXminorGrid
             // 
@@ -163,9 +178,6 @@
             this.dataGridViewEmployees.AllowUserToResizeRows = false;
             this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployees.ColumnHeadersVisible = false;
-            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
             this.dataGridViewEmployees.Location = new System.Drawing.Point(16, 437);
             this.dataGridViewEmployees.MultiSelect = false;
             this.dataGridViewEmployees.Name = "dataGridViewEmployees";
@@ -177,19 +189,6 @@
             this.dataGridViewEmployees.Size = new System.Drawing.Size(120, 103);
             this.dataGridViewEmployees.TabIndex = 21;
             // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "id";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "name";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
             // dataGridViewValues
             // 
             this.dataGridViewValues.AllowUserToAddRows = false;
@@ -200,8 +199,8 @@
             this.dataGridViewValues.ColumnHeadersVisible = false;
             this.dataGridViewValues.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.type,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.id,
+            this.name});
             this.dataGridViewValues.Location = new System.Drawing.Point(16, 306);
             this.dataGridViewValues.MultiSelect = false;
             this.dataGridViewValues.Name = "dataGridViewValues";
@@ -213,26 +212,6 @@
             this.dataGridViewValues.Size = new System.Drawing.Size(120, 103);
             this.dataGridViewValues.TabIndex = 20;
             // 
-            // type
-            // 
-            this.type.HeaderText = "type";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            this.type.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
             // dataGridViewFields
             // 
             this.dataGridViewFields.AllowUserToAddRows = false;
@@ -241,9 +220,6 @@
             this.dataGridViewFields.AllowUserToResizeRows = false;
             this.dataGridViewFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFields.ColumnHeadersVisible = false;
-            this.dataGridViewFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
             this.dataGridViewFields.Location = new System.Drawing.Point(16, 173);
             this.dataGridViewFields.MultiSelect = false;
             this.dataGridViewFields.Name = "dataGridViewFields";
@@ -256,19 +232,6 @@
             this.dataGridViewFields.TabIndex = 19;
             this.dataGridViewFields.SelectionChanged += new System.EventHandler(this.dataGridViewFields_SelectionChanged);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
             // dataGridViewFarms
             // 
             this.dataGridViewFarms.AllowUserToAddRows = false;
@@ -277,9 +240,6 @@
             this.dataGridViewFarms.AllowUserToResizeRows = false;
             this.dataGridViewFarms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFarms.ColumnHeadersVisible = false;
-            this.dataGridViewFarms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name});
             this.dataGridViewFarms.Location = new System.Drawing.Point(16, 39);
             this.dataGridViewFarms.MultiSelect = false;
             this.dataGridViewFarms.Name = "dataGridViewFarms";
@@ -291,19 +251,6 @@
             this.dataGridViewFarms.Size = new System.Drawing.Size(120, 103);
             this.dataGridViewFarms.TabIndex = 18;
             this.dataGridViewFarms.SelectionChanged += new System.EventHandler(this.dataGridViewFarms_SelectionChanged);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
             // 
             // label3
             // 
@@ -371,20 +318,20 @@
             // 
             // chart1
             // 
-            chartArea1.Area3DStyle.IsClustered = true;
-            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea7.Area3DStyle.IsClustered = true;
+            chartArea7.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea7.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea7.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(258, 12);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(976, 612);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
@@ -427,26 +374,25 @@
             this.labelGraphType.TabIndex = 0;
             this.labelGraphType.Text = "Typ serii:";
             // 
-            // checkBoxYminorGrid
+            // type
             // 
-            this.checkBoxYminorGrid.AutoSize = true;
-            this.checkBoxYminorGrid.Location = new System.Drawing.Point(290, 671);
-            this.checkBoxYminorGrid.Name = "checkBoxYminorGrid";
-            this.checkBoxYminorGrid.Size = new System.Drawing.Size(136, 17);
-            this.checkBoxYminorGrid.TabIndex = 27;
-            this.checkBoxYminorGrid.Text = "Pomniejsza siatka osi X";
-            this.checkBoxYminorGrid.UseVisualStyleBackColor = true;
-            this.checkBoxYminorGrid.CheckedChanged += new System.EventHandler(this.checkBoxYminorGrid_CheckedChanged);
+            this.type.HeaderText = "type";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            this.type.Visible = false;
             // 
-            // button1
+            // id
             // 
-            this.button1.Location = new System.Drawing.Point(154, 726);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
             // 
             // FormCharts
             // 
@@ -459,7 +405,6 @@
             this.MinimizeBox = false;
             this.Name = "FormCharts";
             this.Text = "FormGraphs";
-            this.Shown += new System.EventHandler(this.FormGraphs_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
@@ -487,24 +432,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView dataGridViewFarms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridView dataGridViewFields;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridView dataGridViewValues;
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox3D;
         private System.Windows.Forms.CheckBox checkBoxXminorGrid;
         private System.Windows.Forms.CheckBox checkBoxYminorGrid;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
     }
 }

@@ -14,40 +14,49 @@ namespace AgroApp.Forms
 {
     public partial class FormCharts : Form
     {
-        DBOperator dboperator = new DBOperator();
+        DBOperator dboperator = FormBase.dboperator;
 
-        object[] types = { SeriesChartType.Column, SeriesChartType.Line, SeriesChartType.Point };
+        object[] seriesTypes = { SeriesChartType.Column, SeriesChartType.Line, SeriesChartType.Point };
         int userId;
-        public FormCharts(int userId)
+        Farm farm;
+        Field selectedField;
+        public FormCharts()
         {
-            this.userId = userId;
             InitializeComponent();
 
 
             loadChartTypes();
             loadFarms();
-            //loadValues();
+            loadValues();
             loadEmployees();
 
-            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
-            dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
             dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
-            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
             chart1.Series.Clear();
         }
 
         private void loadChartTypes()
         {
-            comboBoxGraphType.Items.AddRange(types);
+            comboBoxGraphType.Items.AddRange(seriesTypes);
         }
 
         private void loadFarms()
         {
-            List<Farm> farms = dboperator.getFarms();
-            for (int i = 0; i < farms.Count; i++)
-            {
-                dataGridViewFarms.Rows.Add(farms[i]);
-            }
+            List<Farm> farms = dboperator.user.FarmsList;
+            dataGridViewFarms.AutoGenerateColumns = true;
+
+            var source = new BindingSource();
+            source.DataSource = dboperator.user.FarmsList;
+            dataGridViewFarms.DataSource = source;
+
+            dataGridViewFarms.Columns[1].Width = dataGridViewFarms.Width;
+
+            dataGridViewFarms.Columns[0].Visible = false;
+            dataGridViewFarms.Columns[2].Visible = false;
+            dataGridViewFarms.Columns[3].Visible = false;
+            dataGridViewFarms.Columns[4].Visible = false;
+            dataGridViewFarms.Columns[5].Visible = false;
+
+            dataGridViewFarms.ClearSelection();
         }
 
         private void buttonAddSeries_Click(object sender, EventArgs e)
@@ -82,100 +91,87 @@ namespace AgroApp.Forms
                 series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
 
-                object[,] seriesValues = dboperator.getChartValues(
-                    (int)dataGridViewFields.SelectedRows[0].Cells[0].Value,
-                    (int)dataGridViewValues.SelectedRows[0].Cells[0].Value,
-                    (int)dataGridViewValues.SelectedRows[0].Cells[1].Value,
-                    dateTimePicker1.Value,
-                    dateTimePicker2.Value);
-
-                if (seriesValues != null)
+                List<Activity> activities = farm.Journal.ActivitiesList.Where(x => x.Field.Id == selectedField.Id).ToList();
+                if (activities.Count != 0)
                 {
-                    for (int i = 0; i < seriesValues.GetLength(0); i++)
+                    foreach (Activity a in activities)
                     {
-                        chart1.Series[textBox2.Text].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
+                        chart1.Series[textBox2.Text].Points.AddXY(a.Finish_date, a.Value);
                     }
-                }
-                else
-                {
-                    chart1.Series.Remove(series);
-                    MessageBox.Show("Brak danych");
                 }
             }
         }
 
-        //private void loadValues()
-        //{
-        //    List<NoteType> notes = dboperator.getNoteTypes();
-        //    List<ActivityType> activities = dboperator.getActivityTypes();
+        private void loadValues()
+        {
+            List<NoteType> notes = dboperator.noteTypesCollection;
+            List<ActivityType> activities = dboperator.activityTypesCollection;
 
-        //    List<object[]> values = new List<object[]>();
+            List<object[]> values = new List<object[]>();
 
-        //    for (int i = 0; i < notes.Count; i++)
-        //    {
-        //        object[] o = new object[] { 1, notes[i].GetValue(0), notes[i].GetValue(1) };
-        //        values.Add(o);
-        //    }
+            for (int i = 0; i < notes.Count; i++)
+            {
+                object[] o = new object[] { 1, notes[i].Id, notes[i].Type };
+                values.Add(o);
+            }
 
-        //    for (int i = 0; i < activities.Count; i++)
-        //    {
-        //        object[] o = new object[] { 2, activities[i].GetValue(0), activities[i].GetValue(1) };
-        //        values.Add(o);
-        //    }
+            for (int i = 0; i < activities.Count; i++)
+            {
+                object[] o = new object[] { 2, activities[i].Id, activities[i].Type };
+                values.Add(o);
+            }
 
-        //    for (int i = 0; i < values.Count; i++)
-        //    {
-        //        dataGridViewValues.Rows.Add(values[i]);
-        //    }
-        //}
+            for (int i = 0; i < values.Count; i++)
+            {
+                dataGridViewValues.Rows.Add(values[i]);
+            }
+        }
 
         private void loadEmployees()
         {
-            List<Employee> employees = dboperator.getEmployees();
+            dataGridViewEmployees.Rows.Clear();
 
-            for (int i = 0; i < employees.Count; i++)
-            {
-                dataGridViewEmployees.Rows.Add(employees[i]);
-            }
+            FormBase.dboperator.user.EmployeesList = FormBase.dboperator.getEmployees();
+
+            var source = new BindingSource();
+            source.DataSource = FormBase.dboperator.getEmployees();
+            dataGridViewEmployees.DataSource = source;
+
+            dataGridViewEmployees.Columns[0].Visible = false;
+            dataGridViewEmployees.Columns[1].Width = dataGridViewEmployees.Width;
+            dataGridViewEmployees.ClearSelection();
         }
 
         private void dataGridViewFarms_SelectionChanged(object sender, EventArgs e)
         {
-            dataGridViewFields.Rows.Clear();
-
-            ; if (dataGridViewFarms.SelectedRows.Count != 0)
+            if (dataGridViewFarms.SelectedRows.Count != 0)
             {
-                List<Field> fields = dboperator.getFields((Farm)dataGridViewFarms.SelectedRows[0].Cells[0].Value);
+                farm = FormBase.dboperator.user.FarmsList.Find(x => x.Id == (int)dataGridViewFarms.SelectedRows[0].Cells[0].Value);
 
-                for (int i = 0; i < fields.Count; i++)
-                {
-                    dataGridViewFields.Rows.Add(fields[i]);
-                }
+                var source = new BindingSource();
+                source.DataSource = farm.FieldsList;
+                dataGridViewFields.DataSource = source;
+
+                dataGridViewFields.Columns[0].Visible = false;
+                dataGridViewFields.Columns[2].Visible = false;
+                dataGridViewFields.Columns[3].Visible = false;
+                dataGridViewFields.Columns[4].Visible = false;
+                dataGridViewFields.Columns[5].Visible = false;
+
+                dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;                
             }
-        }
-
-        private void FormGraphs_Shown(object sender, EventArgs e)
-        {
-            dataGridViewEmployees.ClearSelection();
-            dataGridViewFields.ClearSelection();
-            dataGridViewValues.ClearSelection();
-            dataGridViewFarms.ClearSelection();
-            textBox1.Visible = false;
         }
 
         private void dataGridViewFields_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewFields.SelectedRows.Count > 0)
             {
-                int selectedFieldId = (int)dataGridViewFields.SelectedRows[0].Cells[0].Value;
-
-                string query = "SELECT p.name FROM Plants as p JOIN Fields as f ON p.id = f.plant WHERE f.id = " + selectedFieldId;
-
-                string plant = dboperator.select(query).ToString();
-
-                textBox1.Text = "Obecna uprawa:\n" + plant;
+                Field field = farm.FieldsList.Find(x => x.Id == (int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+                textBox1.Text = "Obecna uprawa:\n" + field.Plant.Name;
 
                 textBox1.Visible = true;
+
+                selectedField = field;
             }
         }
 

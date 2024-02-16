@@ -30,14 +30,14 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridViewJournal = new System.Windows.Forms.DataGridView();
-            this.richTextBoxDesciption = new System.Windows.Forms.RichTextBox();
-            this.labelNameAndPlant = new System.Windows.Forms.Label();
-            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.richTextBoxDesciption = new System.Windows.Forms.RichTextBox();
+            this.labelNameAndPlant = new System.Windows.Forms.Label();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJournal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
@@ -52,7 +52,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(973, 603);
+            this.panel1.Size = new System.Drawing.Size(973, 686);
             this.panel1.TabIndex = 0;
             // 
             // dataGridViewJournal
@@ -65,7 +65,7 @@
             this.Column3,
             this.Column4,
             this.Column1});
-            this.dataGridViewJournal.Location = new System.Drawing.Point(288, 495);
+            this.dataGridViewJournal.Location = new System.Drawing.Point(288, 566);
             this.dataGridViewJournal.Name = "dataGridViewJournal";
             this.dataGridViewJournal.ReadOnly = true;
             this.dataGridViewJournal.RowHeadersVisible = false;
@@ -73,37 +73,6 @@
             this.dataGridViewJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewJournal.Size = new System.Drawing.Size(673, 96);
             this.dataGridViewJournal.TabIndex = 3;
-            // 
-            // richTextBoxDesciption
-            // 
-            this.richTextBoxDesciption.Location = new System.Drawing.Point(15, 495);
-            this.richTextBoxDesciption.Name = "richTextBoxDesciption";
-            this.richTextBoxDesciption.Size = new System.Drawing.Size(267, 96);
-            this.richTextBoxDesciption.TabIndex = 2;
-            this.richTextBoxDesciption.Text = "";
-            // 
-            // labelNameAndPlant
-            // 
-            this.labelNameAndPlant.AutoSize = true;
-            this.labelNameAndPlant.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelNameAndPlant.Location = new System.Drawing.Point(12, 462);
-            this.labelNameAndPlant.Name = "labelNameAndPlant";
-            this.labelNameAndPlant.Size = new System.Drawing.Size(70, 26);
-            this.labelNameAndPlant.TabIndex = 1;
-            this.labelNameAndPlant.Text = "label1";
-            // 
-            // webView21
-            // 
-            this.webView21.AllowExternalDrop = true;
-            this.webView21.CreationProperties = null;
-            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.webView21.Location = new System.Drawing.Point(0, 0);
-            this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(973, 450);
-            this.webView21.TabIndex = 0;
-            this.webView21.ZoomFactor = 1D;
-            this.webView21.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.webView21_NavigationCompleted);
             // 
             // Column2
             // 
@@ -135,11 +104,41 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
+            // richTextBoxDesciption
+            // 
+            this.richTextBoxDesciption.Location = new System.Drawing.Point(15, 566);
+            this.richTextBoxDesciption.Name = "richTextBoxDesciption";
+            this.richTextBoxDesciption.Size = new System.Drawing.Size(267, 96);
+            this.richTextBoxDesciption.TabIndex = 2;
+            this.richTextBoxDesciption.Text = "";
+            // 
+            // labelNameAndPlant
+            // 
+            this.labelNameAndPlant.AutoSize = true;
+            this.labelNameAndPlant.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelNameAndPlant.Location = new System.Drawing.Point(12, 533);
+            this.labelNameAndPlant.Name = "labelNameAndPlant";
+            this.labelNameAndPlant.Size = new System.Drawing.Size(0, 26);
+            this.labelNameAndPlant.TabIndex = 1;
+            // 
+            // webView21
+            // 
+            this.webView21.AllowExternalDrop = false;
+            this.webView21.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(0, 0);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(973, 520);
+            this.webView21.TabIndex = 0;
+            this.webView21.ZoomFactor = 1D;
+            this.webView21.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.webView21_NavigationCompleted);
+            // 
             // FormShowField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 603);
+            this.ClientSize = new System.Drawing.Size(973, 686);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

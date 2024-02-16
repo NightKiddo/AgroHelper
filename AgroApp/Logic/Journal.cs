@@ -20,7 +20,7 @@ namespace AgroApp.Logic
 
         public List<object[]> getJournalEntries(Farm farm)
         {
-            List<object[]> journalEntries = new List<object[]>();
+            List<object[]> journalEntries = new List<object[]>();            
 
             for (int i = 0; i < farm.Journal.ActivitiesList.Count; i++)
             {

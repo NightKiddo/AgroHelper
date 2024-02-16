@@ -109,7 +109,7 @@ CREATE TABLE Machines(
 
 CREATE TABLE Storages(
 	id int PRIMARY KEY IDENTITY(1,1),
-	name varchar(250) NOT NULL UNIQUE,
+	name varchar(250) NOT NULL,
 	farm int FOREIGN KEY REFERENCES Farms(id) ON DELETE CASCADE
 )
 

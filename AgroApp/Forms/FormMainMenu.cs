@@ -146,5 +146,10 @@ namespace AgroApp.Forms
             int.TryParse(row.Cells[0].Value.ToString(), out farmId);
 
         }
+
+        private void wylogujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

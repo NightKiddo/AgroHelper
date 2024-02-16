@@ -27,4 +27,5 @@ namespace AgroApp
  * -edytowanie gospodarstw
  * -edytowanie pól
  * -wykresy
+ * -autoodejmowanie paliwa i zasobów
  */
