@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowField(Field field)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = field.Name;
             this.field = field;
             InitBrowser();
         }
@@ -87,6 +89,11 @@ namespace AgroApp.Forms
             labelNameAndPlant.Text = field.Name + ", " + field.Plant.Name;
             richTextBoxDesciption.Text = field.Description;
             prepareJournal();
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

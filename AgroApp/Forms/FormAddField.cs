@@ -21,6 +21,8 @@ namespace AgroApp.Forms
         public FormAddField(int farmId)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie pola";
             this.farmId = farmId;
         }
 

@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowMachine(Farm farm, Garage garage, Machine machine)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = machine.Name;
             this.machine = machine;
             this.garage = garage;
             this.farm = farm;
@@ -84,6 +86,11 @@ namespace AgroApp.Forms
             garage.MachinesList = dboperator.getMachines(garage.Id);
             machine = garage.MachinesList.Find(x => x.Id == machine.Id);
             loadMachine();
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

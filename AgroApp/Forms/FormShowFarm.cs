@@ -22,6 +22,8 @@ namespace AgroApp.Forms
         public FormShowFarm(Farm farm)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = farm.Name;
             this.farm = farm;
             loadFields();
             loadGarages();
@@ -117,8 +119,11 @@ namespace AgroApp.Forms
                 int fieldId;
                 int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
                 Field field = farm.FieldsList.Find(X => X.Id == fieldId);
+                
                 FormShowField formShowField = new FormShowField(field);
+                this.Visible = false;
                 formShowField.ShowDialog();
+                this.Visible = true;
             }
         }
 
@@ -130,7 +135,9 @@ namespace AgroApp.Forms
                 Storage storage = (Storage)row.DataBoundItem;
 
                 FormShowStorage formShowStorage = new FormShowStorage(storage);
+                this.Visible = false;
                 formShowStorage.ShowDialog();
+                this.Visible = true;
                 loadStorages();
             }
         }
@@ -138,14 +145,18 @@ namespace AgroApp.Forms
         private void pracęToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAddActivity formAddActivity = new FormAddActivity(farm, 0);
+            this.Visible = false;
             formAddActivity.ShowDialog();
+            this.Visible = true;
             loadJournal();
         }
 
         private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAddNote formAddNote = new FormAddNote(farm, 0);
+            this.Visible = false;
             formAddNote.ShowDialog();
+            this.Visible = true;
             loadJournal();
         }
 
@@ -171,7 +182,9 @@ namespace AgroApp.Forms
                     note = farm.Journal.NotesList.Find(x => x.Id == noteId);
 
                     FormShowNote formShowNote = new FormShowNote(note);
+                    this.Visible = false;
                     formShowNote.ShowDialog();
+                    this.Visible = true;
                     loadJournal();
                 }
                 else
@@ -184,7 +197,9 @@ namespace AgroApp.Forms
 
 
                     FormShowActivity formShowActivity = new FormShowActivity(activity);
+                    this.Visible = false;
                     formShowActivity.ShowDialog();
+                    this.Visible = true;
                     loadJournal();
                 }
             }
@@ -202,14 +217,18 @@ namespace AgroApp.Forms
         private void dodajToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormAddGarage formAddGarage = new FormAddGarage(farm.Id, 1);
+            this.Visible = false;
             formAddGarage.ShowDialog();
+            this.Visible = true;
             loadGarages();
         }
 
         private void dodajToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             FormAddStorage formAddStorage = new FormAddStorage(farm.Id, 1);
+            this.Visible = false;
             formAddStorage.ShowDialog();
+            this.Visible = true;
             loadStorages();
         }
 
@@ -234,7 +253,9 @@ namespace AgroApp.Forms
         private void pracownikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAddEmployee formAddEmployee = new FormAddEmployee(dboperator.user.Id);
+            this.Visible = false;
             formAddEmployee.ShowDialog();
+            this.Visible = true;
         }
 
         private void FormShowFarm_Shown(object sender, EventArgs e)
@@ -253,7 +274,9 @@ namespace AgroApp.Forms
         private void analizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormCharts formGraphs = new FormCharts();
+            this.Visible = false;
             formGraphs.ShowDialog();
+            this.Visible = true;
         }
 
         private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -285,7 +308,9 @@ namespace AgroApp.Forms
         private void dodajToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             FormAddField formAddField = new FormAddField(farm.Id);
+            this.Visible = false;
             formAddField.ShowDialog();
+            this.Visible = true;
             dataGridViewFields.Rows.Clear();
             loadFields();
         }
@@ -314,7 +339,9 @@ namespace AgroApp.Forms
             DataGridViewRow row = dataGridViewGarages.SelectedRows[0];
             Garage garage = (Garage)row.DataBoundItem;
             FormShowGarage formShowGarage = new FormShowGarage(garage, farm);
+            this.Visible = false;
             formShowGarage.ShowDialog();
+            this.Visible = true;
             loadGarages();
         }
     }

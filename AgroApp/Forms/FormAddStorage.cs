@@ -19,11 +19,13 @@ namespace AgroApp.Forms
         public FormAddStorage(int farmId, int invokeType)
         {
             InitializeComponent();
-            this.farmId= farmId;
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie magazynu";
+            this.farmId = farmId;
             this.invokeType = invokeType;       //similiar as in FormAddGarage
         }
 
-        private void addStorage() 
+        private void addStorage()
         {
             if (textBox1.Text == String.Empty)
             {
@@ -31,26 +33,27 @@ namespace AgroApp.Forms
             }
             else
             {
-                if (invokeType == 0)
+                InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
+                if (dboperator.insert(queryStorage) != 0)
                 {
-                    InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
-                    if (dboperator.insert(queryStorage) != 0)
-                    {
-                        MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MessageBox.Show("Zakończono dodawanie gospodarstwa", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
+                    MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    InsertQuery queryStorage = new InsertQuery("Storages", "name,farm", "'" + textBox1.Text + "'," + farmId);
-                    if (dboperator.insert(queryStorage) != 0)
-                    {
-                        MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
+                    MessageBox.Show("Błąd");
                 }
+                if (invokeType == 0)
+                {
+                    MessageBox.Show("Zakończono dodawanie gospodarstwa", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                this.Close();
             }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void buttonEnd_Click(object sender, EventArgs e)

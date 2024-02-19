@@ -18,6 +18,8 @@ namespace AgroApp.Forms
         public FormAddGarage(int farmId, int invokeType)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie garażu";
             this.farmId = farmId;
             this.invokeType = invokeType;       // 0 is when this form is called in the process of adding a farm, 1 when called individually from FormShowFarm
         }

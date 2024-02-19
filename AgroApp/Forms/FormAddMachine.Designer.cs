@@ -211,6 +211,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddMachine";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddMachine";
             this.Load += new System.EventHandler(this.FormAddMachine_Load);
             this.panel1.ResumeLayout(false);

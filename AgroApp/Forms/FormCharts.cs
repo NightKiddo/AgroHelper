@@ -23,8 +23,8 @@ namespace AgroApp.Forms
         public FormCharts()
         {
             InitializeComponent();
-
-
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Wykresy";
             loadChartTypes();
             loadFarms();
             loadValues();
@@ -233,6 +233,11 @@ namespace AgroApp.Forms
                 chart1.Series["ser"].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
             }
 
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

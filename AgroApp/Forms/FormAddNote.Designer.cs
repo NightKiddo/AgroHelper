@@ -244,6 +244,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddNote";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddNote";
             this.Load += new System.EventHandler(this.FormAddNote_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).EndInit();

@@ -18,6 +18,8 @@ namespace AgroApp.Forms
         public FormAddEmployee(int userId)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie pracownika";
             this.userId = userId;
         }
 

@@ -149,6 +149,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddTool";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddTool";
             this.Load += new System.EventHandler(this.FormAddTool_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();

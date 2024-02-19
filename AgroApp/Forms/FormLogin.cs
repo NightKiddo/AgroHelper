@@ -15,8 +15,9 @@ namespace AgroApp.Forms
     {        
         public FormLogin()
         {
-
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Logowanie";
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -27,7 +28,9 @@ namespace AgroApp.Forms
                 if (userId != 0)
                 {
                     FormMainMenu formMainMenu = new FormMainMenu();
+                    this.Visible = false;
                     formMainMenu.ShowDialog();
+                    this.Visible = true;
                 }
             }catch(Exception ex)
             {
@@ -38,7 +41,9 @@ namespace AgroApp.Forms
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             FormRegister formRegister = new FormRegister();
+            this.Visible = false;
             formRegister.ShowDialog();
+            this.Visible = true;
         }
     }
 }

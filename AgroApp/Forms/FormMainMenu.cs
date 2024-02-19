@@ -18,6 +18,8 @@ namespace AgroApp.Forms
         public FormMainMenu()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Menu główne";
             loadFarms();
             loadEmployees();
         }
@@ -63,7 +65,9 @@ namespace AgroApp.Forms
         private void buttonAddFarm_Click(object sender, EventArgs e)
         {
             FormAddFarm formAddFarm = new FormAddFarm();
+            this.Visible = false;
             formAddFarm.ShowDialog();
+            this.Visible = true;
             loadFarms();
         }
 
@@ -76,7 +80,9 @@ namespace AgroApp.Forms
             Farm farm = FormBase.dboperator.user.FarmsList.Find(x => x.Id == farmId);
 
             FormShowFarm formShowFarm = new FormShowFarm(farm);
+            this.Visible = false;
             formShowFarm.ShowDialog();
+            this.Visible = true;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -105,7 +111,9 @@ namespace AgroApp.Forms
         private void buttonAddEmployee_Click(object sender, EventArgs e)
         {
             FormAddEmployee formAddEmployee = new FormAddEmployee(user.Id);
+            this.Visible = false;
             formAddEmployee.ShowDialog();
+            this.Visible = true;
             loadEmployees();
         }
 

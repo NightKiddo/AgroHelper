@@ -35,7 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormBase";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBase";
             this.Load += new System.EventHandler(this.FormBase_Load);
             this.ResumeLayout(false);

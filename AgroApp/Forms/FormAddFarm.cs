@@ -18,6 +18,8 @@ namespace AgroApp.Forms
         public FormAddFarm()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie gospodarstwa";
             userId = dboperator.user.Id;
         }
 

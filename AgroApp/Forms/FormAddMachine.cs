@@ -24,6 +24,8 @@ namespace AgroApp.Forms
         public FormAddMachine(Garage garage, int invokeType)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie maszyny";
             this.garage = garage;
             this.invokeType = invokeType;
         }

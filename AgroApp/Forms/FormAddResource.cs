@@ -24,6 +24,8 @@ namespace AgroApp.Forms
         public FormAddResource(Storage storage, int invokeType)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie zasobu";
             this.storage = storage;
             this.invokeType = invokeType;
             loadResourceTypes();

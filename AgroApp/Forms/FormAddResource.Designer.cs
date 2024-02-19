@@ -160,6 +160,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddResource";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddResource";
             this.Load += new System.EventHandler(this.FormAddResource_Load);
             this.panel1.ResumeLayout(false);

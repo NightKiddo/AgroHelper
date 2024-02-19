@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowGarage(Garage garage, Farm farm)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = garage.Name;
             this.garage = garage;
             this.farm = farm;
             garageId = garage.Id;
@@ -168,6 +170,11 @@ namespace AgroApp.Forms
                 garage.ToolsList = dboperator.getTools(garage.Id);
                 loadTools();
             }
+        }
+
+        private void powrótToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

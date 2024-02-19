@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowStorage(Storage storage)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = storage.Name;
             this.storage = storage;
             this.storageId = storage.Id;
             loadResources();
@@ -89,6 +91,11 @@ namespace AgroApp.Forms
                 
                 loadResources();
             }
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

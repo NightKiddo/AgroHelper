@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowTool(Farm farm, Garage garage, Tool tool)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = tool.Name;
             this.farm = farm;
             this.tool = tool;
             this.garage = garage;
@@ -75,6 +77,11 @@ namespace AgroApp.Forms
         {
             DeleteQuery query = new DeleteQuery("tools", "id", tool.Id);
             dboperator.delete(query);
+            this.Close();
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

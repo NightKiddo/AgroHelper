@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelUnit = new System.Windows.Forms.Label();
             this.dataGridViewResource = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -53,7 +54,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelUnit = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -96,6 +96,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(567, 792);
             this.panel1.TabIndex = 0;
+            // 
+            // labelUnit
+            // 
+            this.labelUnit.AutoSize = true;
+            this.labelUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelUnit.Location = new System.Drawing.Point(422, 561);
+            this.labelUnit.Name = "labelUnit";
+            this.labelUnit.Size = new System.Drawing.Size(0, 26);
+            this.labelUnit.TabIndex = 24;
             // 
             // dataGridViewResource
             // 
@@ -384,15 +393,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
-            // labelUnit
-            // 
-            this.labelUnit.AutoSize = true;
-            this.labelUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelUnit.Location = new System.Drawing.Point(422, 561);
-            this.labelUnit.Name = "labelUnit";
-            this.labelUnit.Size = new System.Drawing.Size(0, 26);
-            this.labelUnit.TabIndex = 24;
-            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +403,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddActivity";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.Load += new System.EventHandler(this.FormAddActivity_Load);
             this.panel1.ResumeLayout(false);

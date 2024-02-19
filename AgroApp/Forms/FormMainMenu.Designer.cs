@@ -211,6 +211,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMainMenu";
             this.Shown += new System.EventHandler(this.FormMainMenu_Shown);
             this.panel1.ResumeLayout(false);

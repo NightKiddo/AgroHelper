@@ -17,6 +17,8 @@ namespace AgroApp.Forms
         public FormRegister()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Rejestracja";
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -35,6 +37,11 @@ namespace AgroApp.Forms
                 this.Close();
             };
 
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

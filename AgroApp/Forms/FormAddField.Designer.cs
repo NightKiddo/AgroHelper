@@ -134,7 +134,7 @@
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(181, 33);
             this.buttonExit.TabIndex = 3;
-            this.buttonExit.Text = "Zakończ";
+            this.buttonExit.Text = "Anuluj";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
@@ -182,6 +182,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddField";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddField";
             this.Load += new System.EventHandler(this.FormAddField_Load);
             this.Shown += new System.EventHandler(this.FormAddField_Shown);

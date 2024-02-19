@@ -25,6 +25,8 @@ namespace AgroApp.Forms
         public FormAddActivity(Farm farm, int invokeType)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie pracy";
             this.farm = farm;
             this.invokeType = invokeType;
             numericUpDown1.Maximum = Int32.MaxValue;

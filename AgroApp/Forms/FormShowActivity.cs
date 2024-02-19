@@ -20,6 +20,8 @@ namespace AgroApp.Forms
         public FormShowActivity(Activity activity)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = activity.Name;
             this.activity = activity;
             loadActivity();
         }
@@ -145,6 +147,11 @@ namespace AgroApp.Forms
                 }
             }
             loadActivity();
+        }
+
+        private void wróćToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

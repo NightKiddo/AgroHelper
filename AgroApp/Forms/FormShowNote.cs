@@ -18,6 +18,8 @@ namespace AgroApp.Forms
         public FormShowNote(Note note)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = note.Name;
             this.note = note;
             loadNote();
         }
@@ -82,6 +84,11 @@ namespace AgroApp.Forms
             }
 
             loadNote();
+        }
+
+        private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

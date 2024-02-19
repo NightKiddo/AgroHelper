@@ -17,6 +17,7 @@ namespace AgroApp.Forms
         public FormBase()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
             this.Visible = false;
         }
 

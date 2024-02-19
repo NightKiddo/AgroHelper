@@ -24,6 +24,8 @@ namespace AgroApp.Forms
         public FormAddTool(Garage garage, int invokeType)
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.favicon;
+            this.Text = "Dodawanie narzędzia";
             this.garage = garage;
             this.invokeType = invokeType;
             loadToolTypes();
