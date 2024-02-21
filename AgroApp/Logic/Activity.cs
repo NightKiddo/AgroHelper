@@ -49,5 +49,6 @@ namespace AgroApp.Logic
         internal Employee Employee { get => employee; set => employee = value; }
         internal Machine Machine { get => machine; set => machine = value; }
         internal Tool Tool { get => tool; set => tool = value; }
+
     }
 }

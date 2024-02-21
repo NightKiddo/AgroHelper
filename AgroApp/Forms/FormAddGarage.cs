@@ -53,6 +53,7 @@ namespace AgroApp.Forms
                         {
                             MessageBox.Show("Dodano pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             FormAddStorage formAddStorage = new FormAddStorage(farmId,0);
+                            this.Visible = false;
                             formAddStorage.ShowDialog();
                             this.Close();
                         }

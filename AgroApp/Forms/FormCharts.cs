@@ -16,27 +16,58 @@ namespace AgroApp.Forms
     {
         DBOperator dboperator = FormBase.dboperator;
 
-        object[] seriesTypes = { SeriesChartType.Column, SeriesChartType.Line, SeriesChartType.Point };
+        object[] seriesTypes = { SeriesChartType.Column, SeriesChartType.StackedColumn ,SeriesChartType.Line, SeriesChartType.Point };
+        object[] markerStyleTypes = { MarkerStyle.Square, MarkerStyle.Circle, MarkerStyle.Cross, MarkerStyle.Triangle };
         int userId;
         Farm farm;
         Field selectedField;
+        Series selectedSeries;
         public FormCharts()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.favicon;
             this.Text = "Wykresy";
             loadChartTypes();
+            loadMarkerStyles();
+            makeMarkerControlsInvisible();
             loadFarms();
             loadValues();
             loadEmployees();
 
             dataGridViewValues.Columns[2].Width = dataGridViewValues.Width;
             chart1.Series.Clear();
+            chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Months;
+            chart1.ChartAreas[0].AxisX.Interval = 1;
         }
 
         private void loadChartTypes()
         {
             comboBoxGraphType.Items.AddRange(seriesTypes);
+        }
+
+        private void loadMarkerStyles()
+        {
+            comboBoxMarkerStyles.Items.AddRange(markerStyleTypes);
+        }
+
+        private void makeMarkerControlsInvisible()
+        {
+            labelMarkerStyle.Visible = false;
+            labelMarkerWidth.Visible = false;
+            trackBarMarkerWIdth.Visible = false;
+            buttonChangeMarkerColor.Visible = false;
+            comboBoxMarkerStyles.Visible = false;
+        }
+
+        private void makeMarkerControlsVisible()
+        {
+            labelMarkerStyle.Visible = true;
+            labelMarkerWidth.Visible = true;
+            trackBarMarkerWIdth.Visible = true;
+            buttonChangeMarkerColor.Visible = true;
+            comboBoxMarkerStyles.Visible = true;
+
+            trackBarMarkerWIdth.Value = selectedSeries.MarkerSize;
         }
 
         private void loadFarms()
@@ -61,11 +92,6 @@ namespace AgroApp.Forms
 
         private void buttonAddSeries_Click(object sender, EventArgs e)
         {
-            /*
-             * error
-             * Osie obszaru wykresu — Obszar wykresu zawiera niezgodne typy wykresów. 
-             * Na przykład w jednym obszarze wykresu nie mogą znajdować się wykresy słupkowe i kolumnowe.
-             */
             foreach (Series s in chart1.Series)
             {
                 if (s.Name == textBox2.Text)
@@ -83,6 +109,10 @@ namespace AgroApp.Forms
             {
                 MessageBox.Show("Wybierz rodzaj wykresu");
             }
+            else if (dataGridViewValues.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz typ danych do zaprezentowania");
+            }
             else
             {
                 Series series = new Series(textBox2.Text);
@@ -92,13 +122,64 @@ namespace AgroApp.Forms
 
 
                 List<Activity> activities = farm.Journal.ActivitiesList.Where(x => x.Field.Id == selectedField.Id).ToList();
-                if (activities.Count != 0)
+
+                for (int i = 0; i < activities.Count; i++)
                 {
-                    foreach (Activity a in activities)
+                    if (activities[i].Field.Id != selectedField.Id)
                     {
-                        chart1.Series[textBox2.Text].Points.AddXY(a.Finish_date, a.Value);
+                        activities.Remove(activities[i]);
+                        i--; continue;
+                    }
+
+                    if (activities[i].Finish_date.Date < dateTimePicker1.Value.Date)
+                    {
+                        activities.Remove(activities[i]);
+                        i --; continue;
+                    }
+
+                    if (activities[i].Finish_date.Date > dateTimePicker2.Value.Date)
+                    {
+                        activities.Remove(activities[i]);
+                        i--; continue;
+                    }
+
+                    if (activities[i].Type != null)
+                    {
+                        if (activities[i].Type.Id != (int)dataGridViewValues.SelectedRows[0].Cells[1].Value)
+                        {
+                            activities.Remove(activities[i]);
+                            i--; continue;
+                        }
+                    }
+
+                    if (activities[i].Employee != null)
+                    {
+                        if (activities[i].Employee.Id != (int)dataGridViewEmployees.SelectedRows[0].Cells[0].Value)
+                        {
+                            activities.Remove(activities[i]);
+                            i--; continue;
+                        }
                     }
                 }
+
+                if (activities.Count != 0)
+                {
+                    activities = activities.OrderBy(a => a.Finish_date).ToList();
+                    List<DateTime> xValues = new List<DateTime>();
+                    List<double> yValues = new List<double>();
+                    foreach (Activity a in activities)
+                    {
+                        xValues.Add(a.Finish_date);
+                        yValues.Add(a.Value);                        
+                    }
+
+                    chart1.Series[textBox2.Text].Points.DataBindXY(xValues, yValues);
+                    
+                    
+                    comboBoxSeries.Items.Add(series.Name);
+                }
+
+                double xinterval = chart1.ChartAreas[0].AxisX.Interval;
             }
         }
 
@@ -158,7 +239,7 @@ namespace AgroApp.Forms
                 dataGridViewFields.Columns[4].Visible = false;
                 dataGridViewFields.Columns[5].Visible = false;
 
-                dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;                
+                dataGridViewFields.Columns[1].Width = dataGridViewFields.Width;
             }
         }
 
@@ -187,19 +268,6 @@ namespace AgroApp.Forms
             }
         }
 
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
-        {
-            if (chart1.ChartAreas[0].AxisX.MinorGrid.Enabled == false)
-            {
-                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = true;
-            }
-            else
-            {
-                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = false;
-            }
-
-        }
-
         private void checkBoxYminorGrid_CheckedChanged(object sender, EventArgs e)
         {
             if (chart1.ChartAreas[0].AxisY.MinorGrid.Enabled == false)
@@ -212,32 +280,90 @@ namespace AgroApp.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Series series = new Series("ser");
-            chart1.Series.Add(series);
-            chart1.Series["ser"].XValueType = ChartValueType.Date;
-            series.ChartType = SeriesChartType.Line;
-
-
-            object[,] seriesValues = dboperator.getChartValues(
-                1,
-                2,
-                3,
-                new DateTime(2023, 10, 16),
-                DateTime.Today);
-
-
-            for (int i = 0; i < seriesValues.GetLength(0); i++)
-            {
-                chart1.Series["ser"].Points.AddXY(seriesValues[i, 0], seriesValues[i, 1]);
-            }
-
-        }
-
         private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonDeleteSeries_Click(object sender, EventArgs e)
+        {
+            chart1.Series.Remove(chart1.Series.FindByName(comboBoxSeries.Text));
+            comboBoxSeries.Items.Remove(comboBoxSeries.SelectedItem);
+        }
+
+        private void buttonSeriesColorPick_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            chart1.Series[comboBoxSeries.SelectedItem.ToString()].Color = colorDialog.Color;
+        }
+
+        private void comboBoxSeries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedSeries = chart1.Series[comboBoxSeries.SelectedItem.ToString()];
+            trackBarWidth.Value = selectedSeries.BorderWidth;
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxSeries.SelectedItem != null)
+            {
+                if (selectedSeries.ChartType == SeriesChartType.Column)
+                {
+                    selectedSeries["PixelPointWidth"] = trackBarWidth.Value.ToString();
+                }
+                else
+                {
+                    selectedSeries.BorderWidth = trackBarWidth.Value;
+                }
+            }
+        }
+
+        private void checkBoxMarkers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (comboBoxSeries.SelectedItem != null)
+            {
+
+                if (checkBoxMarkers.Checked)
+                {
+                    selectedSeries.MarkerStyle = MarkerStyle.Square;
+                    selectedSeries.MarkerSize = 15;
+                    selectedSeries.MarkerColor = Color.Black;
+                    makeMarkerControlsVisible();
+                }
+                else
+                {
+                    selectedSeries.MarkerStyle = MarkerStyle.None;
+                    makeMarkerControlsInvisible();
+                }
+            }
+        }
+
+        private void buttonChangeMarkerColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            selectedSeries.MarkerColor = colorDialog.Color;
+        }
+
+        private void trackBarMarkerWIdth_Scroll(object sender, EventArgs e)
+        {
+            selectedSeries.MarkerSize = trackBarMarkerWIdth.Value;
+        }
+
+        private void comboBoxMarkerStyles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedSeries.MarkerStyle = (MarkerStyle)comboBoxMarkerStyles.SelectedItem;
+        }
+
+        private void checkBoxXminorGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chart1.ChartAreas[0].AxisX.MinorGrid.Enabled == false)
+            {
+                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = true;
+            }
+            else
+            {
+                chart1.ChartAreas[0].AxisX.MinorGrid.Enabled = false;
+            }
         }
     }
 }

@@ -124,6 +124,7 @@ namespace AgroApp.Forms
                 this.Visible = false;
                 formShowField.ShowDialog();
                 this.Visible = true;
+                this.BringToFront();
             }
         }
 
@@ -139,6 +140,7 @@ namespace AgroApp.Forms
                 formShowStorage.ShowDialog();
                 this.Visible = true;
                 loadStorages();
+                this.BringToFront();
             }
         }
 
@@ -149,6 +151,7 @@ namespace AgroApp.Forms
             formAddActivity.ShowDialog();
             this.Visible = true;
             loadJournal();
+            this.BringToFront();
         }
 
         private void notatkęToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,6 +161,7 @@ namespace AgroApp.Forms
             formAddNote.ShowDialog();
             this.Visible = true;
             loadJournal();
+            this.BringToFront();
         }
 
         private void dataGridViewJournal_MouseClick(object sender, MouseEventArgs e)
@@ -165,7 +169,7 @@ namespace AgroApp.Forms
             if (e.Button == MouseButtons.Right)
             {
                 dataGridViewJournal.ContextMenuStrip = contextMenuStripJournal;
-                dataGridViewJournal.ContextMenuStrip.Show(new Point(e.X, e.Y));
+                dataGridViewJournal.ContextMenuStrip.Show(this, e.X, e.Y);
             }
         }
 
@@ -186,6 +190,7 @@ namespace AgroApp.Forms
                     formShowNote.ShowDialog();
                     this.Visible = true;
                     loadJournal();
+                    this.BringToFront();
                 }
                 else
                 {
@@ -201,6 +206,7 @@ namespace AgroApp.Forms
                     formShowActivity.ShowDialog();
                     this.Visible = true;
                     loadJournal();
+                    this.BringToFront();
                 }
             }
         }
@@ -210,7 +216,7 @@ namespace AgroApp.Forms
             if (e.Button == MouseButtons.Right)
             {
                 dataGridViewGarages.ContextMenuStrip = contextMenuStripGarages;
-                dataGridViewGarages.ContextMenuStrip.Show(new Point(e.X, e.Y));
+                dataGridViewGarages.ContextMenuStrip.Show(this, e.X, e.Y);
             }
         }
 
@@ -221,6 +227,7 @@ namespace AgroApp.Forms
             formAddGarage.ShowDialog();
             this.Visible = true;
             loadGarages();
+            this.BringToFront();
         }
 
         private void dodajToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -230,6 +237,7 @@ namespace AgroApp.Forms
             formAddStorage.ShowDialog();
             this.Visible = true;
             loadStorages();
+            this.BringToFront();
         }
 
         private void dataGridViewStorages_MouseClick(object sender, MouseEventArgs e)
@@ -237,7 +245,7 @@ namespace AgroApp.Forms
             if (e.Button == MouseButtons.Right)
             {
                 dataGridViewStorages.ContextMenuStrip = contextMenuStripStorages;
-                dataGridViewStorages.ContextMenuStrip.Show(new Point(e.X, e.Y));
+                dataGridViewStorages.ContextMenuStrip.Show(this, e.X, e.Y);
             }
         }
 
@@ -245,8 +253,8 @@ namespace AgroApp.Forms
         {
             if (e.Button == MouseButtons.Right)
             {
-                dataGridViewFields.ContextMenuStrip = contextMenuStripFields;
-                dataGridViewFields.ContextMenuStrip.Show(new Point(e.X, e.Y));
+                dataGridViewFields.ContextMenuStrip = contextMenuStripFields;                
+                dataGridViewFields.ContextMenuStrip.Show(this, e.X, e.Y);
             }
         }
 
@@ -277,6 +285,7 @@ namespace AgroApp.Forms
             this.Visible = false;
             formGraphs.ShowDialog();
             this.Visible = true;
+            this.BringToFront();
         }
 
         private void usuńToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -313,6 +322,7 @@ namespace AgroApp.Forms
             this.Visible = true;
             dataGridViewFields.Rows.Clear();
             loadFields();
+            this.BringToFront();
         }
 
         private void usuńToolStripMenuItem_Click(object sender, EventArgs e)
@@ -343,6 +353,7 @@ namespace AgroApp.Forms
             formShowGarage.ShowDialog();
             this.Visible = true;
             loadGarages();
+            this.BringToFront();
         }
     }
 }
