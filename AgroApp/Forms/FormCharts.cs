@@ -29,6 +29,7 @@ namespace AgroApp.Forms
             this.Text = "Wykresy";
             loadChartTypes();
             loadMarkerStyles();
+            makeSeriesControlsInvisible();
             makeMarkerControlsInvisible();
             loadFarms();
             loadValues();
@@ -68,6 +69,32 @@ namespace AgroApp.Forms
             comboBoxMarkerStyles.Visible = true;
 
             trackBarMarkerWIdth.Value = selectedSeries.MarkerSize;
+        }
+
+        private void makeSeriesControlsVisible()
+        {
+            checkBox3D.Visible = true;
+            checkBoxXminorGrid.Visible = true;
+            checkBoxYminorGrid.Visible = true;
+            comboBoxSeries.Visible = true;
+            trackBarWidth.Visible = true;
+            labelSeriesWidth.Visible = true;
+            buttonDeleteSeries.Visible = true;
+            buttonSeriesColorPick.Visible = true;
+            checkBoxMarkers.Visible = true;
+        }
+
+        private void makeSeriesControlsInvisible()
+        {
+            checkBox3D.Visible = false;
+            checkBoxXminorGrid.Visible = false;
+            checkBoxYminorGrid.Visible = false;
+            comboBoxSeries.Visible = false;
+            trackBarWidth.Visible = false;
+            labelSeriesWidth.Visible = false;
+            buttonDeleteSeries.Visible = false;
+            buttonSeriesColorPick.Visible = false;
+            checkBoxMarkers.Visible = false;
         }
 
         private void loadFarms()
@@ -115,12 +142,6 @@ namespace AgroApp.Forms
             }
             else
             {
-                Series series = new Series(textBox2.Text);
-                chart1.Series.Add(series);
-                chart1.Series[textBox2.Text].XValueType = ChartValueType.Date;
-                series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
-
-
                 List<Activity> activities = farm.Journal.ActivitiesList.Where(x => x.Field.Id == selectedField.Id).ToList();
 
                 for (int i = 0; i < activities.Count; i++)
@@ -173,13 +194,29 @@ namespace AgroApp.Forms
                         yValues.Add(a.Value);                        
                     }
 
-                    chart1.Series[textBox2.Text].Points.DataBindXY(xValues, yValues);
-                    
-                    
-                    comboBoxSeries.Items.Add(series.Name);
-                }
+                    Series series = new Series(textBox2.Text);
+                    chart1.Series.Add(series);
+                    series.XValueType = ChartValueType.Date;
+                    series.ChartType = (SeriesChartType)comboBoxGraphType.SelectedItem;
 
-                double xinterval = chart1.ChartAreas[0].AxisX.Interval;
+                    series.Points.DataBindXY(xValues, yValues);
+
+                    if (series.ChartType == SeriesChartType.Column)
+                    {
+                        series["PixelPointWidth"] = "86";
+                    }
+
+                    comboBoxSeries.Items.Add(series.Name);
+
+                    if(chart1.Series.Count > 0)
+                    {
+                        makeSeriesControlsVisible();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Brak danych");
+                }
             }
         }
 
@@ -289,6 +326,10 @@ namespace AgroApp.Forms
         {
             chart1.Series.Remove(chart1.Series.FindByName(comboBoxSeries.Text));
             comboBoxSeries.Items.Remove(comboBoxSeries.SelectedItem);
+            if(chart1.Series.Count == 0)
+            {
+                makeSeriesControlsInvisible();
+            }
         }
 
         private void buttonSeriesColorPick_Click(object sender, EventArgs e)
@@ -300,7 +341,20 @@ namespace AgroApp.Forms
         private void comboBoxSeries_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedSeries = chart1.Series[comboBoxSeries.SelectedItem.ToString()];
-            trackBarWidth.Value = selectedSeries.BorderWidth;
+            if(selectedSeries.ChartType == SeriesChartType.Column)
+            {
+                trackBarWidth.Maximum = 320;
+                trackBarWidth.Minimum = 40;
+                string width = selectedSeries["PixelPointWidth"].ToString();
+                trackBarWidth.Value = Convert.ToInt32(width);
+            }
+            else
+            {
+                trackBarWidth.Minimum = 1;
+                trackBarWidth.Maximum = 20;
+                trackBarWidth.Value = selectedSeries.BorderWidth; 
+            }
+            
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)

@@ -32,6 +32,15 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelMarkerStyle = new System.Windows.Forms.Label();
+            this.comboBoxMarkerStyles = new System.Windows.Forms.ComboBox();
+            this.labelMarkerWidth = new System.Windows.Forms.Label();
+            this.trackBarMarkerWIdth = new System.Windows.Forms.TrackBar();
+            this.buttonChangeMarkerColor = new System.Windows.Forms.Button();
+            this.checkBoxMarkers = new System.Windows.Forms.CheckBox();
+            this.labelSeriesWidth = new System.Windows.Forms.Label();
+            this.trackBarWidth = new System.Windows.Forms.TrackBar();
+            this.buttonSeriesColorPick = new System.Windows.Forms.Button();
             this.buttonDeleteSeries = new System.Windows.Forms.Button();
             this.comboBoxSeries = new System.Windows.Forms.ComboBox();
             this.checkBoxYminorGrid = new System.Windows.Forms.CheckBox();
@@ -61,25 +70,16 @@
             this.labelGraphType = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.powrótToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonSeriesColorPick = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.trackBarWidth = new System.Windows.Forms.TrackBar();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBoxMarkers = new System.Windows.Forms.CheckBox();
-            this.buttonChangeMarkerColor = new System.Windows.Forms.Button();
-            this.labelMarkerWidth = new System.Windows.Forms.Label();
-            this.trackBarMarkerWIdth = new System.Windows.Forms.TrackBar();
-            this.comboBoxMarkerStyles = new System.Windows.Forms.ComboBox();
-            this.labelMarkerStyle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarkerWIdth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFarms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarkerWIdth)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,7 +90,7 @@
             this.panel1.Controls.Add(this.trackBarMarkerWIdth);
             this.panel1.Controls.Add(this.buttonChangeMarkerColor);
             this.panel1.Controls.Add(this.checkBoxMarkers);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.labelSeriesWidth);
             this.panel1.Controls.Add(this.trackBarWidth);
             this.panel1.Controls.Add(this.buttonSeriesColorPick);
             this.panel1.Controls.Add(this.buttonDeleteSeries);
@@ -122,6 +122,100 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1316, 772);
             this.panel1.TabIndex = 0;
+            // 
+            // labelMarkerStyle
+            // 
+            this.labelMarkerStyle.AutoSize = true;
+            this.labelMarkerStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMarkerStyle.Location = new System.Drawing.Point(809, 723);
+            this.labelMarkerStyle.Name = "labelMarkerStyle";
+            this.labelMarkerStyle.Size = new System.Drawing.Size(91, 17);
+            this.labelMarkerStyle.TabIndex = 39;
+            this.labelMarkerStyle.Text = "Styl punktów:";
+            // 
+            // comboBoxMarkerStyles
+            // 
+            this.comboBoxMarkerStyles.FormattingEnabled = true;
+            this.comboBoxMarkerStyles.Location = new System.Drawing.Point(906, 722);
+            this.comboBoxMarkerStyles.Name = "comboBoxMarkerStyles";
+            this.comboBoxMarkerStyles.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMarkerStyles.TabIndex = 38;
+            this.comboBoxMarkerStyles.SelectedIndexChanged += new System.EventHandler(this.comboBoxMarkerStyles_SelectedIndexChanged);
+            // 
+            // labelMarkerWidth
+            // 
+            this.labelMarkerWidth.AutoSize = true;
+            this.labelMarkerWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMarkerWidth.Location = new System.Drawing.Point(766, 677);
+            this.labelMarkerWidth.Name = "labelMarkerWidth";
+            this.labelMarkerWidth.Size = new System.Drawing.Size(134, 17);
+            this.labelMarkerWidth.TabIndex = 37;
+            this.labelMarkerWidth.Text = "Szerokość punktów:";
+            // 
+            // trackBarMarkerWIdth
+            // 
+            this.trackBarMarkerWIdth.Location = new System.Drawing.Point(906, 672);
+            this.trackBarMarkerWIdth.Maximum = 30;
+            this.trackBarMarkerWIdth.Minimum = 1;
+            this.trackBarMarkerWIdth.Name = "trackBarMarkerWIdth";
+            this.trackBarMarkerWIdth.Size = new System.Drawing.Size(121, 45);
+            this.trackBarMarkerWIdth.TabIndex = 36;
+            this.trackBarMarkerWIdth.Value = 1;
+            this.trackBarMarkerWIdth.Scroll += new System.EventHandler(this.trackBarMarkerWIdth_Scroll);
+            // 
+            // buttonChangeMarkerColor
+            // 
+            this.buttonChangeMarkerColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonChangeMarkerColor.Location = new System.Drawing.Point(787, 633);
+            this.buttonChangeMarkerColor.Name = "buttonChangeMarkerColor";
+            this.buttonChangeMarkerColor.Size = new System.Drawing.Size(92, 35);
+            this.buttonChangeMarkerColor.TabIndex = 35;
+            this.buttonChangeMarkerColor.Text = "Zmień kolor";
+            this.buttonChangeMarkerColor.UseVisualStyleBackColor = true;
+            this.buttonChangeMarkerColor.Click += new System.EventHandler(this.buttonChangeMarkerColor_Click);
+            // 
+            // checkBoxMarkers
+            // 
+            this.checkBoxMarkers.AutoSize = true;
+            this.checkBoxMarkers.Location = new System.Drawing.Point(690, 638);
+            this.checkBoxMarkers.Name = "checkBoxMarkers";
+            this.checkBoxMarkers.Size = new System.Drawing.Size(91, 17);
+            this.checkBoxMarkers.TabIndex = 34;
+            this.checkBoxMarkers.Text = "Pokaż punkty";
+            this.checkBoxMarkers.UseVisualStyleBackColor = true;
+            this.checkBoxMarkers.CheckedChanged += new System.EventHandler(this.checkBoxMarkers_CheckedChanged);
+            // 
+            // labelSeriesWidth
+            // 
+            this.labelSeriesWidth.AutoSize = true;
+            this.labelSeriesWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelSeriesWidth.Location = new System.Drawing.Point(456, 667);
+            this.labelSeriesWidth.Name = "labelSeriesWidth";
+            this.labelSeriesWidth.Size = new System.Drawing.Size(103, 24);
+            this.labelSeriesWidth.TabIndex = 33;
+            this.labelSeriesWidth.Text = "Szerokość:";
+            // 
+            // trackBarWidth
+            // 
+            this.trackBarWidth.Location = new System.Drawing.Point(456, 694);
+            this.trackBarWidth.Maximum = 20;
+            this.trackBarWidth.Minimum = 1;
+            this.trackBarWidth.Name = "trackBarWidth";
+            this.trackBarWidth.Size = new System.Drawing.Size(121, 45);
+            this.trackBarWidth.TabIndex = 32;
+            this.trackBarWidth.Value = 1;
+            this.trackBarWidth.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // buttonSeriesColorPick
+            // 
+            this.buttonSeriesColorPick.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSeriesColorPick.Location = new System.Drawing.Point(592, 679);
+            this.buttonSeriesColorPick.Name = "buttonSeriesColorPick";
+            this.buttonSeriesColorPick.Size = new System.Drawing.Size(92, 35);
+            this.buttonSeriesColorPick.TabIndex = 31;
+            this.buttonSeriesColorPick.Text = "Zmień kolor";
+            this.buttonSeriesColorPick.UseVisualStyleBackColor = true;
+            this.buttonSeriesColorPick.Click += new System.EventHandler(this.buttonSeriesColorPick_Click);
             // 
             // buttonDeleteSeries
             // 
@@ -458,100 +552,6 @@
             this.powrótToolStripMenuItem.Text = "Powrót";
             this.powrótToolStripMenuItem.Click += new System.EventHandler(this.powrótToolStripMenuItem_Click);
             // 
-            // buttonSeriesColorPick
-            // 
-            this.buttonSeriesColorPick.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSeriesColorPick.Location = new System.Drawing.Point(592, 679);
-            this.buttonSeriesColorPick.Name = "buttonSeriesColorPick";
-            this.buttonSeriesColorPick.Size = new System.Drawing.Size(92, 35);
-            this.buttonSeriesColorPick.TabIndex = 31;
-            this.buttonSeriesColorPick.Text = "Zmień kolor";
-            this.buttonSeriesColorPick.UseVisualStyleBackColor = true;
-            this.buttonSeriesColorPick.Click += new System.EventHandler(this.buttonSeriesColorPick_Click);
-            // 
-            // trackBarWidth
-            // 
-            this.trackBarWidth.Location = new System.Drawing.Point(456, 694);
-            this.trackBarWidth.Maximum = 20;
-            this.trackBarWidth.Minimum = 1;
-            this.trackBarWidth.Name = "trackBarWidth";
-            this.trackBarWidth.Size = new System.Drawing.Size(121, 45);
-            this.trackBarWidth.TabIndex = 32;
-            this.trackBarWidth.Value = 1;
-            this.trackBarWidth.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(456, 667);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 24);
-            this.label5.TabIndex = 33;
-            this.label5.Text = "Szerokość:";
-            // 
-            // checkBoxMarkers
-            // 
-            this.checkBoxMarkers.AutoSize = true;
-            this.checkBoxMarkers.Location = new System.Drawing.Point(690, 638);
-            this.checkBoxMarkers.Name = "checkBoxMarkers";
-            this.checkBoxMarkers.Size = new System.Drawing.Size(91, 17);
-            this.checkBoxMarkers.TabIndex = 34;
-            this.checkBoxMarkers.Text = "Pokaż punkty";
-            this.checkBoxMarkers.UseVisualStyleBackColor = true;
-            this.checkBoxMarkers.CheckedChanged += new System.EventHandler(this.checkBoxMarkers_CheckedChanged);
-            // 
-            // buttonChangeMarkerColor
-            // 
-            this.buttonChangeMarkerColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonChangeMarkerColor.Location = new System.Drawing.Point(787, 633);
-            this.buttonChangeMarkerColor.Name = "buttonChangeMarkerColor";
-            this.buttonChangeMarkerColor.Size = new System.Drawing.Size(92, 35);
-            this.buttonChangeMarkerColor.TabIndex = 35;
-            this.buttonChangeMarkerColor.Text = "Zmień kolor";
-            this.buttonChangeMarkerColor.UseVisualStyleBackColor = true;
-            this.buttonChangeMarkerColor.Click += new System.EventHandler(this.buttonChangeMarkerColor_Click);
-            // 
-            // labelMarkerWidth
-            // 
-            this.labelMarkerWidth.AutoSize = true;
-            this.labelMarkerWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMarkerWidth.Location = new System.Drawing.Point(766, 677);
-            this.labelMarkerWidth.Name = "labelMarkerWidth";
-            this.labelMarkerWidth.Size = new System.Drawing.Size(134, 17);
-            this.labelMarkerWidth.TabIndex = 37;
-            this.labelMarkerWidth.Text = "Szerokość punktów:";
-            // 
-            // trackBarMarkerWIdth
-            // 
-            this.trackBarMarkerWIdth.Location = new System.Drawing.Point(906, 672);
-            this.trackBarMarkerWIdth.Maximum = 30;
-            this.trackBarMarkerWIdth.Minimum = 1;
-            this.trackBarMarkerWIdth.Name = "trackBarMarkerWIdth";
-            this.trackBarMarkerWIdth.Size = new System.Drawing.Size(121, 45);
-            this.trackBarMarkerWIdth.TabIndex = 36;
-            this.trackBarMarkerWIdth.Value = 1;
-            this.trackBarMarkerWIdth.Scroll += new System.EventHandler(this.trackBarMarkerWIdth_Scroll);
-            // 
-            // comboBoxMarkerStyles
-            // 
-            this.comboBoxMarkerStyles.FormattingEnabled = true;
-            this.comboBoxMarkerStyles.Location = new System.Drawing.Point(906, 722);
-            this.comboBoxMarkerStyles.Name = "comboBoxMarkerStyles";
-            this.comboBoxMarkerStyles.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxMarkerStyles.TabIndex = 38;
-            this.comboBoxMarkerStyles.SelectedIndexChanged += new System.EventHandler(this.comboBoxMarkerStyles_SelectedIndexChanged);
-            // 
-            // labelMarkerStyle
-            // 
-            this.labelMarkerStyle.AutoSize = true;
-            this.labelMarkerStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMarkerStyle.Location = new System.Drawing.Point(809, 723);
-            this.labelMarkerStyle.Name = "labelMarkerStyle";
-            this.labelMarkerStyle.Size = new System.Drawing.Size(91, 17);
-            this.labelMarkerStyle.TabIndex = 39;
-            this.labelMarkerStyle.Text = "Styl punktów:";
-            // 
             // FormCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -568,6 +568,8 @@
             this.Text = "FormGraphs";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarkerWIdth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewValues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
@@ -575,8 +577,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarkerWIdth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -615,7 +615,7 @@
         private System.Windows.Forms.Button buttonDeleteSeries;
         private System.Windows.Forms.ComboBox comboBoxSeries;
         private System.Windows.Forms.Button buttonSeriesColorPick;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelSeriesWidth;
         private System.Windows.Forms.TrackBar trackBarWidth;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.CheckBox checkBoxMarkers;
