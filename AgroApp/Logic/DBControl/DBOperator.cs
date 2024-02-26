@@ -789,107 +789,7 @@ namespace AgroApp.Logic
 
             return employees;
         }
-
-        public object[] getActivity(int activityId)
-        {
-            string query = "SELECT * FROM activitiesView WHERE id = " + activityId;
-            connect();
-            conn.Open();
-
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
-
-            object[] row = new object[0];
-
-            while (dataReader.Read())
-            {
-                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4), dataReader.GetInt32(5), dataReader.GetValue(6), dataReader.GetValue(7), dataReader.GetValue(8) };
-            }
-
-            dataReader.Close();
-            conn.Close();
-
-            return row;
-        }
-
-        public object[] getNote(int noteId)
-        {
-            string query = "SELECT name, description, start_date, finish_date, field FROM Notes WHERE id = " + noteId;
-            connect();
-            conn.Open();
-
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
-
-            object[] row = new object[0];
-
-            while (dataReader.Read())
-            {
-                row = new object[] { dataReader.GetString(0), dataReader.GetString(1), dataReader.GetValue(2), dataReader.GetValue(3), dataReader.GetInt32(4) };
-            }
-
-            dataReader.Close();
-            conn.Close();
-
-            return row;
-        }
-
-        public object[,] getChartValues(int fieldId, int valueType, int valueTypeId, DateTime startDate, DateTime finishDate)
-        {
-            int rowCount = 0;
-
-            string dateFormat = "yyyy-MM-dd";
-
-            DateTime dateParse = DateTime.ParseExact(startDate.ToString(), "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string startDateString = dateParse.ToString(dateFormat);
-
-
-            dateParse = DateTime.ParseExact(finishDate.ToString(), "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string finishDateString = dateParse.ToString(dateFormat);
-
-            string queryCount = "SELECT COUNT(*) FROM activitiesView WHERE field = " + fieldId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
-
-            Int32.TryParse((string)select(queryCount), out rowCount);
-
-            if (rowCount != 0)
-            {
-
-                object[,] values = new object[rowCount, 2];
-
-                connect();
-                conn.Open();
-
-                string query = "";
-
-                if (valueType == 1)
-                {
-                    query = "SELECT finish_date, value FROM Notes WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
-                }
-                else
-                {
-                    query = "SELECT finish_date, value FROM Activities WHERE field = " + fieldId + " AND type = " + valueTypeId + " AND start_date BETWEEN '" + startDateString + "' AND '" + finishDateString + "'";
-                }
-
-                command = new SqlCommand(query, conn);
-                dataReader = command.ExecuteReader();
-
-                int i = 0;
-
-                while (dataReader.Read())
-                {
-                    values[i, 0] = dataReader.GetValue(0);
-                    values[i, 1] = dataReader.GetValue(1);
-                    i++;
-                }
-
-                return values;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
+        
         public int delete(DeleteQuery query)
         {
             a = 0;
@@ -907,10 +807,6 @@ namespace AgroApp.Logic
             return a;
         }
 
-        public SqlDataReader getReader()
-        {
-            return dataReader;
-        }
         public int login(string login, string password)
         {
             int id = 0;

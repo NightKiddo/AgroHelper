@@ -15,9 +15,9 @@ namespace AgroApp.Forms
     public partial class FormAddField : Form
     {
         int fieldDrawn = 0;
-        string coordinates;
+        string coordinates, area, coordinatesAndArea;
         int farmId;
-        DBOperator dboperator = FormBase.dboperator;        
+        DBOperator dboperator = FormBase.dboperator;
         public FormAddField(int farmId)
         {
             InitializeComponent();
@@ -31,9 +31,9 @@ namespace AgroApp.Forms
             loadPlants();
             string x = Environment.CurrentDirectory;
             string y = Directory.GetParent(x).Parent.Parent.FullName;
-            webView21.Source = new Uri(y+"\\main\\index.html");
+            webView21.Source = new Uri(y + "\\main\\index.html");
         }
-        private void addField(int option) 
+        private void addField(int option)
         {
             string values;
             int plantId;
@@ -44,9 +44,9 @@ namespace AgroApp.Forms
             else
             {
                 Int32.TryParse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out plantId);
-                values = "'" + coordinates + "','" + textBox1.Text + "','" + richTextBox1.Text + "'," + farmId + ", " + plantId;
+                values = "'" + coordinates + "', " + area + ", '" + textBox1.Text + "','" + richTextBox1.Text + "'," + farmId + ", " + plantId;
             }
-            InsertQuery queryField = new InsertQuery("Fields", "coordinates,name,description,farm,plant", values);
+            InsertQuery queryField = new InsertQuery("Fields", "coordinates,area,name,description,farm,plant", values);
             if (option == 0)
             {
 
@@ -58,7 +58,8 @@ namespace AgroApp.Forms
                 {
                     MessageBox.Show("Błąd", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }else if(option == 1)
+            }
+            else if (option == 1)
             {
                 if (dboperator.insert(queryField) != 0)
                 {
@@ -90,8 +91,25 @@ namespace AgroApp.Forms
 
         private void webView21_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
         {
-            coordinates = e.TryGetWebMessageAsString();
+            coordinatesAndArea = e.TryGetWebMessageAsString();
+            extractCoordinatesAndArea(coordinatesAndArea);
             fieldDrawn = 1;
+        }
+
+        private void extractCoordinatesAndArea(string value)
+        {
+            string[] chars;
+            string coordinates, area;
+
+            chars = value.Split('|');
+
+            coordinates = chars[0];
+            area = chars[1];
+
+            area = area.Remove(area.Length - 3);
+
+            this.area = area;
+            this.coordinates = coordinates;
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -101,17 +119,17 @@ namespace AgroApp.Forms
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            if(fieldDrawn != 0)
+            if (fieldDrawn != 0)
             {
                 addField(0);
-            }            
+            }
             FormAddGarage formAddGarage = new FormAddGarage(farmId, 0);
             this.Visible = false;
             formAddGarage.ShowDialog();
             this.Close();
         }
 
-        private void loadPlants() 
+        private void loadPlants()
         {
             dataGridView1.AutoGenerateColumns = true;
             var source = new BindingSource();
@@ -119,7 +137,7 @@ namespace AgroApp.Forms
             dataGridView1.DataSource = source;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Width = dataGridView1.Width;
-            dataGridView1.Columns[2].Visible = false;            
+            dataGridView1.Columns[2].Visible = false;
         }
 
         private void FormAddField_Shown(object sender, EventArgs e)

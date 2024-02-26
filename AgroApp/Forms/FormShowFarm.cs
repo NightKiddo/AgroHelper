@@ -56,7 +56,8 @@ namespace AgroApp.Forms
             dataGridViewFields.Columns[3].Visible = false;
             dataGridViewFields.Columns[4].Visible = false;
 
-            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.7);
+            dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.4);
+            dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
             dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
 
             dataGridViewFields.ClearSelection();
