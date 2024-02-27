@@ -255,6 +255,7 @@ namespace AgroApp.Logic
                 string name = dataReader.GetString(1);
                 string description = "";
                 int plantId = 0;
+                double area = 0;
                 Plant plant = null;
                 if (dataReader.GetValue(2) != DBNull.Value)
                 {
@@ -268,7 +269,12 @@ namespace AgroApp.Logic
                     plantId = dataReader.GetInt32(4);
                     plant = plantsCollection.Find(x => x.Id == plantId);
                 }
-                Field field = new Field(id, name, description, coordinates, farm, plant);
+
+                if(dataReader.GetValue(6) != DBNull.Value)
+                {
+                    area = dataReader.GetDouble(6);
+                }
+                Field field = new Field(id, name, description, coordinates, farm, plant, area);
                 fields.Add(field);
             }
 

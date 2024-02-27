@@ -79,7 +79,7 @@ CREATE TABLE Fields(
 	[name] varchar(100) NOT NULL,
 	[description] varchar (500),
 	coordinates VARCHAR(5000),
-	area float,
+	area float DEFAULT 0,
 	farm int FOREIGN KEY REFERENCES Farms(id) ON DELETE CASCADE,
 	plant int FOREIGN KEY REFERENCES Plants(id) ON DELETE NO ACTION
 )

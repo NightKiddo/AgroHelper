@@ -69,5 +69,10 @@ namespace AgroApp.Logic.DBControl
             this.id = id;
             this.query = constructQuery();
         }
+
+        public UpdateQuery(string tableName, string column, decimal value, int id)
+        {
+            this.query = "UPDATE " + tableName + " SET " + column + " = " + value + " WHERE id = " + id;
+        }
     }
 }

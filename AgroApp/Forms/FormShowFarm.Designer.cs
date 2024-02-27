@@ -361,7 +361,6 @@
             this.dataGridViewFields.AllowUserToResizeColumns = false;
             this.dataGridViewFields.AllowUserToResizeRows = false;
             this.dataGridViewFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFields.ColumnHeadersVisible = false;
             this.dataGridViewFields.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridViewFields.Location = new System.Drawing.Point(0, 47);
             this.dataGridViewFields.MultiSelect = false;

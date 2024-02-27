@@ -54,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -66,6 +67,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelTotal);
             this.panel1.Controls.Add(this.labelUnit);
             this.panel1.Controls.Add(this.dataGridViewResource);
             this.panel1.Controls.Add(this.label11);
@@ -143,6 +145,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(200, 26);
             this.numericUpDown1.TabIndex = 21;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label10
             // 
@@ -393,6 +396,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tytuł:";
             // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(213, 538);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(41, 13);
+            this.labelTotal.TabIndex = 25;
+            this.labelTotal.Text = "label12";
+            // 
             // FormAddActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,5 +459,6 @@
         private System.Windows.Forms.DataGridView dataGridViewResource;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label labelUnit;
+        private System.Windows.Forms.Label labelTotal;
     }
 }

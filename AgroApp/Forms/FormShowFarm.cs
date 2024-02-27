@@ -49,7 +49,7 @@ namespace AgroApp.Forms
             dataGridViewFields.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.FieldsList;
-            dataGridViewFields.DataSource = source;
+            dataGridViewFields.DataSource = source;            
 
             dataGridViewFields.Columns[0].Visible = false;
             dataGridViewFields.Columns[2].Visible = false;
@@ -58,7 +58,11 @@ namespace AgroApp.Forms
 
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.4);
             dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
-            dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
+            dataGridViewFields.Columns[6].Width = (int)(dataGridViewFields.Width * 0.3);
+
+            dataGridViewFields.Columns[1].HeaderText = "Nazwa";
+            dataGridViewFields.Columns[5].HeaderText = "Uprawa";
+            dataGridViewFields.Columns[6].HeaderText = "Powierzchnia (ha)";
 
             dataGridViewFields.ClearSelection();
         }

@@ -22,6 +22,7 @@ namespace AgroApp.Forms
         Activity editedActivity; //only used when editing
         List<string> updatedColumns = new List<string>();
         List<object> updatedValues = new List<object>();
+        double total;
         public FormAddActivity(Farm farm, int invokeType)
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace AgroApp.Forms
             this.farm = farm;
             this.invokeType = invokeType;
             numericUpDown1.Maximum = Int32.MaxValue;
+            labelTotal.Text = "";
             loadFields();
             loadTypes();
             loadEmployees();
@@ -176,10 +178,10 @@ namespace AgroApp.Forms
             dataGridViewField.Columns[0].Visible = false;
             dataGridViewField.Columns[2].Visible = false;
             dataGridViewField.Columns[3].Visible = false;
+            dataGridViewField.Columns[4].Visible = false;
             dataGridViewField.Columns[1].Width = (int)(dataGridViewField.Width * 0.33);
-            dataGridViewField.Columns[4].Width = (int)(dataGridViewField.Width * 0.33);
             dataGridViewField.Columns[5].Width = (int)(dataGridViewField.Width * 0.33);
-
+            dataGridViewField.Columns[6].Width = (int)(dataGridViewField.Width * 0.33);
         }
 
         private void loadTypes()
@@ -274,7 +276,7 @@ namespace AgroApp.Forms
 
                     int chosenField = (int)(dataGridViewField.SelectedRows[0].Cells[0].Value);
 
-                    object chosenType, chosenEmployee, chosenMachine, chosenTool, value;
+                    object chosenType, chosenEmployee, chosenMachine, chosenTool, chosenResource, value;
 
                     if (dataGridViewType.SelectedRows.Count == 0)
                     {
@@ -312,6 +314,15 @@ namespace AgroApp.Forms
                         chosenTool = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
                     }
 
+                    if (dataGridViewResource.SelectedRows.Count == 0)
+                    {
+                        chosenResource = "NULL";
+                    }
+                    else
+                    {
+                        chosenResource = (Resource)(dataGridViewResource.SelectedRows[0].Cells[0].Value);
+                    }
+
                     if (numericUpDown1.Value == 0)
                     {
                         value = "NULL";
@@ -332,8 +343,8 @@ namespace AgroApp.Forms
                     string finishDateString = finishDateParse.ToString(dateFormat);
 
                     string values = "'" + textBox1.Text + "', '" + richTextBox1.Text + "', " + chosenField + ", '" + startDateString + "', '" + finishDateString + "', "
-                        + chosenType + ", " + chosenEmployee + ", " + chosenMachine + ", " + chosenTool + ", " + farm.Journal.Id + ", " + value;
-                    InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal, value", values);
+                        + chosenType + ", " + chosenEmployee + ", " + chosenMachine + ", " + chosenTool + ", " + farm.Journal.Id + ", " + value + ", " + chosenResource;
+                    InsertQuery query = new InsertQuery("Activities", "name, description, field, start_date, finish_date, type, employee, machine, tool, journal, value, resource", values);
                     if (dboperator.insert(query) != 0)
                     {
                         MessageBox.Show("Dodano");
@@ -348,6 +359,8 @@ namespace AgroApp.Forms
                     {
                         MessageBox.Show("Błąd");
                     }
+
+                    UpdateQuery updateAmount = new UpdateQuery("Resources", "amount", total, (int)dataGridViewResource.SelectedRows[0].Cells[0].Value);
                 }
                 else
                 {
@@ -586,6 +599,36 @@ namespace AgroApp.Forms
                         break;
                     case "Zbiory":
                         labelUnit.Text = "t/ha";
+                        break;
+                }
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewType.SelectedRows.Count > 0)
+            {
+                string type = dataGridViewType.SelectedRows[0].Cells[1].Value.ToString();
+                total = (double)numericUpDown1.Value * (double)dataGridViewField.SelectedRows[0].Cells[6].Value;
+                switch (type)
+                {
+                    case "Orka":
+                        labelTotal.Text = "";
+                        break;
+                    case "Siew":
+                        labelTotal.Text = "Łączna użyta ilość: " + total + "kg";
+                        break;
+                    case "Podlewanie":
+                        labelTotal.Text = "Łączna użyta ilość: " + total + "l";
+                        break;
+                    case "Nawożenie":
+                        labelTotal.Text = "Łączna użyta ilość: " + total + "kg";
+                        break;
+                    case "Oprysk":
+                        labelTotal.Text = "Łączna użyta ilość: " + total + "l";
+                        break;
+                    case "Zbiory":
+                        labelTotal.Text = "Łączna zebrana ilość: " + total + "t";
                         break;
                 }
             }
