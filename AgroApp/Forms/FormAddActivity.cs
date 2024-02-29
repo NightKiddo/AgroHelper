@@ -311,7 +311,7 @@ namespace AgroApp.Forms
                     }
                     else
                     {
-                        chosenTool = (int)(dataGridViewMachine.SelectedRows[0].Cells[0].Value);
+                        chosenTool = (int)(dataGridViewTool.SelectedRows[0].Cells[0].Value);
                     }
 
                     if (dataGridViewResource.SelectedRows.Count == 0)
@@ -320,7 +320,7 @@ namespace AgroApp.Forms
                     }
                     else
                     {
-                        chosenResource = (Resource)(dataGridViewResource.SelectedRows[0].Cells[0].Value);
+                        chosenResource = (int)(dataGridViewResource.SelectedRows[0].Cells[0].Value);
                     }
 
                     if (numericUpDown1.Value == 0)
@@ -348,19 +348,64 @@ namespace AgroApp.Forms
                     if (dboperator.insert(query) != 0)
                     {
                         MessageBox.Show("Dodano");
+
+                        if (dataGridViewResource.SelectedRows.Count > 0)
+                        {
+                            try
+                            {
+                                double currentAmount = (double)dataGridViewResource.SelectedRows[0].Cells[2].Value;
+                                double amountAfterActivity = 0;
+                                if (chosenType == "Podlewanie")
+                                {
+                                    goto AllGood;
+
+                                }
+                                else if (chosenType == "Zbiory")
+                                {
+                                    amountAfterActivity = currentAmount + total;
+                                }
+                                else
+                                {
+                                    amountAfterActivity = currentAmount - total;
+                                }
+
+
+                                UpdateQuery updateAmount = new UpdateQuery();
+
+                                updateAmount.setTable("Resources");
+                                updateAmount.setColumn("amount");
+                                updateAmount.setValue(amountAfterActivity);
+                                updateAmount.setId((int)dataGridViewResource.SelectedRows[0].Cells[0].Value);
+
+                                updateAmount.constructQuery(2);
+
+                                if (dboperator.update(updateAmount) != 0)
+                                {
+                                    loadResources();
+                                    goto AllGood;
+                                }
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Błąd podczas aktualizowania zasobów");
+                            }
+                        }
+
+                    AllGood:
                         textBox1.Text = string.Empty;
                         richTextBox1.Text = string.Empty;
                         clearDataGridViewSelections();
                         numericUpDown1.Value = 0m;
                         dateTimePicker1.Value = DateTime.Today;
                         dateTimePicker2.Value = DateTime.Today;
+                        labelTotal.Text = "";
                     }
                     else
                     {
                         MessageBox.Show("Błąd");
                     }
 
-                    UpdateQuery updateAmount = new UpdateQuery("Resources", "amount", total, (int)dataGridViewResource.SelectedRows[0].Cells[0].Value);
+
                 }
                 else
                 {

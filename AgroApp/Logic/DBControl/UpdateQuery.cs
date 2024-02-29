@@ -11,16 +11,21 @@ namespace AgroApp.Logic.DBControl
     {
         private string query;
         private string tableName;
-        private List<string> columns;
-        private List<object> values;
+        private List<string> columnsToUpdate;
+        private List<object> valuesToUpdate;
         private int id;
+
+
+        //used when updating with only one value (for example in FormAddActivity)
+        private string columnToUpdate;
+        private object valueToUpdate;
 
         public string getQuery()
         {
             return query;
         }
 
-        public string constructQuery()
+        public void constructQuery(int option)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -28,27 +33,54 @@ namespace AgroApp.Logic.DBControl
             builder.Append(tableName);
             builder.Append(" SET ");
 
-            for(int i=0; i<columns.Count; i++)
+            if (option == 1)
             {
-                builder.Append(columns[i]);
+                for (int i = 0; i < columnsToUpdate.Count; i++)
+                {
+                    builder.Append(columnsToUpdate[i]);
+                    builder.Append(" = ");
+                    if (valuesToUpdate[i].GetType() == typeof(string))
+                    {
+                        builder.Append("'");
+                        builder.Append(valuesToUpdate[i]);
+                        builder.Append("'");
+                    }
+                    else if (valuesToUpdate[i].GetType() == typeof(decimal))
+                    {
+                        var value = valuesToUpdate[i].ToString();
+                        string v = value.Replace(',', '.');
+                        builder.Append(v);
+                    }
+                    else
+                    {
+                        builder.Append(valuesToUpdate[i]);
+                    }
+
+                    builder.Append(", ");
+                }
+            }
+            else
+            {
+                builder.Append(columnToUpdate);
                 builder.Append(" = ");
-                if (values[i].GetType() == typeof(string))
+
+                if (valueToUpdate.GetType() == typeof(string))
                 {
                     builder.Append("'");
-                    builder.Append(values[i]);
-                    builder.Append("'");                    
+                    builder.Append(valueToUpdate);
+                    builder.Append("'");
                 }
-                else if (values[i].GetType() == typeof(decimal))
+                else if (valueToUpdate.GetType() == typeof(decimal) | valueToUpdate.GetType() == typeof(double))
                 {
-                    var value = values[i].ToString();
+                    var value = valueToUpdate.ToString();
                     string v = value.Replace(',', '.');
                     builder.Append(v);
                 }
                 else
                 {
-                    builder.Append(values[i]);
+                    builder.Append(valueToUpdate);
                 }
-                
+
                 builder.Append(", ");
             }
 
@@ -58,21 +90,39 @@ namespace AgroApp.Logic.DBControl
             builder.Append(';');
 
 
-            return builder.ToString();
+            this.query = builder.ToString();
         }
 
-        public UpdateQuery(string tableName, List<string> columns, List<object> values,int id)
+        public void setTable(string table)
+        {
+            this.tableName = table;
+        }
+        public void setColumn(string column)
+        {
+            this.columnToUpdate = column;
+        }
+
+        public void setValue(object value)
+        {
+            this.valueToUpdate = value;
+        }
+
+        public void setId(int id)
+        {
+            this.id = id;
+        }
+        public UpdateQuery(string tableName, List<string> columns, List<object> values, int id)
         {
             this.tableName = tableName;
-            this.columns = columns;
-            this.values = values;
+            this.columnsToUpdate = columns;
+            this.valuesToUpdate = values;
             this.id = id;
-            this.query = constructQuery();
+            constructQuery(1);
         }
 
-        public UpdateQuery(string tableName, string column, decimal value, int id)
+        public UpdateQuery()
         {
-            this.query = "UPDATE " + tableName + " SET " + column + " = " + value + " WHERE id = " + id;
+
         }
     }
 }
