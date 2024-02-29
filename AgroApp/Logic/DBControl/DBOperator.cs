@@ -37,6 +37,18 @@ namespace AgroApp.Logic
             setupCollections();
         }
 
+        public void setupCollections()
+        {
+            plantTypesCollection = getPlantTypes();
+            plantsCollection = getPlants();
+            machineTypesCollection = getMachineTypes();
+            toolTypesCollection = getToolTypes();
+            resourceTypesCollection = getResourceTypes();
+            activityTypesCollection = getActivityTypes();
+            noteTypesCollection = getNoteTypes();
+        }
+
+        #region operations
         public void connect()
         {
             connectionString = @"Data Source = " + machineName + ";Initial Catalog=agro;User ID=agro;Password=demo123";
@@ -54,15 +66,6 @@ namespace AgroApp.Logic
                 MessageBox.Show("Nie można połączyć z bazą!");
             }
         }
-        public SqlConnection getConn()
-        {
-            return conn;
-        }
-
-        public SqlCommand getCommand()
-        {
-            return command;
-        }
         public int insert(InsertQuery query)
         {
             a = 0;
@@ -79,7 +82,6 @@ namespace AgroApp.Logic
             conn.Close();
             return a;
         }
-
         public int update(UpdateQuery query)
         {
             a = 0;
@@ -96,7 +98,22 @@ namespace AgroApp.Logic
             conn.Close();
             return a;
         }
+        public int delete(DeleteQuery query)
+        {
+            a = 0;
 
+            connect();
+            conn.Open();
+            command = new SqlCommand(query.getQuery(), conn);
+
+            if (command.ExecuteNonQuery() != 0)
+            {
+                a = 1;
+            }
+
+            conn.Close();
+            return a;
+        }
         public int insertWithIdOutput(InsertQuery query)
         {
             int output = 0;
@@ -116,38 +133,96 @@ namespace AgroApp.Logic
             dataReader.Close();
             return output;
         }
-
-        public object select(string query)
+        public int login(string login, string password)
         {
-            connect();
-            conn.Open();
+            int id = 0;
 
-            command = new SqlCommand(query, conn);
-            dataReader = command.ExecuteReader();
+            string query = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') " +
+                "BEGIN (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') END " +
+                "ELSE BEGIN SELECT 0 END";
 
             string output = "";
+            connect();
+            conn.Open();
+            command = new SqlCommand(query, conn);
+
+            dataReader = command.ExecuteReader();
 
             while (dataReader.Read())
             {
-                output = output + dataReader.GetValue(0);
+                output += dataReader.GetValue(0);
+
+                if (output == "0")
+                {
+                    MessageBox.Show("Błąd logowania!");
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Zalogowano pomyślnie");
+                }
+            }
+
+            dataReader.Close();
+            conn.Close();
+
+            int.TryParse(output, out id);
+
+            user = new User(id, login, password);
+            user.EmployeesList = getEmployees();
+            user.FarmsList = getFarms();
+
+
+            foreach (Farm f in user.FarmsList)
+            {
+                f.FieldsList = getFields(f);
+                f.GaragesList = getGarages(f);
+                f.StoragesList = getStorages(f);
+            }
+
+            user.FarmsList = getFarms();
+
+            return id;
+        }
+        public int register(string login, string password)
+        {
+            a = 0;
+            int userId = 0;
+            connect();
+            conn.Open();
+            string check = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "') " +
+                "BEGIN SELECT 1 END " +
+                "ELSE BEGIN SELECT 2 END";
+            string checkValue = "";
+            command = new SqlCommand(check, conn);
+            dataReader = command.ExecuteReader();
+
+
+            while (dataReader.Read())
+            {
+                checkValue += dataReader.GetValue(0);
+            }
+
+            dataReader.Close();
+
+            if (checkValue == "2")
+            {
+                string values = "'" + login + "', '" + password + "'";
+                InsertQuery insertQuery = new InsertQuery("Users", "login,password", values, "id");
+                userId = insertWithIdOutput(insertQuery);
+                a = 1;
+
             }
 
             conn.Close();
-            return output;
 
+            return a;
         }
 
-        public void setupCollections()
-        {
-            plantTypesCollection = getPlantTypes();
-            plantsCollection = getPlants();
-            machineTypesCollection = getMachineTypes();
-            toolTypesCollection = getToolTypes();
-            resourceTypesCollection = getResourceTypes();
-            activityTypesCollection = getActivityTypes();
-            noteTypesCollection = getNoteTypes();
-        }
+        #endregion
 
+
+        #region getStuff
         public Journal getJournal(Farm farm)
         {
             string query = "SELECT * FROM allJournalsView";
@@ -795,109 +870,8 @@ namespace AgroApp.Logic
 
             return employees;
         }
-        
-        public int delete(DeleteQuery query)
-        {
-            a = 0;
-
-            connect();
-            conn.Open();
-            command = new SqlCommand(query.getQuery(), conn);
-
-            if (command.ExecuteNonQuery() != 0)
-            {
-                a = 1;
-            }
-
-            conn.Close();
-            return a;
-        }
-
-        public int login(string login, string password)
-        {
-            int id = 0;
-
-            string query = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') " +
-                "BEGIN (SELECT id FROM Users WHERE login LIKE '" + login + "' AND password LIKE '" + password + "') END " +
-                "ELSE BEGIN SELECT 0 END";
-
-            string output = "";
-            connect();
-            conn.Open();
-            command = new SqlCommand(query, conn);
-
-            dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
-            {
-                output += dataReader.GetValue(0);
-
-                if (output == "0")
-                {
-                    MessageBox.Show("Błąd logowania!");
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Zalogowano pomyślnie");
-                }
-            }
-
-            dataReader.Close();
-            conn.Close();
-
-            int.TryParse(output, out id);
-
-            user = new User(id, login, password);
-            user.EmployeesList = getEmployees();
-            user.FarmsList = getFarms();
+        #endregion
 
 
-            foreach (Farm f in user.FarmsList)
-            {
-                f.FieldsList = getFields(f);
-                f.GaragesList = getGarages(f);
-                f.StoragesList = getStorages(f);
-            }
-
-            user.FarmsList = getFarms();
-
-            return id;
-        }
-
-        public int register(string login, string password)
-        {
-            a = 0;
-            int userId = 0;
-            connect();
-            conn.Open();
-            string check = "IF EXISTS (SELECT id FROM Users WHERE login LIKE '" + login + "') " +
-                "BEGIN SELECT 1 END " +
-                "ELSE BEGIN SELECT 2 END";
-            string checkValue = "";
-            command = new SqlCommand(check, conn);
-            dataReader = command.ExecuteReader();
-
-
-            while (dataReader.Read())
-            {
-                checkValue += dataReader.GetValue(0);
-            }
-
-            dataReader.Close();
-
-            if (checkValue == "2")
-            {
-                string values = "'" + login + "', '" + password + "'";
-                InsertQuery insertQuery = new InsertQuery("Users", "login,password", values, "id");
-                userId = insertWithIdOutput(insertQuery);
-                a = 1;
-                
-            }
-            
-            conn.Close();
-
-            return a;
-        }
     }
 }

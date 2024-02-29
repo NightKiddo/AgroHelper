@@ -18,7 +18,6 @@ namespace AgroApp.Forms
 
         object[] seriesTypes = { SeriesChartType.Column, SeriesChartType.StackedColumn ,SeriesChartType.Line, SeriesChartType.Point };
         object[] markerStyleTypes = { MarkerStyle.Square, MarkerStyle.Circle, MarkerStyle.Cross, MarkerStyle.Triangle };
-        int userId;
         Farm farm;
         Field selectedField;
         Series selectedSeries;
