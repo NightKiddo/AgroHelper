@@ -49,7 +49,7 @@ namespace AgroApp.Forms
             dataGridViewFields.AutoGenerateColumns = true;
             var source = new BindingSource();
             source.DataSource = farm.FieldsList;
-            dataGridViewFields.DataSource = source;            
+            dataGridViewFields.DataSource = source;
 
             dataGridViewFields.Columns[0].Visible = false;
             dataGridViewFields.Columns[2].Visible = false;
@@ -124,7 +124,7 @@ namespace AgroApp.Forms
                 int fieldId;
                 int.TryParse(row.Cells[0].Value.ToString(), out fieldId);
                 Field field = farm.FieldsList.Find(X => X.Id == fieldId);
-                
+
                 FormShowField formShowField = new FormShowField(field);
                 this.Visible = false;
                 formShowField.ShowDialog();
@@ -258,7 +258,7 @@ namespace AgroApp.Forms
         {
             if (e.Button == MouseButtons.Right)
             {
-                dataGridViewFields.ContextMenuStrip = contextMenuStripFields;                
+                dataGridViewFields.ContextMenuStrip = contextMenuStripFields;
                 dataGridViewFields.ContextMenuStrip.Show(this, e.X, e.Y);
             }
         }
@@ -334,7 +334,15 @@ namespace AgroApp.Forms
         {
             if (dataGridViewFields.SelectedRows.Count > 0)
             {
-                DeleteQuery query = new DeleteQuery("Fields", "id", (int)dataGridViewFields.SelectedRows[0].Cells[0].Value);
+                int fieldId = (int)dataGridViewFields.SelectedRows[0].Cells[0].Value;
+
+                DeleteQuery deleteActivities = new DeleteQuery("Activities", "field", fieldId);
+                dboperator.delete(deleteActivities);
+
+                DeleteQuery deleteNotes = new DeleteQuery("Notes", "field", fieldId);
+                dboperator.delete(deleteNotes);
+
+                DeleteQuery query = new DeleteQuery("Fields", "id", fieldId);
 
                 if (dboperator.delete(query) != 0)
                 {
@@ -346,6 +354,7 @@ namespace AgroApp.Forms
                 }
 
                 loadFields();
+                loadJournal();
             }
         }
 

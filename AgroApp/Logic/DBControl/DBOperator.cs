@@ -171,17 +171,6 @@ namespace AgroApp.Logic
             user = new User(id, login, password);
             user.EmployeesList = getEmployees();
             user.FarmsList = getFarms();
-
-
-            foreach (Farm f in user.FarmsList)
-            {
-                f.FieldsList = getFields(f);
-                f.GaragesList = getGarages(f);
-                f.StoragesList = getStorages(f);
-            }
-
-            user.FarmsList = getFarms();
-
             return id;
         }
         public int register(string login, string password)
@@ -209,7 +198,7 @@ namespace AgroApp.Logic
             {
                 string values = "'" + login + "', '" + password + "'";
                 InsertQuery insertQuery = new InsertQuery("Users", "login,password", values, "id");
-                userId = insertWithIdOutput(insertQuery);
+                userId = insert(insertQuery);
                 a = 1;
 
             }
