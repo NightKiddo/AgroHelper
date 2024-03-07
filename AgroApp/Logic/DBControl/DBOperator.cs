@@ -90,7 +90,7 @@ namespace AgroApp.Logic
             conn.Open();
             command = new SqlCommand(query.getQuery(), conn);
 
-            if(command.ExecuteNonQuery() != 0)
+            if (command.ExecuteNonQuery() != 0)
             {
                 a = 1;
             }
@@ -334,7 +334,7 @@ namespace AgroApp.Logic
                     plant = plantsCollection.Find(x => x.Id == plantId);
                 }
 
-                if(dataReader.GetValue(6) != DBNull.Value)
+                if (dataReader.GetValue(6) != DBNull.Value)
                 {
                     area = dataReader.GetDouble(6);
                 }
@@ -722,7 +722,10 @@ namespace AgroApp.Logic
                     foreach (Garage g in farm.GaragesList)
                     {
                         machine = g.MachinesList.Find(x => x.Id == machineId);
-                        break;
+                        if (machine != null)
+                        {
+                            break;
+                        }
                     }
                 }
 
@@ -734,7 +737,10 @@ namespace AgroApp.Logic
                     foreach (Garage g in farm.GaragesList)
                     {
                         tool = g.ToolsList.Find(x => x.Id == toolId);
-                        break;
+                        if (tool != null)
+                        {
+                            break;
+                        }
                     }
                 }
 
@@ -746,7 +752,10 @@ namespace AgroApp.Logic
                     foreach (Storage s in farm.StoragesList)
                     {
                         resource = s.ResourcesList.Find(x => x.Id == resourceId);
-                        break;
+                        if (resource != null)
+                        {
+                            break;
+                        }
                     }
                 }
 
