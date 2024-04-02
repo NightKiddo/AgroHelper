@@ -54,15 +54,14 @@ namespace AgroApp.Forms
             dataGridViewFields.Columns[0].Visible = false;
             dataGridViewFields.Columns[2].Visible = false;
             dataGridViewFields.Columns[3].Visible = false;
-            dataGridViewFields.Columns[4].Visible = false;
 
             dataGridViewFields.Columns[1].Width = (int)(dataGridViewFields.Width * 0.4);
+            dataGridViewFields.Columns[4].Width = (int)(dataGridViewFields.Width * 0.3);
             dataGridViewFields.Columns[5].Width = (int)(dataGridViewFields.Width * 0.3);
-            dataGridViewFields.Columns[6].Width = (int)(dataGridViewFields.Width * 0.3);
 
             dataGridViewFields.Columns[1].HeaderText = "Nazwa";
-            dataGridViewFields.Columns[5].HeaderText = "Uprawa";
-            dataGridViewFields.Columns[6].HeaderText = "Powierzchnia (ha)";
+            dataGridViewFields.Columns[4].HeaderText = "Uprawa";
+            dataGridViewFields.Columns[5].HeaderText = "Powierzchnia (ha)";
 
             dataGridViewFields.ClearSelection();
         }
