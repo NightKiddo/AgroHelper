@@ -338,7 +338,7 @@ namespace AgroApp.Logic
                 {
                     area = dataReader.GetDouble(6);
                 }
-                Field field = new Field(id, name, description, coordinates, plant, area);
+                Field field = new Field(id, name, description, coordinates, farm, plant, area);
                 fields.Add(field);
             }
 

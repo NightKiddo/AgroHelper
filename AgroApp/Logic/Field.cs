@@ -12,15 +12,17 @@ namespace AgroApp.Logic
         private string name;
         private string description;
         private string coordinates;        
+        private Farm farm;
         private Plant plant;
         private double area;
 
-        public Field(int id, string name, string description, string coordinates, Plant plant, double area)
+        public Field(int id, string name, string description, string coordinates, Farm farm, Plant plant, double area)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Coordinates = coordinates;
+            this.Farm = farm;
             this.Plant = plant;
             this.Area = area;
         }
@@ -29,6 +31,7 @@ namespace AgroApp.Logic
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public string Coordinates { get => coordinates; set => coordinates = value; }
+        public Farm Farm { get => farm; set => farm = value; }
         public Plant Plant { get => plant; set => plant = value; }
         public double Area { get => area; set => area = value; }
 
