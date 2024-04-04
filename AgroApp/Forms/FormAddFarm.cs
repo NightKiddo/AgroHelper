@@ -54,7 +54,7 @@ namespace AgroApp.Forms
                 {
                     if (dboperator.insert(queryJournal) != 0)
                     {                                               
-                        FormAddField formAddField = new FormAddField(farmId, 1);
+                        FormAddField formAddField = new FormAddField(farmId);
                         this.Visible = false;
                         formAddField.ShowDialog();                        
                         this.Close();

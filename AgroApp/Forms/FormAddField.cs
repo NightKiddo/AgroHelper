@@ -18,17 +18,12 @@ namespace AgroApp.Forms
         string coordinates, area, coordinatesAndArea;
         int farmId;
         DBOperator dboperator = FormBase.dboperator;
-        public FormAddField(int farmId, int option)
+        public FormAddField(int farmId)
         {
             InitializeComponent();
             this.Icon = Properties.Resources.favicon;
             this.Text = "Dodawanie pola";
-            buttonNext.Visible = false;
             this.farmId = farmId;
-            if(option == 1)
-            {
-                buttonNext.Visible = true;
-            }
         }
 
         private void FormAddField_Load(object sender, EventArgs e)
@@ -38,7 +33,7 @@ namespace AgroApp.Forms
             string y = Directory.GetParent(x).Parent.Parent.FullName;
             webView21.Source = new Uri(y + "\\main\\index.html");
         }
-        private void addField()
+        private void addField(int option)
         {
             string values;
             int plantId;
@@ -52,21 +47,34 @@ namespace AgroApp.Forms
                 values = "'" + coordinates + "', " + area + ", '" + textBox1.Text + "','" + richTextBox1.Text + "'," + farmId + ", " + plantId;
             }
             InsertQuery queryField = new InsertQuery("Fields", "coordinates,area,name,description,farm,plant", values);
-
-            if (dboperator.insert(queryField) != 0)
+            if (option == 0)
             {
-                MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                webView21.Reload();
-                fieldDrawn = 0;
-                dataGridView1.ClearSelection();
-                textBox1.Text = "";
-                richTextBox1.Text = "";
-            }
-            else
-            {
-                MessageBox.Show("Błąd", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
+                if (dboperator.insert(queryField) != 0)
+                {
+                    MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Błąd", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (option == 1)
+            {
+                if (dboperator.insert(queryField) != 0)
+                {
+                    MessageBox.Show("Dodano pomyślnie", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    webView21.Reload();
+                    fieldDrawn = 0;
+                    dataGridView1.ClearSelection();
+                    textBox1.Text = "";
+                    richTextBox1.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Błąd", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -77,7 +85,7 @@ namespace AgroApp.Forms
             }
             else
             {
-                addField();
+                addField(1);
             }
         }
 
@@ -113,7 +121,7 @@ namespace AgroApp.Forms
         {
             if (fieldDrawn != 0)
             {
-                addField();
+                addField(0);
             }
             FormAddGarage formAddGarage = new FormAddGarage(farmId, 0);
             this.Visible = false;

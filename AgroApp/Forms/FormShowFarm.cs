@@ -320,7 +320,7 @@ namespace AgroApp.Forms
 
         private void dodajToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            FormAddField formAddField = new FormAddField(farm.Id, 0);
+            FormAddField formAddField = new FormAddField(farm.Id);
             this.Visible = false;
             formAddField.ShowDialog();
             this.Visible = true;
